@@ -239,6 +239,7 @@
 		F687A41516B4B63300878140 /* GLTest */ = {
 			isa = PBXGroup;
 			children = (
+				F687A52E16B4BC7700878140 /* src */,
 				F687A41616B4B63300878140 /* Supporting Files */,
 				F687A42C16B4B68700878140 /* main.mm */,
 			);
@@ -378,6 +379,13 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		F687A52E16B4BC7700878140 /* src */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = src;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -683,6 +691,7 @@
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "osx/GLTest/GLTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = src;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -695,6 +704,7 @@
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "osx/GLTest/GLTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = src;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
