@@ -13,7 +13,7 @@ Shader Shader::shaderFromFile(const std::string& file, GLenum shaderType)
     std::stringstream buff;
     buff << f.rdbuf();
     
-    return Shader(buff.str(), shaderType);
+    return Shader{buff.str(), shaderType};
 }
 
 Shader::Shader(const std::string& code, GLenum shaderType)

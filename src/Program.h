@@ -31,7 +31,7 @@ class ProgramContext
 {
     const Program& program;
 public:
-    ProgramContext(const Program& prog) : program(prog)
+    ProgramContext(const Program& prog) : program{prog}
     {
         program.bind();
     }

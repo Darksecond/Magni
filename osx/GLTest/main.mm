@@ -67,7 +67,7 @@ void render(const Program& p)
     glClearColor(0, 0, 0, 1); // black
     glClear(GL_COLOR_BUFFER_BIT);
     
-    ProgramContext pc(p);
+    ProgramContext pc{p};
     
     glBindVertexArray(gVAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
