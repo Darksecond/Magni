@@ -34,7 +34,7 @@ Program::Program(const std::vector<Shader>& shaders)
     }
 }
 
-Program::Program(Program&& other) : _object(other._object)
+Program::Program(Program&& other) : _object{other._object}
 {
     other._object = 0;
 }

@@ -22,18 +22,33 @@ public:
     
     GLint attrib(const GLchar* attribName) const;
     GLint uniform(const GLchar* uniformName) const;
+    
+    inline void bind() const;
+    inline void unbind() const;
 };
 
 class ProgramContext
 {
+    const Program& program;
 public:
-    ProgramContext(const Program& program)
+    ProgramContext(const Program& prog) : program(prog)
     {
-        glUseProgram(program.object());
+        program.bind();
     }
     
     ~ProgramContext()
     {
-        glUseProgram(0);
+        program.unbind();
     }
 };
+
+//INLINED METHODS
+void Program::bind() const
+{
+    glUseProgram(_object);
+}
+
+void Program::unbind() const
+{
+    glUseProgram(0);
+}

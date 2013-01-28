@@ -47,7 +47,7 @@ Shader::Shader(const std::string& code, GLenum shaderType)
     }
 }
 
-Shader::Shader(Shader&& other) : _object(other._object)
+Shader::Shader(Shader&& other) : _object{other._object}
 {
     other._object = 0;
 }
