@@ -23,3 +23,17 @@ public:
     GLint attrib(const GLchar* attribName) const;
     GLint uniform(const GLchar* uniformName) const;
 };
+
+class ProgramContext
+{
+public:
+    ProgramContext(const Program& program)
+    {
+        glUseProgram(program.object());
+    }
+    
+    ~ProgramContext()
+    {
+        glUseProgram(0);
+    }
+};
