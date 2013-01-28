@@ -9,12 +9,12 @@ Program::Program(const std::vector<Shader>& shaders)
     if(_object == 0)
         throw std::runtime_error("glCreateProgram failed");
     
-    for(auto&& shader : shaders)
+    for(auto& shader : shaders)
         glAttachShader(_object, shader.object());
     
     glLinkProgram(_object);
     
-    for(auto&& shader : shaders)
+    for(auto& shader : shaders)
         glDetachShader(_object, shader.object());
     
     GLint status;
