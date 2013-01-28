@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F645948E16B6A96D00B118C2 /* Shader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645948D16B6A96D00B118C2 /* Shader.cc */; };
+		F645949016B6AD9700B118C2 /* test.vert in Sources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* test.vert */; };
+		F645949116B6ADA900B118C2 /* test.vert in Resources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* test.vert */; };
+		F645949416B6AE8700B118C2 /* Program.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645949316B6AE8700B118C2 /* Program.cc */; };
+		F645949616B6B11400B118C2 /* test.frag in Resources */ = {isa = PBXBuildFile; fileRef = F645949516B6B11400B118C2 /* test.frag */; };
 		F687A41016B4B63300878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
 		F687A42D16B4B68700878140 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = F687A42C16B4B68700878140 /* main.mm */; };
 		F687A43416B4B73B00878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
@@ -54,6 +59,9 @@
 		F687A52816B4BB0400878140 /* GLEW.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F687A4D416B4B89800878140 /* GLEW.framework */; };
 		F687A52916B4BB0400878140 /* GLM.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F687A50116B4BA1100878140 /* GLM.framework */; };
 		F687A52A16B4BBB200878140 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A4CB16B4B81B00878140 /* OpenGL.framework */; };
+		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
+		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
+		F6E3E49B16B550DE00BFAC05 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49A16B550DE00BFAC05 /* COPYING.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +104,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F645948B16B6A8F100B118C2 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		F645948D16B6A96D00B118C2 /* Shader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cc; sourceTree = "<group>"; };
+		F645948F16B6AD9700B118C2 /* test.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.vert; sourceTree = "<group>"; };
+		F645949216B6AE1700B118C2 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
+		F645949316B6AE8700B118C2 /* Program.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cc; sourceTree = "<group>"; };
+		F645949516B6B11400B118C2 /* test.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.frag; sourceTree = "<group>"; };
 		F687A40B16B4B63300878140 /* GLTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F687A40F16B4B63300878140 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F687A41216B4B63300878140 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -146,6 +160,9 @@
 		F687A51616B4BA9300878140 /* gtx */ = {isa = PBXFileReference; lastKnownFileType = folder; name = gtx; path = glm/gtx; sourceTree = "<group>"; };
 		F687A51716B4BA9300878140 /* virtrev */ = {isa = PBXFileReference; lastKnownFileType = folder; name = virtrev; path = glm/virtrev; sourceTree = "<group>"; };
 		F687A51E16B4BABD00878140 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
+		F6E3E49816B550B300BFAC05 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		F6E3E49A16B550DE00BFAC05 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,9 +211,6 @@
 		F687A40016B4B63300878140 = {
 			isa = PBXGroup;
 			children = (
-				F687A4F316B4B95300878140 /* AGL.framework */,
-				F687A4CD16B4B82400878140 /* IOKit.framework */,
-				F687A4CB16B4B81B00878140 /* OpenGL.framework */,
 				F687A41516B4B63300878140 /* GLTest */,
 				F687A43516B4B73B00878140 /* GLFW */,
 				F687A4D616B4B89900878140 /* GLEW */,
@@ -220,6 +234,9 @@
 		F687A40E16B4B63300878140 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F687A4F316B4B95300878140 /* AGL.framework */,
+				F687A4CD16B4B82400878140 /* IOKit.framework */,
+				F687A4CB16B4B81B00878140 /* OpenGL.framework */,
 				F687A40F16B4B63300878140 /* Cocoa.framework */,
 				F687A41116B4B63300878140 /* Other Frameworks */,
 			);
@@ -251,6 +268,8 @@
 			isa = PBXGroup;
 			children = (
 				F687A41716B4B63300878140 /* GLTest-Info.plist */,
+				F645948F16B6AD9700B118C2 /* test.vert */,
+				F645949516B6B11400B118C2 /* test.frag */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -269,6 +288,7 @@
 		F687A43616B4B73B00878140 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F6E3E49A16B550DE00BFAC05 /* COPYING.txt */,
 				F687A43716B4B73B00878140 /* GLFW-Info.plist */,
 			);
 			name = "Supporting Files";
@@ -333,6 +353,7 @@
 		F687A4D716B4B89900878140 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F6E3E49816B550B300BFAC05 /* LICENSE.txt */,
 				F687A4D816B4B89900878140 /* GLEW-Info.plist */,
 			);
 			name = "Supporting Files";
@@ -375,6 +396,7 @@
 		F687A50416B4BA1100878140 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F6E3E49516B5508B00BFAC05 /* copying.txt */,
 				F687A50516B4BA1100878140 /* GLM-Info.plist */,
 			);
 			name = "Supporting Files";
@@ -383,6 +405,10 @@
 		F687A52E16B4BC7700878140 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F645948B16B6A8F100B118C2 /* Shader.h */,
+				F645948D16B6A96D00B118C2 /* Shader.cc */,
+				F645949216B6AE1700B118C2 /* Program.h */,
+				F645949316B6AE8700B118C2 /* Program.cc */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -533,6 +559,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F645949116B6ADA900B118C2 /* test.vert in Resources */,
+				F645949616B6B11400B118C2 /* test.frag in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +568,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6E3E49B16B550DE00BFAC05 /* COPYING.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +576,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +584,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +596,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F687A42D16B4B68700878140 /* main.mm in Sources */,
+				F645948E16B6A96D00B118C2 /* Shader.cc in Sources */,
+				F645949016B6AD9700B118C2 /* test.vert in Sources */,
+				F645949416B6AE8700B118C2 /* Program.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,6 +864,7 @@
 				F687A42B16B4B63300878140 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F687A43F16B4B73B00878140 /* Build configuration list for PBXNativeTarget "GLFW" */ = {
 			isa = XCConfigurationList;
@@ -838,6 +873,7 @@
 				F687A44116B4B73B00878140 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F687A4E016B4B89900878140 /* Build configuration list for PBXNativeTarget "GLEW" */ = {
 			isa = XCConfigurationList;
@@ -846,6 +882,7 @@
 				F687A4E216B4B89900878140 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F687A50D16B4BA1100878140 /* Build configuration list for PBXNativeTarget "GLM" */ = {
 			isa = XCConfigurationList;
@@ -854,6 +891,7 @@
 				F687A50F16B4BA1100878140 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
