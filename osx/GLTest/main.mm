@@ -22,14 +22,14 @@ static std::string ResourcePath(std::string fileName) {
     return std::string([path cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-std::shared_ptr<Program> loadShaders()
+Program loadShaders()
 {
-    std::vector<std::shared_ptr<Shader>> shaders;
+    std::vector<Shader> shaders;
     
     shaders.push_back(Shader::shaderFromFile(ResourcePath("test.vert"), GL_VERTEX_SHADER));
     shaders.push_back(Shader::shaderFromFile(ResourcePath("test.frag"), GL_FRAGMENT_SHADER));
     
-    return std::make_shared<Program>(shaders);
+    return Program(shaders);
 }
 
 void loadTriangle(std::shared_ptr<Program> gProgram)
@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
     if(!GLEW_VERSION_3_2)
         throw std::runtime_error("OpenGL 3.2 API is not available.");
     
-    std::shared_ptr<Program> p = loadShaders();
+    std::shared_ptr<Program> p = std::make_shared<Program>(std::move( loadShaders() ));
     loadTriangle(p);
     
     while(glfwGetWindowParam(GLFW_OPENED))

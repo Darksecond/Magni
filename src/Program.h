@@ -10,11 +10,13 @@ class Program
 {
     GLuint _object;
 public:
-    Program(const std::vector<std::shared_ptr<Shader>>& shaders);
-    Program(Program const&) = delete;
+    Program(const std::vector<Shader>& shaders);
+    Program(Program&& other);
+    Program(const Program&) = delete;
     ~Program();
     
-    void operator=(Program const&) = delete;
+    Program& operator=(Program&& other);
+    Program& operator=(const Program&) = delete;
     
     GLuint object() const;
     

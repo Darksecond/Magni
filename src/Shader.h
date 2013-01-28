@@ -8,13 +8,15 @@ class Shader
 {
     GLuint _object;
 public:
-    static std::shared_ptr<Shader> shaderFromFile(const std::string& file, GLenum shaderType);
+    static Shader shaderFromFile(const std::string& file, GLenum shaderType);
     
     Shader(const std::string& code, GLenum shaderType);
-    Shader(Shader const&) = delete;
+    Shader(Shader&& other);
+    Shader(const Shader&) = delete;
     ~Shader();
     
-    void operator=(Shader const&) = delete;
+    Shader& operator=(Shader&& other);
+    Shader& operator=(const Shader&) = delete;
     
     GLuint object() const;
 };

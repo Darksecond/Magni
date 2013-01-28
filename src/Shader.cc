@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 
-std::shared_ptr<Shader> Shader::shaderFromFile(const std::string& file, GLenum shaderType)
+Shader Shader::shaderFromFile(const std::string& file, GLenum shaderType)
 {
     std::ifstream f;
     f.open(file.c_str(), std::ios::in | std::ios::binary);
@@ -13,7 +13,7 @@ std::shared_ptr<Shader> Shader::shaderFromFile(const std::string& file, GLenum s
     std::stringstream buff;
     buff << f.rdbuf();
     
-    return std::make_shared<Shader>(buff.str(), shaderType);
+    return Shader(buff.str(), shaderType);
 }
 
 Shader::Shader(const std::string& code, GLenum shaderType)
@@ -47,10 +47,25 @@ Shader::Shader(const std::string& code, GLenum shaderType)
     }
 }
 
+Shader::Shader(Shader&& other) : _object(other._object)
+{
+    other._object = 0;
+}
+
 Shader::~Shader()
 {
     glDeleteShader(_object);
     _object = 0;
+}
+
+Shader& Shader::operator=(Shader&& other)
+{
+    if(_object)
+        glDeleteShader(_object);
+    
+    _object = other._object;
+    other._object = 0;
+    return *this;
 }
 
 GLuint Shader::object() const

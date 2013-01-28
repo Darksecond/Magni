@@ -1,6 +1,6 @@
 #include "Program.h"
 
-Program::Program(const std::vector<std::shared_ptr<Shader>>& shaders)
+Program::Program(const std::vector<Shader>& shaders)
 {
     if(shaders.size() == 0)
         throw std::runtime_error("No Shaders provided");
@@ -9,13 +9,13 @@ Program::Program(const std::vector<std::shared_ptr<Shader>>& shaders)
     if(_object == 0)
         throw std::runtime_error("glCreateProgram failed");
     
-    for(auto shader : shaders)
-        glAttachShader(_object, shader->object());
+    for(auto&& shader : shaders)
+        glAttachShader(_object, shader.object());
     
     glLinkProgram(_object);
     
-    for(auto shader : shaders)
-        glDetachShader(_object, shader->object());
+    for(auto&& shader : shaders)
+        glDetachShader(_object, shader.object());
     
     GLint status;
     glGetProgramiv(_object, GL_LINK_STATUS, &status);
@@ -34,10 +34,25 @@ Program::Program(const std::vector<std::shared_ptr<Shader>>& shaders)
     }
 }
 
+Program::Program(Program&& other) : _object(other._object)
+{
+    other._object = 0;
+}
+
 Program::~Program()
 {
-    if(_object != 0)
+    if(_object)
         glDeleteProgram(_object);
+}
+
+Program& Program::operator=(Program&& other)
+{
+    if(_object)
+        glDeleteProgram(_object);
+    
+    _object = other._object;
+    other._object = 0;
+    return *this;
 }
 
 GLuint Program::object() const
