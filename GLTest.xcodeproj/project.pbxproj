@@ -63,7 +63,7 @@
 		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
 		F6E3E49B16B550DE00BFAC05 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49A16B550DE00BFAC05 /* COPYING.txt */; };
 		F6FB2A1716B70C3B00E6013E /* hazard.png in Resources */ = {isa = PBXBuildFile; fileRef = F6FB2A1616B70C3B00E6013E /* hazard.png */; };
-		F6FB2A1A16B70C7600E6013E /* stb_image.h in Sources */ = {isa = PBXBuildFile; fileRef = F6FB2A1916B70C7600E6013E /* stb_image.h */; };
+		F6FB2A1A16B70C7600E6013E /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = F6FB2A1916B70C7600E6013E /* stb_image.c */; };
 		F6FB2A1D16B7105D00E6013E /* Texture.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6FB2A1C16B7105D00E6013E /* Texture.cc */; };
 		F6FB2A2016B7113000E6013E /* Bitmap.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6FB2A1F16B7113000E6013E /* Bitmap.cc */; };
 /* End PBXBuildFile section */
@@ -108,6 +108,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F6097E5416B84B1A00B240E7 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		F645948B16B6A8F100B118C2 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
 		F645948D16B6A96D00B118C2 /* Shader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cc; sourceTree = "<group>"; };
 		F645948F16B6AD9700B118C2 /* test.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.vert; sourceTree = "<group>"; };
@@ -168,7 +169,7 @@
 		F6E3E49816B550B300BFAC05 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F6E3E49A16B550DE00BFAC05 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 		F6FB2A1616B70C3B00E6013E /* hazard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hazard.png; sourceTree = "<group>"; };
-		F6FB2A1916B70C7600E6013E /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		F6FB2A1916B70C7600E6013E /* stb_image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_image.c; sourceTree = "<group>"; };
 		F6FB2A1B16B7104F00E6013E /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		F6FB2A1C16B7105D00E6013E /* Texture.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cc; sourceTree = "<group>"; };
 		F6FB2A1E16B7112C00E6013E /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
@@ -420,7 +421,8 @@
 				F645948D16B6A96D00B118C2 /* Shader.cc */,
 				F645949216B6AE1700B118C2 /* Program.h */,
 				F645949316B6AE8700B118C2 /* Program.cc */,
-				F6FB2A1916B70C7600E6013E /* stb_image.h */,
+				F6FB2A1916B70C7600E6013E /* stb_image.c */,
+				F6097E5416B84B1A00B240E7 /* stb_image.h */,
 				F6FB2A1B16B7104F00E6013E /* Texture.h */,
 				F6FB2A1C16B7105D00E6013E /* Texture.cc */,
 				F6FB2A1E16B7112C00E6013E /* Bitmap.h */,
@@ -616,7 +618,7 @@
 				F645948E16B6A96D00B118C2 /* Shader.cc in Sources */,
 				F645949016B6AD9700B118C2 /* test.vert in Sources */,
 				F645949416B6AE8700B118C2 /* Program.cc in Sources */,
-				F6FB2A1A16B70C7600E6013E /* stb_image.h in Sources */,
+				F6FB2A1A16B70C7600E6013E /* stb_image.c in Sources */,
 				F6FB2A1D16B7105D00E6013E /* Texture.cc in Sources */,
 				F6FB2A2016B7113000E6013E /* Bitmap.cc in Sources */,
 			);
