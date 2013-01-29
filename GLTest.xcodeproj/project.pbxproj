@@ -62,6 +62,10 @@
 		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
 		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
 		F6E3E49B16B550DE00BFAC05 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49A16B550DE00BFAC05 /* COPYING.txt */; };
+		F6FB2A1716B70C3B00E6013E /* hazard.png in Resources */ = {isa = PBXBuildFile; fileRef = F6FB2A1616B70C3B00E6013E /* hazard.png */; };
+		F6FB2A1A16B70C7600E6013E /* stb_image.h in Sources */ = {isa = PBXBuildFile; fileRef = F6FB2A1916B70C7600E6013E /* stb_image.h */; };
+		F6FB2A1D16B7105D00E6013E /* Texture.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6FB2A1C16B7105D00E6013E /* Texture.cc */; };
+		F6FB2A2016B7113000E6013E /* Bitmap.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6FB2A1F16B7113000E6013E /* Bitmap.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +167,12 @@
 		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
 		F6E3E49816B550B300BFAC05 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F6E3E49A16B550DE00BFAC05 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
+		F6FB2A1616B70C3B00E6013E /* hazard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hazard.png; sourceTree = "<group>"; };
+		F6FB2A1916B70C7600E6013E /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		F6FB2A1B16B7104F00E6013E /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		F6FB2A1C16B7105D00E6013E /* Texture.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cc; sourceTree = "<group>"; };
+		F6FB2A1E16B7112C00E6013E /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
+		F6FB2A1F16B7113000E6013E /* Bitmap.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				F687A41716B4B63300878140 /* GLTest-Info.plist */,
+				F6FB2A1616B70C3B00E6013E /* hazard.png */,
 				F645948F16B6AD9700B118C2 /* test.vert */,
 				F645949516B6B11400B118C2 /* test.frag */,
 			);
@@ -409,6 +420,11 @@
 				F645948D16B6A96D00B118C2 /* Shader.cc */,
 				F645949216B6AE1700B118C2 /* Program.h */,
 				F645949316B6AE8700B118C2 /* Program.cc */,
+				F6FB2A1916B70C7600E6013E /* stb_image.h */,
+				F6FB2A1B16B7104F00E6013E /* Texture.h */,
+				F6FB2A1C16B7105D00E6013E /* Texture.cc */,
+				F6FB2A1E16B7112C00E6013E /* Bitmap.h */,
+				F6FB2A1F16B7113000E6013E /* Bitmap.cc */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -561,6 +577,7 @@
 			files = (
 				F645949116B6ADA900B118C2 /* test.vert in Resources */,
 				F645949616B6B11400B118C2 /* test.frag in Resources */,
+				F6FB2A1716B70C3B00E6013E /* hazard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,6 +616,9 @@
 				F645948E16B6A96D00B118C2 /* Shader.cc in Sources */,
 				F645949016B6AD9700B118C2 /* test.vert in Sources */,
 				F645949416B6AE8700B118C2 /* Program.cc in Sources */,
+				F6FB2A1A16B70C7600E6013E /* stb_image.h in Sources */,
+				F6FB2A1D16B7105D00E6013E /* Texture.cc in Sources */,
+				F6FB2A2016B7113000E6013E /* Bitmap.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

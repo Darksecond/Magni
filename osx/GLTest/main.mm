@@ -10,6 +10,8 @@
 
 #include "Shader.h"
 #include "Program.h"
+#include "Bitmap.h"
+#include "Texture.h"
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 GLuint gVAO = 0;
@@ -45,33 +47,50 @@ void loadTriangle(const Program& gProgram)
     
     // Put the three triangle verticies into the VBO
     GLfloat vertexData[] = {
-        //  X     Y     Z
-         0.0f,  0.8f, 0.0f,
-        -0.8f, -0.8f, 0.0f,
-         0.8f, -0.8f, 0.0f,
+        //  X     Y     Z    U     V
+         0.0f,  0.8f, 0.0f, 0.5f, 1.0f,
+        -0.8f, -0.8f, 0.0f, 0.0f, 0.0f,
+         0.8f, -0.8f, 0.0f, 1.0f, 0.0f,
     };
     
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
     
     // connect the xyz to the "vert" attribute of the vertex shader
     glEnableVertexAttribArray(gProgram.attrib("vert"));
-    glVertexAttribPointer(gProgram.attrib("vert"), 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    glVertexAttribPointer(gProgram.attrib("vert"), 3, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), NULL);
+    
+    // connect the uv coords to the "vertTexCoord" attribute of the vertex shader
+    glEnableVertexAttribArray(gProgram.attrib("vertTexCoord"));
+    glVertexAttribPointer(gProgram.attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,  5*sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
     
     // unbind the VBO and VAO
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }
 
-void render(const Program& p)
+// loads the file "hazard.png" into gTexture
+static Texture LoadTexture() {
+    Bitmap bmp = Bitmap::bitmapFromFile(ResourcePath("hazard.png"));
+    bmp.flipVertically();
+    return Texture{bmp};
+}
+
+void render(Program& p, const Texture& t)
 {
     glClearColor(0, 0, 0, 1); // black
     glClear(GL_COLOR_BUFFER_BIT);
     
     ProgramContext pc{p};
     
+    // bind the texture and set the "tex" uniform in the fragment shader
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, t.object());
+    p.setUniform("tex", 0); //set to 0 because the texture is bound to GL_TEXTURE0
+    
     glBindVertexArray(gVAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindVertexArray(0);
+    glBindTexture(GL_TEXTURE_2D, 0);
     
     glfwSwapBuffers();
 }
@@ -103,10 +122,11 @@ int main(int argc, char* argv[])
     //std::shared_ptr<Program> p = std::make_shared<Program>(std::move( loadShaders() ));
     Program p = loadShaders();
     loadTriangle(p);
+    Texture t = LoadTexture();
     
     while(glfwGetWindowParam(GLFW_OPENED))
     {
-        render(p);
+        render(p, t);
     }
     
     glfwTerminate();

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GLEW/glew.h>
+#include <GLM/gtc/type_ptr.hpp>
 #include <memory>
 #include <vector>
 
@@ -25,6 +26,8 @@ public:
     
     inline void bind() const;
     inline void unbind() const;
+    
+    inline void setUniform(const GLchar* name, GLint v0) { glUniform1i(uniform(name), v0); }
 };
 
 class ProgramContext
