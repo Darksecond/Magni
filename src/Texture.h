@@ -22,7 +22,7 @@ public:
     GLfloat width() const;
     GLfloat height() const;
     
-    inline void bind() const;
+    inline void bind(const GLenum unit = 0) const;
     inline void unbind() const;
 };
 
@@ -30,11 +30,9 @@ class TextureContext
 {
     const Texture& texture;
 public:
-    TextureContext(const Texture& t, GLenum unit = 0): texture{t}
+    TextureContext(const Texture& t, const GLenum unit = 0): texture{t}
     {
-        if(unit)
-            glActiveTexture(unit);
-        texture.bind();
+        texture.bind(unit);
     }
     
     ~TextureContext()
@@ -44,8 +42,10 @@ public:
 };
 
 //INLINED METHODS
-inline void Texture::bind() const
+inline void Texture::bind(const GLenum unit) const
 {
+    if(unit)
+        glActiveTexture(unit);
     glBindTexture(GL_TEXTURE_2D, _object);
 }
 
