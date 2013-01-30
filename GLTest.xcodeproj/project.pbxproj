@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F627D39D16B97CA7000B06AF /* wooden-crate.jpg */; };
 		F645948E16B6A96D00B118C2 /* Shader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645948D16B6A96D00B118C2 /* Shader.cc */; };
 		F645949016B6AD9700B118C2 /* test.vert in Sources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* test.vert */; };
 		F645949116B6ADA900B118C2 /* test.vert in Resources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* test.vert */; };
@@ -109,6 +110,7 @@
 
 /* Begin PBXFileReference section */
 		F6097E5416B84B1A00B240E7 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		F627D39D16B97CA7000B06AF /* wooden-crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wooden-crate.jpg"; sourceTree = "<group>"; };
 		F645948B16B6A8F100B118C2 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
 		F645948D16B6A96D00B118C2 /* Shader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cc; sourceTree = "<group>"; };
 		F645948F16B6AD9700B118C2 /* test.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.vert; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 			children = (
 				F687A41716B4B63300878140 /* GLTest-Info.plist */,
 				F6FB2A1616B70C3B00E6013E /* hazard.png */,
+				F627D39D16B97CA7000B06AF /* wooden-crate.jpg */,
 				F645948F16B6AD9700B118C2 /* test.vert */,
 				F645949516B6B11400B118C2 /* test.frag */,
 			);
@@ -580,6 +583,7 @@
 				F645949116B6ADA900B118C2 /* test.vert in Resources */,
 				F645949616B6B11400B118C2 /* test.frag in Resources */,
 				F6FB2A1716B70C3B00E6013E /* hazard.png in Resources */,
+				F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

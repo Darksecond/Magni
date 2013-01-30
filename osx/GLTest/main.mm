@@ -83,15 +83,14 @@ void render(Program& p, const Texture& t)
     ProgramContext pc{p};
     
     // bind the texture and set the "tex" uniform in the fragment shader
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, t.object());
+    TextureContext tex{t, GL_TEXTURE0};
+    
     p.setUniform("tex", 0); //set to 0 because the texture is bound to GL_TEXTURE0
     
-    glBindVertexArray(gVAO);
+    glBindVertexArray(gVAO); //bind VAO
     glDrawArrays(GL_TRIANGLES, 0, 3);
-    glBindVertexArray(0);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    
+    glBindVertexArray(0); //unbind VAO
+        
     glfwSwapBuffers();
 }
 
