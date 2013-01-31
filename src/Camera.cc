@@ -2,7 +2,7 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-static const float MaxVerticalAngle = 90.0f; //must be less than 90 to avoid gimbal lock
+static const float MaxVerticalAngle = 85.0f; //must be less than 90 to avoid gimbal lock
 
 Camera::Camera() : _aspectratio{4.0/3.0}, _position{0, 0, 0}, _horizontalAngle{0}, _verticalAngle{0}
 {
@@ -50,4 +50,19 @@ void Camera::offsetOrientation(float upAngle, float rightAngle) {
     _verticalAngle += upAngle;
     if(_verticalAngle > MaxVerticalAngle) _verticalAngle = MaxVerticalAngle;
     if(_verticalAngle < -MaxVerticalAngle) _verticalAngle = -MaxVerticalAngle;
+}
+
+void Camera::setAspectRatio(const float aspectratio)
+{
+    _aspectratio = aspectratio;
+}
+
+void Camera::setPosition(const glm::vec3& pos)
+{
+    _position = pos;
+}
+
+void Camera::offsetPosition(const glm::vec3& offset)
+{
+    _position += offset;
 }

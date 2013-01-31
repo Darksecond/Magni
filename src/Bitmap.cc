@@ -1,6 +1,11 @@
 #include "Bitmap.h"
 #include "stb_image.h"
 
+//PRIVATE HELPER FUNCTIONS
+inline unsigned int GetPixelOffset(unsigned col, unsigned row, unsigned width, unsigned height, Bitmap::Format format) {
+    return (row * width + col) * static_cast<unsigned int>(format);
+}
+
 Bitmap Bitmap::bitmapFromFile(const std::string& file)
 {
     int width, height, channels;
@@ -28,10 +33,6 @@ Bitmap::~Bitmap()
     delete[] _pixels;
 }
 
-inline unsigned int GetPixelOffset(unsigned col, unsigned row, unsigned width, unsigned height, Bitmap::Format format) {
-    return (row * width + col) * static_cast<unsigned int>(format);
-}
-
 void Bitmap::flipVertically() {
     unsigned long rowSize = static_cast<unsigned int>(_format) * _width;
     unsigned char* rowBuffer = new unsigned char[rowSize];
@@ -47,4 +48,24 @@ void Bitmap::flipVertically() {
     }
     
     delete[] rowBuffer;
+}
+
+Bitmap::Format Bitmap::format() const
+{
+    return _format;
+}
+
+unsigned char* Bitmap::pixelBuffer() const
+{
+    return _pixels;
+}
+
+unsigned int Bitmap::width() const
+{
+    return _width;
+}
+
+unsigned int Bitmap::height() const
+{
+    return _height;
 }

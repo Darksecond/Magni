@@ -75,3 +75,17 @@ GLfloat Texture::height() const
 {
     return _height;
 }
+
+void Texture::bind(const GLenum unit) const
+{
+    if(unit)
+        glActiveTexture(unit);
+    glBindTexture(GL_TEXTURE_2D, _object);
+}
+
+void Texture::unbind(const GLenum unit) const
+{
+    if(unit)
+        glActiveTexture(unit);
+    glBindTexture(GL_TEXTURE_2D, 0);
+}

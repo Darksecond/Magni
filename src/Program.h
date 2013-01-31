@@ -24,8 +24,8 @@ public:
     GLint attrib(const GLchar* attribName) const;
     GLint uniform(const GLchar* uniformName) const;
     
-    inline void bind() const;
-    inline void unbind() const;
+    void bind() const;
+    void unbind() const;
     
     inline void setUniform(const GLchar* name, GLint v0)
         { glUniform1i(uniform(name), v0); }
@@ -47,14 +47,3 @@ public:
         program.unbind();
     }
 };
-
-//INLINED METHODS
-void Program::bind() const
-{
-    glUseProgram(_object);
-}
-
-void Program::unbind() const
-{
-    glUseProgram(0);
-}

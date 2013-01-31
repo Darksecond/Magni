@@ -18,10 +18,9 @@ public:
     glm::vec3 right() const;
     glm::vec3 up() const;
     
-    inline void setAspectRatio(const float aspectratio) { _aspectratio = aspectratio; }
-    
-    inline void setPosition(const glm::vec3 pos) { _position = pos; }
-    inline void offsetPosition(const glm::vec3& offset) { _position += offset; }
+    void setAspectRatio(const float aspectratio);
+    void setPosition(const glm::vec3& pos);
+    void offsetPosition(const glm::vec3& offset);
     
     void offsetOrientation(float upAngle, float rightAngle);
 };

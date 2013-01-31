@@ -83,3 +83,13 @@ GLint Program::uniform(const GLchar* uniformName) const
     
     return uniform;
 }
+
+void Program::bind() const
+{
+    glUseProgram(_object);
+}
+
+void Program::unbind() const
+{
+    glUseProgram(0);
+}
