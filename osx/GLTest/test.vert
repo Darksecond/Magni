@@ -14,5 +14,5 @@ void main() {
     fragTexCoord = vertTexCoord;
     
     // Apply all matrix transformations to vert
-    gl_Position = projection * camera * model * vert;
+    gl_Position = camera * model * vert;
 }

@@ -60,6 +60,7 @@
 		F687A52816B4BB0400878140 /* GLEW.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F687A4D416B4B89800878140 /* GLEW.framework */; };
 		F687A52916B4BB0400878140 /* GLM.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F687A50116B4BA1100878140 /* GLM.framework */; };
 		F687A52A16B4BBB200878140 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A4CB16B4B81B00878140 /* OpenGL.framework */; };
+		F6AF410E16BB1F4000F85BC0 /* Camera.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6AF410C16BB1B8D00F85BC0 /* Camera.cc */; };
 		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
 		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
 		F6E3E49B16B550DE00BFAC05 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49A16B550DE00BFAC05 /* COPYING.txt */; };
@@ -167,6 +168,8 @@
 		F687A51616B4BA9300878140 /* gtx */ = {isa = PBXFileReference; lastKnownFileType = folder; name = gtx; path = glm/gtx; sourceTree = "<group>"; };
 		F687A51716B4BA9300878140 /* virtrev */ = {isa = PBXFileReference; lastKnownFileType = folder; name = virtrev; path = glm/virtrev; sourceTree = "<group>"; };
 		F687A51E16B4BABD00878140 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F6AF410B16BB1A1F00F85BC0 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		F6AF410C16BB1B8D00F85BC0 /* Camera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cc; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
 		F6E3E49816B550B300BFAC05 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F6E3E49A16B550DE00BFAC05 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
@@ -430,6 +433,8 @@
 				F6FB2A1C16B7105D00E6013E /* Texture.cc */,
 				F6FB2A1E16B7112C00E6013E /* Bitmap.h */,
 				F6FB2A1F16B7113000E6013E /* Bitmap.cc */,
+				F6AF410B16BB1A1F00F85BC0 /* Camera.h */,
+				F6AF410C16BB1B8D00F85BC0 /* Camera.cc */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -624,6 +629,7 @@
 				F645949416B6AE8700B118C2 /* Program.cc in Sources */,
 				F6FB2A1A16B70C7600E6013E /* stb_image.c in Sources */,
 				F6FB2A1D16B7105D00E6013E /* Texture.cc in Sources */,
+				F6AF410E16BB1F4000F85BC0 /* Camera.cc in Sources */,
 				F6FB2A2016B7113000E6013E /* Bitmap.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

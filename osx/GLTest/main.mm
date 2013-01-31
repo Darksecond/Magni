@@ -13,6 +13,7 @@
 #include "Program.h"
 #include "Bitmap.h"
 #include "Texture.h"
+#include "Camera.h"
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 GLuint gVAO = 0;
@@ -38,12 +39,8 @@ Program loadShaders()
     ProgramContext pc(p);
     
     //set the "projection" uniform in the vertex shader, because it's not going to change
-    glm::mat4 projection = glm::perspective<float>(50.0, SCREEN_SIZE.x/SCREEN_SIZE.y, 0.1, 10.0);
-    p.setUniform("projection", projection);
     
     //set the "camera" uniform in the vertex shader, because it's also not going to change
-    glm::mat4 camera = glm::lookAt(glm::vec3(3,3,3), glm::vec3(0,0,0), glm::vec3(0,1,0));
-    p.setUniform("camera", camera);
     
     return p;
 }
@@ -130,7 +127,7 @@ static Texture LoadTexture() {
     return Texture{bmp};
 }
 
-void render(Program& p, const Texture& t)
+void render(Program& p, const Texture& t, const Camera& c)
 {
     glClearColor(0, 0, 0, 1); // black
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -138,6 +135,7 @@ void render(Program& p, const Texture& t)
     ProgramContext pc{p};
     
     p.setUniform("model", glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(0,1,0)));
+    p.setUniform("camera", c.matrix());
     
     // bind the texture and set the "tex" uniform in the fragment shader
     TextureContext tex{t, GL_TEXTURE0};
@@ -151,10 +149,35 @@ void render(Program& p, const Texture& t)
 }
 
 // update the scene based on the time elapsed since last update
-void Update(float secondsElapsed) {
-    const GLfloat degreesPerSecond = 90.0f;
+void Update(float secondsElapsed, Camera& c) {
+    const GLfloat degreesPerSecond = 45.0f;
     gDegreesRotated += secondsElapsed * degreesPerSecond;
     while(gDegreesRotated > 360.0f) gDegreesRotated -= 360.0f;
+    
+    //CAMERA MOVEMENT
+    const float moveSpeed = 2.0; //units per second
+    if(glfwGetKey('S')){
+        c.offsetPosition(secondsElapsed * moveSpeed * -c.forward());
+    } else if(glfwGetKey('W')){
+        c.offsetPosition(secondsElapsed * moveSpeed * c.forward());
+    }
+    if(glfwGetKey('A')){
+        c.offsetPosition(secondsElapsed * moveSpeed * -c.right());
+    } else if(glfwGetKey('D')){
+        c.offsetPosition(secondsElapsed * moveSpeed * c.right());
+    }
+    if(glfwGetKey('Z')){
+        c.offsetPosition(secondsElapsed * moveSpeed * -glm::vec3(0,1,0));
+    } else if(glfwGetKey('X')){
+        c.offsetPosition(secondsElapsed * moveSpeed * glm::vec3(0,1,0));
+    }
+    
+    //rotate camera based on mouse movement
+    const float mouseSensitivity = 0.1;
+    int mouseX, mouseY;
+    glfwGetMousePos(&mouseX, &mouseY);
+    c.offsetOrientation(mouseSensitivity * mouseY, mouseSensitivity * mouseX);
+    glfwSetMousePos(0, 0); //reset the mouse, so it doesn't go out of the window
 }
 
 int main(int argc, char* argv[])
@@ -168,6 +191,11 @@ int main(int argc, char* argv[])
     glfwOpenWindowHint(GLFW_WINDOW_NO_RESIZE, GL_TRUE);
     if(!glfwOpenWindow(SCREEN_SIZE.x, SCREEN_SIZE.y, 8, 8, 8, 8, 16, 0, GLFW_WINDOW))
         throw std::runtime_error("glfwOpenWindow failed. Can your hardware handle OpenGL 3.2?");
+    
+    // GLFW settings
+    glfwDisable(GLFW_MOUSE_CURSOR);
+    glfwSetMousePos(0, 0);
+    glfwSetMouseWheel(0);
 
     glewExperimental = GL_TRUE; //stops glew crashing on OSX :-/
     if(glewInit() != GLEW_OK)
@@ -191,18 +219,25 @@ int main(int argc, char* argv[])
     loadCube(p);
     Texture t = LoadTexture();
     
+    Camera c = Camera{};
+    c.setAspectRatio(SCREEN_SIZE.x / SCREEN_SIZE.y);
+    
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
     {
         double thisTime = glfwGetTime();
-        Update(thisTime - lastTime);
+        Update(thisTime - lastTime, c);
         lastTime = thisTime;
         
-        render(p, t);
+        render(p, t, c);
         
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)
             std::cerr << "OpenGL Error " << error << ": " << (const char*)gluErrorString(error) << std::endl;
+        
+        //exit program if escape key is pressed
+        if(glfwGetKey(GLFW_KEY_ESC))
+            glfwCloseWindow();
     }
     
     glfwTerminate();
