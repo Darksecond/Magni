@@ -27,7 +27,10 @@ public:
     inline void bind() const;
     inline void unbind() const;
     
-    inline void setUniform(const GLchar* name, GLint v0) { glUniform1i(uniform(name), v0); }
+    inline void setUniform(const GLchar* name, GLint v0)
+        { glUniform1i(uniform(name), v0); }
+    inline void setUniform(const GLchar* name, const glm::mat4& m, GLboolean transpose=GL_FALSE)
+        { glUniformMatrix4fv(uniform(name), 1, transpose, glm::value_ptr(m)); }
 };
 
 class ProgramContext
