@@ -138,12 +138,14 @@ int main(int argc, char* argv[])
     //OpenGL settings
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+    glEnable(GL_CULL_FACE);
     
     Program p = loadShaders();
     Texture t = LoadTexture();
     
     Camera c = Camera{};
     c.setAspectRatio(SCREEN_SIZE.x / SCREEN_SIZE.y);
+    c.setPosition(glm::vec3{0,0,5});
     
     Mesh m = Mesh::cubeMesh();
     
