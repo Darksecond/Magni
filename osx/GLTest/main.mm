@@ -14,6 +14,7 @@
 #include "Bitmap.h"
 #include "Texture.h"
 #include "Camera.h"
+#include "Mesh.h"
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 GLuint gVAO = 0;
@@ -45,81 +46,6 @@ Program loadShaders()
     return p;
 }
 
-void loadCube(const Program& gProgram)
-{
-    // make and bind the VAO
-    glGenVertexArrays(1, &gVAO);
-    glBindVertexArray(gVAO);
-    
-    // make and bind the VBO
-    glGenBuffers(1, &gVBO);
-    glBindBuffer(GL_ARRAY_BUFFER, gVBO);
-    
-    // Make a cube out of triangles (two triangles per side)
-    GLfloat vertexData[] = {
-        //  X     Y     Z       U     V
-        // bottom
-        -1.0f,-1.0f,-1.0f,   0.0f, 0.0f,
-        1.0f,-1.0f,-1.0f,   1.0f, 0.0f,
-        -1.0f,-1.0f, 1.0f,   0.0f, 1.0f,
-        1.0f,-1.0f,-1.0f,   1.0f, 0.0f,
-        1.0f,-1.0f, 1.0f,   1.0f, 1.0f,
-        -1.0f,-1.0f, 1.0f,   0.0f, 1.0f,
-        
-        // top
-        -1.0f, 1.0f,-1.0f,   0.0f, 0.0f,
-        -1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
-        1.0f, 1.0f,-1.0f,   1.0f, 0.0f,
-        1.0f, 1.0f,-1.0f,   1.0f, 0.0f,
-        -1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
-        1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
-        
-        // front
-        -1.0f,-1.0f, 1.0f,   1.0f, 0.0f,
-        1.0f,-1.0f, 1.0f,   0.0f, 0.0f,
-        -1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
-        1.0f,-1.0f, 1.0f,   0.0f, 0.0f,
-        1.0f, 1.0f, 1.0f,   0.0f, 1.0f,
-        -1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
-        
-        // back
-        -1.0f,-1.0f,-1.0f,   0.0f, 0.0f,
-        -1.0f, 1.0f,-1.0f,   0.0f, 1.0f,
-        1.0f,-1.0f,-1.0f,   1.0f, 0.0f,
-        1.0f,-1.0f,-1.0f,   1.0f, 0.0f,
-        -1.0f, 1.0f,-1.0f,   0.0f, 1.0f,
-        1.0f, 1.0f,-1.0f,   1.0f, 1.0f,
-        
-        // left
-        -1.0f,-1.0f, 1.0f,   0.0f, 1.0f,
-        -1.0f, 1.0f,-1.0f,   1.0f, 0.0f,
-        -1.0f,-1.0f,-1.0f,   0.0f, 0.0f,
-        -1.0f,-1.0f, 1.0f,   0.0f, 1.0f,
-        -1.0f, 1.0f, 1.0f,   1.0f, 1.0f,
-        -1.0f, 1.0f,-1.0f,   1.0f, 0.0f,
-        
-        // right
-        1.0f,-1.0f, 1.0f,   1.0f, 1.0f,
-        1.0f,-1.0f,-1.0f,   1.0f, 0.0f,
-        1.0f, 1.0f,-1.0f,   0.0f, 0.0f,
-        1.0f,-1.0f, 1.0f,   1.0f, 1.0f,
-        1.0f, 1.0f,-1.0f,   0.0f, 0.0f,
-        1.0f, 1.0f, 1.0f,   0.0f, 1.0f
-    };
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
-    
-    // connect the xyz to the "vert" attribute of the vertex shader
-    glEnableVertexAttribArray(gProgram.attrib("vert"));
-    glVertexAttribPointer(gProgram.attrib("vert"), 3, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), NULL);
-    
-    // connect the uv coords to the "vertTexCoord" attribute of the vertex shader
-    glEnableVertexAttribArray(gProgram.attrib("vertTexCoord"));
-    glVertexAttribPointer(gProgram.attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,  5*sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
-    
-    // unbind the VAO
-    glBindVertexArray(0);
-}
-
 // loads the file "hazard.png" into gTexture
 static Texture LoadTexture() {
     Bitmap bmp = Bitmap::bitmapFromFile(ResourcePath("wooden-crate.jpg"));
@@ -127,7 +53,7 @@ static Texture LoadTexture() {
     return Texture{bmp};
 }
 
-void render(Program& p, const Texture& t, const Camera& c)
+void render(Program& p, const Texture& t, const Camera& c, const Mesh& m)
 {
     glClearColor(0, 0, 0, 1); // black
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -141,9 +67,7 @@ void render(Program& p, const Texture& t, const Camera& c)
     TextureContext tex{t, GL_TEXTURE0};
     p.setUniform("tex", 0); //set to 0 because the texture is bound to GL_TEXTURE0
     
-    glBindVertexArray(gVAO); //bind VAO
-    glDrawArrays(GL_TRIANGLES, 0, 6*2*3);
-    glBindVertexArray(0); //unbind VAO
+    m.draw(p);
         
     glfwSwapBuffers();
 }
@@ -216,11 +140,12 @@ int main(int argc, char* argv[])
     glDepthFunc(GL_LESS);
     
     Program p = loadShaders();
-    loadCube(p);
     Texture t = LoadTexture();
     
     Camera c = Camera{};
     c.setAspectRatio(SCREEN_SIZE.x / SCREEN_SIZE.y);
+    
+    Mesh m = std::move(Mesh::cubeMesh());
     
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
@@ -229,7 +154,7 @@ int main(int argc, char* argv[])
         Update(thisTime - lastTime, c);
         lastTime = thisTime;
         
-        render(p, t, c);
+        render(p, t, c, m);
         
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)
