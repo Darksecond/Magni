@@ -145,7 +145,7 @@ int main(int argc, char* argv[])
     Camera c = Camera{};
     c.setAspectRatio(SCREEN_SIZE.x / SCREEN_SIZE.y);
     
-    Mesh m = std::move(Mesh::cubeMesh());
+    Mesh m = Mesh::cubeMesh();
     
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
