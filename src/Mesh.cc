@@ -114,11 +114,15 @@ void Mesh::draw(Program& gProgram) const
     
     // connect the xyz to the "vert" attribute of the vertex shader
     glEnableVertexAttribArray(gProgram.attrib("vert"));
-    glVertexAttribPointer(gProgram.attrib("vert"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), NULL);
+    //glVertexAttribPointer(gProgram.attrib("vert"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid*)offsetof(Vertex, x));
+    glVertexAttribPointer(gProgram.attrib("vert"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+                          reinterpret_cast<const GLvoid*>(offsetof(Vertex, x)));
+
     
     // connect the uv coords to the "vertTexCoord" attribute of the vertex shader
     glEnableVertexAttribArray(gProgram.attrib("vertTexCoord"));
-    glVertexAttribPointer(gProgram.attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,  sizeof(Vertex), (const GLvoid*)(3 * sizeof(GLfloat)));
+    glVertexAttribPointer(gProgram.attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,  sizeof(Vertex),
+                          reinterpret_cast<const GLvoid*>(offsetof(Vertex, u)));
     
     glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(_numVertices) );
     
