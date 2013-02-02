@@ -147,7 +147,7 @@ int main(int argc, char* argv[])
     c.setAspectRatio(SCREEN_SIZE.x / SCREEN_SIZE.y);
     c.setPosition(glm::vec3{0,0,5});
     
-    Mesh m = Mesh::cubeMesh();
+    Mesh m = Mesh::cube();
     
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))

@@ -17,7 +17,7 @@ class Mesh
     GLuint _vao;
     size_t _numVertices;
 public:
-    static Mesh cubeMesh();
+    static Mesh cube();
     
     Mesh(const std::vector<Vertex>& vertices);
     Mesh(Mesh&&);

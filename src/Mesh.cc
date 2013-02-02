@@ -1,6 +1,6 @@
 #include "Mesh.h"
 
-Mesh Mesh::cubeMesh()
+Mesh Mesh::cube()
 {    
     std::vector<Vertex> vertices
     {
