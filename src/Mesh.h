@@ -28,4 +28,7 @@ public:
     Mesh& operator=(Mesh&&);
     
     void draw(Program& p) const;
+    
+    void bind() const;
+    void unbind() const;
 };

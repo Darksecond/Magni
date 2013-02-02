@@ -62,15 +62,11 @@ Mesh::Mesh(const std::vector<Vertex>& vertices) : _vbo{0}, _vao{0}, _numVertices
     glGenBuffers(1, &_vbo);
     glGenVertexArrays(1, &_vao);
 
-    //bind
-    glBindVertexArray(_vao);
-    glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+    bind();
     
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * vertices.size(), &vertices.front(), GL_STATIC_DRAW);
     
-    //unbind
-    glBindBuffer(GL_ARRAY_BUFFER,0);
-    glBindVertexArray(0);
+    unbind();
 }
 
 Mesh::Mesh(Mesh&& other) : _vbo(other._vbo), _vao(other._vao), _numVertices(other._numVertices)
@@ -108,9 +104,7 @@ Mesh& Mesh::operator=(Mesh&& other)
 
 void Mesh::draw(Program& gProgram) const
 {
-    //bind
-    glBindVertexArray(_vao); //bind VAO
-    glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+    bind();
     
     // connect the xyz to the "vert" attribute of the vertex shader
     glEnableVertexAttribArray(gProgram.attrib("vert"));
@@ -126,7 +120,17 @@ void Mesh::draw(Program& gProgram) const
     
     glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(_numVertices) );
     
-    //unbind
+    unbind();
+}
+
+void Mesh::bind() const
+{
+    glBindVertexArray(_vao); //bind VAO
+    glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+}
+
+void Mesh::unbind() const
+{
     glBindBuffer(GL_ARRAY_BUFFER,0);
     glBindVertexArray(0);
 }
