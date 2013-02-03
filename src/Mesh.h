@@ -16,11 +16,13 @@ class Mesh
 {
     GLuint _vbo;
     GLuint _vao;
+    GLuint _ibo; //indices buffer object
     size_t _numVertices;
+    size_t _numIndices;
 public:
     static Mesh cube();
     
-    Mesh(const std::vector<Vertex>& vertices);
+    Mesh(const std::vector<Vertex>& vertices, std::vector<unsigned short> indices);
     Mesh(Mesh&&);
     ~Mesh();
     Mesh(const Mesh&) = delete;

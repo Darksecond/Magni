@@ -53,18 +53,31 @@ Mesh Mesh::cube()
         { 1.0f, 1.0f,-1.0f,    1.0f,  0.0f,  0.0f,   0.0f, 0.0f},
         { 1.0f, 1.0f, 1.0f,    1.0f,  0.0f,  0.0f,   0.0f, 1.0f},
     };
-    return Mesh(vertices);
+    std::vector<unsigned short> indices{};
+    return Mesh(vertices, indices);
 }
 
-Mesh::Mesh(const std::vector<Vertex>& vertices) : _vbo{0}, _vao{0}, _numVertices(vertices.size())
+Mesh::Mesh(const std::vector<Vertex>& vertices, std::vector<unsigned short> indices) : _vbo{0}, _vao{0}, _numVertices(vertices.size())
 {
+    //generate indices if they are unavailable
+    if(indices.size() == 0)
+    {
+        indices.reserve(vertices.size()); //reserve the amount of indices needed, to speed generation up
+        for(int i = 0; i < vertices.size(); i++)
+            indices.push_back(i);
+    }
+    
+    _numIndices = indices.size();
+    
     //generate
     glGenBuffers(1, &_vbo);
+    glGenBuffers(1, &_ibo);
     glGenVertexArrays(1, &_vao);
 
     bind();
     
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * vertices.size(), &vertices.front(), GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * indices.size(), &indices.front(), GL_STATIC_DRAW);
     
     unbind();
 }
@@ -128,19 +141,22 @@ void Mesh::draw(Program& gProgram) const
     glVertexAttribPointer(gProgram.attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,  sizeof(Vertex),
                           reinterpret_cast<const GLvoid*>(offsetof(Vertex, u)));
     
-    glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(_numVertices) );
+    glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(_numIndices), GL_UNSIGNED_SHORT,
+                   reinterpret_cast<const GLvoid*>(0));
     
     unbind();
 }
 
 void Mesh::bind() const
 {
-    glBindVertexArray(_vao); //bind VAO
+    glBindVertexArray(_vao);
     glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ibo);
 }
 
 void Mesh::unbind() const
 {
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ARRAY_BUFFER,0);
     glBindVertexArray(0);
 }
