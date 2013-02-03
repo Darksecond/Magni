@@ -91,17 +91,17 @@ void renderLight(Program& p, const Camera& c, const Mesh& m, glm::vec4 lightPos)
     glm::mat3 normal = glm::transpose(glm::inverse(glm::mat3(modelView)));
     glm::vec4 light = view * lightPos;
     
-    p.setUniform("materialDiffuse", glm::vec3(0.3, 0.3, 0.3));
-    p.setUniform("materialAmbient", glm::vec3(0.1, 0.1, 0.1));
-    p.setUniform("materialSpecular", glm::vec3(0.9, 0.9, 0.9));
-    p.setUniform("materialEmissive", glm::vec3(0.1, 0.1, 0.1));
-    p.setUniform("materialShininess", 90.0f);
-    p.setUniform("lightAttenuation", glm::vec3(0.0, 0.15, 0.0));
+    p.setUniform("material.diffuse", glm::vec3(0.3, 0.3, 0.3));
+    p.setUniform("material.ambient", glm::vec3(0.1, 0.1, 0.1));
+    p.setUniform("material.specular", glm::vec3(0.9, 0.9, 0.9));
+    p.setUniform("material.emissive", glm::vec3(0.1, 0.1, 0.1));
+    p.setUniform("material.shininess", 90.0f);
     
-    p.setUniform("lightDiffuse", glm::vec3(1.0, 1.0, 1.0));
-    p.setUniform("lightAmbient", glm::vec3(1.0, 1.0, 1.0));
-    p.setUniform("lightSpecular", glm::vec3(1.0, 1.0, 1.0));
-    p.setUniform("light", light);
+    p.setUniform("light.attenuation", glm::vec3(0.0, 0.15, 0.0));
+    p.setUniform("light.diffuse", glm::vec3(1.0, 1.0, 1.0));
+    p.setUniform("light.ambient", glm::vec3(1.0, 1.0, 1.0));
+    p.setUniform("light.specular", glm::vec3(1.0, 1.0, 1.0));
+    p.setUniform("light.position", light);
     
     p.setUniform("projection", c.projectionMatrix());
     p.setUniform("modelView", modelView);
@@ -122,7 +122,7 @@ void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const M
     
     glBlendFunc(GL_ONE,GL_ONE);
     
-    renderLight(pl, c, m, glm::vec4(0.0, 0.0, 0.0, 0.0));
+    renderLight(pl, c, m, glm::vec4(0.0, 3.0, 0.0, 0.0));
     renderLight(pl, c, m, glm::vec4(3.0, 0.0, 0.0, 1.0));
     
     glBlendFunc(GL_ZERO,GL_SRC_COLOR);

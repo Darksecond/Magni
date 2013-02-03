@@ -4,8 +4,6 @@ uniform mat4 projection;
 uniform mat4 modelView;
 uniform mat3 normal;
 
-uniform vec4 light;
-
 in vec3 vert;
 in vec3 vertNormal;
 in vec2 vertTexCoord;

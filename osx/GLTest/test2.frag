@@ -1,17 +1,25 @@
 #version 150
 
-uniform vec3 lightAmbient;
-uniform vec3 lightDiffuse;
-uniform vec3 lightSpecular;
-uniform vec3 lightAttenuation;
+struct Light
+{
+    vec4 position;
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+    vec3 attenuation;
+};
 
-uniform vec3 materialDiffuse;
-uniform vec3 materialAmbient;
-uniform vec3 materialSpecular;
-uniform vec3 materialEmissive;
-uniform float materialShininess;
+struct Material
+{
+    vec3  diffuse;
+    vec3  ambient;
+    vec3  specular;
+    vec3  emissive;
+    float shininess;
+};
 
-uniform vec4 light;
+uniform Material material;
+uniform Light light;
 
 in vec2 fragTexCoord;
 in vec3 tnorm;
@@ -23,33 +31,35 @@ void main() {
     vec3 n     = normalize(tnorm);
     vec3 v     = normalize(-(normalize(eye).xyz));
     float attenuation = 1.0;
-    vec3 lightToEye = vec3(light - eye);
-    vec3 s = normalize(lightToEye);
-    vec3 r     = reflect( -s, n);
-    float distance = length(lightToEye);
+    vec3 s = vec3(0.0);
     
-    if(0.0 == light.w)
+    if(0.0 == light.position.w) //directional light
     {
         attenuation = 1.0;
+        s = normalize(vec3(light.position));
     }
-    else
+    else //point light
     {
-        attenuation  = 1.0 / (lightAttenuation.x + lightAttenuation.y * distance + lightAttenuation.z * distance * distance);
+        vec3 lightToEye = vec3(light.position - eye);
+        s = normalize(lightToEye);
+        float distance = length(lightToEye);
+        attenuation  = 1.0 / (light.attenuation.x + light.attenuation.y * distance + light.attenuation.z * distance * distance);
     }
     
-    vec3 ambient = attenuation * lightAmbient * materialAmbient;
+    vec3 r     = reflect( -s, n);
+    
+    vec3 ambient = attenuation * light.ambient * material.ambient;
     
     float sDotN = max( dot(s, n), 0.0);
-    vec3 diffuse = attenuation * lightDiffuse * materialDiffuse * sDotN;
+    vec3 diffuse = attenuation * light.diffuse * material.diffuse * sDotN;
     
     vec3 spec   = vec3(0.0);
     if( sDotN > 0.0)
     {
-        spec = attenuation * lightSpecular * materialSpecular * pow( max(dot(r, v), 0.0), materialShininess);
+        spec = attenuation * light.specular * material.specular * pow( max(dot(r, v), 0.0), material.shininess);
     }
-    vec3 lightIntensity = materialEmissive + ambient + diffuse + spec;
+    vec3 lightIntensity = material.emissive + ambient + diffuse + spec;
     
-    //note: the texture function was called texture2D in older versions of GLSL
     finalColor = vec4(lightIntensity, 1.0);
 
 }
