@@ -12,7 +12,8 @@ public:
     Camera();
     
     glm::mat4 orientation() const;
-    glm::mat4 matrix() const;
+    glm::mat4 viewMatrix() const;
+    glm::mat4 projectionMatrix() const;
     
     glm::vec3 forward() const;
     glm::vec3 right() const;

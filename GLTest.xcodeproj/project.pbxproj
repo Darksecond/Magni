@@ -61,6 +61,8 @@
 		F687A52916B4BB0400878140 /* GLM.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F687A50116B4BA1100878140 /* GLM.framework */; };
 		F687A52A16B4BBB200878140 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A4CB16B4B81B00878140 /* OpenGL.framework */; };
 		F6AF410E16BB1F4000F85BC0 /* Camera.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6AF410C16BB1B8D00F85BC0 /* Camera.cc */; };
+		F6B7B83216BDD38E003D3F9F /* test2.vert in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B82E16BDD37A003D3F9F /* test2.vert */; };
+		F6B7B83316BDD390003D3F9F /* test2.frag in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B83016BDD380003D3F9F /* test2.frag */; };
 		F6D9138416BC0226000C0632 /* Mesh.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6D9138316BC0226000C0632 /* Mesh.cc */; };
 		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
 		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
@@ -171,6 +173,8 @@
 		F687A51E16B4BABD00878140 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F6AF410B16BB1A1F00F85BC0 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		F6AF410C16BB1B8D00F85BC0 /* Camera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cc; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		F6B7B82E16BDD37A003D3F9F /* test2.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test2.vert; sourceTree = "<group>"; };
+		F6B7B83016BDD380003D3F9F /* test2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test2.frag; sourceTree = "<group>"; };
 		F6D9138216BC0222000C0632 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
 		F6D9138316BC0226000C0632 /* Mesh.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cc; sourceTree = "<group>"; };
 		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
@@ -289,6 +293,8 @@
 				F687A41716B4B63300878140 /* GLTest-Info.plist */,
 				F6FB2A1616B70C3B00E6013E /* hazard.png */,
 				F627D39D16B97CA7000B06AF /* wooden-crate.jpg */,
+				F6B7B82E16BDD37A003D3F9F /* test2.vert */,
+				F6B7B83016BDD380003D3F9F /* test2.frag */,
 				F645948F16B6AD9700B118C2 /* test.vert */,
 				F645949516B6B11400B118C2 /* test.frag */,
 			);
@@ -592,6 +598,8 @@
 			files = (
 				F645949116B6ADA900B118C2 /* test.vert in Resources */,
 				F645949616B6B11400B118C2 /* test.frag in Resources */,
+				F6B7B83216BDD38E003D3F9F /* test2.vert in Resources */,
+				F6B7B83316BDD390003D3F9F /* test2.frag in Resources */,
 				F6FB2A1716B70C3B00E6013E /* hazard.png in Resources */,
 				F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */,
 			);

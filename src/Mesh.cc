@@ -4,54 +4,54 @@ Mesh Mesh::cube()
 {    
     std::vector<Vertex> vertices
     {
-        //  X     Y     Z       U     V
+        //  X     Y     Z       NX     NY     NZ       U     V
         // bottom
-        {-1.0f,-1.0f,-1.0f,   0.0f, 0.0f},
-        { 1.0f,-1.0f,-1.0f,   1.0f, 0.0f},
-        {-1.0f,-1.0f, 1.0f,   0.0f, 1.0f},
-        { 1.0f,-1.0f,-1.0f,   1.0f, 0.0f},
-        { 1.0f,-1.0f, 1.0f,   1.0f, 1.0f},
-        {-1.0f,-1.0f, 1.0f,   0.0f, 1.0f},
+        {-1.0f,-1.0f,-1.0f,    0.0f, -1.0f,  0.0f,   0.0f, 0.0f},
+        { 1.0f,-1.0f,-1.0f,    0.0f, -1.0f,  0.0f,   1.0f, 0.0f},
+        {-1.0f,-1.0f, 1.0f,    0.0f, -1.0f,  0.0f,   0.0f, 1.0f},
+        { 1.0f,-1.0f,-1.0f,    0.0f, -1.0f,  0.0f,   1.0f, 0.0f},
+        { 1.0f,-1.0f, 1.0f,    0.0f, -1.0f,  0.0f,   1.0f, 1.0f},
+        {-1.0f,-1.0f, 1.0f,    0.0f, -1.0f,  0.0f,   0.0f, 1.0f},
 
         // top
-        {-1.0f, 1.0f,-1.0f,   0.0f, 0.0f},
-        {-1.0f, 1.0f, 1.0f,   0.0f, 1.0f},
-        { 1.0f, 1.0f,-1.0f,   1.0f, 0.0f},
-        { 1.0f, 1.0f,-1.0f,   1.0f, 0.0f},
-        {-1.0f, 1.0f, 1.0f,   0.0f, 1.0f},
-        { 1.0f, 1.0f, 1.0f,   1.0f, 1.0f},
+        {-1.0f, 1.0f,-1.0f,    0.0f,  1.0f,  0.0f,   0.0f, 0.0f},
+        {-1.0f, 1.0f, 1.0f,    0.0f,  1.0f,  0.0f,   0.0f, 1.0f},
+        { 1.0f, 1.0f,-1.0f,    0.0f,  1.0f,  0.0f,   1.0f, 0.0f},
+        { 1.0f, 1.0f,-1.0f,    0.0f,  1.0f,  0.0f,   1.0f, 0.0f},
+        {-1.0f, 1.0f, 1.0f,    0.0f,  1.0f,  0.0f,   0.0f, 1.0f},
+        { 1.0f, 1.0f, 1.0f,    0.0f,  1.0f,  0.0f,   1.0f, 1.0f},
         
         // front
-        {-1.0f,-1.0f, 1.0f,   1.0f, 0.0f},
-        { 1.0f,-1.0f, 1.0f,   0.0f, 0.0f},
-        {-1.0f, 1.0f, 1.0f,   1.0f, 1.0f},
-        { 1.0f,-1.0f, 1.0f,   0.0f, 0.0f},
-        { 1.0f, 1.0f, 1.0f,   0.0f, 1.0f},
-        {-1.0f, 1.0f, 1.0f,   1.0f, 1.0f},
+        {-1.0f,-1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   1.0f, 0.0f},
+        { 1.0f,-1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   0.0f, 0.0f},
+        {-1.0f, 1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   1.0f, 1.0f},
+        { 1.0f,-1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   0.0f, 0.0f},
+        { 1.0f, 1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   0.0f, 1.0f},
+        {-1.0f, 1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   1.0f, 1.0f},
         
         // back
-        {-1.0f,-1.0f,-1.0f,   0.0f, 0.0f},
-        {-1.0f, 1.0f,-1.0f,   0.0f, 1.0f},
-        { 1.0f,-1.0f,-1.0f,   1.0f, 0.0f},
-        { 1.0f,-1.0f,-1.0f,   1.0f, 0.0f},
-        {-1.0f, 1.0f,-1.0f,   0.0f, 1.0f},
-        { 1.0f, 1.0f,-1.0f,   1.0f, 1.0f},
+        {-1.0f,-1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   0.0f, 0.0f},
+        {-1.0f, 1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   0.0f, 1.0f},
+        { 1.0f,-1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   1.0f, 0.0f},
+        { 1.0f,-1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   1.0f, 0.0f},
+        {-1.0f, 1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   0.0f, 1.0f},
+        { 1.0f, 1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   1.0f, 1.0f},
         
         // left
-        {-1.0f,-1.0f, 1.0f,   0.0f, 1.0f},
-        {-1.0f, 1.0f,-1.0f,   1.0f, 0.0f},
-        {-1.0f,-1.0f,-1.0f,   0.0f, 0.0f},
-        {-1.0f,-1.0f, 1.0f,   0.0f, 1.0f},
-        {-1.0f, 1.0f, 1.0f,   1.0f, 1.0f},
-        {-1.0f, 1.0f,-1.0f,   1.0f, 0.0f},
+        {-1.0f,-1.0f, 1.0f,   -1.0f,  0.0f,  0.0f,   0.0f, 1.0f},
+        {-1.0f, 1.0f,-1.0f,   -1.0f,  0.0f,  0.0f,   1.0f, 0.0f},
+        {-1.0f,-1.0f,-1.0f,   -1.0f,  0.0f,  0.0f,   0.0f, 0.0f},
+        {-1.0f,-1.0f, 1.0f,   -1.0f,  0.0f,  0.0f,   0.0f, 1.0f},
+        {-1.0f, 1.0f, 1.0f,   -1.0f,  0.0f,  0.0f,   1.0f, 1.0f},
+        {-1.0f, 1.0f,-1.0f,   -1.0f,  0.0f,  0.0f,   1.0f, 0.0f},
         
         // right
-        { 1.0f,-1.0f, 1.0f,   1.0f, 1.0f},
-        { 1.0f,-1.0f,-1.0f,   1.0f, 0.0f},
-        { 1.0f, 1.0f,-1.0f,   0.0f, 0.0f},
-        { 1.0f,-1.0f, 1.0f,   1.0f, 1.0f},
-        { 1.0f, 1.0f,-1.0f,   0.0f, 0.0f},
-        { 1.0f, 1.0f, 1.0f,   0.0f, 1.0f},
+        { 1.0f,-1.0f, 1.0f,    1.0f,  0.0f,  0.0f,   1.0f, 1.0f},
+        { 1.0f,-1.0f,-1.0f,    1.0f,  0.0f,  0.0f,   1.0f, 0.0f},
+        { 1.0f, 1.0f,-1.0f,    1.0f,  0.0f,  0.0f,   0.0f, 0.0f},
+        { 1.0f,-1.0f, 1.0f,    1.0f,  0.0f,  0.0f,   1.0f, 1.0f},
+        { 1.0f, 1.0f,-1.0f,    1.0f,  0.0f,  0.0f,   0.0f, 0.0f},
+        { 1.0f, 1.0f, 1.0f,    1.0f,  0.0f,  0.0f,   0.0f, 1.0f},
     };
     return Mesh(vertices);
 }
@@ -110,7 +110,18 @@ void Mesh::draw(Program& gProgram) const
     glEnableVertexAttribArray(gProgram.attrib("vert"));
     glVertexAttribPointer(gProgram.attrib("vert"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
                           reinterpret_cast<const GLvoid*>(offsetof(Vertex, x)));
-
+    
+    // connect the nxnynz to the "vertNormal" attribute of the vertex shader
+    try
+    {
+        glEnableVertexAttribArray(gProgram.attrib("vertNormal"));
+        glVertexAttribPointer(gProgram.attrib("vertNormal"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+                              reinterpret_cast<const GLvoid*>(offsetof(Vertex, nx)));
+    }
+    catch(std::runtime_error e)
+    {
+        //do nothing, program does not use vertNormals
+    }
     
     // connect the uv coords to the "vertTexCoord" attribute of the vertex shader
     glEnableVertexAttribArray(gProgram.attrib("vertTexCoord"));

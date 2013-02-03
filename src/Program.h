@@ -31,6 +31,14 @@ public:
         { glUniform1i(uniform(name), v0); }
     inline void setUniform(const GLchar* name, const glm::mat4& m, GLboolean transpose=GL_FALSE)
         { glUniformMatrix4fv(uniform(name), 1, transpose, glm::value_ptr(m)); }
+    inline void setUniform(const GLchar* name, const glm::mat3& m, GLboolean transpose=GL_FALSE)
+        { glUniformMatrix3fv(uniform(name), 1, transpose, glm::value_ptr(m)); }
+    inline void setUniform(const GLchar* name, const glm::vec3& m)
+        { glUniform3fv(uniform(name), 1, glm::value_ptr(m)); }
+    inline void setUniform(const GLchar* name, const glm::vec4& m)
+        { glUniform4fv(uniform(name), 1, glm::value_ptr(m)); }
+    inline void setUniform(const GLchar* name, GLfloat v0)
+        { glUniform1f(uniform(name), v0); }
 };
 
 class ProgramContext

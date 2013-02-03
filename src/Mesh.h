@@ -8,6 +8,7 @@
 struct Vertex
 {
     GLfloat x, y, z;
+    GLfloat nx, ny, nz;
     GLfloat u, v;
 };
 

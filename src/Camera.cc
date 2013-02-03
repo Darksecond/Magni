@@ -16,15 +16,19 @@ glm::mat4 Camera::orientation() const
     return orientation;
 }
 
-glm::mat4 Camera::matrix() const
+glm::mat4 Camera::viewMatrix() const
+{
+    glm::mat4 camera = orientation();
+    camera = glm::translate(camera, -_position);
+    return camera;
+}
+
+glm::mat4 Camera::projectionMatrix() const
 {
     //50.0 = field of view
     //0.01  = near plane
     //100.0 = far plane
-    glm::mat4 camera = glm::perspective<float>(50.0, _aspectratio, 0.01, 100.0);
-    camera *= orientation();
-    camera = glm::translate(camera, -_position);
-    return camera;
+    return glm::perspective<float>(50.0, _aspectratio, 0.01, 100.0);
 }
 
 glm::vec3 Camera::forward() const {

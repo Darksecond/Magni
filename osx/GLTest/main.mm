@@ -28,7 +28,7 @@ static std::string ResourcePath(std::string fileName) {
     return std::string([path cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-Program loadShaders()
+Program loadTextureShaders()
 {
     std::vector<Shader> shaders;
     
@@ -38,10 +38,20 @@ Program loadShaders()
     Program p = Program(shaders);
     
     ProgramContext pc(p);
+            
+    return p;
+}
+
+Program loadLightingShaders()
+{
+    std::vector<Shader> shaders;
     
-    //set the "projection" uniform in the vertex shader, because it's not going to change
+    shaders.push_back(Shader::shaderFromFile(ResourcePath("test2.vert"), GL_VERTEX_SHADER));
+    shaders.push_back(Shader::shaderFromFile(ResourcePath("test2.frag"), GL_FRAGMENT_SHADER));
     
-    //set the "camera" uniform in the vertex shader, because it's also not going to change
+    Program p = Program(shaders);
+    
+    ProgramContext pc(p);
     
     return p;
 }
@@ -53,22 +63,71 @@ static Texture LoadTexture() {
     return Texture{bmp};
 }
 
-void render(Program& p, const Texture& t, const Camera& c, const Mesh& m)
+void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m)
 {
-    glClearColor(0, 0, 0, 1); // black
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
     ProgramContext pc{p};
     
-    p.setUniform("model", glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(0,1,0)));
-    p.setUniform("camera", c.matrix());
+    glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
+    glm::mat4 view = c.viewMatrix();
+    glm::mat4 modelView = view * model;    
+      
+    p.setUniform("projection", c.projectionMatrix());
+    p.setUniform("modelView", modelView);
     
     // bind the texture and set the "tex" uniform in the fragment shader
     TextureContext tex{t, GL_TEXTURE0};
     p.setUniform("tex", 0); //set to 0 because the texture is bound to GL_TEXTURE0
     
     m.draw(p);
-        
+}
+
+void renderLight(Program& p, const Camera& c, const Mesh& m, glm::vec4 lightPos)
+{
+    ProgramContext pc{p};
+    
+    glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
+    glm::mat4 view = c.viewMatrix();
+    glm::mat4 modelView = view * model;
+    glm::mat3 normal = glm::transpose(glm::inverse(glm::mat3(modelView)));
+    glm::vec4 light = view * lightPos;
+    
+    p.setUniform("materialDiffuse", glm::vec3(0.3, 0.3, 0.3));
+    p.setUniform("materialAmbient", glm::vec3(0.1, 0.1, 0.1));
+    p.setUniform("materialSpecular", glm::vec3(0.9, 0.9, 0.9));
+    p.setUniform("materialEmissive", glm::vec3(0.1, 0.1, 0.1));
+    p.setUniform("materialShininess", 90.0f);
+    p.setUniform("lightAttenuation", glm::vec3(0.0, 0.15, 0.0));
+    
+    p.setUniform("lightDiffuse", glm::vec3(1.0, 1.0, 1.0));
+    p.setUniform("lightAmbient", glm::vec3(1.0, 1.0, 1.0));
+    p.setUniform("lightSpecular", glm::vec3(1.0, 1.0, 1.0));
+    p.setUniform("light", light);
+    
+    p.setUniform("projection", c.projectionMatrix());
+    p.setUniform("modelView", modelView);
+    p.setUniform("normal", normal);
+    
+    m.draw(p);
+}
+
+void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const Mesh& m)
+{
+    glClearColor(0, 0, 0, 1); // black
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    //static settings, really
+    glEnable(GL_BLEND);
+    glDepthFunc(GL_LEQUAL);
+
+    
+    glBlendFunc(GL_ONE,GL_ONE);
+    
+    renderLight(pl, c, m, glm::vec4(0.0, 0.0, 0.0, 0.0));
+    renderLight(pl, c, m, glm::vec4(3.0, 0.0, 0.0, 1.0));
+    
+    glBlendFunc(GL_ZERO,GL_SRC_COLOR);
+    renderTexture(pt, t, c, m);
+    
     glfwSwapBuffers();
 }
 
@@ -140,7 +199,8 @@ int main(int argc, char* argv[])
     glDepthFunc(GL_LESS);
     glEnable(GL_CULL_FACE);
     
-    Program p = loadShaders();
+    Program pt = loadTextureShaders();
+    Program pl = loadLightingShaders();
     Texture t = LoadTexture();
     
     Camera c = Camera{};
@@ -156,7 +216,7 @@ int main(int argc, char* argv[])
         Update(thisTime - lastTime, c);
         lastTime = thisTime;
         
-        render(p, t, c, m);
+        render(pt, pl, t, c, m);
         
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)
