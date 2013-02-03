@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <sstream>
 
 #include "Shader.h"
 #include "Program.h"
@@ -135,8 +136,9 @@ void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const M
 
     
     glBlendFunc(GL_ONE,GL_ONE);
-    
     renderLight(pl, c, m, light_one);
+    
+    glBlendFunc(GL_ONE,GL_ONE);
     renderLight(pl, c, m, light_two);
     
     glBlendFunc(GL_ZERO,GL_SRC_COLOR);
@@ -177,6 +179,27 @@ void Update(float secondsElapsed, Camera& c) {
     glfwSetMousePos(0, 0); //reset the mouse, so it doesn't go out of the window
 }
 
+int frames = 0;
+double t0 = 0.0;
+void showFPS() {
+    
+    double t, fps;
+    
+    // Get current time
+    t = glfwGetTime();  // Get number of seconds since glfwInit()
+    // Calculate and display FPS (frames per second) in title bar.
+    if( (t-t0) > 1.0 || frames == 0 )
+    {
+        fps = (double)frames / (t-t0);
+        std::stringstream ss;
+        ss << "FPS: " << fps;
+        glfwSetWindowTitle(ss.str().c_str());
+        t0 = t;
+        frames = 0;
+    }
+    frames ++;
+}
+
 int main(int argc, char* argv[])
 {
     if(!glfwInit())
@@ -193,8 +216,9 @@ int main(int argc, char* argv[])
     glfwDisable(GLFW_MOUSE_CURSOR);
     glfwSetMousePos(0, 0);
     glfwSetMouseWheel(0);
+    //glfwSwapInterval(0); //uncomment for no v-sync
 
-    glewExperimental = GL_TRUE; //stops glew crashing on OSX :-/
+    glewExperimental = GL_TRUE; //stops glew crashing on OSX
     if(glewInit() != GLEW_OK)
         throw std::runtime_error("glewInit failed");
     glGetError(); //ignore any errors coming from glewInit, because they can be safely ignored.
@@ -229,6 +253,8 @@ int main(int argc, char* argv[])
         double thisTime = glfwGetTime();
         Update(thisTime - lastTime, c);
         lastTime = thisTime;
+        
+        showFPS(); //in titlebar
         
         render(pt, pl, t, c, m);
         
