@@ -13,6 +13,7 @@
 		F645949116B6ADA900B118C2 /* test.vert in Resources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* test.vert */; };
 		F645949416B6AE8700B118C2 /* Program.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645949316B6AE8700B118C2 /* Program.cc */; };
 		F645949616B6B11400B118C2 /* test.frag in Resources */ = {isa = PBXBuildFile; fileRef = F645949516B6B11400B118C2 /* test.frag */; };
+		F64EC94716BEA68C00063843 /* Light.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64EC94616BEA68C00063843 /* Light.cc */; };
 		F687A41016B4B63300878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
 		F687A42D16B4B68700878140 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = F687A42C16B4B68700878140 /* main.mm */; };
 		F687A43416B4B73B00878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
@@ -121,6 +122,8 @@
 		F645949216B6AE1700B118C2 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
 		F645949316B6AE8700B118C2 /* Program.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cc; sourceTree = "<group>"; };
 		F645949516B6B11400B118C2 /* test.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.frag; sourceTree = "<group>"; };
+		F64EC94516BEA68600063843 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
+		F64EC94616BEA68C00063843 /* Light.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cc; sourceTree = "<group>"; };
 		F687A40B16B4B63300878140 /* GLTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F687A40F16B4B63300878140 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F687A41216B4B63300878140 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -438,6 +441,8 @@
 				F645949316B6AE8700B118C2 /* Program.cc */,
 				F6FB2A1916B70C7600E6013E /* stb_image.c */,
 				F6097E5416B84B1A00B240E7 /* stb_image.h */,
+				F64EC94516BEA68600063843 /* Light.h */,
+				F64EC94616BEA68C00063843 /* Light.cc */,
 				F6FB2A1B16B7104F00E6013E /* Texture.h */,
 				F6FB2A1C16B7105D00E6013E /* Texture.cc */,
 				F6FB2A1E16B7112C00E6013E /* Bitmap.h */,
@@ -645,6 +650,7 @@
 				F6AF410E16BB1F4000F85BC0 /* Camera.cc in Sources */,
 				F6FB2A2016B7113000E6013E /* Bitmap.cc in Sources */,
 				F6D9138416BC0226000C0632 /* Mesh.cc in Sources */,
+				F64EC94716BEA68C00063843 /* Light.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

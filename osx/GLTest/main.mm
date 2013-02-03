@@ -15,6 +15,7 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "Mesh.h"
+#include "Light.h"
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 GLuint gVAO = 0;
@@ -65,54 +66,67 @@ static Texture LoadTexture() {
 
 void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m)
 {
+    //always
+    //p is part of material!
     ProgramContext pc{p};
     
+    //always
     glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
     glm::mat4 view = c.viewMatrix();
-    glm::mat4 modelView = view * model;    
-      
+    glm::mat4 modelView = view * model;
+    
+    //always
     p.setUniform("projection", c.projectionMatrix());
     p.setUniform("modelView", modelView);
     
+    //material
     // bind the texture and set the "tex" uniform in the fragment shader
     TextureContext tex{t, GL_TEXTURE0};
     p.setUniform("tex", 0); //set to 0 because the texture is bound to GL_TEXTURE0
     
+    //always
     m.draw(p);
 }
 
-void renderLight(Program& p, const Camera& c, const Mesh& m, glm::vec4 lightPos)
+void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l)
 {
+    //always
+    //p is part of material!
     ProgramContext pc{p};
     
+    //always
     glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
     glm::mat4 view = c.viewMatrix();
     glm::mat4 modelView = view * model;
-    glm::mat3 normal = glm::transpose(glm::inverse(glm::mat3(modelView)));
-    glm::vec4 light = view * lightPos;
     
+    glm::mat3 normal = glm::transpose(glm::inverse(glm::mat3(modelView))); //not part of light, but only needed for lights so far
+    
+    //material
     p.setUniform("material.diffuse", glm::vec3(0.3, 0.3, 0.3));
     p.setUniform("material.ambient", glm::vec3(0.1, 0.1, 0.1));
-    p.setUniform("material.specular", glm::vec3(0.9, 0.9, 0.9));
-    p.setUniform("material.emissive", glm::vec3(0.1, 0.1, 0.1));
+    p.setUniform("material.specular", glm::vec3(1.0, 1.0, 1.0));
+    p.setUniform("material.emissive", glm::vec3(0.0, 0.0, 0.0));
     p.setUniform("material.shininess", 90.0f);
     
-    p.setUniform("light.attenuation", glm::vec3(0.0, 0.15, 0.0));
-    p.setUniform("light.diffuse", glm::vec3(1.0, 1.0, 1.0));
-    p.setUniform("light.ambient", glm::vec3(1.0, 1.0, 1.0));
-    p.setUniform("light.specular", glm::vec3(1.0, 1.0, 1.0));
-    p.setUniform("light.position", light);
+    //light
+    l.attach(p, c);
     
+    p.setUniform("normal", normal); //not part of light, but only needed for lights so far
+    
+    //always
     p.setUniform("projection", c.projectionMatrix());
     p.setUniform("modelView", modelView);
-    p.setUniform("normal", normal);
     
+    //always
     m.draw(p);
 }
 
 void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const Mesh& m)
 {
-    glClearColor(0, 0, 0, 1); // black
+    Light light_one{ glm::vec4{3.0, 0.0, 0.0, 1.0}, glm::vec3{1.0, 1.0, 1.0}, glm::vec3{0.0, 0.15, 0.0} };
+    Light light_two{ glm::vec4{0.0, 3.0, 0.0, 0.0}, glm::vec3{0.5, 0.5, 0.5} };
+    
+    glClearColor(0.0, 0.0, 0.0, 1); // black
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     //static settings, really
@@ -122,8 +136,8 @@ void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const M
     
     glBlendFunc(GL_ONE,GL_ONE);
     
-    renderLight(pl, c, m, glm::vec4(0.0, 3.0, 0.0, 0.0));
-    renderLight(pl, c, m, glm::vec4(3.0, 0.0, 0.0, 1.0));
+    renderLight(pl, c, m, light_one);
+    renderLight(pl, c, m, light_two);
     
     glBlendFunc(GL_ZERO,GL_SRC_COLOR);
     renderTexture(pt, t, c, m);
