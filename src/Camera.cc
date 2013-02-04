@@ -1,25 +1,42 @@
 #include "Camera.h"
 
+#include "CameraComponent.h"
+#include "SpatialComponent.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 
 static const float MaxVerticalAngle = 85.0f; //must be less than 90 to avoid gimbal lock
 
-Camera::Camera() : _aspectratio{4.0/3.0}, _position{0, 0, 0}, _horizontalAngle{0}, _verticalAngle{0}
+std::unique_ptr<Camera> Camera::fromEntity(const Entity& entity)
+{
+    //if entity has both Light and Spatial, make a Light
+    std::shared_ptr<CameraComponent> cameraComponent = entity.component<CameraComponent>();
+    std::shared_ptr<SpatialComponent> spatialComponent = entity.component<SpatialComponent>();
+    if(cameraComponent != nullptr && spatialComponent != nullptr)
+    {
+        return std::unique_ptr<Camera>{new Camera{cameraComponent, spatialComponent}};
+    }
+    return std::unique_ptr<Camera>{};
+}
+
+Camera::Camera(std::shared_ptr<CameraComponent> c, std::shared_ptr<SpatialComponent> s) : _camera{c}, _spatial{s}
 {
 }
 
 glm::mat4 Camera::orientation() const
 {
-    glm::mat4 orientation;
-    orientation = glm::rotate(orientation, _verticalAngle, glm::vec3(1,0,0));
-    orientation = glm::rotate(orientation, _horizontalAngle, glm::vec3(0,1,0));
-    return orientation;
+    //glm::mat4 orientation;
+    //orientation = glm::rotate(orientation, _camera->_verticalAngle, glm::vec3(1,0,0));
+    //orientation = glm::rotate(orientation, _camera->_horizontalAngle, glm::vec3(0,1,0));
+    //return orientation;
+    //^ old code, should be removed ^
+    return glm::mat4_cast(_spatial->direction);
 }
 
 glm::mat4 Camera::viewMatrix() const
 {
     glm::mat4 camera = orientation();
-    camera = glm::translate(camera, -_position);
+    camera = glm::translate(camera, -_spatial->position);
     return camera;
 }
 
@@ -28,7 +45,7 @@ glm::mat4 Camera::projectionMatrix() const
     //50.0 = field of view
     //0.01  = near plane
     //100.0 = far plane
-    return glm::perspective<float>(50.0, _aspectratio, 0.01, 100.0);
+    return glm::perspective<float>(50.0, _camera->_aspectratio, 0.01, 100.0);
 }
 
 glm::vec3 Camera::forward() const {
@@ -47,26 +64,21 @@ glm::vec3 Camera::up() const {
 }
 
 void Camera::offsetOrientation(float upAngle, float rightAngle) {
-    _horizontalAngle += rightAngle;
-    while(_horizontalAngle > 360.0f) _horizontalAngle -= 360.0;
-    while(_horizontalAngle < 0.0f) _horizontalAngle += 360.0;
+    _camera->_horizontalAngle += rightAngle;
+    while(_camera->_horizontalAngle > 360.0f) _camera->_horizontalAngle -= 360.0;
+    while(_camera->_horizontalAngle < 0.0f) _camera->_horizontalAngle += 360.0;
     
-    _verticalAngle += upAngle;
-    if(_verticalAngle > MaxVerticalAngle) _verticalAngle = MaxVerticalAngle;
-    if(_verticalAngle < -MaxVerticalAngle) _verticalAngle = -MaxVerticalAngle;
-}
-
-void Camera::setAspectRatio(const float aspectratio)
-{
-    _aspectratio = aspectratio;
-}
-
-void Camera::setPosition(const glm::vec3& pos)
-{
-    _position = pos;
+    _camera->_verticalAngle += upAngle;
+    if(_camera->_verticalAngle > MaxVerticalAngle) _camera->_verticalAngle = MaxVerticalAngle;
+    if(_camera->_verticalAngle < -MaxVerticalAngle) _camera->_verticalAngle = -MaxVerticalAngle;
+    
+    //i know it's not perfect, since i'm basically storing the direction in two places.
+    //however this was the easiest solution to making it all work as i want it to.
+    _spatial->direction = glm::rotate(glm::quat{}, _camera->_verticalAngle, glm::vec3(1,0,0));
+    _spatial->direction = glm::rotate(_spatial->direction, _camera->_horizontalAngle, glm::vec3(0,1,0));
 }
 
 void Camera::offsetPosition(const glm::vec3& offset)
 {
-    _position += offset;
+    _spatial->position += offset;
 }

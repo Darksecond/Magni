@@ -10,7 +10,7 @@
 #include "LightComponent.h"
 #include "SpatialComponent.h"
 
-RenderEngine::RenderEngine(Program& pt, Program& pl, const Texture& t, const Camera& c, const Mesh& m) : _pt{pt}, _pl{pl}, _t{t}, _c{c}, _m{m}, gDegreesRotated{0}, lights{}
+RenderEngine::RenderEngine(Program& pt, Program& pl, const Texture& t, const Mesh& m) : _pt{pt}, _pl{pl}, _t{t}, _m{m}, gDegreesRotated{0}, lights{}
 {
 }
 
@@ -20,6 +20,12 @@ void RenderEngine::registerEntity(Entity& entity)
     if(lightNode)
     {
         lights.push_back(std::move(lightNode));
+    }
+    
+    std::unique_ptr<Camera> cameraNode = entity.node<Camera>();
+    if(cameraNode)
+    {
+        _camera = std::move(cameraNode);
     }
     //if entity has both Model and Spatial, make a Model
     //if entity has both Camera and Spatial, make a Camera
@@ -118,5 +124,5 @@ void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const M
 
 void RenderEngine::execute()
 {
-    render(_pt, _pl, _t, _c, _m, gDegreesRotated, lights);
+    render(_pt, _pl, _t, *_camera, _m, gDegreesRotated, lights);
 }

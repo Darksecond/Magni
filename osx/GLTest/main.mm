@@ -22,6 +22,7 @@
 #include "LightComponent.h"
 #include "SpatialComponent.h"
 #include "RenderEngine.h"
+#include "CameraComponent.h"
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 GLuint gVAO = 0;
@@ -164,14 +165,14 @@ int main(int argc, char* argv[])
     Program pt = loadTextureShaders();
     Program pl = loadLightingShaders();
     Texture t = LoadTexture();
-    
-    Camera c = Camera{};
-    c.setAspectRatio(SCREEN_SIZE.x / SCREEN_SIZE.y);
-    c.setPosition(glm::vec3{0,0,5});
-    
     Mesh m = Mesh::cube();
+    RenderEngine engine{pt, pl, t, m};
     
-    RenderEngine engine{pt, pl, t, c, m};
+    Entity camera;
+    camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
+    camera.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 5.0});
+    engine.registerEntity(camera);
+    
     
     //light one (spot)
     Entity light_one{};
@@ -186,13 +187,13 @@ int main(int argc, char* argv[])
     light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
     engine.registerEntity(light_two);
     
-    engine.unregisterEntity(light_two);
+    //engine.unregisterEntity(light_two);
     
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
     {
         double thisTime = glfwGetTime();
-        Update(thisTime - lastTime, c);
+        Update(thisTime - lastTime, *camera.node<Camera>());
         lastTime = thisTime;
         
         showFPS(); //in titlebar

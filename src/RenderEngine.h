@@ -17,12 +17,12 @@ class RenderEngine : public Engine
     Program& _pt;
     Program& _pl;
     const Texture& _t;
-    const Camera& _c;
     const Mesh& _m;
+    std::unique_ptr<Camera> _camera;
 public:
     float gDegreesRotated;
 
-    RenderEngine(Program& pt, Program& pl, const Texture& t, const Camera& c, const Mesh& m);
+    RenderEngine(Program& pt, Program& pl, const Texture& t, const Mesh& m);
     
     virtual void registerEntity(Entity& entity);
     virtual void unregisterEntity(Entity& entity);
