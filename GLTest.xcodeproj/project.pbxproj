@@ -452,6 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				F6B1DA1F16BFE2C8006BBC69 /* Components */,
+				F6B1DA2516C045B6006BBC69 /* Engines */,
 				F645948B16B6A8F100B118C2 /* Shader.h */,
 				F645948D16B6A96D00B118C2 /* Shader.cc */,
 				F645949216B6AE1700B118C2 /* Program.h */,
@@ -460,11 +461,8 @@
 				F6097E5416B84B1A00B240E7 /* stb_image.h */,
 				F64EC94516BEA68600063843 /* Light.h */,
 				F64EC94616BEA68C00063843 /* Light.cc */,
-				F6B1DA1616BFD63F006BBC69 /* Engine.h */,
 				F6B1DA1416BFD1D7006BBC69 /* Entity.h */,
 				F6B1DA1316BFD1D7006BBC69 /* Entity.cc */,
-				F6B1DA1916BFDACE006BBC69 /* RenderEngine.h */,
-				F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */,
 				F6FB2A1B16B7104F00E6013E /* Texture.h */,
 				F6FB2A1C16B7105D00E6013E /* Texture.cc */,
 				F6FB2A1E16B7112C00E6013E /* Bitmap.h */,
@@ -488,6 +486,16 @@
 				F6B1DA2116BFE2EE006BBC69 /* LightComponent.cc */,
 			);
 			name = Components;
+			sourceTree = "<group>";
+		};
+		F6B1DA2516C045B6006BBC69 /* Engines */ = {
+			isa = PBXGroup;
+			children = (
+				F6B1DA1616BFD63F006BBC69 /* Engine.h */,
+				F6B1DA1916BFDACE006BBC69 /* RenderEngine.h */,
+				F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */,
+			);
+			name = Engines;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

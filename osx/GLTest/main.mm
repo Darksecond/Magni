@@ -186,6 +186,8 @@ int main(int argc, char* argv[])
     light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
     engine.registerEntity(light_two);
     
+    engine.unregisterEntity(light_two);
+    
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
     {

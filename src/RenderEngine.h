@@ -12,9 +12,7 @@
 
 class RenderEngine : public Engine
 {
-    //struct Light { std::shared_ptr<LightComponent> light, std::shared_ptr<SpatialComponent> spatial };
-    //lights
-    std::vector<Light> lights;
+    std::vector<std::unique_ptr<Light>> lights;
     
     Program& _pt;
     Program& _pl;
@@ -27,5 +25,6 @@ public:
     RenderEngine(Program& pt, Program& pl, const Texture& t, const Camera& c, const Mesh& m);
     
     virtual void registerEntity(Entity& entity);
+    virtual void unregisterEntity(Entity& entity);
     virtual void execute();
 };

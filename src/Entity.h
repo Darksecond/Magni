@@ -21,9 +21,18 @@ public:
     //be sure that T has iComponent as an interface
     template<typename T>
     std::shared_ptr<T> component() const;
+    
+    template<typename T>
+    std::unique_ptr<T> node() const;
 };
 
 //INLINED & TEMPLATE METHODS
+template<typename T>
+std::unique_ptr<T> Entity::node() const
+{
+    return T::fromEntity(*this);
+}
+
 template<typename T>
 std::shared_ptr<T> Entity::component() const
 {

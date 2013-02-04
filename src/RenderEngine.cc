@@ -16,15 +16,25 @@ RenderEngine::RenderEngine(Program& pt, Program& pl, const Texture& t, const Cam
 
 void RenderEngine::registerEntity(Entity& entity)
 {
-    //if entity has both Light and Spatial, make a Light
-    std::shared_ptr<LightComponent> lightComponent = entity.component<LightComponent>();
-    std::shared_ptr<SpatialComponent> spatialComponent = entity.component<SpatialComponent>();
-    if(lightComponent != nullptr && spatialComponent != nullptr)
+    std::unique_ptr<Light> lightNode = entity.node<Light>();
+    if(lightNode)
     {
-        lights.push_back(Light{lightComponent, spatialComponent});
+        lights.push_back(std::move(lightNode));
     }
     //if entity has both Model and Spatial, make a Model
     //if entity has both Camera and Spatial, make a Camera
+}
+
+void RenderEngine::unregisterEntity(Entity& entity)
+{
+    std::unique_ptr<Light> lightNode = entity.node<Light>();
+    if(lightNode)
+    {
+        lights.erase(std::remove_if(lights.begin(), lights.end(),
+                                    [&](const std::unique_ptr<Light>& i)
+                                    {return *lightNode == *i; })
+                     , lights.end());
+    }
 }
 
 void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, float gDegreesRotated)
@@ -84,7 +94,8 @@ void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, flo
     m.draw(p);
 }
 
-void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const Mesh& m, float gDegreesRotated, std::vector<Light>& lights)
+void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const Mesh& m, float gDegreesRotated,
+            std::vector<std::unique_ptr<Light>>& lights)
 {
     glClearColor(0.0, 0.0, 0.0, 1); // black
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -93,10 +104,10 @@ void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const M
     glEnable(GL_BLEND);
     glDepthFunc(GL_LEQUAL);
     
-    for(auto light : lights)
+    for(auto& light : lights)
     {
         glBlendFunc(GL_ONE,GL_ONE);
-        renderLight(pl, c, m, light, gDegreesRotated);
+        renderLight(pl, c, m, *light, gDegreesRotated);
     }
     
     glBlendFunc(GL_ZERO,GL_SRC_COLOR);
