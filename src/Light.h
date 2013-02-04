@@ -2,27 +2,18 @@
 
 #include "Program.h"
 #include "Camera.h"
+#include "LightComponent.h"
+#include "SpatialComponent.h"
 
 #include <GLM/glm.hpp>
+#include <memory>
 
 class Light
 {
-    glm::vec4 position;
-    glm::vec3 attenuation;
-    glm::vec3 diffuse;
-    glm::vec3 ambient;
-    glm::vec3 specular;
+    std::shared_ptr<LightComponent> _light;
+    std::shared_ptr<SpatialComponent> _spatial;
 public:
-    Light();
-    explicit Light(glm::vec4 position);
-    Light(glm::vec4 position, glm::vec3 color);
-    Light(glm::vec4 position, glm::vec3 color, glm::vec3 attenuation);
+    Light(std::shared_ptr<LightComponent> light, std::shared_ptr<SpatialComponent> spatial);
     
     void attach(Program& p, const Camera& c) const;
-    
-    void setPosition(glm::vec4 position);
-    void setAttenuation(glm::vec3 attenuation);
-    void setDiffuse(glm::vec3 diffuse);
-    void setAmbient(glm::vec3 ambient);
-    void setSpecular(glm::vec3 specular);
 };

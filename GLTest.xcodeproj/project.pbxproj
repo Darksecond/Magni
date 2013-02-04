@@ -62,6 +62,11 @@
 		F687A52916B4BB0400878140 /* GLM.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F687A50116B4BA1100878140 /* GLM.framework */; };
 		F687A52A16B4BBB200878140 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A4CB16B4B81B00878140 /* OpenGL.framework */; };
 		F6AF410E16BB1F4000F85BC0 /* Camera.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6AF410C16BB1B8D00F85BC0 /* Camera.cc */; };
+		F6B1DA1516BFD1D7006BBC69 /* Entity.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA1316BFD1D7006BBC69 /* Entity.cc */; };
+		F6B1DA1B16BFDAE9006BBC69 /* RenderEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */; };
+		F6B1DA1E16BFDC9D006BBC69 /* SpatialComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA1D16BFDC9D006BBC69 /* SpatialComponent.cc */; };
+		F6B1DA2216BFE2EE006BBC69 /* LightComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA2116BFE2EE006BBC69 /* LightComponent.cc */; };
+		F6B1DA2416C0158D006BBC69 /* Component.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA2316C0158D006BBC69 /* Component.cc */; };
 		F6B7B83216BDD38E003D3F9F /* test2.vert in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B82E16BDD37A003D3F9F /* test2.vert */; };
 		F6B7B83316BDD390003D3F9F /* test2.frag in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B83016BDD380003D3F9F /* test2.frag */; };
 		F6D9138416BC0226000C0632 /* Mesh.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6D9138316BC0226000C0632 /* Mesh.cc */; };
@@ -176,6 +181,17 @@
 		F687A51E16B4BABD00878140 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F6AF410B16BB1A1F00F85BC0 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		F6AF410C16BB1B8D00F85BC0 /* Camera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cc; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		F6B1DA1016BFD17B006BBC69 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
+		F6B1DA1316BFD1D7006BBC69 /* Entity.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cc; sourceTree = "<group>"; };
+		F6B1DA1416BFD1D7006BBC69 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		F6B1DA1616BFD63F006BBC69 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
+		F6B1DA1916BFDACE006BBC69 /* RenderEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderEngine.h; sourceTree = "<group>"; };
+		F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cc; sourceTree = "<group>"; };
+		F6B1DA1C16BFDC4F006BBC69 /* SpatialComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialComponent.h; sourceTree = "<group>"; };
+		F6B1DA1D16BFDC9D006BBC69 /* SpatialComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialComponent.cc; sourceTree = "<group>"; };
+		F6B1DA2016BFE2E8006BBC69 /* LightComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightComponent.h; sourceTree = "<group>"; };
+		F6B1DA2116BFE2EE006BBC69 /* LightComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightComponent.cc; sourceTree = "<group>"; };
+		F6B1DA2316C0158D006BBC69 /* Component.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cc; sourceTree = "<group>"; };
 		F6B7B82E16BDD37A003D3F9F /* test2.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test2.vert; sourceTree = "<group>"; };
 		F6B7B83016BDD380003D3F9F /* test2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test2.frag; sourceTree = "<group>"; };
 		F6D9138216BC0222000C0632 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
@@ -435,6 +451,7 @@
 		F687A52E16B4BC7700878140 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F6B1DA1F16BFE2C8006BBC69 /* Components */,
 				F645948B16B6A8F100B118C2 /* Shader.h */,
 				F645948D16B6A96D00B118C2 /* Shader.cc */,
 				F645949216B6AE1700B118C2 /* Program.h */,
@@ -443,6 +460,11 @@
 				F6097E5416B84B1A00B240E7 /* stb_image.h */,
 				F64EC94516BEA68600063843 /* Light.h */,
 				F64EC94616BEA68C00063843 /* Light.cc */,
+				F6B1DA1616BFD63F006BBC69 /* Engine.h */,
+				F6B1DA1416BFD1D7006BBC69 /* Entity.h */,
+				F6B1DA1316BFD1D7006BBC69 /* Entity.cc */,
+				F6B1DA1916BFDACE006BBC69 /* RenderEngine.h */,
+				F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */,
 				F6FB2A1B16B7104F00E6013E /* Texture.h */,
 				F6FB2A1C16B7105D00E6013E /* Texture.cc */,
 				F6FB2A1E16B7112C00E6013E /* Bitmap.h */,
@@ -454,6 +476,19 @@
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
+		};
+		F6B1DA1F16BFE2C8006BBC69 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F6B1DA1016BFD17B006BBC69 /* Component.h */,
+				F6B1DA2316C0158D006BBC69 /* Component.cc */,
+				F6B1DA1C16BFDC4F006BBC69 /* SpatialComponent.h */,
+				F6B1DA1D16BFDC9D006BBC69 /* SpatialComponent.cc */,
+				F6B1DA2016BFE2E8006BBC69 /* LightComponent.h */,
+				F6B1DA2116BFE2EE006BBC69 /* LightComponent.cc */,
+			);
+			name = Components;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -651,6 +686,11 @@
 				F6FB2A2016B7113000E6013E /* Bitmap.cc in Sources */,
 				F6D9138416BC0226000C0632 /* Mesh.cc in Sources */,
 				F64EC94716BEA68C00063843 /* Light.cc in Sources */,
+				F6B1DA1516BFD1D7006BBC69 /* Entity.cc in Sources */,
+				F6B1DA1B16BFDAE9006BBC69 /* RenderEngine.cc in Sources */,
+				F6B1DA1E16BFDC9D006BBC69 /* SpatialComponent.cc in Sources */,
+				F6B1DA2216BFE2EE006BBC69 /* LightComponent.cc in Sources */,
+				F6B1DA2416C0158D006BBC69 /* Component.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

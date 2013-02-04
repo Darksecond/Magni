@@ -18,6 +18,11 @@
 #include "Mesh.h"
 #include "Light.h"
 
+#include "Entity.h"
+#include "LightComponent.h"
+#include "SpatialComponent.h"
+#include "RenderEngine.h"
+
 const glm::vec2 SCREEN_SIZE(800, 600);
 GLuint gVAO = 0;
 GLuint gVBO = 0;
@@ -65,87 +70,6 @@ static Texture LoadTexture() {
     return Texture{bmp};
 }
 
-void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m)
-{
-    //always
-    //p is part of material!
-    ProgramContext pc{p};
-    
-    //always
-    glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
-    glm::mat4 view = c.viewMatrix();
-    glm::mat4 modelView = view * model;
-    
-    //always
-    p.setUniform("projection", c.projectionMatrix());
-    p.setUniform("modelView", modelView);
-    
-    //material
-    // bind the texture and set the "tex" uniform in the fragment shader
-    TextureContext tex{t, GL_TEXTURE0};
-    p.setUniform("tex", 0); //set to 0 because the texture is bound to GL_TEXTURE0
-    
-    //always
-    m.draw(p);
-}
-
-void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l)
-{
-    //always
-    //p is part of material!
-    ProgramContext pc{p};
-    
-    //always
-    glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
-    glm::mat4 view = c.viewMatrix();
-    glm::mat4 modelView = view * model;
-    
-    glm::mat3 normal = glm::transpose(glm::inverse(glm::mat3(modelView))); //not part of light, but only needed for lights so far
-    
-    //material
-    p.setUniform("material.diffuse", glm::vec3(0.3, 0.3, 0.3));
-    p.setUniform("material.ambient", glm::vec3(0.1, 0.1, 0.1));
-    p.setUniform("material.specular", glm::vec3(1.0, 1.0, 1.0));
-    p.setUniform("material.emissive", glm::vec3(0.0, 0.0, 0.0));
-    p.setUniform("material.shininess", 90.0f);
-    
-    //light
-    l.attach(p, c);
-    
-    p.setUniform("normal", normal); //not part of light, but only needed for lights so far
-    
-    //always
-    p.setUniform("projection", c.projectionMatrix());
-    p.setUniform("modelView", modelView);
-    
-    //always
-    m.draw(p);
-}
-
-void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const Mesh& m)
-{
-    Light light_one{ glm::vec4{3.0, 0.0, 0.0, 1.0}, glm::vec3{1.0, 1.0, 1.0}, glm::vec3{0.0, 0.15, 0.0} };
-    Light light_two{ glm::vec4{0.0, 3.0, 0.0, 0.0}, glm::vec3{0.5, 0.5, 0.5} };
-    
-    glClearColor(0.0, 0.0, 0.0, 1); // black
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    //static settings, really
-    glEnable(GL_BLEND);
-    glDepthFunc(GL_LEQUAL);
-
-    
-    glBlendFunc(GL_ONE,GL_ONE);
-    renderLight(pl, c, m, light_one);
-    
-    glBlendFunc(GL_ONE,GL_ONE);
-    renderLight(pl, c, m, light_two);
-    
-    glBlendFunc(GL_ZERO,GL_SRC_COLOR);
-    renderTexture(pt, t, c, m);
-    
-    glfwSwapBuffers();
-}
 
 // update the scene based on the time elapsed since last update
 void Update(float secondsElapsed, Camera& c) {
@@ -247,6 +171,21 @@ int main(int argc, char* argv[])
     
     Mesh m = Mesh::cube();
     
+    RenderEngine engine{pt, pl, t, c, m};
+    
+    //light one (spot)
+    Entity light_one{};
+    light_one.assign<LightComponent>(glm::vec3{1.0, 1.0, 1.0}, glm::vec3{0.0, 0.15, 0.0});
+    light_one.assign<SpatialComponent>(glm::vec3{7.0, 0.0, 0.0});
+    engine.registerEntity(light_one);
+    
+    //light two (directional)
+    Entity light_two{};    
+    auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.5, 0.5, 0.5});
+    light_two_lightc->spot = 0;
+    light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
+    engine.registerEntity(light_two);
+    
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
     {
@@ -256,7 +195,9 @@ int main(int argc, char* argv[])
         
         showFPS(); //in titlebar
         
-        render(pt, pl, t, c, m);
+        //render(pt, pl, t, c, m);
+        engine.gDegreesRotated = gDegreesRotated;
+        engine.execute();
         
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)
