@@ -7,6 +7,8 @@
 #include <glm/gtx/rotate_vector.hpp>
 #include <glm/gtx/euler_angles.hpp>
 
+#include <iostream>
+
 static const float MaxVerticalAngle = 85.0f; //must be less than 90 to avoid gimbal lock
 
 std::unique_ptr<Camera> Camera::fromEntity(const Entity& entity)
@@ -27,11 +29,7 @@ Camera::Camera(std::shared_ptr<CameraComponent> c, std::shared_ptr<SpatialCompon
 
 glm::mat4 Camera::orientation() const
 {
-    glm::mat4 orientation;
-    orientation = glm::rotate(orientation, _spatial->direction.x, glm::vec3(1,0,0));
-    orientation = glm::rotate(orientation, _spatial->direction.y, glm::vec3(0,1,0));
-    orientation = glm::rotate(orientation, _spatial->direction.z, glm::vec3(0,0,1));
-    return orientation;
+    return glm::mat4_cast(_spatial->direction);
 }
 
 glm::mat4 Camera::viewMatrix() const
@@ -73,10 +71,11 @@ void Camera::offsetOrientation(float upAngle, float rightAngle) {
     if(_camera->_verticalAngle > MaxVerticalAngle) _camera->_verticalAngle = MaxVerticalAngle;
     if(_camera->_verticalAngle < -MaxVerticalAngle) _camera->_verticalAngle = -MaxVerticalAngle;
     
-  
-    //yeah, yeah, i know it's kinda broken...
-    _spatial->direction.x = _camera->_verticalAngle;
-    _spatial->direction.y = _camera->_horizontalAngle;
+    //we can't only use the quaternion, because it would be too difficult to check the maximum pitch right now
+    glm::quat up = glm::angleAxis(_camera->_verticalAngle, glm::vec3(1,0,0));
+    glm::quat right = glm::angleAxis(_camera->_horizontalAngle, glm::vec3(0,1,0));
+    _spatial->direction = up * right;
+    std::cout << glm::pitch(_spatial->direction) << std::endl;
 }
 
 void Camera::offsetPosition(const glm::vec3& offset)

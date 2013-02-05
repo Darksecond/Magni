@@ -4,6 +4,7 @@
 #include <GLFW/GLFW.h>
 #include <GLM/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/rotate_vector.hpp>
 
 #include <iostream>
 #include <vector>

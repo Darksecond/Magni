@@ -9,7 +9,7 @@ class SpatialComponent : public iComponent<SpatialComponent>
 {
 public:
     glm::vec3 position;
-    glm::vec3 direction;
+    glm::quat direction;
     
     explicit SpatialComponent(glm::vec3 position);
 };
