@@ -30,6 +30,7 @@ glm::mat4 Camera::orientation() const
     glm::mat4 orientation;
     orientation = glm::rotate(orientation, _spatial->direction.x, glm::vec3(1,0,0));
     orientation = glm::rotate(orientation, _spatial->direction.y, glm::vec3(0,1,0));
+    orientation = glm::rotate(orientation, _spatial->direction.z, glm::vec3(0,0,1));
     return orientation;
 }
 
@@ -73,8 +74,7 @@ void Camera::offsetOrientation(float upAngle, float rightAngle) {
     if(_camera->_verticalAngle < -MaxVerticalAngle) _camera->_verticalAngle = -MaxVerticalAngle;
     
   
-    //yeah, yeah, not a real direction vector...
-    //...i will fix it eventually!
+    //yeah, yeah, i know it's kinda broken...
     _spatial->direction.x = _camera->_verticalAngle;
     _spatial->direction.y = _camera->_horizontalAngle;
 }
