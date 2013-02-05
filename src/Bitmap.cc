@@ -2,7 +2,8 @@
 #include "stb_image.h"
 
 //PRIVATE HELPER FUNCTIONS
-inline unsigned int GetPixelOffset(unsigned col, unsigned row, unsigned width, unsigned height, Bitmap::Format format) {
+inline unsigned int GetPixelOffset(unsigned col, unsigned row, unsigned width, unsigned height, Bitmap::Format format)
+{
     return (row * width + col) * static_cast<unsigned int>(format);
 }
 

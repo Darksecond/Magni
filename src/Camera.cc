@@ -4,6 +4,8 @@
 #include "SpatialComponent.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/rotate_vector.hpp>
+#include <glm/gtx/euler_angles.hpp>
 
 static const float MaxVerticalAngle = 85.0f; //must be less than 90 to avoid gimbal lock
 
@@ -25,12 +27,10 @@ Camera::Camera(std::shared_ptr<CameraComponent> c, std::shared_ptr<SpatialCompon
 
 glm::mat4 Camera::orientation() const
 {
-    //glm::mat4 orientation;
-    //orientation = glm::rotate(orientation, _camera->_verticalAngle, glm::vec3(1,0,0));
-    //orientation = glm::rotate(orientation, _camera->_horizontalAngle, glm::vec3(0,1,0));
-    //return orientation;
-    //^ old code, should be removed ^
-    return glm::mat4_cast(_spatial->direction);
+    glm::mat4 orientation;
+    orientation = glm::rotate(orientation, _spatial->direction.x, glm::vec3(1,0,0));
+    orientation = glm::rotate(orientation, _spatial->direction.y, glm::vec3(0,1,0));
+    return orientation;
 }
 
 glm::mat4 Camera::viewMatrix() const
@@ -72,10 +72,11 @@ void Camera::offsetOrientation(float upAngle, float rightAngle) {
     if(_camera->_verticalAngle > MaxVerticalAngle) _camera->_verticalAngle = MaxVerticalAngle;
     if(_camera->_verticalAngle < -MaxVerticalAngle) _camera->_verticalAngle = -MaxVerticalAngle;
     
-    //i know it's not perfect, since i'm basically storing the direction in two places.
-    //however this was the easiest solution to making it all work as i want it to.
-    _spatial->direction = glm::rotate(glm::quat{}, _camera->_verticalAngle, glm::vec3(1,0,0));
-    _spatial->direction = glm::rotate(_spatial->direction, _camera->_horizontalAngle, glm::vec3(0,1,0));
+  
+    //yeah, yeah, not a real direction vector...
+    //...i will fix it eventually!
+    _spatial->direction.x = _camera->_verticalAngle;
+    _spatial->direction.y = _camera->_horizontalAngle;
 }
 
 void Camera::offsetPosition(const glm::vec3& offset)
