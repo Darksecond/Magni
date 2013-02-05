@@ -76,16 +76,6 @@ void Camera::offsetOrientation(float upAngle, float rightAngle) {
     glm::quat up = glm::angleAxis(_camera->_verticalAngle, glm::vec3(1,0,0));
     glm::quat right = glm::angleAxis(_camera->_horizontalAngle, glm::vec3(0,1,0));
     _spatial->direction = up * right;
-    
-    std::cout << "---" << std::endl;
-    glm::vec3 t1 = glm::eulerAngles(_spatial->direction); //<-- from quat to vector
-    std::cout << t1.x << ":" << t1.y << ":" << t1.z << std::endl;
-    glm::quat q1{glm::radians(t1)}; //<-- from vector to quat
-    
-    _spatial->direction = q1;
-    glm::vec3 t2 = glm::eulerAngles(q1); //<-- from quat to vector
-    std::cout << t2.x << ":" << t2.y << ":" << t2.z << std::endl;
-
 }
 
 void Camera::offsetPosition(const glm::vec3& offset)

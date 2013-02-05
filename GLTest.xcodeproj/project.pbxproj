@@ -10,7 +10,6 @@
 		F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F627D39D16B97CA7000B06AF /* wooden-crate.jpg */; };
 		F64516D216C068C000726CF5 /* CameraComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64516D116C068C000726CF5 /* CameraComponent.cc */; };
 		F645948E16B6A96D00B118C2 /* Shader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645948D16B6A96D00B118C2 /* Shader.cc */; };
-		F645949016B6AD9700B118C2 /* test.vert in Sources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* test.vert */; };
 		F645949116B6ADA900B118C2 /* test.vert in Resources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* test.vert */; };
 		F645949416B6AE8700B118C2 /* Program.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645949316B6AE8700B118C2 /* Program.cc */; };
 		F645949616B6B11400B118C2 /* test.frag in Resources */ = {isa = PBXBuildFile; fileRef = F645949516B6B11400B118C2 /* test.frag */; };
@@ -699,7 +698,6 @@
 			files = (
 				F687A42D16B4B68700878140 /* main.mm in Sources */,
 				F645948E16B6A96D00B118C2 /* Shader.cc in Sources */,
-				F645949016B6AD9700B118C2 /* test.vert in Sources */,
 				F645949416B6AE8700B118C2 /* Program.cc in Sources */,
 				F6FB2A1A16B70C7600E6013E /* stb_image.c in Sources */,
 				F6FB2A1D16B7105D00E6013E /* Texture.cc in Sources */,
