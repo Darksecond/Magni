@@ -196,6 +196,11 @@ int main(int argc, char* argv[])
     model_one.assign<ModelComponent>(m, t);
     engine.registerEntity(model_one);
     
+    Entity model_two{};
+    model_two.assign<SpatialComponent>(glm::vec3{5.0, 0.0, 0.0});
+    model_two.assign<ModelComponent>(m, t);
+    engine.registerEntity(model_two);
+    
     //engine.unregisterEntity(light_two);
     
     double lastTime = glfwGetTime();
