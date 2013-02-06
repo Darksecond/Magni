@@ -12,7 +12,6 @@ std::unique_ptr<Model> Model::fromEntity(const Entity& entity)
     return std::unique_ptr<Model>{};
 }
 
-
 void Model::attach(Program &p)
 {
     p.setUniform("material.diffuse", glm::vec3(0.3, 0.3, 0.3));
