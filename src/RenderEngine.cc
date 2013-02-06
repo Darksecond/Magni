@@ -27,15 +27,12 @@ void RenderEngine::registerEntity(Entity& entity)
     {
         _camera = std::move(cameraNode);
     }
-    
+    3
     std::unique_ptr<Model> modelNode = entity.node<Model>();
     if(modelNode)
     {
         models.push_back(std::move(modelNode));
-    }
-    
-    //if entity has both Model and Spatial, make a Model
-    //if entity has both Camera and Spatial, make a Camera
+    }    
 }
 
 void RenderEngine::unregisterEntity(Entity& entity)
