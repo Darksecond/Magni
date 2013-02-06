@@ -50,16 +50,15 @@ void RenderEngine::unregisterEntity(Entity& entity)
     }
 }
 
-void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, glm::mat4 model)
+void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, Model& model)
 {
     //always
     //p is part of material!
     ProgramContext pc{p};
     
     //always
-    //glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
     glm::mat4 view = c.viewMatrix();
-    glm::mat4 modelView = view * model;
+    glm::mat4 modelView = view * model.matrix();
     
     //always
     p.setUniform("projection", c.projectionMatrix());
@@ -74,25 +73,20 @@ void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m,
     m.draw(p);
 }
 
-void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, glm::mat4 model)
+void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, Model& model)
 {
     //always
     //p is part of material!
     ProgramContext pc{p};
     
     //always
-    //glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
     glm::mat4 view = c.viewMatrix();
-    glm::mat4 modelView = view * model;
+    glm::mat4 modelView = view * model.matrix();
     
     glm::mat3 normal = glm::transpose(glm::inverse(glm::mat3(modelView))); //not part of light, but only needed for lights so far
     
-    //material
-    p.setUniform("material.diffuse", glm::vec3(0.3, 0.3, 0.3));
-    p.setUniform("material.ambient", glm::vec3(0.1, 0.1, 0.1));
-    p.setUniform("material.specular", glm::vec3(1.0, 1.0, 1.0));
-    p.setUniform("material.emissive", glm::vec3(0.0, 0.0, 0.0));
-    p.setUniform("material.shininess", 90.0f);
+    //material    
+    model.attach(p);
     
     //light
     l.attach(p, c);
@@ -107,8 +101,8 @@ void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, glm
     m.draw(p);
 }
 
-void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const Mesh& m, glm::mat4 model,
-            std::vector<std::unique_ptr<Light>>& lights)
+void render(Program& pt, Program& pl, const Camera& c,
+            std::vector<std::unique_ptr<Light>>& lights, Model& model)
 {
     //static settings, really
     glEnable(GL_BLEND);
@@ -117,11 +111,11 @@ void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const M
     for(auto& light : lights)
     {
         glBlendFunc(GL_ONE,GL_ONE);
-        renderLight(pl, c, m, *light, model);
+        renderLight(pl, c, *model.model->mesh, *light, model);
     }
     
     glBlendFunc(GL_ZERO,GL_SRC_COLOR);
-    renderTexture(pt, t, c, m, model);
+    renderTexture(pt, *model.model->texture, c, *model.model->mesh, model);
     
     glDisable(GL_BLEND);
 }
@@ -133,7 +127,7 @@ void RenderEngine::execute()
     
     for(auto& model : models)
     {
-        render(_pt, _pl, *model->model->texture, *_camera, *model->model->mesh, model->matrix(), lights);
+        render(_pt, _pl, *_camera, lights, *model);
     }
     
     glfwSwapBuffers();

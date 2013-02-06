@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "ModelComponent.h"
 #include "SpatialComponent.h"
+#include "Program.h"
 
 #include <GLM/glm.hpp>
 
@@ -17,4 +18,5 @@ public:
     Model(std::shared_ptr<ModelComponent> m, std::shared_ptr<SpatialComponent> s) : model{m}, spatial{s} {}
     
     glm::mat4 matrix();
+    void attach(Program& p);
 };
