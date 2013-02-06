@@ -10,7 +10,7 @@
 #include "LightComponent.h"
 #include "SpatialComponent.h"
 
-RenderEngine::RenderEngine(Program& pt, Program& pl) : _pt{pt}, _pl{pl}, gDegreesRotated{0}, lights{}, models{}
+RenderEngine::RenderEngine(Program& pt, Program& pl) : _pt{pt}, _pl{pl}, lights{}, models{}
 {
 }
 
@@ -133,7 +133,6 @@ void RenderEngine::execute()
     
     for(auto& model : models)
     {
-        model->spatial->direction = glm::rotate(model->spatial->direction, gDegreesRotated, glm::vec3(1,0,0));
         render(_pt, _pl, *model->model->texture, *_camera, *model->model->mesh, model->matrix(), lights);
     }
     

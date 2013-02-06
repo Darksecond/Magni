@@ -18,7 +18,6 @@ public:
     std::unique_ptr<Camera> _camera;
     Program& _pt;
     Program& _pl;
-    float gDegreesRotated;
     std::vector<std::unique_ptr<Light>> lights;
     std::vector<std::unique_ptr<Model>> models;
 

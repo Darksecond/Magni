@@ -75,9 +75,10 @@ static Texture LoadTexture() {
 
 
 // update the scene based on the time elapsed since last update
-void Update(float secondsElapsed, Camera& c) {
+void Update(float secondsElapsed, Camera& c, Model& m) {
     const GLfloat degreesPerSecond = 45.0f;
     gDegreesRotated = secondsElapsed * degreesPerSecond;
+    m.spatial->direction = glm::rotate(m.spatial->direction, gDegreesRotated, glm::vec3(1,0,0));
     while(gDegreesRotated > 360.0f) gDegreesRotated -= 360.0f;
     
     //CAMERA MOVEMENT
@@ -201,13 +202,13 @@ int main(int argc, char* argv[])
     while(glfwGetWindowParam(GLFW_OPENED))
     {
         double thisTime = glfwGetTime();
-        Update(thisTime - lastTime, *camera.node<Camera>());
+        Update(thisTime - lastTime, *camera.node<Camera>(), *model_one.node<Model>());
         lastTime = thisTime;
         
         showFPS(); //in titlebar
         
         //render(pt, pl, t, c, m);
-        engine.gDegreesRotated = gDegreesRotated;
+        //engine.gDegreesRotated = gDegreesRotated;
         engine.execute();
         
         GLenum error = glGetError();
