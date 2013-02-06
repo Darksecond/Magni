@@ -58,7 +58,7 @@ void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m,
     
     //always
     glm::mat4 view = c.viewMatrix();
-    glm::mat4 modelView = view * model.matrix();
+    glm::mat4 modelView = view * model.spatial->matrix();
     
     //always
     p.setUniform("projection", c.projectionMatrix());
@@ -81,7 +81,7 @@ void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, Mod
     
     //always
     glm::mat4 view = c.viewMatrix();
-    glm::mat4 modelView = view * model.matrix();
+    glm::mat4 modelView = view * model.spatial->matrix();
     
     glm::mat3 normal = glm::transpose(glm::inverse(glm::mat3(modelView))); //not part of light, but only needed for lights so far
     

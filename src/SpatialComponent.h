@@ -19,4 +19,6 @@ public:
     
     void setDirection(glm::quat& quat);
     void setDirection(glm::vec3& euler);
+    
+    glm::mat4 matrix();
 };

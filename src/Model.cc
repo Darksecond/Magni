@@ -1,6 +1,5 @@
 #include "Model.h"
 
-#include <glm/gtc/matrix_transform.hpp>
 
 std::unique_ptr<Model> Model::fromEntity(const Entity& entity)
 {
@@ -14,12 +13,6 @@ std::unique_ptr<Model> Model::fromEntity(const Entity& entity)
     return std::unique_ptr<Model>{};
 }
 
-glm::mat4 Model::matrix()
-{
-    glm::mat4 matrix = glm::mat4_cast(spatial->direction);
-    matrix = glm::translate(matrix, -spatial->position);
-    return matrix;
-}
 
 void Model::attach(Program &p)
 {
