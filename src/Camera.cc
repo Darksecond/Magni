@@ -8,8 +8,6 @@
 #include <glm/gtx/euler_angles.hpp>
 #include <glm/gtc/quaternion.hpp>
 
-#include <iostream>
-
 static const float MaxVerticalAngle = 85.0f; //must be less than 90 to avoid gimbal lock
 
 std::unique_ptr<Camera> Camera::fromEntity(const Entity& entity)
