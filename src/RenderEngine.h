@@ -7,22 +7,23 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Light.h"
+#include "Model.h"
 
 #include <vector>
 
 class RenderEngine : public Engine
 {
-    std::vector<std::unique_ptr<Light>> lights;
     
+public:
+    std::unique_ptr<Camera> _camera;
     Program& _pt;
     Program& _pl;
-    const Texture& _t;
-    const Mesh& _m;
-    std::unique_ptr<Camera> _camera;
-public:
     float gDegreesRotated;
+    std::vector<std::unique_ptr<Light>> lights;
+    std::vector<std::unique_ptr<Model>> models;
 
-    RenderEngine(Program& pt, Program& pl, const Texture& t, const Mesh& m);
+
+    RenderEngine(Program& pt, Program& pl);
     
     virtual void registerEntity(Entity& entity);
     virtual void unregisterEntity(Entity& entity);

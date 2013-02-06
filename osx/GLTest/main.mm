@@ -24,6 +24,7 @@
 #include "SpatialComponent.h"
 #include "RenderEngine.h"
 #include "CameraComponent.h"
+#include "ModelComponent.h"
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 GLuint gVAO = 0;
@@ -76,7 +77,7 @@ static Texture LoadTexture() {
 // update the scene based on the time elapsed since last update
 void Update(float secondsElapsed, Camera& c) {
     const GLfloat degreesPerSecond = 45.0f;
-    gDegreesRotated += secondsElapsed * degreesPerSecond;
+    gDegreesRotated = secondsElapsed * degreesPerSecond;
     while(gDegreesRotated > 360.0f) gDegreesRotated -= 360.0f;
     
     //CAMERA MOVEMENT
@@ -165,9 +166,9 @@ int main(int argc, char* argv[])
     
     Program pt = loadTextureShaders();
     Program pl = loadLightingShaders();
-    Texture t = LoadTexture();
-    Mesh m = Mesh::cube();
-    RenderEngine engine{pt, pl, t, m};
+    std::shared_ptr<Texture> t = std::make_shared<Texture>(LoadTexture());
+    std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
+    RenderEngine engine{pt, pl};
     
     Entity camera;
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
@@ -187,6 +188,12 @@ int main(int argc, char* argv[])
     light_two_lightc->spot = 0;
     light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
     engine.registerEntity(light_two);
+    
+    //model one (box)
+    Entity model_one{};
+    model_one.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
+    model_one.assign<ModelComponent>(m, t);
+    engine.registerEntity(model_one);
     
     //engine.unregisterEntity(light_two);
     

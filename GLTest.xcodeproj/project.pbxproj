@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F627D39D16B97CA7000B06AF /* wooden-crate.jpg */; };
+		F644CED816C28ABF007B35C5 /* Model.cc in Sources */ = {isa = PBXBuildFile; fileRef = F644CED716C28ABF007B35C5 /* Model.cc */; };
 		F64516D216C068C000726CF5 /* CameraComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64516D116C068C000726CF5 /* CameraComponent.cc */; };
 		F645948E16B6A96D00B118C2 /* Shader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645948D16B6A96D00B118C2 /* Shader.cc */; };
 		F645949116B6ADA900B118C2 /* test.vert in Resources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* test.vert */; };
@@ -121,6 +122,8 @@
 /* Begin PBXFileReference section */
 		F6097E5416B84B1A00B240E7 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		F627D39D16B97CA7000B06AF /* wooden-crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wooden-crate.jpg"; sourceTree = "<group>"; };
+		F644CED616C28AB0007B35C5 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		F644CED716C28ABF007B35C5 /* Model.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cc; sourceTree = "<group>"; };
 		F64516D016C068BB00726CF5 /* CameraComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraComponent.h; sourceTree = "<group>"; };
 		F64516D116C068C000726CF5 /* CameraComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraComponent.cc; sourceTree = "<group>"; };
 		F645948B16B6A8F100B118C2 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 		F645949516B6B11400B118C2 /* test.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.frag; sourceTree = "<group>"; };
 		F64EC94516BEA68600063843 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
 		F64EC94616BEA68C00063843 /* Light.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cc; sourceTree = "<group>"; };
+		F681BF3C16C2758A00545107 /* ModelComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelComponent.h; sourceTree = "<group>"; };
 		F687A40B16B4B63300878140 /* GLTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F687A40F16B4B63300878140 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F687A41216B4B63300878140 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -259,6 +263,8 @@
 				F64EC94616BEA68C00063843 /* Light.cc */,
 				F6AF410B16BB1A1F00F85BC0 /* Camera.h */,
 				F6AF410C16BB1B8D00F85BC0 /* Camera.cc */,
+				F644CED616C28AB0007B35C5 /* Model.h */,
+				F644CED716C28ABF007B35C5 /* Model.cc */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -496,6 +502,7 @@
 				F6B1DA1D16BFDC9D006BBC69 /* SpatialComponent.cc */,
 				F6B1DA2016BFE2E8006BBC69 /* LightComponent.h */,
 				F6B1DA2116BFE2EE006BBC69 /* LightComponent.cc */,
+				F681BF3C16C2758A00545107 /* ModelComponent.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -711,6 +718,7 @@
 				F6B1DA2216BFE2EE006BBC69 /* LightComponent.cc in Sources */,
 				F6B1DA2416C0158D006BBC69 /* Component.cc in Sources */,
 				F64516D216C068C000726CF5 /* CameraComponent.cc in Sources */,
+				F644CED816C28ABF007B35C5 /* Model.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

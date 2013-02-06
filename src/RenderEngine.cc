@@ -10,7 +10,7 @@
 #include "LightComponent.h"
 #include "SpatialComponent.h"
 
-RenderEngine::RenderEngine(Program& pt, Program& pl, const Texture& t, const Mesh& m) : _pt{pt}, _pl{pl}, _t{t}, _m{m}, gDegreesRotated{0}, lights{}
+RenderEngine::RenderEngine(Program& pt, Program& pl) : _pt{pt}, _pl{pl}, gDegreesRotated{0}, lights{}, models{}
 {
 }
 
@@ -27,6 +27,13 @@ void RenderEngine::registerEntity(Entity& entity)
     {
         _camera = std::move(cameraNode);
     }
+    
+    std::unique_ptr<Model> modelNode = entity.node<Model>();
+    if(modelNode)
+    {
+        models.push_back(std::move(modelNode));
+    }
+    
     //if entity has both Model and Spatial, make a Model
     //if entity has both Camera and Spatial, make a Camera
 }
@@ -43,14 +50,14 @@ void RenderEngine::unregisterEntity(Entity& entity)
     }
 }
 
-void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, float gDegreesRotated)
+void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, glm::mat4 model)
 {
     //always
     //p is part of material!
     ProgramContext pc{p};
     
     //always
-    glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
+    //glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
     glm::mat4 view = c.viewMatrix();
     glm::mat4 modelView = view * model;
     
@@ -67,14 +74,14 @@ void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m,
     m.draw(p);
 }
 
-void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, float gDegreesRotated)
+void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, glm::mat4 model)
 {
     //always
     //p is part of material!
     ProgramContext pc{p};
     
     //always
-    glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
+    //glm::mat4 model = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(1,0,0));
     glm::mat4 view = c.viewMatrix();
     glm::mat4 modelView = view * model;
     
@@ -100,12 +107,9 @@ void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, flo
     m.draw(p);
 }
 
-void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const Mesh& m, float gDegreesRotated,
+void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const Mesh& m, glm::mat4 model,
             std::vector<std::unique_ptr<Light>>& lights)
 {
-    glClearColor(0.0, 0.0, 0.0, 1); // black
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
     //static settings, really
     glEnable(GL_BLEND);
     glDepthFunc(GL_LEQUAL);
@@ -113,16 +117,25 @@ void render(Program& pt, Program& pl, const Texture& t, const Camera& c, const M
     for(auto& light : lights)
     {
         glBlendFunc(GL_ONE,GL_ONE);
-        renderLight(pl, c, m, *light, gDegreesRotated);
+        renderLight(pl, c, m, *light, model);
     }
     
     glBlendFunc(GL_ZERO,GL_SRC_COLOR);
-    renderTexture(pt, t, c, m, gDegreesRotated);
+    renderTexture(pt, t, c, m, model);
     
-    glfwSwapBuffers();
+    glDisable(GL_BLEND);
 }
 
 void RenderEngine::execute()
 {
-    render(_pt, _pl, _t, *_camera, _m, gDegreesRotated, lights);
+    glClearColor(0.0, 0.0, 0.0, 1); // black
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    for(auto& model : models)
+    {
+        model->spatial->direction = glm::rotate(model->spatial->direction, gDegreesRotated, glm::vec3(1,0,0));
+        render(_pt, _pl, *model->model->texture, *_camera, *model->model->mesh, model->matrix(), lights);
+    }
+    
+    glfwSwapBuffers();
 }

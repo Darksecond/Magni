@@ -82,11 +82,13 @@ Mesh::Mesh(const std::vector<Vertex>& vertices, std::vector<unsigned short> indi
     unbind();
 }
 
-Mesh::Mesh(Mesh&& other) : _vbo(other._vbo), _vao(other._vao), _numVertices(other._numVertices)
+Mesh::Mesh(Mesh&& other) : _vbo(other._vbo), _vao(other._vao), _numVertices(other._numVertices), _numIndices(other._numIndices), _ibo(other._ibo)
 {
     other._vao = 0;
     other._vbo = 0;
+    other._ibo = 0;
     other._numVertices = 0;
+    other._numIndices = 0;
 }
 
 Mesh::~Mesh()
@@ -95,6 +97,8 @@ Mesh::~Mesh()
         glDeleteVertexArrays(1, &_vao);
     if(_vbo)
         glDeleteBuffers(1, &_vbo);
+    if(_ibo)
+        glDeleteBuffers(1, &_ibo);
 }
 
 Mesh& Mesh::operator=(Mesh&& other)
@@ -103,14 +107,20 @@ Mesh& Mesh::operator=(Mesh&& other)
         glDeleteVertexArrays(1, &_vao);
     if(_vbo)
         glDeleteBuffers(1, &_vbo);
+    if(_ibo)
+        glDeleteBuffers(1, &_ibo);
     
     _vao = other._vao;
     _vbo = other._vbo;
+    _ibo = other._ibo;
     _numVertices = other._numVertices;
+    _numIndices = other._numIndices;
     
     other._vao = 0;
     other._vbo = 0;
+    other._ibo = 0;
     other._numVertices = 0;
+    other._numIndices = 0;
     
     return *this;
 }
