@@ -8,6 +8,7 @@
 #include "Mesh.h"
 #include "Light.h"
 #include "Model.h"
+#include "NodeCache.h"
 
 #include <vector>
 
@@ -18,9 +19,8 @@ public:
     std::unique_ptr<Camera> _camera;
     Program& _pt;
     Program& _pl;
-    std::vector<std::unique_ptr<Light>> lights;
-    std::vector<std::unique_ptr<Model>> models;
-
+    NodeCache<Light> lights;
+    NodeCache<Model> models;
 
     RenderEngine(Program& pt, Program& pl);
     

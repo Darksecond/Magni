@@ -185,6 +185,7 @@
 		F687A51616B4BA9300878140 /* gtx */ = {isa = PBXFileReference; lastKnownFileType = folder; name = gtx; path = glm/gtx; sourceTree = "<group>"; };
 		F687A51716B4BA9300878140 /* virtrev */ = {isa = PBXFileReference; lastKnownFileType = folder; name = virtrev; path = glm/virtrev; sourceTree = "<group>"; };
 		F687A51E16B4BABD00878140 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F6AC80BE16C4F22F00074181 /* NodeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeCache.h; sourceTree = "<group>"; };
 		F6AF410B16BB1A1F00F85BC0 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		F6AF410C16BB1B8D00F85BC0 /* Camera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cc; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		F6B1DA1016BFD17B006BBC69 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
@@ -479,6 +480,7 @@
 				F645949316B6AE8700B118C2 /* Program.cc */,
 				F6FB2A1916B70C7600E6013E /* stb_image.c */,
 				F6097E5416B84B1A00B240E7 /* stb_image.h */,
+				F6AC80BE16C4F22F00074181 /* NodeCache.h */,
 				F6B1DA1416BFD1D7006BBC69 /* Entity.h */,
 				F6B1DA1316BFD1D7006BBC69 /* Entity.cc */,
 				F6FB2A1B16B7104F00E6013E /* Texture.h */,

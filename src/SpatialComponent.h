@@ -14,11 +14,10 @@ public:
     
     explicit SpatialComponent(glm::vec3 position);
     
-    glm::quat& directionQuat();
-    glm::vec3 directionEuler();
+    const glm::vec3 directionEuler() const;
     
     void setDirection(glm::quat& quat);
     void setDirection(glm::vec3& euler);
     
-    glm::mat4 matrix();
+    glm::mat4 matrix() const;
 };

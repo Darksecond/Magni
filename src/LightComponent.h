@@ -11,7 +11,7 @@ public:
     glm::vec3 diffuse;
     glm::vec3 ambient;
     glm::vec3 specular;
-    bool spot; //0 is directional-, 1 is spotlight
+    bool spot; //0 is directional-, 1 is spotlight //TODO replace with enum
     
     explicit LightComponent(glm::vec3 color);
     LightComponent(glm::vec3 color, glm::vec3 attenuation);

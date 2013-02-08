@@ -17,5 +17,7 @@ public:
     
     Model(std::shared_ptr<ModelComponent> m, std::shared_ptr<SpatialComponent> s) : model{m}, spatial{s} {}
     
-    void attach(Program& p);
+    void attach(Program& p) const;
+    
+    bool operator==(const Model& other) const;
 };

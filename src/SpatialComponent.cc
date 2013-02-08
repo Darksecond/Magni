@@ -6,12 +6,7 @@ SpatialComponent::SpatialComponent(glm::vec3 pos) : position{pos}, direction{}
 {
 }
 
-glm::quat& SpatialComponent::directionQuat()
-{
-    return direction;
-}
-
-glm::vec3 SpatialComponent::directionEuler()
+const glm::vec3 SpatialComponent::directionEuler() const
 {
     return glm::eulerAngles(direction);
 }
@@ -27,7 +22,7 @@ void SpatialComponent::setDirection(glm::vec3& euler)
 }
 
 
-glm::mat4 SpatialComponent::matrix()
+glm::mat4 SpatialComponent::matrix() const
 {
     glm::mat4 matrix = glm::mat4_cast(direction);
     matrix = glm::translate(matrix, -position);

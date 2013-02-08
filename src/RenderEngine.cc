@@ -15,36 +15,21 @@ RenderEngine::RenderEngine(Program& pt, Program& pl) : _pt{pt}, _pl{pl}, lights{
 }
 
 void RenderEngine::registerEntity(Entity& entity)
-{
-    std::unique_ptr<Light> lightNode = entity.node<Light>();
-    if(lightNode)
-    {
-        lights.push_back(std::move(lightNode));
-    }
+{    
+    lights.registerEntity(entity);
+    models.registerEntity(entity);
     
     std::unique_ptr<Camera> cameraNode = entity.node<Camera>();
     if(cameraNode)
     {
         _camera = std::move(cameraNode);
     }
-    3
-    std::unique_ptr<Model> modelNode = entity.node<Model>();
-    if(modelNode)
-    {
-        models.push_back(std::move(modelNode));
-    }    
 }
 
 void RenderEngine::unregisterEntity(Entity& entity)
-{
-    std::unique_ptr<Light> lightNode = entity.node<Light>();
-    if(lightNode)
-    {
-        lights.erase(std::remove_if(lights.begin(), lights.end(),
-                                    [&](const std::unique_ptr<Light>& i)
-                                    {return *lightNode == *i; })
-                     , lights.end());
-    }
+{    
+    lights.unregisterEntity(entity);
+    models.unregisterEntity(entity);
 }
 
 void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, Model& model)
@@ -99,7 +84,7 @@ void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, Mod
 }
 
 void render(Program& pt, Program& pl, const Camera& c,
-            std::vector<std::unique_ptr<Light>>& lights, Model& model)
+            NodeCache<Light>& lights, Model& model)
 {
     //static settings, really
     glEnable(GL_BLEND);
