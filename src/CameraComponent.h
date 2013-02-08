@@ -9,5 +9,5 @@ public:
     float _horizontalAngle;
     float _verticalAngle;
     
-    CameraComponent(float aspectRatio);
+    explicit CameraComponent(float aspectRatio);
 };

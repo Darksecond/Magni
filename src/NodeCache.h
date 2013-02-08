@@ -12,13 +12,6 @@ public:
     typedef T value_type;
     typedef Container container_type;
     
-    NodeCache()
-    {
-    }
-    ~NodeCache()
-    {
-    }
-    
     void registerEntity(Entity& entity)
     {
         std::unique_ptr<T> node = entity.node<T>();

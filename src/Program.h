@@ -11,7 +11,7 @@ class Program
 {
     GLuint _object;
 public:
-    Program(const std::vector<Shader>& shaders);
+    explicit Program(const std::vector<Shader>& shaders);
     Program(Program&& other);
     Program(const Program&) = delete;
     ~Program();
