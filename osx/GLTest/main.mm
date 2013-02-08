@@ -186,7 +186,7 @@ int main(int argc, char* argv[])
     //light two (directional)
     Entity light_two{};    
     auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.5, 0.5, 0.5});
-    light_two_lightc->spot = 0;
+    light_two_lightc->lightType = LightComponent::LightType::DIRECTIONAL;
     light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
     engine.registerEntity(light_two);
     
