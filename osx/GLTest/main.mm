@@ -212,8 +212,6 @@ int main(int argc, char* argv[])
         
         showFPS(); //in titlebar
         
-        //render(pt, pl, t, c, m);
-        //engine.gDegreesRotated = gDegreesRotated;
         engine.execute();
         
         GLenum error = glGetError();
