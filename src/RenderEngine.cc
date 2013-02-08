@@ -32,7 +32,7 @@ void RenderEngine::unregisterEntity(Entity& entity)
     models.unregisterEntity(entity);
 }
 
-void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, Model& model)
+void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, const Model& model)
 {
     //always
     //p is part of material!
@@ -55,7 +55,7 @@ void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m,
     m.draw(p);
 }
 
-void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, Model& model)
+void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, const Model& model)
 {
     //always
     //p is part of material!
@@ -84,7 +84,7 @@ void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, Mod
 }
 
 void render(Program& pt, Program& pl, const Camera& c,
-            NodeCache<Light>& lights, Model& model)
+            const NodeCache<Light>& lights, Model& model)
 {
     //static settings, really
     glEnable(GL_BLEND);
