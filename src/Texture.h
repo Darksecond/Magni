@@ -4,12 +4,25 @@
 
 #include "Bitmap.h"
 
+//TODO TEMPORARY
+#include "ResourceManager.h"
+
 class Texture
 {
     GLuint _object;
     GLfloat _width;
     GLfloat _height;
 public:
+    //TODO TEMPORARY
+    //TODO replace with some kind of textureloader perhaps?
+    static Texture fromStream(StreamReader& stream)
+    {
+        //TODO
+        //make bitmap
+        //make texture
+        //return texture
+    }
+    
     Texture(Bitmap& bitmap, GLint minMagFilter = GL_LINEAR, GLint wrapMode = GL_CLAMP_TO_EDGE);
     Texture(Texture&& other);
     Texture(const Texture&) = delete;

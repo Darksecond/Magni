@@ -26,6 +26,8 @@
 #include "CameraComponent.h"
 #include "ModelComponent.h"
 
+#include "ResourceManager.h"
+
 const glm::vec2 SCREEN_SIZE(800, 600);
 GLuint gVAO = 0;
 GLuint gVBO = 0;
@@ -164,6 +166,11 @@ int main(int argc, char* argv[])
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     glEnable(GL_CULL_FACE);
+    
+    //TODO test
+    ResourceManager<Texture> textureManager;
+    auto testTesture = textureManager.resource("wooden-crate.jpg");
+    std::cout << testTesture << std::endl;
     
     Program pt = loadTextureShaders();
     Program pl = loadLightingShaders();
