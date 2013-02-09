@@ -4,10 +4,13 @@
 
 #include "Entity.h"
 
-class Engine
+namespace Ymir
 {
-public:
-    virtual void registerEntity(Entity& entity) = 0;
-    virtual void unregisterEntity(Entity& entity) = 0;
-    virtual void execute() = 0;
+    class Engine
+    {
+    public:
+        virtual void registerEntity(Entity& entity) = 0;
+        virtual void unregisterEntity(Entity& entity) = 0;
+        virtual void execute() = 0;
+    };
 };

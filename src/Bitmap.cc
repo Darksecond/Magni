@@ -1,6 +1,8 @@
 #include "Bitmap.h"
 #include "stb_image.h"
 
+using namespace Ymir;
+
 //PRIVATE HELPER FUNCTIONS
 inline unsigned int GetPixelOffset(unsigned col, unsigned row, unsigned width, unsigned height, Bitmap::Format format)
 {

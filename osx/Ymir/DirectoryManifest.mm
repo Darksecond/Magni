@@ -2,6 +2,8 @@
 
 #include "DirectoryManifest.h"
 
+using namespace Ymir;
+
 /**
  * This is neccecary for OSX to find files in bundles.
  * Other operating sytems need to provide their own variant.

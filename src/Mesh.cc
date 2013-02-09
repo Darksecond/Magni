@@ -1,5 +1,7 @@
 #include "Mesh.h"
 
+using namespace Ymir;
+
 Mesh Mesh::cube()
 {    
     std::vector<Vertex> vertices

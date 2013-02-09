@@ -12,19 +12,22 @@
 
 #include <vector>
 
-class RenderEngine : public Engine
+namespace Ymir
 {
-    
-public:
-    std::unique_ptr<Camera> _camera;
-    Program& _pt;
-    Program& _pl;
-    NodeCache<Light> lights;
-    NodeCache<Model> models;
+    class RenderEngine : public Engine
+    {
+        
+    public:
+        std::unique_ptr<Camera> _camera;
+        Program& _pt;
+        Program& _pl;
+        NodeCache<Light> lights;
+        NodeCache<Model> models;
 
-    RenderEngine(Program& pt, Program& pl);
-    
-    virtual void registerEntity(Entity& entity);
-    virtual void unregisterEntity(Entity& entity);
-    virtual void execute();
+        RenderEngine(Program& pt, Program& pl);
+        
+        virtual void registerEntity(Entity& entity);
+        virtual void unregisterEntity(Entity& entity);
+        virtual void execute();
+    };
 };

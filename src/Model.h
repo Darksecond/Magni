@@ -7,17 +7,20 @@
 
 #include <GLM/glm.hpp>
 
-class Model
+namespace Ymir
 {
-public:
-    ModelComponent& model;
-    SpatialComponent& spatial;
-    
-    static std::unique_ptr<Model> fromEntity(const Entity& e);
-    
-    Model(ModelComponent& m, SpatialComponent& s) : model{m}, spatial{s} {}
-    
-    void attach(Program& p) const;
-    
-    bool operator==(const Model& other) const;
+    class Model
+    {
+    public:
+        ModelComponent& model;
+        SpatialComponent& spatial;
+        
+        static std::unique_ptr<Model> fromEntity(const Entity& e);
+        
+        Model(ModelComponent& m, SpatialComponent& s) : model{m}, spatial{s} {}
+        
+        void attach(Program& p) const;
+        
+        bool operator==(const Model& other) const;
+    };
 };

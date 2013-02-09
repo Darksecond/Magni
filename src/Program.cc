@@ -1,5 +1,7 @@
 #include "Program.h"
 
+using namespace Ymir;
+
 Program::Program(const std::vector<Shader>& shaders)
 {
     if(shaders.size() == 0)

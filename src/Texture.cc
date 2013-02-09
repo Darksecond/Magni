@@ -1,5 +1,7 @@
 #include "Texture.h"
 
+using namespace Ymir;
+
 Texture::Texture(Bitmap& bitmap, GLint minMagFilter, GLint wrapMode) : _width(bitmap.width()), _height(bitmap.height())
 {
     glGenTextures(1, &_object);

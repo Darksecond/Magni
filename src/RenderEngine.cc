@@ -10,6 +10,8 @@
 #include "LightComponent.h"
 #include "SpatialComponent.h"
 
+using namespace Ymir;
+
 RenderEngine::RenderEngine(Program& pt, Program& pl) : _pt{pt}, _pl{pl}, lights{}, models{}
 {
 }

@@ -527,9 +527,9 @@
 			isa = PBXGroup;
 			children = (
 				F6B1DA1016BFD17B006BBC69 /* Component.h */,
+				F6B1DA2316C0158D006BBC69 /* Component.cc */,
 				F64516D016C068BB00726CF5 /* CameraComponent.h */,
 				F64516D116C068C000726CF5 /* CameraComponent.cc */,
-				F6B1DA2316C0158D006BBC69 /* Component.cc */,
 				F6B1DA1C16BFDC4F006BBC69 /* SpatialComponent.h */,
 				F6B1DA1D16BFDC9D006BBC69 /* SpatialComponent.cc */,
 				F6B1DA2016BFE2E8006BBC69 /* LightComponent.h */,

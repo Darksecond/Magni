@@ -29,6 +29,8 @@
 #include "ResourceManager.h"
 #include "DirectoryManifest.h"
 
+using namespace Ymir;
+
 const glm::vec2 SCREEN_SIZE(800, 600);
 GLuint gVAO = 0;
 GLuint gVBO = 0;

@@ -3,6 +3,8 @@
 #include <fstream>
 #include <sstream>
 
+using namespace Ymir;
+
 Shader Shader::shaderFromFile(const std::string& file, GLenum shaderType)
 {
     std::ifstream f;

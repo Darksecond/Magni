@@ -1,5 +1,7 @@
 #include "Model.h"
 
+using namespace Ymir;
+
 std::unique_ptr<Model> Model::fromEntity(const Entity& entity)
 {
     //if entity has both Light and Spatial, make a Light

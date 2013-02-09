@@ -9,17 +9,19 @@
 #include <GLM/glm.hpp>
 #include <memory>
 
-class Light
+namespace Ymir
 {
-    LightComponent& _light;
-    SpatialComponent& _spatial;
-public:
-    static std::unique_ptr<Light> fromEntity(const Entity& e);
-    
-    Light(LightComponent& light, SpatialComponent& spatial);
-    
-    void attach(Program& p, const Camera& c) const;
-    
-    bool operator==(const Light& other) const;
+    class Light
+    {
+        LightComponent& _light;
+        SpatialComponent& _spatial;
+    public:
+        static std::unique_ptr<Light> fromEntity(const Entity& e);
+        
+        Light(LightComponent& light, SpatialComponent& spatial);
+        
+        void attach(Program& p, const Camera& c) const;
+        
+        bool operator==(const Light& other) const;
+    };
 };
-

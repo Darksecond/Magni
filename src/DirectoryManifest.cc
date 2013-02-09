@@ -1,5 +1,7 @@
 #include "DirectoryManifest.h"
 
+using namespace Ymir;
+
 //TODO move these into their own file
 FileStreamReader::FileStreamReader(const std::string& filename, const std::ios_base::openmode mode) : stream(filename, mode)
 {

@@ -2,6 +2,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+using namespace Ymir;
+
 SpatialComponent::SpatialComponent(glm::vec3 pos) : position{pos}, direction{}
 {
 }

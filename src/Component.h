@@ -1,20 +1,23 @@
 #pragma once
 
-class BaseComponent
+namespace Ymir
 {
-public:
-    typedef unsigned long Type;
-protected:
-    static Type type_counter;
-};
-
-template<typename Derived>
-class iComponent : public BaseComponent
-{
-public:
-    static const Type type()
+    class BaseComponent
     {
-        static Type _type = type_counter++;
-        return _type;
-    }
+    public:
+        typedef unsigned long Type;
+    protected:
+        static Type type_counter;
+    };
+
+    template<typename Derived>
+    class iComponent : public BaseComponent
+    {
+    public:
+        static const Type type()
+        {
+            static Type _type = type_counter++;
+            return _type;
+        }
+    };
 };
