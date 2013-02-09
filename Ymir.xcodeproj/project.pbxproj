@@ -877,7 +877,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "osx/GLTest/Ymir-Info.plist";
+				INFOPLIST_FILE = "osx/Ymir/Ymir-Info.plist";
 				PRODUCT_NAME = Ymir;
 				USER_HEADER_SEARCH_PATHS = src;
 				WRAPPER_EXTENSION = app;
@@ -890,7 +890,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "osx/GLTest/Ymir-Info.plist";
+				INFOPLIST_FILE = "osx/Ymir/Ymir-Info.plist";
 				PRODUCT_NAME = Ymir;
 				USER_HEADER_SEARCH_PATHS = src;
 				WRAPPER_EXTENSION = app;
