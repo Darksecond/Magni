@@ -27,6 +27,7 @@
 #include "ModelComponent.h"
 
 #include "ResourceManager.h"
+#include "DirectoryManifest.h"
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 GLuint gVAO = 0;
@@ -169,6 +170,8 @@ int main(int argc, char* argv[])
     
     //TODO test
     ResourceManager<Texture> textureManager;
+    std::unique_ptr<DirectoryManifest> manifest{new DirectoryManifest};
+    textureManager.addManifest(std::move(manifest));
     auto testTesture = textureManager.resource("wooden-crate.jpg");
     std::cout << testTesture << std::endl;
     

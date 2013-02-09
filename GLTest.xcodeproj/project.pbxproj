@@ -70,6 +70,8 @@
 		F6B1DA2416C0158D006BBC69 /* Component.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA2316C0158D006BBC69 /* Component.cc */; };
 		F6B7B83216BDD38E003D3F9F /* test2.vert in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B82E16BDD37A003D3F9F /* test2.vert */; };
 		F6B7B83316BDD390003D3F9F /* test2.frag in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B83016BDD380003D3F9F /* test2.frag */; };
+		F6C028F616C6A4CE00C7F91D /* DirectoryManifest.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */; };
+		F6C028F816C6A86F00C7F91D /* DirectoryManifest.mm in Sources */ = {isa = PBXBuildFile; fileRef = F6C028F716C6A86F00C7F91D /* DirectoryManifest.mm */; };
 		F6D9138416BC0226000C0632 /* Mesh.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6D9138316BC0226000C0632 /* Mesh.cc */; };
 		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
 		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
@@ -202,6 +204,9 @@
 		F6B1DA2316C0158D006BBC69 /* Component.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cc; sourceTree = "<group>"; };
 		F6B7B82E16BDD37A003D3F9F /* test2.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test2.vert; sourceTree = "<group>"; };
 		F6B7B83016BDD380003D3F9F /* test2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test2.frag; sourceTree = "<group>"; };
+		F6C028F416C6A3FC00C7F91D /* DirectoryManifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryManifest.h; sourceTree = "<group>"; };
+		F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DirectoryManifest.cc; sourceTree = "<group>"; };
+		F6C028F716C6A86F00C7F91D /* DirectoryManifest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DirectoryManifest.mm; sourceTree = "<group>"; };
 		F6D9138216BC0222000C0632 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
 		F6D9138316BC0226000C0632 /* Mesh.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cc; sourceTree = "<group>"; };
 		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
@@ -331,6 +336,7 @@
 				F687A52E16B4BC7700878140 /* src */,
 				F687A41616B4B63300878140 /* Supporting Files */,
 				F687A42C16B4B68700878140 /* main.mm */,
+				F6C028F716C6A86F00C7F91D /* DirectoryManifest.mm */,
 			);
 			name = GLTest;
 			path = osx/GLTest;
@@ -493,6 +499,8 @@
 				F6B1DA1416BFD1D7006BBC69 /* Entity.h */,
 				F6B1DA1316BFD1D7006BBC69 /* Entity.cc */,
 				F6846D8716C56C4700071311 /* ResourceManager.h */,
+				F6C028F416C6A3FC00C7F91D /* DirectoryManifest.h */,
+				F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */,
 				F6FB2A1B16B7104F00E6013E /* Texture.h */,
 				F6FB2A1C16B7105D00E6013E /* Texture.cc */,
 				F6FB2A1E16B7112C00E6013E /* Bitmap.h */,
@@ -731,6 +739,8 @@
 				F6B1DA2416C0158D006BBC69 /* Component.cc in Sources */,
 				F64516D216C068C000726CF5 /* CameraComponent.cc in Sources */,
 				F644CED816C28ABF007B35C5 /* Model.cc in Sources */,
+				F6C028F616C6A4CE00C7F91D /* DirectoryManifest.cc in Sources */,
+				F6C028F816C6A86F00C7F91D /* DirectoryManifest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
