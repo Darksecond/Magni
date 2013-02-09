@@ -5,7 +5,7 @@
 #include "Bitmap.h"
 
 //TODO TEMPORARY
-#include "ResourceManager.h"
+#include "StreamReader.h"
 #include "stb_image.h"
 
 class Texture

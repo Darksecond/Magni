@@ -1,40 +1,11 @@
 #pragma once
 
+#include "Manifest.h"
+
 #include <memory>
 #include <vector>
 #include <string>
 #include <map>
-
-//TODO move into it's own file
-class StreamReader
-{
-public:
-    
-    /**
-     * \param s buffer to read into
-     * \param max_size size of the buffer, maximum amount to read
-     * \return amount of bytes read
-     */
-    virtual size_t read(char* s, const size_t max_size) = 0;
-    
-    /**
-     * \param amount amount of bytes to skip
-     */
-    virtual void skip(const size_t amount) = 0;
-    
-    /**
-     * \return true if we are at the end of the stream
-     */
-    virtual bool eof() const = 0;
-    
-};
-
-//TODO move into it's own file
-class Manifest
-{
-public:
-    virtual std::unique_ptr<StreamReader> read(const std::string& identifier) = 0;
-};
 
 template<typename T>
 class DefaultResourceLoader
@@ -46,11 +17,43 @@ public:
     }
 };
 
-template<typename T, typename Loader = DefaultResourceLoader<T>>
+template<typename T>
+class DefaultResourceCache
+{
+    std::map<std::string, std::weak_ptr<T>> cache;
+public:
+    void insert(const std::string& identifier, std::shared_ptr<T> resource)
+    {
+        cache.insert(std::make_pair(identifier, resource));
+    }
+    
+    std::shared_ptr<T> get(const std::string& identifier)
+    {
+        std::shared_ptr<T> resource{nullptr};
+        auto it = cache.find(identifier);
+        
+        if(it != cache.end() && !it->second.expired())
+        {
+            resource = it->second.lock();
+        }
+        return resource;
+    }
+};
+
+template<typename T>
+class DisabledResourceCache
+{
+public:
+    void insert(const std::string& identifier, std::shared_ptr<T> resource) {}
+    std::shared_ptr<T> get(const std::string& identifier) { return nullptr; }
+};
+
+//TODO add CacheStrategy or something as extra option to the template
+template<typename T, typename Loader = DefaultResourceLoader<T>, typename Cache = DefaultResourceCache<T>>
 class ResourceManager
 {
     std::vector<std::unique_ptr<Manifest>> manifests;
-    std::map<std::string, std::weak_ptr<T>> cache;
+    Cache cache;
     
     std::unique_ptr<StreamReader> read(const std::string& identifier);
 public:
@@ -61,16 +64,11 @@ public:
 };
 
 //TEMPLATE METHODS
-template<typename T, typename Loader>
-std::shared_ptr<T> ResourceManager<T,Loader>::resource(const std::string& identifier)
+template<typename T, typename Loader, typename Cache>
+std::shared_ptr<T> ResourceManager<T,Loader,Cache>::resource(const std::string& identifier)
 {
-    std::shared_ptr<T> resource{nullptr};
-    auto it = cache.find(identifier);
-    if(it != cache.end() && !it->second.expired())
-    {
-        resource = it->second.lock();
-    }
-    else
+    std::shared_ptr<T> resource = cache.get(identifier);
+    if(!resource)
     {
         //allocate resource
         //TODO instead of an unique_ptr, throw an 'file not found' exception?
@@ -79,20 +77,20 @@ std::shared_ptr<T> ResourceManager<T,Loader>::resource(const std::string& identi
         {
             Loader loader;
             resource = std::make_shared<T>( std::move(loader.load(*stream)) );
-            cache.insert( make_pair(identifier, resource) );
+            cache.insert(identifier, resource);
         }
     }
     return resource;
 }
 
-template<typename T, typename Loader>
-void ResourceManager<T,Loader>::addManifest(std::unique_ptr<Manifest>&& manifest)
+template<typename T, typename Loader, typename Cache>
+void ResourceManager<T,Loader,Cache>::addManifest(std::unique_ptr<Manifest>&& manifest)
 {
     manifests.push_back(std::move(manifest));
 }
 
-template<typename T, typename Loader>
-std::unique_ptr<StreamReader> ResourceManager<T, Loader>::read(const std::string& identifier)
+template<typename T, typename Loader, typename Cache>
+std::unique_ptr<StreamReader> ResourceManager<T, Loader, Cache>::read(const std::string& identifier)
 {
     for(auto& manifest : manifests)
     {

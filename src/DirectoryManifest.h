@@ -6,6 +6,7 @@
 #include <string>
 #include <fstream>
 
+//TODO move into it's own file
 class FileStreamReader : public StreamReader
 {
     std::ifstream stream;
@@ -16,7 +17,6 @@ public:
     bool eof() const;
 };
 
-//TODO move into it's own file
 class DirectoryManifest : public Manifest
 {
 public:
