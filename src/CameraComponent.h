@@ -4,7 +4,7 @@
 
 namespace Ymir
 {
-    class CameraComponent : public iComponent<CameraComponent>
+    class CameraComponent : public Component<CameraComponent>
     {
     public:
         float _aspectratio;

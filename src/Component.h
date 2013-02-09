@@ -11,7 +11,7 @@ namespace Ymir
     };
 
     template<typename Derived>
-    class iComponent : public BaseComponent
+    class Component : public BaseComponent
     {
     public:
         static const Type type()

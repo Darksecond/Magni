@@ -8,7 +8,7 @@
 namespace Ymir
 {
     //TODO added parent reference component, so coordinates will be local
-    class SpatialComponent : public iComponent<SpatialComponent>
+    class SpatialComponent : public Component<SpatialComponent>
     {
     public:
         glm::vec3 position;

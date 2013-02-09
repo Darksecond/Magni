@@ -6,7 +6,7 @@
 
 namespace Ymir
 {
-    class LightComponent : public iComponent<LightComponent>
+    class LightComponent : public Component<LightComponent>
     {
     public:
         enum class LightType

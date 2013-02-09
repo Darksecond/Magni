@@ -8,7 +8,7 @@
 
 namespace Ymir
 {
-    class ModelComponent : public iComponent<ModelComponent>
+    class ModelComponent : public Component<ModelComponent>
     {
     public:
         ModelComponent(std::shared_ptr<Mesh> m, std::shared_ptr<Texture> t) : mesh{m}, texture{t}
