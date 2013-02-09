@@ -80,7 +80,7 @@ static Texture LoadTexture() {
 void Update(float secondsElapsed, Camera& c, Model& m) {
     const GLfloat degreesPerSecond = 45.0f;
     gDegreesRotated = secondsElapsed * degreesPerSecond;
-    m.spatial->direction = glm::rotate(m.spatial->direction, gDegreesRotated, glm::vec3(1,0,0));
+    m.spatial.direction = glm::rotate(m.spatial.direction, gDegreesRotated, glm::vec3(1,0,0));
     while(gDegreesRotated > 360.0f) gDegreesRotated -= 360.0f;
     
     //CAMERA MOVEMENT

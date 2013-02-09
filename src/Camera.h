@@ -8,12 +8,12 @@
 
 class Camera
 {
-    std::shared_ptr<CameraComponent> _camera;
-    std::shared_ptr<SpatialComponent> _spatial;
+    CameraComponent& _camera;
+    SpatialComponent& _spatial;
 public:
     static std::unique_ptr<Camera> fromEntity(const Entity& e);
 
-    Camera(std::shared_ptr<CameraComponent> c, std::shared_ptr<SpatialComponent> s);
+    Camera(CameraComponent& c, SpatialComponent& s);
     
     glm::mat4 orientation() const;
     glm::mat4 viewMatrix() const;

@@ -17,24 +17,24 @@ std::unique_ptr<Camera> Camera::fromEntity(const Entity& entity)
     std::shared_ptr<SpatialComponent> spatialComponent = entity.component<SpatialComponent>();
     if(cameraComponent != nullptr && spatialComponent != nullptr)
     {
-        return std::unique_ptr<Camera>{new Camera{cameraComponent, spatialComponent}};
+        return std::unique_ptr<Camera>{new Camera{*cameraComponent, *spatialComponent}};
     }
     return std::unique_ptr<Camera>{};
 }
 
-Camera::Camera(std::shared_ptr<CameraComponent> c, std::shared_ptr<SpatialComponent> s) : _camera{c}, _spatial{s}
+Camera::Camera(CameraComponent& c, SpatialComponent& s) : _camera{c}, _spatial{s}
 {
 }
 
 glm::mat4 Camera::orientation() const
 {
-    return glm::mat4_cast(_spatial->direction);
+    return glm::mat4_cast(_spatial.direction);
 }
 
 glm::mat4 Camera::viewMatrix() const
 {
     glm::mat4 camera = orientation();
-    camera = glm::translate(camera, -_spatial->position);
+    camera = glm::translate(camera, -_spatial.position);
     return camera;
 }
 
@@ -43,7 +43,7 @@ glm::mat4 Camera::projectionMatrix() const
     //50.0 = field of view
     //0.01  = near plane
     //100.0 = far plane
-    return glm::perspective<float>(50.0, _camera->_aspectratio, 0.01, 100.0);
+    return glm::perspective<float>(50.0, _camera._aspectratio, 0.01, 100.0);
 }
 
 glm::vec3 Camera::forward() const {
@@ -62,21 +62,21 @@ glm::vec3 Camera::up() const {
 }
 
 void Camera::offsetOrientation(float upAngle, float rightAngle) {
-    _camera->_horizontalAngle += rightAngle;
-    while(_camera->_horizontalAngle > 360.0f) _camera->_horizontalAngle -= 360.0;
-    while(_camera->_horizontalAngle < 0.0f) _camera->_horizontalAngle += 360.0;
+    _camera._horizontalAngle += rightAngle;
+    while(_camera._horizontalAngle > 360.0f) _camera._horizontalAngle -= 360.0;
+    while(_camera._horizontalAngle < 0.0f) _camera._horizontalAngle += 360.0;
     
-    _camera->_verticalAngle += upAngle;
-    if(_camera->_verticalAngle > MaxVerticalAngle) _camera->_verticalAngle = MaxVerticalAngle;
-    if(_camera->_verticalAngle < -MaxVerticalAngle) _camera->_verticalAngle = -MaxVerticalAngle;
+    _camera._verticalAngle += upAngle;
+    if(_camera._verticalAngle > MaxVerticalAngle) _camera._verticalAngle = MaxVerticalAngle;
+    if(_camera._verticalAngle < -MaxVerticalAngle) _camera._verticalAngle = -MaxVerticalAngle;
     
     //we can't only use the quaternion, because it would be too difficult to check the maximum pitch right now
-    glm::quat up = glm::angleAxis(_camera->_verticalAngle, glm::vec3(1,0,0));
-    glm::quat right = glm::angleAxis(_camera->_horizontalAngle, glm::vec3(0,1,0));
-    _spatial->direction = up * right;
+    glm::quat up = glm::angleAxis(_camera._verticalAngle, glm::vec3(1,0,0));
+    glm::quat right = glm::angleAxis(_camera._horizontalAngle, glm::vec3(0,1,0));
+    _spatial.direction = up * right;
 }
 
 void Camera::offsetPosition(const glm::vec3& offset)
 {
-    _spatial->position += offset;
+    _spatial.position += offset;
 }

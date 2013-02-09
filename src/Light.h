@@ -11,12 +11,12 @@
 
 class Light
 {
-    std::shared_ptr<LightComponent> _light;
-    std::shared_ptr<SpatialComponent> _spatial;
+    LightComponent& _light;
+    SpatialComponent& _spatial;
 public:
     static std::unique_ptr<Light> fromEntity(const Entity& e);
     
-    Light(std::shared_ptr<LightComponent> light, std::shared_ptr<SpatialComponent> spatial);
+    Light(LightComponent& light, SpatialComponent& spatial);
     
     void attach(Program& p, const Camera& c) const;
     

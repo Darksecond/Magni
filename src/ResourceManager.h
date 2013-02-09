@@ -37,6 +37,16 @@ public:
 };
 
 template<typename T>
+class DefaultResourceLoader
+{
+public:
+    T load(StreamReader& stream)
+    {
+        return T::fromStream(stream);
+    }
+};
+
+template<typename T, typename Loader = DefaultResourceLoader<T>>
 class ResourceManager
 {
     std::vector<std::unique_ptr<Manifest>> manifests;
@@ -51,34 +61,38 @@ public:
 };
 
 //TEMPLATE METHODS
-template<typename T>
-std::shared_ptr<T> ResourceManager<T>::resource(const std::string& identifier)
+template<typename T, typename Loader>
+std::shared_ptr<T> ResourceManager<T,Loader>::resource(const std::string& identifier)
 {
     std::shared_ptr<T> resource{nullptr};
     auto it = cache.find(identifier);
     if(it != cache.end() && !it->second.expired())
+    {
         resource = it->second.lock();
+    }
     else
     {
         //allocate resource
+        //TODO instead of an unique_ptr, throw an 'file not found' exception?
         std::unique_ptr<StreamReader> stream = read(identifier);
         if(stream)
         {
-            resource = std::make_shared<T>( std::move(T::fromStream(*stream)) );
+            Loader loader;
+            resource = std::make_shared<T>( std::move(loader.load(*stream)) );
             cache.insert( make_pair(identifier, resource) );
         }
     }
     return resource;
 }
 
-template<typename T>
-void ResourceManager<T>::addManifest(std::unique_ptr<Manifest>&& manifest)
+template<typename T, typename Loader>
+void ResourceManager<T,Loader>::addManifest(std::unique_ptr<Manifest>&& manifest)
 {
     manifests.push_back(std::move(manifest));
 }
 
-template<typename T>
-std::unique_ptr<StreamReader> ResourceManager<T>::read(const std::string& identifier)
+template<typename T, typename Loader>
+std::unique_ptr<StreamReader> ResourceManager<T, Loader>::read(const std::string& identifier)
 {
     for(auto& manifest : manifests)
     {

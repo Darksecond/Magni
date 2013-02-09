@@ -40,7 +40,7 @@ void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m,
     
     //always
     glm::mat4 view = c.viewMatrix();
-    glm::mat4 modelView = view * model.spatial->matrix();
+    glm::mat4 modelView = view * model.spatial.matrix();
     
     //always
     p.setUniform("projection", c.projectionMatrix());
@@ -63,7 +63,7 @@ void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, con
     
     //always
     glm::mat4 view = c.viewMatrix();
-    glm::mat4 modelView = view * model.spatial->matrix();
+    glm::mat4 modelView = view * model.spatial.matrix();
     
     glm::mat3 normal = glm::transpose(glm::inverse(glm::mat3(modelView))); //not part of light, but only needed for lights so far
     
@@ -93,11 +93,11 @@ void render(Program& pt, Program& pl, const Camera& c,
     for(auto& light : lights)
     {
         glBlendFunc(GL_ONE,GL_ONE);
-        renderLight(pl, c, *model.model->mesh, *light, model);
+        renderLight(pl, c, *model.model.mesh, *light, model);
     }
     
     glBlendFunc(GL_ZERO,GL_SRC_COLOR);
-    renderTexture(pt, *model.model->texture, c, *model.model->mesh, model);
+    renderTexture(pt, *model.model.texture, c, *model.model.mesh, model);
     
     glDisable(GL_BLEND);
 }
