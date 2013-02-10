@@ -32,12 +32,6 @@ namespace Ymir
          */
         virtual size_t size() = 0;
         
-        virtual std::string string()
-        {
-            std::string contents;
-            contents.resize(size());
-            read(&contents[0], contents.size());
-            return contents;
-        }
+        virtual std::string string();
     };
 };

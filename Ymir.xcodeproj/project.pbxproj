@@ -62,6 +62,7 @@
 		F687A52816B4BB0400878140 /* GLEW.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F687A4D416B4B89800878140 /* GLEW.framework */; };
 		F687A52916B4BB0400878140 /* GLM.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F687A50116B4BA1100878140 /* GLM.framework */; };
 		F687A52A16B4BBB200878140 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A4CB16B4B81B00878140 /* OpenGL.framework */; };
+		F69007B116C7FE3900AC83CF /* StreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F69007B016C7FE3900AC83CF /* StreamReader.cc */; };
 		F6AF410E16BB1F4000F85BC0 /* Camera.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6AF410C16BB1B8D00F85BC0 /* Camera.cc */; };
 		F6B1DA1516BFD1D7006BBC69 /* Entity.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA1316BFD1D7006BBC69 /* Entity.cc */; };
 		F6B1DA1B16BFDAE9006BBC69 /* RenderEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */; };
@@ -189,6 +190,7 @@
 		F687A51616B4BA9300878140 /* gtx */ = {isa = PBXFileReference; lastKnownFileType = folder; name = gtx; path = glm/gtx; sourceTree = "<group>"; };
 		F687A51716B4BA9300878140 /* virtrev */ = {isa = PBXFileReference; lastKnownFileType = folder; name = virtrev; path = glm/virtrev; sourceTree = "<group>"; };
 		F687A51E16B4BABD00878140 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F69007B016C7FE3900AC83CF /* StreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StreamReader.cc; sourceTree = "<group>"; };
 		F6AC80BE16C4F22F00074181 /* NodeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeCache.h; sourceTree = "<group>"; };
 		F6AF410B16BB1A1F00F85BC0 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		F6AF410C16BB1B8D00F85BC0 /* Camera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cc; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -269,6 +271,7 @@
 				F6846D8716C56C4700071311 /* ResourceManager.h */,
 				F6053FE916C6D54B007F52FE /* Manifest.h */,
 				F6053FEA16C6D5AE007F52FE /* StreamReader.h */,
+				F69007B016C7FE3900AC83CF /* StreamReader.cc */,
 				F6C028F416C6A3FC00C7F91D /* DirectoryManifest.h */,
 				F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */,
 			);
@@ -749,6 +752,7 @@
 				F64516D216C068C000726CF5 /* CameraComponent.cc in Sources */,
 				F644CED816C28ABF007B35C5 /* Model.cc in Sources */,
 				F6C028F616C6A4CE00C7F91D /* DirectoryManifest.cc in Sources */,
+				F69007B116C7FE3900AC83CF /* StreamReader.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
