@@ -43,6 +43,12 @@ static std::string ResourcePath(std::string fileName) {
     return std::string([path cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
+static std::string ResourceDirectory()
+{
+    NSString* path = [[NSBundle mainBundle] resourcePath];
+    return std::string([path cStringUsingEncoding:NSUTF8StringEncoding]);
+}
+
 Program loadTextureShaders()
 {
     std::vector<Shader> shaders;
@@ -133,6 +139,28 @@ void showFPS() {
     frames ++;
 }
 
+//TODO TEST
+class ProgramResourceLoader
+{
+public:
+    std::shared_ptr<Program> load(const ManifestContainer& manifests, const std::string& identifier)
+    {
+        auto vertStream = manifests.read(identifier + std::string{".vert"});
+        auto fragStream = manifests.read(identifier + std::string{".frag"});
+        if(vertStream && fragStream)
+        {
+            Shader vert{vertStream->string(), GL_VERTEX_SHADER};
+            Shader frag{fragStream->string(), GL_FRAGMENT_SHADER};
+            std::vector<Shader> shaders{};
+            shaders.push_back(std::move(vert));
+            shaders.push_back(std::move(frag));
+            return std::make_shared<Program>(shaders);
+        }
+        return nullptr;
+    }
+};
+
+
 int main(int argc, char* argv[])
 {
     if(!glfwInit())
@@ -170,18 +198,22 @@ int main(int argc, char* argv[])
     glDepthFunc(GL_LESS);
     glEnable(GL_CULL_FACE);
     
-    //TODO test
+    //resource management
+    std::shared_ptr<DirectoryManifest> manifest = std::make_shared<DirectoryManifest>(ResourceDirectory());
+
     ResourceManager<Texture> textureManager;
-    std::unique_ptr<DirectoryManifest> manifest{new DirectoryManifest};
-    textureManager.addManifest(std::move(manifest));
-    auto testTesture = textureManager.resource("wooden-crate.jpg");
-    std::cout << testTesture << std::endl;
+    textureManager.addManifest(manifest);
     
-    Program pt = loadTextureShaders();
-    Program pl = loadLightingShaders();
-    std::shared_ptr<Texture> t = std::make_shared<Texture>(LoadTexture());
+    ResourceManager<Program, ProgramResourceLoader> programManager;
+    programManager.addManifest(manifest);
+    
+    
+    std::shared_ptr<Program> test = programManager.resource("test");
+    std::shared_ptr<Program> test2 = programManager.resource("test2");
+    std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
+    
     std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
-    RenderEngine engine{pt, pl};
+    RenderEngine engine{*test, *test2};
     
     Entity camera;
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);

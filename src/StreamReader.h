@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <string>
 
 namespace Ymir
 {
@@ -25,5 +26,18 @@ namespace Ymir
          * \return true if we are at the end of the stream
          */
         virtual bool eof() const = 0;
+        
+        /**
+         * \return the size of the stream, -1 if it's not possible to determine
+         */
+        virtual size_t size() = 0;
+        
+        virtual std::string string()
+        {
+            std::string contents;
+            contents.resize(size());
+            read(&contents[0], contents.size());
+            return contents;
+        }
     };
 };

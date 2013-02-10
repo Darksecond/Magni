@@ -17,13 +17,15 @@ namespace Ymir
         size_t read(char* s, const size_t max_size);
         void skip(const size_t amount);
         bool eof() const;
+        size_t size();
     };
 
     class DirectoryManifest : public Manifest
     {
+        const std::string directory;
     public:
+        DirectoryManifest(const std::string& directory);
+        
         std::unique_ptr<StreamReader> read(const std::string& identifier);
-    private:
-        const std::string identifierToFile(const std::string& identifier) const;
     };
 };
