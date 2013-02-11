@@ -34,23 +34,12 @@
 using namespace Ymir;
 
 const glm::vec2 SCREEN_SIZE(800, 600);
-GLuint gVAO = 0;
-GLuint gVBO = 0;
-GLfloat gDegreesRotated = 0.0f;
-
-// returns the full path to the file `fileName` in the resources directory of the app bundle
-static std::string ResourcePath(std::string fileName) {
-    NSString* fname = [NSString stringWithCString:fileName.c_str() encoding:NSUTF8StringEncoding];
-    NSString* path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:fname];
-    return std::string([path cStringUsingEncoding:NSUTF8StringEncoding]);
-}
 
 static std::string ResourceDirectory()
 {
     NSString* path = [[NSBundle mainBundle] resourcePath];
     return std::string([path cStringUsingEncoding:NSUTF8StringEncoding]);
 }
-
 
 // update the scene based on the time elapsed since last update
 void Update(float secondsElapsed, Camera& c) {
@@ -170,19 +159,17 @@ int main(int argc, char* argv[])
     ResourceManager<Program, ProgramResourceLoader> programManager;
     programManager.addManifest(manifest);
     
-    
     std::shared_ptr<Program> test = programManager.resource("test");
     std::shared_ptr<Program> test2 = programManager.resource("test2");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
-    
     std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
+    
     RenderEngine engine{*test, *test2};
     
     Entity camera;
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
     camera.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 5.0});
     engine.registerEntity(camera);
-    
     
     //light one (spot)
     Entity light_one{};
