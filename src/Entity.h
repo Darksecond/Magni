@@ -26,9 +26,6 @@ namespace Ymir
         template<typename T>
         std::shared_ptr<T> component() const;
         
-        template<typename T>
-        std::unique_ptr<T> node() const;
-        
         //TODO move to CC file
         void update(double delta)
         {
@@ -43,6 +40,7 @@ namespace Ymir
         {
             behavior->setEntity(this);
             behaviors.push_back(std::move(behavior));
+            //behavior->init() (or create, or start)
         }
       
         //POSSIBLE OPTION:
@@ -55,18 +53,10 @@ namespace Ymir
         //template<typename T, typename ... Args>
         //std::shared_ptr<T> assignBehavior(Args && ... args);
         
-        //TODO basically what components are right now
-        //TODO may not be necessary
-        //<something> attribute(<identifier>)
+        //TODO at the very least components should have some option of letting behaviors know that they were updated
     };
 
     //INLINED & TEMPLATE METHODS
-    template<typename T>
-    std::unique_ptr<T> Entity::node() const
-    {
-        return T::fromEntity(*this);
-    }
-
     template<typename T>
     std::shared_ptr<T> Entity::component() const
     {

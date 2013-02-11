@@ -185,7 +185,7 @@ int main(int argc, char* argv[])
     {
         double thisTime = glfwGetTime();
         double delta = thisTime - lastTime;
-        Update(thisTime - lastTime, *camera.node<Camera>());
+        Update(thisTime - lastTime, *Camera::fromEntity(camera));
         lastTime = thisTime;
         
         showFPS(); //in titlebar

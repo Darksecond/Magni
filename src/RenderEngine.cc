@@ -21,7 +21,7 @@ void RenderEngine::registerEntity(Entity& entity)
     lights.registerEntity(entity);
     models.registerEntity(entity);
     
-    std::unique_ptr<Camera> cameraNode = entity.node<Camera>();
+    std::unique_ptr<Camera> cameraNode = Camera::fromEntity(entity);
     if(cameraNode)
     {
         _camera = std::move(cameraNode);
@@ -32,12 +32,14 @@ void RenderEngine::unregisterEntity(Entity& entity)
 {    
     lights.unregisterEntity(entity);
     models.unregisterEntity(entity);
+    //camera
 }
 
 void RenderEngine::addComponent(Entity& entity, const BaseComponent::Type& component_type)
 {
     lights.addComponent(entity, component_type);
     models.addComponent(entity, component_type);
+    //camera
 }
 
 void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, const Model& model)

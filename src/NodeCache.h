@@ -16,7 +16,7 @@ namespace Ymir
         
         void registerEntity(Entity& entity)
         {
-            std::unique_ptr<T> node = entity.node<T>();
+            std::unique_ptr<T> node = T::fromEntity(entity);
             if(node)
             {
                 container.push_back(std::move(node));
@@ -25,7 +25,7 @@ namespace Ymir
         
         void unregisterEntity(Entity& entity)
         {
-            std::unique_ptr<T> node = entity.node<T>();
+            std::unique_ptr<T> node = T::fromEntity(entity);
             if(node)
             {
                 container.erase(std::remove_if(container.begin(), container.end(),
@@ -41,7 +41,7 @@ namespace Ymir
         {
             if(T::needsComponent(type))
             {
-                std::unique_ptr<T> node = entity.node<T>();
+                std::unique_ptr<T> node = T::fromEntity(entity);
                 if(node)
                     container.push_back(std::move(node));
             }
