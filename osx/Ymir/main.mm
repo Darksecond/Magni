@@ -3,8 +3,6 @@
 #include <GLEW/glew.h>
 #include <GLFW/GLFW.h>
 #include <GLM/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/rotate_vector.hpp>
 
 #include <iostream>
 #include <vector>
@@ -44,6 +42,7 @@ static std::string ResourceDirectory()
 }
 
 // update the scene based on the time elapsed since last update
+//TODO move this into a behavior, engine or some kind of other class
 void Update(float secondsElapsed, Camera& c) {
     
     //CAMERA MOVEMENT
@@ -65,6 +64,7 @@ void Update(float secondsElapsed, Camera& c) {
     }
     
     //rotate camera based on mouse movement
+    //TODO move this into a behavior for a camera
     const float mouseSensitivity = 0.1;
     int mouseX, mouseY;
     glfwGetMousePos(&mouseX, &mouseY);
