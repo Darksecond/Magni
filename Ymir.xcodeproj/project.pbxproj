@@ -15,6 +15,7 @@
 		F645949416B6AE8700B118C2 /* Program.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645949316B6AE8700B118C2 /* Program.cc */; };
 		F645949616B6B11400B118C2 /* test.frag in Resources */ = {isa = PBXBuildFile; fileRef = F645949516B6B11400B118C2 /* test.frag */; };
 		F64EC94716BEA68C00063843 /* Light.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64EC94616BEA68C00063843 /* Light.cc */; };
+		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
 		F687A41016B4B63300878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
 		F687A42D16B4B68700878140 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = F687A42C16B4B68700878140 /* main.mm */; };
 		F687A43416B4B73B00878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
@@ -140,6 +141,8 @@
 		F64EC94516BEA68600063843 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
 		F64EC94616BEA68C00063843 /* Light.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cc; sourceTree = "<group>"; };
 		F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramResourceLoader.h; sourceTree = "<group>"; };
+		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
+		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
 		F681BF3C16C2758A00545107 /* ModelComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelComponent.h; sourceTree = "<group>"; };
 		F6846D8716C56C4700071311 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceManager.h; sourceTree = "<group>"; };
 		F687A40B16B4B63300878140 /* Ymir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ymir.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,6 +281,8 @@
 				F6053FEA16C6D5AE007F52FE /* StreamReader.h */,
 				F69007B016C7FE3900AC83CF /* StreamReader.cc */,
 				F6C028F416C6A3FC00C7F91D /* DirectoryManifest.h */,
+				F66E76D516C9971D006BF544 /* FileStreamReader.h */,
+				F66E76D616C99721006BF544 /* FileStreamReader.cc */,
 				F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */,
 				F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */,
 			);
@@ -771,6 +776,7 @@
 				F6C028F616C6A4CE00C7F91D /* DirectoryManifest.cc in Sources */,
 				F69007B116C7FE3900AC83CF /* StreamReader.cc in Sources */,
 				F689425216C908550097FB68 /* RotateBehavior.cc in Sources */,
+				F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
