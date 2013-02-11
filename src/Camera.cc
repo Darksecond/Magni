@@ -67,6 +67,7 @@ glm::vec3 Camera::up() const {
 
 //TODO move code to camerastrategy or something?
 //TODO or perhaps a script or behavior of some kind?
+//TODO move to behavior
 void Camera::offsetOrientation(float upAngle, float rightAngle) {
     _camera._horizontalAngle += rightAngle;
     while(_camera._horizontalAngle > 360.0f) _camera._horizontalAngle -= 360.0;
