@@ -5,13 +5,14 @@
 #include <memory>
 
 #include "Component.h"
+#include "Behavior.h"
 
 namespace Ymir
 {
     class Entity
     {
         std::map<BaseComponent::Type, std::shared_ptr<BaseComponent>> components;
-        //TODO std::vector<std::shared_ptr<Behavior>> behaviors;
+        std::vector<std::unique_ptr<Behavior>> behaviors;
     public:
         Entity();
         
@@ -27,12 +28,25 @@ namespace Ymir
         
         template<typename T>
         std::unique_ptr<T> node() const;
+        
+        //TODO move to CC file
+        void update(double delta)
+        {
+            for(auto& behavior : behaviors)
+            {
+                behavior->update(delta);
+            }
+        }
+        
+        
+        //TODO move to CC file
+        void assignBehavior(std::unique_ptr<Behavior> behavior)
+        {
+            behavior->setEntity(this);
+            behaviors.push_back(std::move(behavior));
+        }
       
         //POSSIBLE OPTION:
-        //TODO
-        //void update(pass, delta)
-        //  for(auto& behavior : behaviors)
-        //    behavior.update(pass, delta)
         
         //TODO behavior gets a reference to this entity, in order to get to attributes and components
         //template<typename T>
@@ -45,10 +59,6 @@ namespace Ymir
         //TODO basically what components are right now
         //TODO may not be necessary
         //<something> attribute(<identifier>)
-        
-        //TODO behavior class
-        //TODO behavior has update(pass, delta)
-        //TODO behavior has receive(<message>)
     };
 
     //INLINED & TEMPLATE METHODS

@@ -62,6 +62,7 @@
 		F687A52816B4BB0400878140 /* GLEW.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F687A4D416B4B89800878140 /* GLEW.framework */; };
 		F687A52916B4BB0400878140 /* GLM.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F687A50116B4BA1100878140 /* GLM.framework */; };
 		F687A52A16B4BBB200878140 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A4CB16B4B81B00878140 /* OpenGL.framework */; };
+		F689425216C908550097FB68 /* RotateBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F689425116C908550097FB68 /* RotateBehavior.cc */; };
 		F69007B116C7FE3900AC83CF /* StreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F69007B016C7FE3900AC83CF /* StreamReader.cc */; };
 		F6AF410E16BB1F4000F85BC0 /* Camera.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6AF410C16BB1B8D00F85BC0 /* Camera.cc */; };
 		F6B1DA1516BFD1D7006BBC69 /* Entity.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA1316BFD1D7006BBC69 /* Entity.cc */; };
@@ -190,6 +191,9 @@
 		F687A51616B4BA9300878140 /* gtx */ = {isa = PBXFileReference; lastKnownFileType = folder; name = gtx; path = glm/gtx; sourceTree = "<group>"; };
 		F687A51716B4BA9300878140 /* virtrev */ = {isa = PBXFileReference; lastKnownFileType = folder; name = virtrev; path = glm/virtrev; sourceTree = "<group>"; };
 		F687A51E16B4BABD00878140 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F689424C16C9066E0097FB68 /* Behavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Behavior.h; sourceTree = "<group>"; };
+		F689425016C908210097FB68 /* RotateBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateBehavior.h; sourceTree = "<group>"; };
+		F689425116C908550097FB68 /* RotateBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateBehavior.cc; sourceTree = "<group>"; };
 		F69007B016C7FE3900AC83CF /* StreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StreamReader.cc; sourceTree = "<group>"; };
 		F6AC80BE16C4F22F00074181 /* NodeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeCache.h; sourceTree = "<group>"; };
 		F6AF410B16BB1A1F00F85BC0 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
@@ -505,6 +509,7 @@
 				F6B1DA1F16BFE2C8006BBC69 /* Components */,
 				F6B1DA2516C045B6006BBC69 /* Engines */,
 				F64516D316C06CAF00726CF5 /* Nodes */,
+				F689424F16C906810097FB68 /* Behaviors */,
 				F6053FE816C6D532007F52FE /* Resource Management */,
 				F645948B16B6A8F100B118C2 /* Shader.h */,
 				F645948D16B6A96D00B118C2 /* Shader.cc */,
@@ -522,6 +527,16 @@
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
+		};
+		F689424F16C906810097FB68 /* Behaviors */ = {
+			isa = PBXGroup;
+			children = (
+				F689424C16C9066E0097FB68 /* Behavior.h */,
+				F689425016C908210097FB68 /* RotateBehavior.h */,
+				F689425116C908550097FB68 /* RotateBehavior.cc */,
+			);
+			name = Behaviors;
+			sourceTree = "<group>";
 		};
 		F6B1DA1F16BFE2C8006BBC69 /* Components */ = {
 			isa = PBXGroup;
@@ -753,6 +768,7 @@
 				F644CED816C28ABF007B35C5 /* Model.cc in Sources */,
 				F6C028F616C6A4CE00C7F91D /* DirectoryManifest.cc in Sources */,
 				F69007B116C7FE3900AC83CF /* StreamReader.cc in Sources */,
+				F689425216C908550097FB68 /* RotateBehavior.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

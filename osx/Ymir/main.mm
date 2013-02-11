@@ -29,6 +29,8 @@
 #include "ResourceManager.h"
 #include "DirectoryManifest.h"
 
+#include "RotateBehavior.h"
+
 using namespace Ymir;
 
 const glm::vec2 SCREEN_SIZE(800, 600);
@@ -49,48 +51,9 @@ static std::string ResourceDirectory()
     return std::string([path cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-Program loadTextureShaders()
-{
-    std::vector<Shader> shaders;
-    
-    shaders.push_back(Shader::shaderFromFile(ResourcePath("test.vert"), GL_VERTEX_SHADER));
-    shaders.push_back(Shader::shaderFromFile(ResourcePath("test.frag"), GL_FRAGMENT_SHADER));
-    
-    Program p = Program(shaders);
-    
-    ProgramContext pc(p);
-            
-    return p;
-}
-
-Program loadLightingShaders()
-{
-    std::vector<Shader> shaders;
-    
-    shaders.push_back(Shader::shaderFromFile(ResourcePath("test2.vert"), GL_VERTEX_SHADER));
-    shaders.push_back(Shader::shaderFromFile(ResourcePath("test2.frag"), GL_FRAGMENT_SHADER));
-    
-    Program p = Program(shaders);
-    
-    ProgramContext pc(p);
-    
-    return p;
-}
-
-// loads the file "hazard.png" into gTexture
-static Texture LoadTexture() {
-    Bitmap bmp = Bitmap::bitmapFromFile(ResourcePath("wooden-crate.jpg"));
-    bmp.flipVertically();
-    return Texture{bmp};
-}
-
 
 // update the scene based on the time elapsed since last update
-void Update(float secondsElapsed, Camera& c, Model& m) {
-    const GLfloat degreesPerSecond = 45.0f;
-    gDegreesRotated = secondsElapsed * degreesPerSecond;
-    m.spatial.direction = glm::rotate(m.spatial.direction, gDegreesRotated, glm::vec3(1,0,0));
-    while(gDegreesRotated > 360.0f) gDegreesRotated -= 360.0f;
+void Update(float secondsElapsed, Camera& c) {
     
     //CAMERA MOVEMENT
     const float moveSpeed = 2.0; //units per second
@@ -242,6 +205,7 @@ int main(int argc, char* argv[])
     
     Entity model_two{};
     model_two.assign<SpatialComponent>(glm::vec3{5.0, 0.0, 0.0});
+    model_two.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
     engine.registerEntity(model_two);
     
     model_two.assign<ModelComponent>(m, t);
@@ -253,11 +217,17 @@ int main(int argc, char* argv[])
     while(glfwGetWindowParam(GLFW_OPENED))
     {
         double thisTime = glfwGetTime();
-        Update(thisTime - lastTime, *camera.node<Camera>(), *model_one.node<Model>());
+        double delta = thisTime - lastTime;
+        Update(thisTime - lastTime, *camera.node<Camera>());
         lastTime = thisTime;
         
         showFPS(); //in titlebar
         
+        model_one.update(delta);
+        model_two.update(delta);
+        light_one.update(delta);
+        light_two.update(delta);
+        camera.update(delta);
         engine.execute();
         
         GLenum error = glGetError();
