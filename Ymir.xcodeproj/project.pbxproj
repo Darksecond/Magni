@@ -139,6 +139,7 @@
 		F645949516B6B11400B118C2 /* test.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.frag; sourceTree = "<group>"; };
 		F64EC94516BEA68600063843 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
 		F64EC94616BEA68C00063843 /* Light.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cc; sourceTree = "<group>"; };
+		F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramResourceLoader.h; sourceTree = "<group>"; };
 		F681BF3C16C2758A00545107 /* ModelComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelComponent.h; sourceTree = "<group>"; };
 		F6846D8716C56C4700071311 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceManager.h; sourceTree = "<group>"; };
 		F687A40B16B4B63300878140 /* Ymir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ymir.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,6 +279,7 @@
 				F69007B016C7FE3900AC83CF /* StreamReader.cc */,
 				F6C028F416C6A3FC00C7F91D /* DirectoryManifest.h */,
 				F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */,
+				F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */,
 			);
 			name = "Resource Management";
 			sourceTree = "<group>";

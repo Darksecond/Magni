@@ -31,6 +31,8 @@
 
 #include "RotateBehavior.h"
 
+#include "ProgramResourceLoader.h"
+
 using namespace Ymir;
 
 const glm::vec2 SCREEN_SIZE(800, 600);
@@ -83,35 +85,13 @@ void showFPS() {
     {
         fps = (double)frames / (t-t0);
         std::stringstream ss;
-        ss << "FPS: " << fps;
+        ss << "Ymir | FPS: " << fps;
         glfwSetWindowTitle(ss.str().c_str());
         t0 = t;
         frames = 0;
     }
     frames ++;
 }
-
-//TODO TEST
-class ProgramResourceLoader
-{
-public:
-    std::shared_ptr<Program> load(const ManifestContainer& manifests, const std::string& identifier)
-    {
-        auto vertStream = manifests.read(identifier + std::string{".vert"});
-        auto fragStream = manifests.read(identifier + std::string{".frag"});
-        if(vertStream && fragStream)
-        {
-            Shader vert{vertStream->string(), GL_VERTEX_SHADER};
-            Shader frag{fragStream->string(), GL_FRAGMENT_SHADER};
-            std::vector<Shader> shaders{};
-            shaders.push_back(std::move(vert));
-            shaders.push_back(std::move(frag));
-            return std::make_shared<Program>(shaders);
-        }
-        return nullptr;
-    }
-};
-
 
 int main(int argc, char* argv[])
 {
@@ -178,19 +158,19 @@ int main(int argc, char* argv[])
     engine.registerEntity(light_one);
     
     //light two (directional)
-    Entity light_two{};    
+    Entity light_two;
     auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.5, 0.5, 0.5});
     light_two_lightc->lightType = LightComponent::LightType::DIRECTIONAL;
     auto light_two_spatialc = light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
     engine.registerEntity(light_two);
     
     //model one (box)
-    Entity model_one{};
+    Entity model_one;
     model_one.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
     model_one.assign<ModelComponent>(m, t);
     engine.registerEntity(model_one);
     
-    Entity model_two{};
+    Entity model_two;
     model_two.assign<SpatialComponent>(glm::vec3{5.0, 0.0, 0.0});
     model_two.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
     engine.registerEntity(model_two);
