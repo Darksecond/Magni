@@ -11,7 +11,7 @@ std::unique_ptr<Model> Model::fromEntity(const Entity& entity)
     {
         return std::unique_ptr<Model>{new Model{*modelC, *spatialC}};
     }
-    return std::unique_ptr<Model>{};
+    return nullptr;
 }
 
 bool Model::needsComponent(const BaseComponent::Type type)
