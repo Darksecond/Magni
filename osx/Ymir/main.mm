@@ -210,6 +210,7 @@ int main(int argc, char* argv[])
         
         showFPS(); //in titlebar
         
+        //TODO pleeeaaaase make an entity manager
         model_one.update(delta);
         model_two.update(delta);
         light_one.update(delta);

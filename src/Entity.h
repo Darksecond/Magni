@@ -38,7 +38,6 @@ namespace Ymir
             }
         }
         
-        
         //TODO move to CC file
         void assignBehavior(std::unique_ptr<Behavior> behavior)
         {
