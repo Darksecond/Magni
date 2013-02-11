@@ -34,6 +34,12 @@ void RenderEngine::unregisterEntity(Entity& entity)
     models.unregisterEntity(entity);
 }
 
+void RenderEngine::addComponent(Entity& entity, const BaseComponent::Type& component_type)
+{
+    lights.addComponent(entity, component_type);
+    models.addComponent(entity, component_type);
+}
+
 void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, const Model& model)
 {
     //always

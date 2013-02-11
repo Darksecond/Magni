@@ -37,7 +37,16 @@ namespace Ymir
             }
         }
         
-        //TODO addComponent
+        void addComponent(Entity& entity, const BaseComponent::Type& type)
+        {
+            if(T::needsComponent(type))
+            {
+                std::unique_ptr<T> node = entity.node<T>();
+                if(node)
+                    container.push_back(std::move(node));
+            }
+        }
+        
         //TODO removeComponent
         
         typename Container::reference       operator[](typename Container::size_type pos) { return container[pos]; }

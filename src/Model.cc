@@ -14,6 +14,13 @@ std::unique_ptr<Model> Model::fromEntity(const Entity& entity)
     return std::unique_ptr<Model>{};
 }
 
+bool Model::needsComponent(const BaseComponent::Type type)
+{
+    if(type == ModelComponent::type() || type == SpatialComponent::type())
+        return true;
+    return false;
+}
+
 void Model::attach(Program &p) const
 {
     p.setUniform("material.diffuse", glm::vec3(0.3, 0.3, 0.3));

@@ -17,6 +17,7 @@ namespace Ymir
         SpatialComponent& _spatial;
     public:
         static std::unique_ptr<Light> fromEntity(const Entity& e);
+        static bool needsComponent(const BaseComponent::Type type);
         
         Light(LightComponent& light, SpatialComponent& spatial);
         

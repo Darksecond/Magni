@@ -16,6 +16,7 @@ namespace Ymir
         SpatialComponent& spatial;
         
         static std::unique_ptr<Model> fromEntity(const Entity& e);
+        static bool needsComponent(const BaseComponent::Type type);
         
         Model(ModelComponent& m, SpatialComponent& s) : model{m}, spatial{s} {}
         

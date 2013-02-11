@@ -11,7 +11,14 @@ std::unique_ptr<Light> Light::fromEntity(const Entity& entity)
     {
         return std::unique_ptr<Light>{new Light{*lightComponent, *spatialComponent}};
     }
-    return std::unique_ptr<Light>{};
+    return nullptr;
+}
+
+bool Light::needsComponent(const BaseComponent::Type type)
+{
+    if(type == LightComponent::type() || type == SpatialComponent::type())
+        return true;
+    return false;
 }
 
 Light::Light(LightComponent& light, SpatialComponent& spatial) : _light{light}, _spatial{spatial}

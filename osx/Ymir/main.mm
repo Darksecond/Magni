@@ -231,8 +231,13 @@ int main(int argc, char* argv[])
     Entity light_two{};    
     auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.5, 0.5, 0.5});
     light_two_lightc->lightType = LightComponent::LightType::DIRECTIONAL;
-    light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
+    auto light_two_spatialc = light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
     engine.registerEntity(light_two);
+    
+
+    std::cout << light_two_lightc->type() << std::endl;
+    std::cout << light_two_spatialc->type() << std::endl;
+
     
     //model one (box)
     Entity model_one{};
@@ -242,8 +247,10 @@ int main(int argc, char* argv[])
     
     Entity model_two{};
     model_two.assign<SpatialComponent>(glm::vec3{5.0, 0.0, 0.0});
-    model_two.assign<ModelComponent>(m, t);
     engine.registerEntity(model_two);
+    
+    model_two.assign<ModelComponent>(m, t);
+    engine.addComponent(model_two, ModelComponent::type());
     
     //engine.unregisterEntity(light_two);
     

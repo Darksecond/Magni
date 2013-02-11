@@ -29,5 +29,6 @@ namespace Ymir
         virtual void registerEntity(Entity& entity);
         virtual void unregisterEntity(Entity& entity);
         virtual void execute();
+        void addComponent(Entity& entity, const BaseComponent::Type& component_type);
     };
 };

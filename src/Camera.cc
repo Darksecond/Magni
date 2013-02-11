@@ -8,6 +8,8 @@
 #include <glm/gtx/euler_angles.hpp>
 #include <glm/gtc/quaternion.hpp>
 
+#include <iostream>
+
 using namespace Ymir;
 
 static const float MaxVerticalAngle = 85.0f; //must be less than 90 to avoid gimbal lock
@@ -21,7 +23,7 @@ std::unique_ptr<Camera> Camera::fromEntity(const Entity& entity)
     {
         return std::unique_ptr<Camera>{new Camera{*cameraComponent, *spatialComponent}};
     }
-    return std::unique_ptr<Camera>{};
+    return nullptr;
 }
 
 Camera::Camera(CameraComponent& c, SpatialComponent& s) : _camera{c}, _spatial{s}
@@ -63,6 +65,8 @@ glm::vec3 Camera::up() const {
     return glm::vec3(up);
 }
 
+//TODO move code to camerastrategy or something?
+//TODO or perhaps a script or behavior of some kind?
 void Camera::offsetOrientation(float upAngle, float rightAngle) {
     _camera._horizontalAngle += rightAngle;
     while(_camera._horizontalAngle > 360.0f) _camera._horizontalAngle -= 360.0;
