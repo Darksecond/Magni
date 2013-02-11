@@ -234,11 +234,6 @@ int main(int argc, char* argv[])
     auto light_two_spatialc = light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
     engine.registerEntity(light_two);
     
-
-    std::cout << light_two_lightc->type() << std::endl;
-    std::cout << light_two_spatialc->type() << std::endl;
-
-    
     //model one (box)
     Entity model_one{};
     model_one.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
