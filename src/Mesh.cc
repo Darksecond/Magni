@@ -27,9 +27,9 @@ Mesh::Mesh(Geometry& geometry) : _vbo{0}, _vao{0}
 
     bind();
     
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * geometry.vertices().size(),
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * _numVertices,
                  &geometry.vertices().front(), GL_STATIC_DRAW);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indice) * geometry.indices().size(),
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indice) * _numIndices,
                  &geometry.indices().front(), GL_STATIC_DRAW);
     
     unbind();
