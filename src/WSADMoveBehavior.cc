@@ -10,7 +10,7 @@ using namespace Ymir;
 
 void WSADMoveBehavior::update(double delta)
 {
-    //CAMERA MOVEMENT
+    //TODO use InputService (or something)
     float secondsElapsed = delta;
     auto spatial = entity->component<SpatialComponent>();
     
