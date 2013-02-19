@@ -12,6 +12,11 @@ Mesh Mesh::cube()
 
 Mesh::Mesh(Geometry& geometry) : _vbo{0}, _vao{0}
 {
+    if(geometry.vertices().size() == 0)
+        throw std::runtime_error("no vertices in geometry");
+    if(geometry.indices().size() == 0)
+        throw std::runtime_error("no indices in geometry");
+    
     _numVertices = geometry.vertices().size();
     _numIndices = geometry.indices().size();
     
