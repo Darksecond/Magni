@@ -1,19 +1,13 @@
 #pragma once
 
+#include "Program.h"
+#include "Geometry.h"
+
 #include <GLEW/glew.h>
 #include <vector>
 
-#include "Program.h"
-
 namespace Ymir
 {
-    struct Vertex
-    {
-        GLfloat x, y, z;
-        GLfloat nx, ny, nz;
-        GLfloat u, v;
-    };
-
     class Mesh
     {
         GLuint _vbo;
@@ -24,7 +18,7 @@ namespace Ymir
     public:
         static Mesh cube();
         
-        Mesh(const std::vector<Vertex>& vertices, std::vector<unsigned short> indices);
+        Mesh(Geometry& geometry);
         Mesh(Mesh&&);
         ~Mesh();
         Mesh(const Mesh&) = delete;

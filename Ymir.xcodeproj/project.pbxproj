@@ -150,6 +150,8 @@
 		F681BF3C16C2758A00545107 /* ModelComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelComponent.h; sourceTree = "<group>"; };
 		F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WSADMoveBehavior.cc; sourceTree = "<group>"; };
 		F68279AF16D415AE00BD1BAF /* WSADMoveBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSADMoveBehavior.h; sourceTree = "<group>"; };
+		F68279B116D41D7400BD1BAF /* Geometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
+		F68279B216D41E2A00BD1BAF /* CubeGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeGeometry.h; sourceTree = "<group>"; };
 		F6846D8716C56C4700071311 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceManager.h; sourceTree = "<group>"; };
 		F687A40B16B4B63300878140 /* Ymir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ymir.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F687A40F16B4B63300878140 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -539,6 +541,8 @@
 				F6FB2A1F16B7113000E6013E /* Bitmap.cc */,
 				F6D9138216BC0222000C0632 /* Mesh.h */,
 				F6D9138316BC0226000C0632 /* Mesh.cc */,
+				F68279B116D41D7400BD1BAF /* Geometry.h */,
+				F68279B216D41E2A00BD1BAF /* CubeGeometry.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

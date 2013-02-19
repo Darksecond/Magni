@@ -1,75 +1,19 @@
 #include "Mesh.h"
 
+#include "CubeGeometry.h"
+
 using namespace Ymir;
 
 Mesh Mesh::cube()
-{    
-    std::vector<Vertex> vertices
-    {
-        //  X     Y     Z       NX     NY     NZ       U     V
-        // bottom
-        {-1.0f,-1.0f,-1.0f,    0.0f, -1.0f,  0.0f,   0.0f, 0.0f},
-        { 1.0f,-1.0f,-1.0f,    0.0f, -1.0f,  0.0f,   1.0f, 0.0f},
-        {-1.0f,-1.0f, 1.0f,    0.0f, -1.0f,  0.0f,   0.0f, 1.0f},
-        { 1.0f,-1.0f,-1.0f,    0.0f, -1.0f,  0.0f,   1.0f, 0.0f},
-        { 1.0f,-1.0f, 1.0f,    0.0f, -1.0f,  0.0f,   1.0f, 1.0f},
-        {-1.0f,-1.0f, 1.0f,    0.0f, -1.0f,  0.0f,   0.0f, 1.0f},
-
-        // top
-        {-1.0f, 1.0f,-1.0f,    0.0f,  1.0f,  0.0f,   0.0f, 0.0f},
-        {-1.0f, 1.0f, 1.0f,    0.0f,  1.0f,  0.0f,   0.0f, 1.0f},
-        { 1.0f, 1.0f,-1.0f,    0.0f,  1.0f,  0.0f,   1.0f, 0.0f},
-        { 1.0f, 1.0f,-1.0f,    0.0f,  1.0f,  0.0f,   1.0f, 0.0f},
-        {-1.0f, 1.0f, 1.0f,    0.0f,  1.0f,  0.0f,   0.0f, 1.0f},
-        { 1.0f, 1.0f, 1.0f,    0.0f,  1.0f,  0.0f,   1.0f, 1.0f},
-        
-        // front
-        {-1.0f,-1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   1.0f, 0.0f},
-        { 1.0f,-1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   0.0f, 0.0f},
-        {-1.0f, 1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   1.0f, 1.0f},
-        { 1.0f,-1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   0.0f, 0.0f},
-        { 1.0f, 1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   0.0f, 1.0f},
-        {-1.0f, 1.0f, 1.0f,    0.0f,  0.0f,  1.0f,   1.0f, 1.0f},
-        
-        // back
-        {-1.0f,-1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   0.0f, 0.0f},
-        {-1.0f, 1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   0.0f, 1.0f},
-        { 1.0f,-1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   1.0f, 0.0f},
-        { 1.0f,-1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   1.0f, 0.0f},
-        {-1.0f, 1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   0.0f, 1.0f},
-        { 1.0f, 1.0f,-1.0f,    0.0f,  0.0f, -1.0f,   1.0f, 1.0f},
-        
-        // left
-        {-1.0f,-1.0f, 1.0f,   -1.0f,  0.0f,  0.0f,   0.0f, 1.0f},
-        {-1.0f, 1.0f,-1.0f,   -1.0f,  0.0f,  0.0f,   1.0f, 0.0f},
-        {-1.0f,-1.0f,-1.0f,   -1.0f,  0.0f,  0.0f,   0.0f, 0.0f},
-        {-1.0f,-1.0f, 1.0f,   -1.0f,  0.0f,  0.0f,   0.0f, 1.0f},
-        {-1.0f, 1.0f, 1.0f,   -1.0f,  0.0f,  0.0f,   1.0f, 1.0f},
-        {-1.0f, 1.0f,-1.0f,   -1.0f,  0.0f,  0.0f,   1.0f, 0.0f},
-        
-        // right
-        { 1.0f,-1.0f, 1.0f,    1.0f,  0.0f,  0.0f,   1.0f, 1.0f},
-        { 1.0f,-1.0f,-1.0f,    1.0f,  0.0f,  0.0f,   1.0f, 0.0f},
-        { 1.0f, 1.0f,-1.0f,    1.0f,  0.0f,  0.0f,   0.0f, 0.0f},
-        { 1.0f,-1.0f, 1.0f,    1.0f,  0.0f,  0.0f,   1.0f, 1.0f},
-        { 1.0f, 1.0f,-1.0f,    1.0f,  0.0f,  0.0f,   0.0f, 0.0f},
-        { 1.0f, 1.0f, 1.0f,    1.0f,  0.0f,  0.0f,   0.0f, 1.0f},
-    };
-    std::vector<unsigned short> indices{};
-    return Mesh(vertices, indices);
+{
+    CubeGeometry cube;
+    return Mesh{cube};
 }
 
-Mesh::Mesh(const std::vector<Vertex>& vertices, std::vector<unsigned short> indices) : _vbo{0}, _vao{0}, _numVertices(vertices.size())
+Mesh::Mesh(Geometry& geometry) : _vbo{0}, _vao{0}
 {
-    //generate indices if they are unavailable
-    if(indices.size() == 0)
-    {
-        indices.reserve(vertices.size()); //reserve the amount of indices needed, to speed generation up
-        for(int i = 0; i < vertices.size(); i++)
-            indices.push_back(i);
-    }
-    
-    _numIndices = indices.size();
+    _numVertices = geometry.vertices().size();
+    _numIndices = geometry.indices().size();
     
     //generate
     glGenBuffers(1, &_vbo);
@@ -78,8 +22,10 @@ Mesh::Mesh(const std::vector<Vertex>& vertices, std::vector<unsigned short> indi
 
     bind();
     
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * vertices.size(), &vertices.front(), GL_STATIC_DRAW);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * indices.size(), &indices.front(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * geometry.vertices().size(),
+                 &geometry.vertices().front(), GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indice) * geometry.indices().size(),
+                 &geometry.indices().front(), GL_STATIC_DRAW);
     
     unbind();
 }
