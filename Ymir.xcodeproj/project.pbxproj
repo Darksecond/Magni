@@ -17,6 +17,7 @@
 		F64C777F16CA7C3200371345 /* FPSCameraBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */; };
 		F64EC94716BEA68C00063843 /* Light.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64EC94616BEA68C00063843 /* Light.cc */; };
 		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
+		F68279B016D415AE00BD1BAF /* WSADMoveBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */; };
 		F687A41016B4B63300878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
 		F687A42D16B4B68700878140 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = F687A42C16B4B68700878140 /* main.mm */; };
 		F687A43416B4B73B00878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
@@ -147,6 +148,8 @@
 		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
 		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
 		F681BF3C16C2758A00545107 /* ModelComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelComponent.h; sourceTree = "<group>"; };
+		F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WSADMoveBehavior.cc; sourceTree = "<group>"; };
+		F68279AF16D415AE00BD1BAF /* WSADMoveBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSADMoveBehavior.h; sourceTree = "<group>"; };
 		F6846D8716C56C4700071311 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceManager.h; sourceTree = "<group>"; };
 		F687A40B16B4B63300878140 /* Ymir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ymir.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F687A40F16B4B63300878140 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -548,6 +551,8 @@
 				F689425116C908550097FB68 /* RotateBehavior.cc */,
 				F64C777D16CA7C2E00371345 /* FPSCameraBehavior.h */,
 				F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */,
+				F68279AF16D415AE00BD1BAF /* WSADMoveBehavior.h */,
+				F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */,
 			);
 			name = Behaviors;
 			sourceTree = "<group>";
@@ -783,6 +788,7 @@
 				F689425216C908550097FB68 /* RotateBehavior.cc in Sources */,
 				F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */,
 				F64C777F16CA7C3200371345 /* FPSCameraBehavior.cc in Sources */,
+				F68279B016D415AE00BD1BAF /* WSADMoveBehavior.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

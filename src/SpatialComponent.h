@@ -22,5 +22,10 @@ namespace Ymir
         void setDirection(glm::vec3& euler);
         
         glm::mat4 matrix() const;
+        
+        glm::mat4 orientation() const;
+        glm::vec3 forward() const;
+        glm::vec3 right() const;
+        glm::vec3 up() const;
     };
 };

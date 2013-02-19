@@ -65,24 +65,6 @@ glm::vec3 Camera::up() const {
     return glm::vec3(up);
 }
 
-//TODO move code to camerastrategy or something?
-//TODO or perhaps a script or behavior of some kind?
-//TODO move to behavior
-void Camera::offsetOrientation(float upAngle, float rightAngle) {
-    _camera._horizontalAngle += rightAngle;
-    while(_camera._horizontalAngle > 360.0f) _camera._horizontalAngle -= 360.0;
-    while(_camera._horizontalAngle < 0.0f) _camera._horizontalAngle += 360.0;
-    
-    _camera._verticalAngle += upAngle;
-    if(_camera._verticalAngle > MaxVerticalAngle) _camera._verticalAngle = MaxVerticalAngle;
-    if(_camera._verticalAngle < -MaxVerticalAngle) _camera._verticalAngle = -MaxVerticalAngle;
-    
-    //we can't only use the quaternion, because it would be too difficult to check the maximum pitch right now
-    glm::quat up = glm::angleAxis(_camera._verticalAngle, glm::vec3(1,0,0));
-    glm::quat right = glm::angleAxis(_camera._horizontalAngle, glm::vec3(0,1,0));
-    _spatial.direction = up * right;
-}
-
 void Camera::offsetPosition(const glm::vec3& offset)
 {
     _spatial.position += offset;

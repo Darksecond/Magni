@@ -29,6 +29,7 @@
 
 #include "RotateBehavior.h"
 #include "FPSCameraBehavior.h"
+#include "WSADMoveBehavior.h"
 
 #include "ProgramResourceLoader.h"
 
@@ -40,37 +41,6 @@ static std::string ResourceDirectory()
 {
     NSString* path = [[NSBundle mainBundle] resourcePath];
     return std::string([path cStringUsingEncoding:NSUTF8StringEncoding]);
-}
-
-// update the scene based on the time elapsed since last update
-//TODO move this into a behavior, engine or some kind of other class
-void Update(float secondsElapsed, Camera& c) {
-    
-    //CAMERA MOVEMENT
-    const float moveSpeed = 2.0; //units per second
-    if(glfwGetKey('S')){
-        c.offsetPosition(secondsElapsed * moveSpeed * -c.forward());
-    } else if(glfwGetKey('W')){
-        c.offsetPosition(secondsElapsed * moveSpeed * c.forward());
-    }
-    if(glfwGetKey('A')){
-        c.offsetPosition(secondsElapsed * moveSpeed * -c.right());
-    } else if(glfwGetKey('D')){
-        c.offsetPosition(secondsElapsed * moveSpeed * c.right());
-    }
-    if(glfwGetKey('Z')){
-        c.offsetPosition(secondsElapsed * moveSpeed * -glm::vec3(0,1,0));
-    } else if(glfwGetKey('X')){
-        c.offsetPosition(secondsElapsed * moveSpeed * glm::vec3(0,1,0));
-    }
-    
-    //rotate camera based on mouse movement
-    //TODO move this into a behavior for a camera
-    //const float mouseSensitivity = 0.1;
-    //int mouseX, mouseY;
-    //glfwGetMousePos(&mouseX, &mouseY);
-    //c.offsetOrientation(mouseSensitivity * mouseY, mouseSensitivity * mouseX);
-    //glfwSetMousePos(0, 0); //reset the mouse, so it doesn't go out of the window
 }
 
 int frames = 0;
@@ -151,6 +121,7 @@ int main(int argc, char* argv[])
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
     camera.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 5.0});
     camera.assignBehavior(std::unique_ptr<Behavior>{new FPSCameraBehavior});
+    camera.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
     engine.registerEntity(camera);
     
     //light one (spot)
@@ -187,17 +158,18 @@ int main(int argc, char* argv[])
     {
         double thisTime = glfwGetTime();
         double delta = thisTime - lastTime;
-        Update(thisTime - lastTime, *Camera::fromEntity(camera));
         lastTime = thisTime;
         
         showFPS(); //in titlebar
         
         //TODO pleeeaaaase make an entity manager
+        //behavior update
         model_one.update(delta);
         model_two.update(delta);
         light_one.update(delta);
         light_two.update(delta);
         camera.update(delta);
+        
         engine.execute();
         
         GLenum error = glGetError();
