@@ -2,6 +2,6 @@
 
 using namespace Ymir;
 
-Entity::Entity() : components{}, behaviors{}
+Entity::Entity() : components{}, behaviors{}, heavyComponents{}
 {
 }

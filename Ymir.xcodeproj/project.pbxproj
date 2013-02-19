@@ -14,6 +14,7 @@
 		F645949116B6ADA900B118C2 /* test.vert in Resources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* test.vert */; };
 		F645949416B6AE8700B118C2 /* Program.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645949316B6AE8700B118C2 /* Program.cc */; };
 		F645949616B6B11400B118C2 /* test.frag in Resources */ = {isa = PBXBuildFile; fileRef = F645949516B6B11400B118C2 /* test.frag */; };
+		F64C777F16CA7C3200371345 /* FPSCameraBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */; };
 		F64EC94716BEA68C00063843 /* Light.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64EC94616BEA68C00063843 /* Light.cc */; };
 		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
 		F687A41016B4B63300878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
@@ -138,6 +139,8 @@
 		F645949216B6AE1700B118C2 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
 		F645949316B6AE8700B118C2 /* Program.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cc; sourceTree = "<group>"; };
 		F645949516B6B11400B118C2 /* test.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.frag; sourceTree = "<group>"; };
+		F64C777D16CA7C2E00371345 /* FPSCameraBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPSCameraBehavior.h; sourceTree = "<group>"; };
+		F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FPSCameraBehavior.cc; sourceTree = "<group>"; };
 		F64EC94516BEA68600063843 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
 		F64EC94616BEA68C00063843 /* Light.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cc; sourceTree = "<group>"; };
 		F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramResourceLoader.h; sourceTree = "<group>"; };
@@ -289,7 +292,7 @@
 			name = "Resource Management";
 			sourceTree = "<group>";
 		};
-		F64516D316C06CAF00726CF5 /* Nodes */ = {
+		F6746BF616CB8C2B00ACA326 /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
 				F64EC94516BEA68600063843 /* Light.h */,
@@ -298,8 +301,10 @@
 				F6AF410C16BB1B8D00F85BC0 /* Camera.cc */,
 				F644CED616C28AB0007B35C5 /* Model.h */,
 				F644CED716C28ABF007B35C5 /* Model.cc */,
+				F6B1DA1916BFDACE006BBC69 /* RenderEngine.h */,
+				F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */,
 			);
-			name = Nodes;
+			path = Renderer;
 			sourceTree = "<group>";
 		};
 		F6846D8816C58DB400071311 /* 3rd Party */ = {
@@ -512,10 +517,10 @@
 		F687A52E16B4BC7700878140 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F6746BF616CB8C2B00ACA326 /* Renderer */,
 				F6846D8816C58DB400071311 /* 3rd Party */,
 				F6B1DA1F16BFE2C8006BBC69 /* Components */,
 				F6B1DA2516C045B6006BBC69 /* Engines */,
-				F64516D316C06CAF00726CF5 /* Nodes */,
 				F689424F16C906810097FB68 /* Behaviors */,
 				F6053FE816C6D532007F52FE /* Resource Management */,
 				F645948B16B6A8F100B118C2 /* Shader.h */,
@@ -541,6 +546,8 @@
 				F689424C16C9066E0097FB68 /* Behavior.h */,
 				F689425016C908210097FB68 /* RotateBehavior.h */,
 				F689425116C908550097FB68 /* RotateBehavior.cc */,
+				F64C777D16CA7C2E00371345 /* FPSCameraBehavior.h */,
+				F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */,
 			);
 			name = Behaviors;
 			sourceTree = "<group>";
@@ -565,8 +572,6 @@
 			isa = PBXGroup;
 			children = (
 				F6B1DA1616BFD63F006BBC69 /* Engine.h */,
-				F6B1DA1916BFDACE006BBC69 /* RenderEngine.h */,
-				F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */,
 			);
 			name = Engines;
 			sourceTree = "<group>";
@@ -777,6 +782,7 @@
 				F69007B116C7FE3900AC83CF /* StreamReader.cc in Sources */,
 				F689425216C908550097FB68 /* RotateBehavior.cc in Sources */,
 				F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */,
+				F64C777F16CA7C3200371345 /* FPSCameraBehavior.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

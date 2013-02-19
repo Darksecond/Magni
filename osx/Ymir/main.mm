@@ -28,6 +28,7 @@
 #include "DirectoryManifest.h"
 
 #include "RotateBehavior.h"
+#include "FPSCameraBehavior.h"
 
 #include "ProgramResourceLoader.h"
 
@@ -65,11 +66,11 @@ void Update(float secondsElapsed, Camera& c) {
     
     //rotate camera based on mouse movement
     //TODO move this into a behavior for a camera
-    const float mouseSensitivity = 0.1;
-    int mouseX, mouseY;
-    glfwGetMousePos(&mouseX, &mouseY);
-    c.offsetOrientation(mouseSensitivity * mouseY, mouseSensitivity * mouseX);
-    glfwSetMousePos(0, 0); //reset the mouse, so it doesn't go out of the window
+    //const float mouseSensitivity = 0.1;
+    //int mouseX, mouseY;
+    //glfwGetMousePos(&mouseX, &mouseY);
+    //c.offsetOrientation(mouseSensitivity * mouseY, mouseSensitivity * mouseX);
+    //glfwSetMousePos(0, 0); //reset the mouse, so it doesn't go out of the window
 }
 
 int frames = 0;
@@ -149,6 +150,7 @@ int main(int argc, char* argv[])
     Entity camera;
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
     camera.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 5.0});
+    camera.assignBehavior(std::unique_ptr<Behavior>{new FPSCameraBehavior});
     engine.registerEntity(camera);
     
     //light one (spot)
