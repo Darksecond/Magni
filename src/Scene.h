@@ -14,7 +14,7 @@ namespace Ymir
     {
         //TODO maybe make this a map, so we can map to entity names.
         std::list<std::unique_ptr<Entity>> entities;
-        EngineManager& engines; //TODO later replace with some kind of engine manager
+        EngineManager& engines;
     public:
         Scene(EngineManager& engines);
         ~Scene();
