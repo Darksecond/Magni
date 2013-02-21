@@ -100,6 +100,8 @@ void render(Program& pt, Program& pl, const Camera& c,
     glEnable(GL_BLEND);
     glDepthFunc(GL_LEQUAL);
     
+    //transparency fix
+    //http://www.opengl.org/discussion_boards/showthread.php/145630-Translucency-and-multi-pass-lighting
     bool first = true;
     for(auto& light : lights)
     {
@@ -121,7 +123,7 @@ void render(Program& pt, Program& pl, const Camera& c,
     glDisable(GL_BLEND);
 }
 
-void RenderEngine::execute()
+void RenderEngine::update(double delta)
 {
     glClearColor(0.0, 0.0, 0.0, 1); // black
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

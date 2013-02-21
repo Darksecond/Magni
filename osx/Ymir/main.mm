@@ -167,7 +167,7 @@ int main(int argc, char* argv[])
         //behavior update
         scene.update(delta);
         
-        engine.execute();
+        engine.update(delta);
         
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)
