@@ -2,6 +2,6 @@
 
 using namespace Ymir;
 
-Entity::Entity(Engine& e) : components{}, behaviors{}, engine{e}
+Entity::Entity(EngineManager& e) : components{}, behaviors{}, engines{e}
 {
 }

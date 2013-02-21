@@ -19,6 +19,7 @@
 
 #include "Scene.h"
 #include "Entity.h"
+#include "EngineManager.h"
 #include "LightComponent.h"
 #include "SpatialComponent.h"
 #include "RenderEngine.h"
@@ -116,8 +117,9 @@ int main(int argc, char* argv[])
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
     
-    RenderEngine engine{*test, *test2};
-    Scene scene{engine};
+    EngineManager engines;
+    engines.assign<RenderEngine>(*test, *test2);
+    Scene scene{engines};
     
     Entity& camera = scene.assign();
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
@@ -160,7 +162,7 @@ int main(int argc, char* argv[])
         scene.update(delta);
         
         //engines
-        engine.update(delta);
+        engines.update(delta);
         
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)

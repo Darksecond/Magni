@@ -2,7 +2,7 @@
 
 using namespace Ymir;
 
-Scene::Scene(Engine& renderer) : engine{renderer}
+Scene::Scene(EngineManager& manager) : engines{manager}
 {
 }
 
@@ -15,7 +15,7 @@ Entity& Scene::assign(std::unique_ptr<Entity> entity)
 
 Entity& Scene::assign()
 {
-    std::unique_ptr<Entity> entity{new Entity{engine}};
+    std::unique_ptr<Entity> entity{new Entity{engines}};
     return assign(std::move(entity));
 }
 

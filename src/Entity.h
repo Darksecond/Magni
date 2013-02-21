@@ -3,7 +3,7 @@
 #include "Component.h"
 #include "Behavior.h"
 
-#include "Engine.h"
+#include "EngineManager.h"
 
 #include <map>
 #include <vector>
@@ -15,9 +15,9 @@ namespace Ymir
     {
         std::map<BaseComponent::Type, std::shared_ptr<BaseComponent>> components;
         std::vector<std::unique_ptr<Behavior>> behaviors;
-        Engine& engine;
+        EngineManager& engines;
     public:
-        Entity(Engine& e);
+        Entity(EngineManager& manager);
         
         template<typename T, typename ... Args>
         std::shared_ptr<T> assign(Args && ... args);
@@ -74,7 +74,7 @@ namespace Ymir
     std::shared_ptr<T> Entity::assign(std::shared_ptr<T> component)
     {
         components.insert({component->type(), component});
-        engine.addComponent(*this, component->type());
+        engines.addComponent(*this, component->type());
         return component;
     }
 

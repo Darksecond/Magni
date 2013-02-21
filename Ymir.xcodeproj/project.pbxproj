@@ -69,6 +69,7 @@
 		F69007B116C7FE3900AC83CF /* StreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F69007B016C7FE3900AC83CF /* StreamReader.cc */; };
 		F6AF410E16BB1F4000F85BC0 /* Camera.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6AF410C16BB1B8D00F85BC0 /* Camera.cc */; };
 		F6B1B55016D63ED90034DACC /* Scene.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1B54E16D63ED90034DACC /* Scene.cc */; };
+		F6B1B55616D652420034DACC /* EngineManager.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1B55416D652410034DACC /* EngineManager.cc */; };
 		F6B1DA1516BFD1D7006BBC69 /* Entity.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA1316BFD1D7006BBC69 /* Entity.cc */; };
 		F6B1DA1B16BFDAE9006BBC69 /* RenderEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */; };
 		F6B1DA1E16BFDC9D006BBC69 /* SpatialComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA1D16BFDC9D006BBC69 /* SpatialComponent.cc */; };
@@ -213,6 +214,8 @@
 		F6AF410C16BB1B8D00F85BC0 /* Camera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cc; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		F6B1B54E16D63ED90034DACC /* Scene.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cc; sourceTree = "<group>"; };
 		F6B1B54F16D63ED90034DACC /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		F6B1B55416D652410034DACC /* EngineManager.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EngineManager.cc; sourceTree = "<group>"; };
+		F6B1B55516D652420034DACC /* EngineManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineManager.h; sourceTree = "<group>"; };
 		F6B1DA1016BFD17B006BBC69 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
 		F6B1DA1316BFD1D7006BBC69 /* Entity.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cc; sourceTree = "<group>"; };
 		F6B1DA1416BFD1D7006BBC69 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
@@ -546,6 +549,8 @@
 				F68279B216D41E2A00BD1BAF /* CubeGeometry.h */,
 				F6B1B54F16D63ED90034DACC /* Scene.h */,
 				F6B1B54E16D63ED90034DACC /* Scene.cc */,
+				F6B1B55516D652420034DACC /* EngineManager.h */,
+				F6B1B55416D652410034DACC /* EngineManager.cc */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -799,6 +804,7 @@
 				F64C777F16CA7C3200371345 /* FPSCameraBehavior.cc in Sources */,
 				F68279B016D415AE00BD1BAF /* WSADMoveBehavior.cc in Sources */,
 				F6B1B55016D63ED90034DACC /* Scene.cc in Sources */,
+				F6B1B55616D652420034DACC /* EngineManager.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
