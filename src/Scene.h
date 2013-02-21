@@ -17,6 +17,7 @@ namespace Ymir
         EngineManager& engines; //TODO later replace with some kind of engine manager
     public:
         Scene(EngineManager& engines);
+        ~Scene();
         Entity& assign(std::unique_ptr<Entity> entity);
         Entity& assign();
         

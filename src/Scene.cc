@@ -6,6 +6,14 @@ Scene::Scene(EngineManager& manager) : engines{manager}
 {
 }
 
+Scene::~Scene()
+{
+    for(auto& entity : entities)
+    {
+        engines.unregisterEntity(*entity);
+    }
+}
+
 Entity& Scene::assign(std::unique_ptr<Entity> entity)
 {
     Entity& retval = *entity;
