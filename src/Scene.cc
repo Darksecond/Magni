@@ -18,6 +18,7 @@ Entity& Scene::assign(std::unique_ptr<Entity> entity)
 {
     Entity& retval = *entity;
     entities.push_back(std::move(entity));
+    engines.registerEntity(retval);
     return retval;
 }
 
