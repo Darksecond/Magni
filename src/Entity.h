@@ -15,7 +15,7 @@ namespace Ymir
     {
         std::map<BaseComponent::Type, std::shared_ptr<BaseComponent>> components;
         std::vector<std::unique_ptr<Behavior>> behaviors;
-        EngineManager& engines;
+        EngineManager& engines; //TODO singleton?
     public:
         Entity(EngineManager& manager);
         

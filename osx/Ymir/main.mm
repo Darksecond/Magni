@@ -117,8 +117,10 @@ int main(int argc, char* argv[])
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
     
+    //engine creation
     EngineManager engines;
     engines.assign<RenderEngine>(*test, *test2);
+    
     Scene scene{engines};
     
     Entity& camera = scene.assign();
