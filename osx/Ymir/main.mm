@@ -117,42 +117,35 @@ int main(int argc, char* argv[])
     std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
     
     RenderEngine engine{*test, *test2};
-    Scene scene;
+    Scene scene{engine};
     
     Entity& camera = scene.assign();
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
     camera.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 5.0});
     camera.assignBehavior(std::unique_ptr<Behavior>{new FPSCameraBehavior});
     camera.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
-    engine.registerEntity(camera);
     
     //light one (spot)
     Entity& light_one = scene.assign();
     light_one.assign<LightComponent>(glm::vec3{1.0, 1.0, 1.0}, glm::vec3{0.0, 0.15, 0.0});
     light_one.assign<SpatialComponent>(glm::vec3{7.0, 0.0, 0.0});
-    engine.registerEntity(light_one);
     
     //light two (directional)
     Entity& light_two = scene.assign();
+    light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
     auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.5, 0.5, 0.5});
     light_two_lightc->lightType = LightComponent::LightType::DIRECTIONAL;
-    auto light_two_spatialc = light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
-    engine.registerEntity(light_two);
     
     //model one (box)
     Entity& model_one = scene.assign();
     model_one.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
     model_one.assign<ModelComponent>(m, t);
-    engine.registerEntity(model_one);
     
+    //model two (box)
     Entity& model_two = scene.assign();
     model_two.assign<SpatialComponent>(glm::vec3{5.0, 0.0, 0.0});
     model_two.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
     model_two.assign<ModelComponent>(m, t);
-    engine.registerEntity(model_two);
-    //engine.addComponent(model_two, ModelComponent::type());
-    
-    //engine.unregisterEntity(light_two);
     
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
@@ -163,10 +156,10 @@ int main(int argc, char* argv[])
         
         showFPS(); //in titlebar
         
-        //TODO pleeeaaaase make an entity manager (scene)
-        //behavior update
+        //behaviors
         scene.update(delta);
         
+        //engines
         engine.update(delta);
         
         GLenum error = glGetError();

@@ -2,6 +2,10 @@
 
 using namespace Ymir;
 
+Scene::Scene(Engine& renderer) : engine{renderer}
+{
+}
+
 Entity& Scene::assign(std::unique_ptr<Entity> entity)
 {
     Entity& retval = *entity;
@@ -11,7 +15,7 @@ Entity& Scene::assign(std::unique_ptr<Entity> entity)
 
 Entity& Scene::assign()
 {
-    std::unique_ptr<Entity> entity{new Entity{}};
+    std::unique_ptr<Entity> entity{new Entity{engine}};
     return assign(std::move(entity));
 }
 

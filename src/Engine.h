@@ -1,11 +1,13 @@
 #pragma once
 
-#include <memory>
+#include "Component.h"
 
-#include "Entity.h"
+#include <memory>
 
 namespace Ymir
 {
+    class Entity;
+    
     class Engine
     {
     public:

@@ -217,8 +217,8 @@
 		F6B1DA1316BFD1D7006BBC69 /* Entity.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cc; sourceTree = "<group>"; };
 		F6B1DA1416BFD1D7006BBC69 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		F6B1DA1616BFD63F006BBC69 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
-		F6B1DA1916BFDACE006BBC69 /* RenderEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderEngine.h; sourceTree = "<group>"; };
-		F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cc; sourceTree = "<group>"; };
+		F6B1DA1916BFDACE006BBC69 /* RenderEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderEngine.h; path = Renderer/RenderEngine.h; sourceTree = "<group>"; };
+		F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderEngine.cc; path = Renderer/RenderEngine.cc; sourceTree = "<group>"; };
 		F6B1DA1C16BFDC4F006BBC69 /* SpatialComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpatialComponent.h; sourceTree = "<group>"; };
 		F6B1DA1D16BFDC9D006BBC69 /* SpatialComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpatialComponent.cc; sourceTree = "<group>"; };
 		F6B1DA2016BFE2E8006BBC69 /* LightComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightComponent.h; sourceTree = "<group>"; };
@@ -309,8 +309,6 @@
 				F6AF410C16BB1B8D00F85BC0 /* Camera.cc */,
 				F644CED616C28AB0007B35C5 /* Model.h */,
 				F644CED716C28ABF007B35C5 /* Model.cc */,
-				F6B1DA1916BFDACE006BBC69 /* RenderEngine.h */,
-				F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -586,6 +584,8 @@
 			isa = PBXGroup;
 			children = (
 				F6B1DA1616BFD63F006BBC69 /* Engine.h */,
+				F6B1DA1916BFDACE006BBC69 /* RenderEngine.h */,
+				F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */,
 			);
 			name = Engines;
 			sourceTree = "<group>";

@@ -16,6 +16,7 @@ RenderEngine::RenderEngine(Program& pt, Program& pl) : _pt{pt}, _pl{pl}, lights{
 {
 }
 
+//TODO not really used anymore since Scene was introduced
 void RenderEngine::registerEntity(Entity& entity)
 {    
     lights.registerEntity(entity);
@@ -39,7 +40,16 @@ void RenderEngine::addComponent(Entity& entity, const BaseComponent::Type& compo
 {
     lights.addComponent(entity, component_type);
     models.addComponent(entity, component_type);
+    
     //camera
+    if(component_type == CameraComponent::type() || component_type == SpatialComponent::type())
+    {
+        std::unique_ptr<Camera> cameraNode = Camera::fromEntity(entity);
+        if(cameraNode && _camera == nullptr)
+        {
+            _camera = std::move(cameraNode);
+        }
+    }
 }
 
 void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, const Model& model)

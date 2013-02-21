@@ -2,6 +2,8 @@
 
 #include "Entity.h"
 
+#include "Engine.h"
+
 #include <map>
 #include <list>
 #include <memory>
@@ -12,9 +14,9 @@ namespace Ymir
     {
         //TODO maybe make this a map, so we can map to entity names.
         std::list<std::unique_ptr<Entity>> entities;
-        //engineManager& engines;
+        Engine& engine; //TODO later replace with some kind of engine manager
     public:
-        //Scene(EngineManager& manager);
+        Scene(Engine& engine);
         Entity& assign(std::unique_ptr<Entity> entity);
         Entity& assign();
         

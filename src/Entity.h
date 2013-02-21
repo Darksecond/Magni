@@ -1,20 +1,23 @@
 #pragma once
 
+#include "Component.h"
+#include "Behavior.h"
+
+#include "Engine.h"
+
 #include <map>
 #include <vector>
 #include <memory>
 
-#include "Component.h"
-#include "Behavior.h"
-
 namespace Ymir
-{
+{    
     class Entity
     {
         std::map<BaseComponent::Type, std::shared_ptr<BaseComponent>> components;
         std::vector<std::unique_ptr<Behavior>> behaviors;
+        Engine& engine;
     public:
-        Entity();
+        Entity(Engine& e);
         
         template<typename T, typename ... Args>
         std::shared_ptr<T> assign(Args && ... args);
@@ -22,7 +25,7 @@ namespace Ymir
         template<typename T>
         std::shared_ptr<T> assign(std::shared_ptr<T> component);
 
-        //be sure that T has Component/HeavyComponent as an interface
+        //be sure that T has Component as an interface
         template<typename T>
         std::shared_ptr<T> component() const;
         
@@ -60,28 +63,26 @@ namespace Ymir
     template<typename T>
     std::shared_ptr<T> Entity::component() const
     {
-            auto c = components.find(T::type());
-            if(c == components.end())
-                return nullptr;
-            else
-                return std::static_pointer_cast<T>(c->second);
+        auto c = components.find(T::type());
+        if(c == components.end())
+            return nullptr;
+        else
+            return std::static_pointer_cast<T>(c->second);
     }
 
     template<typename T>
     std::shared_ptr<T> Entity::assign(std::shared_ptr<T> component)
     {
-            components.insert({component->type(), component});
-            return component;
-
+        components.insert({component->type(), component});
+        engine.addComponent(*this, component->type());
+        return component;
     }
 
     template<typename T, typename ... Args>
     std::shared_ptr<T> Entity::assign(Args && ... args)
     {
 
-            std::shared_ptr<T> component = std::make_shared<T>(args ...);
-            components.insert({T::type(), component});
-            return component;
-
+        std::shared_ptr<T> component = std::make_shared<T>(args ...);
+        return assign(component);
     }
 };
