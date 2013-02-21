@@ -23,6 +23,7 @@
 #include "LightComponent.h"
 #include "SpatialComponent.h"
 #include "RenderEngine.h"
+#include "BehaviorEngine.h"
 #include "CameraComponent.h"
 #include "ModelComponent.h"
 
@@ -120,6 +121,7 @@ int main(int argc, char* argv[])
     //engine creation
     EngineManager engines;
     engines.assign<RenderEngine>(*test, *test2);
+    engines.assign<BehaviorEngine>();
     
     Scene scene{engines};
     
@@ -161,10 +163,7 @@ int main(int argc, char* argv[])
         showFPS(); //in titlebar
         
         engines.update(-1, delta);
-        
-        scene.update(delta);
         engines.update(0, delta);
-        
         engines.update(1, delta);
         
         GLenum error = glGetError();

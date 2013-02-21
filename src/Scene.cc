@@ -27,11 +27,3 @@ Entity& Scene::assign()
     std::unique_ptr<Entity> entity{new Entity{engines}};
     return assign(std::move(entity));
 }
-
-void Scene::update(double delta)
-{
-    for(auto& entity : entities)
-    {
-        entity->update(delta);
-    }
-}

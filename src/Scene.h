@@ -19,8 +19,6 @@ namespace Ymir
         Scene(EngineManager& engines);
         ~Scene();
         Entity& assign(std::unique_ptr<Entity> entity);
-        Entity& assign();
-        
-        void update(double delta);
+        Entity& assign();        
     };
 };

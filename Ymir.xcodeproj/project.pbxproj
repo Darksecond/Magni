@@ -78,6 +78,7 @@
 		F6B7B83216BDD38E003D3F9F /* test2.vert in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B82E16BDD37A003D3F9F /* test2.vert */; };
 		F6B7B83316BDD390003D3F9F /* test2.frag in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B83016BDD380003D3F9F /* test2.frag */; };
 		F6C028F616C6A4CE00C7F91D /* DirectoryManifest.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */; };
+		F6CC523816D68D8300C58612 /* BehaviorEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CC523616D68D8200C58612 /* BehaviorEngine.cc */; };
 		F6D9138416BC0226000C0632 /* Mesh.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6D9138316BC0226000C0632 /* Mesh.cc */; };
 		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
 		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
@@ -231,6 +232,8 @@
 		F6B7B83016BDD380003D3F9F /* test2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test2.frag; sourceTree = "<group>"; };
 		F6C028F416C6A3FC00C7F91D /* DirectoryManifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryManifest.h; sourceTree = "<group>"; };
 		F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DirectoryManifest.cc; sourceTree = "<group>"; };
+		F6CC523616D68D8200C58612 /* BehaviorEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BehaviorEngine.cc; sourceTree = "<group>"; };
+		F6CC523716D68D8300C58612 /* BehaviorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BehaviorEngine.h; sourceTree = "<group>"; };
 		F6D9138216BC0222000C0632 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
 		F6D9138316BC0226000C0632 /* Mesh.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cc; sourceTree = "<group>"; };
 		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
@@ -591,6 +594,8 @@
 				F6B1DA1616BFD63F006BBC69 /* Engine.h */,
 				F6B1DA1916BFDACE006BBC69 /* RenderEngine.h */,
 				F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */,
+				F6CC523716D68D8300C58612 /* BehaviorEngine.h */,
+				F6CC523616D68D8200C58612 /* BehaviorEngine.cc */,
 			);
 			name = Engines;
 			sourceTree = "<group>";
@@ -805,6 +810,7 @@
 				F68279B016D415AE00BD1BAF /* WSADMoveBehavior.cc in Sources */,
 				F6B1B55016D63ED90034DACC /* Scene.cc in Sources */,
 				F6B1B55616D652420034DACC /* EngineManager.cc in Sources */,
+				F6CC523816D68D8300C58612 /* BehaviorEngine.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
