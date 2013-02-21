@@ -17,6 +17,7 @@
 #include "Mesh.h"
 #include "Light.h"
 
+#include "Scene.h"
 #include "Entity.h"
 #include "LightComponent.h"
 #include "SpatialComponent.h"
@@ -116,8 +117,9 @@ int main(int argc, char* argv[])
     std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
     
     RenderEngine engine{*test, *test2};
+    Scene scene;
     
-    Entity camera;
+    Entity& camera = scene.assign();
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
     camera.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 5.0});
     camera.assignBehavior(std::unique_ptr<Behavior>{new FPSCameraBehavior});
@@ -125,31 +127,30 @@ int main(int argc, char* argv[])
     engine.registerEntity(camera);
     
     //light one (spot)
-    Entity light_one{};
+    Entity& light_one = scene.assign();
     light_one.assign<LightComponent>(glm::vec3{1.0, 1.0, 1.0}, glm::vec3{0.0, 0.15, 0.0});
     light_one.assign<SpatialComponent>(glm::vec3{7.0, 0.0, 0.0});
     engine.registerEntity(light_one);
     
     //light two (directional)
-    Entity light_two;
+    Entity& light_two = scene.assign();
     auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.5, 0.5, 0.5});
     light_two_lightc->lightType = LightComponent::LightType::DIRECTIONAL;
     auto light_two_spatialc = light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
     engine.registerEntity(light_two);
     
     //model one (box)
-    Entity model_one;
+    Entity& model_one = scene.assign();
     model_one.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
     model_one.assign<ModelComponent>(m, t);
     engine.registerEntity(model_one);
     
-    Entity model_two;
+    Entity& model_two = scene.assign();
     model_two.assign<SpatialComponent>(glm::vec3{5.0, 0.0, 0.0});
     model_two.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
-    engine.registerEntity(model_two);
-    
     model_two.assign<ModelComponent>(m, t);
-    engine.addComponent(model_two, ModelComponent::type());
+    engine.registerEntity(model_two);
+    //engine.addComponent(model_two, ModelComponent::type());
     
     //engine.unregisterEntity(light_two);
     
@@ -162,13 +163,9 @@ int main(int argc, char* argv[])
         
         showFPS(); //in titlebar
         
-        //TODO pleeeaaaase make an entity manager
+        //TODO pleeeaaaase make an entity manager (scene)
         //behavior update
-        model_one.update(delta);
-        model_two.update(delta);
-        light_one.update(delta);
-        light_two.update(delta);
-        camera.update(delta);
+        scene.update(delta);
         
         engine.execute();
         

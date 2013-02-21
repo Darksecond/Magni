@@ -100,9 +100,18 @@ void render(Program& pt, Program& pl, const Camera& c,
     glEnable(GL_BLEND);
     glDepthFunc(GL_LEQUAL);
     
+    bool first = true;
     for(auto& light : lights)
     {
-        glBlendFunc(GL_ONE,GL_ONE);
+        if(first)
+        {
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            first = false;
+        }
+        else
+        {
+            glBlendFunc(GL_SRC_ALPHA,GL_ONE);
+        }
         renderLight(pl, c, *model.model.mesh, *light, model);
     }
     

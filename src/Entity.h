@@ -12,7 +12,6 @@ namespace Ymir
     class Entity
     {
         std::map<BaseComponent::Type, std::shared_ptr<BaseComponent>> components;
-        std::map<BaseComponent::Type, std::shared_ptr<BaseComponent>> heavyComponents;
         std::vector<std::unique_ptr<Behavior>> behaviors;
     public:
         Entity();
