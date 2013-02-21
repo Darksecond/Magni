@@ -28,12 +28,12 @@ void EngineManager::addComponent(Entity& entity, const BaseComponent::Type& comp
     }
 }
 
-void EngineManager::update(double delta)
+void EngineManager::update(int pass, double delta)
 {
     //TODO introduce passes
     for(auto& engine : engines)
     {
-        engine->update(delta);
+        engine->update(pass, delta);
     }
 }
 

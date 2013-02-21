@@ -5,8 +5,8 @@ using namespace Ymir;
 std::unique_ptr<Light> Light::fromEntity(const Entity& entity)
 {
     //if entity has both Light and Spatial, make a Light
-    std::shared_ptr<LightComponent> lightComponent = entity.component<LightComponent>();
-    std::shared_ptr<SpatialComponent> spatialComponent = entity.component<SpatialComponent>();
+    LightComponent* lightComponent = entity.component<LightComponent>();
+    SpatialComponent* spatialComponent = entity.component<SpatialComponent>();
     if(lightComponent != nullptr && spatialComponent != nullptr)
     {
         return std::unique_ptr<Light>{new Light{*lightComponent, *spatialComponent}};

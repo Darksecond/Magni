@@ -17,8 +17,8 @@ static const float MaxVerticalAngle = 85.0f; //must be less than 90 to avoid gim
 std::unique_ptr<Camera> Camera::fromEntity(const Entity& entity)
 {
     //if entity has both Light and Spatial, make a Light
-    std::shared_ptr<CameraComponent> cameraComponent = entity.component<CameraComponent>();
-    std::shared_ptr<SpatialComponent> spatialComponent = entity.component<SpatialComponent>();
+    CameraComponent* cameraComponent = entity.component<CameraComponent>();
+    SpatialComponent* spatialComponent = entity.component<SpatialComponent>();
     if(cameraComponent != nullptr && spatialComponent != nullptr)
     {
         return std::unique_ptr<Camera>{new Camera{*cameraComponent, *spatialComponent}};

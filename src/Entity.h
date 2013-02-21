@@ -20,14 +20,14 @@ namespace Ymir
         Entity(EngineManager& manager);
         
         template<typename T, typename ... Args>
-        std::shared_ptr<T> assign(Args && ... args);
+        T& assign(Args && ... args);
         
         template<typename T>
-        std::shared_ptr<T> assign(std::shared_ptr<T> component);
+        T& assign(std::shared_ptr<T> component);
 
         //be sure that T has Component as an interface
         template<typename T>
-        std::shared_ptr<T> component() const;
+        T* component() const;
         
         //TODO move to CC file
         void update(double delta)
@@ -61,25 +61,25 @@ namespace Ymir
 
     //INLINED & TEMPLATE METHODS
     template<typename T>
-    std::shared_ptr<T> Entity::component() const
+    T* Entity::component() const
     {
         auto c = components.find(T::type());
         if(c == components.end())
             return nullptr;
         else
-            return std::static_pointer_cast<T>(c->second);
+            return std::static_pointer_cast<T>(c->second).get();
     }
 
     template<typename T>
-    std::shared_ptr<T> Entity::assign(std::shared_ptr<T> component)
+    T& Entity::assign(std::shared_ptr<T> component)
     {
         components.insert({component->type(), component});
         engines.addComponent(*this, component->type());
-        return component;
+        return *component;
     }
 
     template<typename T, typename ... Args>
-    std::shared_ptr<T> Entity::assign(Args && ... args)
+    T& Entity::assign(Args && ... args)
     {
 
         std::shared_ptr<T> component = std::make_shared<T>(args ...);

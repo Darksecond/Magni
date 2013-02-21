@@ -133,15 +133,18 @@ void render(Program& pt, Program& pl, const Camera& c,
     glDisable(GL_BLEND);
 }
 
-void RenderEngine::update(double delta)
+void RenderEngine::update(int pass, double delta)
 {
-    glClearColor(0.0, 0.0, 0.0, 1); // black
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    for(auto& model : models)
+    if(pass == 1)
     {
-        render(_pt, _pl, *_camera, lights, *model);
+        glClearColor(0.0, 0.0, 0.0, 1); // black
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        for(auto& model : models)
+        {
+            render(_pt, _pl, *_camera, lights, *model);
+        }
+        
+        glfwSwapBuffers();
     }
-    
-    glfwSwapBuffers();
 }

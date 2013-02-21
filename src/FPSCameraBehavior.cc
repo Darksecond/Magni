@@ -12,7 +12,6 @@ static const float MaxVerticalAngle = 85.0f; //must be less than 90 to avoid gim
 
 void FPSCameraBehavior::update(double delta)
 {
-    auto spatial = entity->component<SpatialComponent>();
     const float mouseSensitivity = 0.1;
     int mouseX, mouseY;
     glfwGetMousePos(&mouseX, &mouseY);

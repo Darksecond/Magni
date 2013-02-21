@@ -138,7 +138,7 @@ int main(int argc, char* argv[])
     Entity& light_two = scene.assign();
     light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
     auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.5, 0.5, 0.5});
-    light_two_lightc->lightType = LightComponent::LightType::DIRECTIONAL;
+    light_two_lightc.lightType = LightComponent::LightType::DIRECTIONAL;
     
     //model one (box)
     Entity& model_one = scene.assign();
@@ -160,11 +160,12 @@ int main(int argc, char* argv[])
         
         showFPS(); //in titlebar
         
-        //behaviors
-        scene.update(delta);
+        engines.update(-1, delta);
         
-        //engines
-        engines.update(delta);
+        scene.update(delta);
+        engines.update(0, delta);
+        
+        engines.update(1, delta);
         
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)

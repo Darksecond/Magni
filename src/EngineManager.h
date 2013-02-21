@@ -17,7 +17,7 @@ namespace Ymir
         void registerEntity(Entity& entity);
         void unregisterEntity(Entity& entity);
         void addComponent(Entity& entity, const BaseComponent::Type& component_type);
-        void update(double delta);
+        void update(int pass, double delta);
         
         void assign(std::unique_ptr<Engine> engine);
         
