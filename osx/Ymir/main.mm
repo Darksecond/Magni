@@ -119,9 +119,9 @@ int main(int argc, char* argv[])
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     
     std::ifstream ifs{ResourceDirectory() + "/monkey.obj", std::ifstream::in};
-    ObjGeometry monkey{ifs};
-    std::shared_ptr<Mesh> m = std::make_shared<Mesh>(monkey);
-    //std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
+    ObjGeometry monkey_geom{ifs};
+    std::shared_ptr<Mesh> monkey = std::make_shared<Mesh>(monkey_geom);
+    std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
     
     //engine creation
     EngineManager engines;
@@ -150,7 +150,7 @@ int main(int argc, char* argv[])
     //model one (box)
     Entity& model_one = scene.assign();
     model_one.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
-    model_one.assign<ModelComponent>(m, t);
+    model_one.assign<ModelComponent>(monkey, t);
     
     //model two (box)
     Entity& model_two = scene.assign();
