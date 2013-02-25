@@ -16,6 +16,8 @@
 		F645949616B6B11400B118C2 /* test.frag in Resources */ = {isa = PBXBuildFile; fileRef = F645949516B6B11400B118C2 /* test.frag */; };
 		F64C777F16CA7C3200371345 /* FPSCameraBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */; };
 		F64EC94716BEA68C00063843 /* Light.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64EC94616BEA68C00063843 /* Light.cc */; };
+		F653613B16DBABA8007B5D31 /* track.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F653613916DBABA8007B5D31 /* track.jpg */; };
+		F653613F16DBADC5007B5D31 /* track.obj in Resources */ = {isa = PBXBuildFile; fileRef = F653613E16DBADC5007B5D31 /* track.obj */; };
 		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
 		F67F54FF16DB7C3B00478B1C /* car.obj in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FC16DB7C3B00478B1C /* car.obj */; };
 		F67F550016DB7C3B00478B1C /* carTire.obj in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FD16DB7C3B00478B1C /* carTire.obj */; };
@@ -152,6 +154,8 @@
 		F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FPSCameraBehavior.cc; sourceTree = "<group>"; };
 		F64EC94516BEA68600063843 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
 		F64EC94616BEA68C00063843 /* Light.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cc; sourceTree = "<group>"; };
+		F653613916DBABA8007B5D31 /* track.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = track.jpg; sourceTree = "<group>"; };
+		F653613E16DBADC5007B5D31 /* track.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = track.obj; sourceTree = "<group>"; };
 		F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramResourceLoader.h; sourceTree = "<group>"; };
 		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
 		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
@@ -399,6 +403,8 @@
 			isa = PBXGroup;
 			children = (
 				F67F54FC16DB7C3B00478B1C /* car.obj */,
+				F653613E16DBADC5007B5D31 /* track.obj */,
+				F653613916DBABA8007B5D31 /* track.jpg */,
 				F67F54FD16DB7C3B00478B1C /* carTire.obj */,
 				F67F54FE16DB7C3B00478B1C /* truck_color_cleantest.jpg */,
 				F687A41716B4B63300878140 /* Ymir-Info.plist */,
@@ -773,6 +779,8 @@
 				F67F54FF16DB7C3B00478B1C /* car.obj in Resources */,
 				F67F550016DB7C3B00478B1C /* carTire.obj in Resources */,
 				F67F550116DB7C3B00478B1C /* truck_color_cleantest.jpg in Resources */,
+				F653613B16DBABA8007B5D31 /* track.jpg in Resources */,
+				F653613F16DBADC5007B5D31 /* track.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
