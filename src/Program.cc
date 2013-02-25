@@ -14,6 +14,9 @@ Program::Program(const std::vector<Shader>& shaders)
     for(auto& shader : shaders)
         glAttachShader(_object, shader.object());
     
+    //TODO explicit binding to index
+    //glBindAttribLocation(_object, 7, "vert");
+    
     glLinkProgram(_object);
     
     for(auto& shader : shaders)

@@ -82,6 +82,8 @@ void Mesh::draw(Program& gProgram) const
 {
     bind();
     
+    //TODO use explicit bound indexes
+    
     // connect the xyz to the "vert" attribute of the vertex shader
     glEnableVertexAttribArray(gProgram.attrib("vert"));
     glVertexAttribPointer(gProgram.attrib("vert"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
