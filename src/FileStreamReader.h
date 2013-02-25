@@ -9,7 +9,7 @@ namespace Ymir
 {
     class FileStreamReader : public StreamReader
     {
-        std::ifstream stream;
+        std::ifstream _stream;
     public:
         FileStreamReader(const std::string& filename,
                          const std::ios_base::openmode mode = std::ios_base::in | std::ios_base::binary);
@@ -17,5 +17,6 @@ namespace Ymir
         void skip(const size_t amount);
         bool eof() const;
         size_t size();
+        virtual std::istream& stream();
     };
 };

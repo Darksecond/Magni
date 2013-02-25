@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <string>
+#include <istream>
 
 namespace Ymir
 {
@@ -33,5 +34,7 @@ namespace Ymir
         virtual size_t size() = 0;
         
         virtual std::string string();
+        
+        virtual std::istream& stream() = 0;
     };
 };

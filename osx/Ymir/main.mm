@@ -26,6 +26,7 @@
 #include "BehaviorEngine.h"
 #include "CameraComponent.h"
 #include "ModelComponent.h"
+#include "ObjGeometry.h"
 
 #include "ResourceManager.h"
 #include "DirectoryManifest.h"
@@ -116,7 +117,11 @@ int main(int argc, char* argv[])
     std::shared_ptr<Program> test = programManager.resource("test");
     std::shared_ptr<Program> test2 = programManager.resource("test2");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
-    std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
+    
+    std::ifstream ifs{ResourceDirectory() + "/monkey.obj", std::ifstream::in};
+    ObjGeometry monkey{ifs};
+    std::shared_ptr<Mesh> m = std::make_shared<Mesh>(monkey);
+    //std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
     
     //engine creation
     EngineManager engines;

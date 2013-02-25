@@ -79,6 +79,8 @@
 		F6B7B83316BDD390003D3F9F /* test2.frag in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B83016BDD380003D3F9F /* test2.frag */; };
 		F6C028F616C6A4CE00C7F91D /* DirectoryManifest.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */; };
 		F6CC523816D68D8300C58612 /* BehaviorEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CC523616D68D8200C58612 /* BehaviorEngine.cc */; };
+		F6CC523B16D6915600C58612 /* ObjGeometry.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CC523916D6915500C58612 /* ObjGeometry.cc */; };
+		F6CC523D16D695F000C58612 /* monkey.obj in Resources */ = {isa = PBXBuildFile; fileRef = F6CC523C16D695F000C58612 /* monkey.obj */; };
 		F6D9138416BC0226000C0632 /* Mesh.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6D9138316BC0226000C0632 /* Mesh.cc */; };
 		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
 		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
@@ -234,6 +236,9 @@
 		F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DirectoryManifest.cc; sourceTree = "<group>"; };
 		F6CC523616D68D8200C58612 /* BehaviorEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BehaviorEngine.cc; sourceTree = "<group>"; };
 		F6CC523716D68D8300C58612 /* BehaviorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BehaviorEngine.h; sourceTree = "<group>"; };
+		F6CC523916D6915500C58612 /* ObjGeometry.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjGeometry.cc; sourceTree = "<group>"; };
+		F6CC523A16D6915600C58612 /* ObjGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjGeometry.h; sourceTree = "<group>"; };
+		F6CC523C16D695F000C58612 /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monkey.obj; sourceTree = "<group>"; };
 		F6D9138216BC0222000C0632 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
 		F6D9138316BC0226000C0632 /* Mesh.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cc; sourceTree = "<group>"; };
 		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
@@ -392,6 +397,7 @@
 				F627D39D16B97CA7000B06AF /* wooden-crate.jpg */,
 				F6B7B82E16BDD37A003D3F9F /* test2.vert */,
 				F6B7B83016BDD380003D3F9F /* test2.frag */,
+				F6CC523C16D695F000C58612 /* monkey.obj */,
 				F645948F16B6AD9700B118C2 /* test.vert */,
 				F645949516B6B11400B118C2 /* test.frag */,
 			);
@@ -550,6 +556,8 @@
 				F6D9138316BC0226000C0632 /* Mesh.cc */,
 				F68279B116D41D7400BD1BAF /* Geometry.h */,
 				F68279B216D41E2A00BD1BAF /* CubeGeometry.h */,
+				F6CC523A16D6915600C58612 /* ObjGeometry.h */,
+				F6CC523916D6915500C58612 /* ObjGeometry.cc */,
 				F6B1B54F16D63ED90034DACC /* Scene.h */,
 				F6B1B54E16D63ED90034DACC /* Scene.cc */,
 				F6B1B55516D652420034DACC /* EngineManager.h */,
@@ -752,6 +760,7 @@
 				F6B7B83316BDD390003D3F9F /* test2.frag in Resources */,
 				F6FB2A1716B70C3B00E6013E /* hazard.png in Resources */,
 				F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */,
+				F6CC523D16D695F000C58612 /* monkey.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +820,7 @@
 				F6B1B55016D63ED90034DACC /* Scene.cc in Sources */,
 				F6B1B55616D652420034DACC /* EngineManager.cc in Sources */,
 				F6CC523816D68D8300C58612 /* BehaviorEngine.cc in Sources */,
+				F6CC523B16D6915600C58612 /* ObjGeometry.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
