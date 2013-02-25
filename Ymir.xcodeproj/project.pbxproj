@@ -17,6 +17,9 @@
 		F64C777F16CA7C3200371345 /* FPSCameraBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */; };
 		F64EC94716BEA68C00063843 /* Light.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64EC94616BEA68C00063843 /* Light.cc */; };
 		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
+		F67F54FF16DB7C3B00478B1C /* car.obj in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FC16DB7C3B00478B1C /* car.obj */; };
+		F67F550016DB7C3B00478B1C /* carTire.obj in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FD16DB7C3B00478B1C /* carTire.obj */; };
+		F67F550116DB7C3B00478B1C /* truck_color_cleantest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FE16DB7C3B00478B1C /* truck_color_cleantest.jpg */; };
 		F68279B016D415AE00BD1BAF /* WSADMoveBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */; };
 		F687A41016B4B63300878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
 		F687A42D16B4B68700878140 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = F687A42C16B4B68700878140 /* main.mm */; };
@@ -152,6 +155,9 @@
 		F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramResourceLoader.h; sourceTree = "<group>"; };
 		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
 		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
+		F67F54FC16DB7C3B00478B1C /* car.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = car.obj; sourceTree = "<group>"; };
+		F67F54FD16DB7C3B00478B1C /* carTire.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = carTire.obj; sourceTree = "<group>"; };
+		F67F54FE16DB7C3B00478B1C /* truck_color_cleantest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = truck_color_cleantest.jpg; sourceTree = "<group>"; };
 		F681BF3C16C2758A00545107 /* ModelComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelComponent.h; sourceTree = "<group>"; };
 		F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WSADMoveBehavior.cc; sourceTree = "<group>"; };
 		F68279AF16D415AE00BD1BAF /* WSADMoveBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSADMoveBehavior.h; sourceTree = "<group>"; };
@@ -392,6 +398,9 @@
 		F687A41616B4B63300878140 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F67F54FC16DB7C3B00478B1C /* car.obj */,
+				F67F54FD16DB7C3B00478B1C /* carTire.obj */,
+				F67F54FE16DB7C3B00478B1C /* truck_color_cleantest.jpg */,
 				F687A41716B4B63300878140 /* Ymir-Info.plist */,
 				F6FB2A1616B70C3B00E6013E /* hazard.png */,
 				F627D39D16B97CA7000B06AF /* wooden-crate.jpg */,
@@ -761,6 +770,9 @@
 				F6FB2A1716B70C3B00E6013E /* hazard.png in Resources */,
 				F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */,
 				F6CC523D16D695F000C58612 /* monkey.obj in Resources */,
+				F67F54FF16DB7C3B00478B1C /* car.obj in Resources */,
+				F67F550016DB7C3B00478B1C /* carTire.obj in Resources */,
+				F67F550116DB7C3B00478B1C /* truck_color_cleantest.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

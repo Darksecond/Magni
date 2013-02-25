@@ -117,9 +117,16 @@ int main(int argc, char* argv[])
     std::shared_ptr<Program> test = programManager.resource("test");
     std::shared_ptr<Program> test2 = programManager.resource("test2");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
+    std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");
+
     
-    std::ifstream ifs{ResourceDirectory() + "/monkey.obj", std::ifstream::in};
+    std::ifstream ifs{ResourceDirectory() + "/car.obj", std::ifstream::in};
     ObjGeometry monkey_geom{ifs};
+    
+    std::ifstream ifs2{ResourceDirectory() + "/carTire.obj", std::ifstream::in};
+    ObjGeometry tire_geom{ifs2};
+    std::shared_ptr<Mesh> tire = std::make_shared<Mesh>(tire_geom);
+    
     std::shared_ptr<Mesh> monkey = std::make_shared<Mesh>(monkey_geom);
     std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
     
@@ -150,13 +157,21 @@ int main(int argc, char* argv[])
     //model one (box)
     Entity& model_one = scene.assign();
     model_one.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
-    model_one.assign<ModelComponent>(monkey, t);
+    model_one.assign<ModelComponent>(monkey, car_tex);
     
     //model two (box)
     Entity& model_two = scene.assign();
-    model_two.assign<SpatialComponent>(glm::vec3{5.0, 0.0, 0.0});
+    auto& s = model_two.assign<SpatialComponent>(glm::vec3{0.15, -0.06, 0.27});
+    s.scale = glm::vec3{3};
     model_two.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
-    model_two.assign<ModelComponent>(m, t);
+    model_two.assign<ModelComponent>(tire, car_tex);
+    
+    //model two (box)
+    Entity& model_three = scene.assign();
+    auto& s2 = model_three.assign<SpatialComponent>(glm::vec3{0.15, -0.06, -0.33});
+    s2.scale = glm::vec3{3};
+    model_three.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
+    model_three.assign<ModelComponent>(tire, car_tex);
     
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))

@@ -26,7 +26,7 @@ void Model::attach(Program &p) const
     p.setUniform("material.diffuse", glm::vec3(0.3, 0.3, 0.3));
     p.setUniform("material.ambient", glm::vec3(0.1, 0.1, 0.1));
     p.setUniform("material.specular", glm::vec3(1.0, 1.0, 1.0));
-    p.setUniform("material.emissive", glm::vec3(0.05, 0.05, 0.05));
+    p.setUniform("material.emissive", glm::vec3(0.2, 0.2, 0.2));
     p.setUniform("material.shininess", 90.0f);
 }
 
