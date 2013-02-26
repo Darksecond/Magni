@@ -41,7 +41,7 @@ glm::mat4 SpatialComponent::matrix() const
 glm::mat4 SpatialComponent::orientation() const
 {
     if(parent == nullptr)
-        return glm::mat4_cast(direction);
+        return glm::inverse(glm::mat4_cast(direction));
     else
         return glm::mat4_cast(parent->direction * direction);
 }
@@ -56,9 +56,8 @@ glm::vec3 SpatialComponent::globalPosition() const
 
 glm::vec3 SpatialComponent::forward() const
 {
-    return glm::cross(up(), right());
-    //glm::vec4 forward = glm::inverse(orientation()) * glm::vec4(0, 0, -1, 1);
-    //return glm::vec3(forward);
+    glm::vec4 forward = glm::inverse(orientation()) * glm::vec4(0, 0, -1, 1);
+    return glm::vec3(forward);
 }
 
 glm::vec3 SpatialComponent::right() const
