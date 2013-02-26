@@ -26,7 +26,5 @@ namespace Ymir
         glm::vec3 up() const;
         
         void setAspectRatio(const float aspectratio);
-        void setPosition(const glm::vec3& pos);
-        void offsetPosition(const glm::vec3& offset);        
     };
 };

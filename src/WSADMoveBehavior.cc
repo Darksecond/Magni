@@ -21,9 +21,11 @@ void WSADMoveBehavior::update(double delta)
         spatial->position += (secondsElapsed * moveSpeed * spatial->forward());
     }
     if(glfwGetKey('A')){
-        spatial->position += (secondsElapsed * moveSpeed * -spatial->right());
+        //spatial->position += (secondsElapsed * moveSpeed * -spatial->right());
+        spatial->direction = glm::rotate(spatial->direction, secondsElapsed * 45, glm::vec3{0,1,0});
     } else if(glfwGetKey('D')){
-        spatial->position += (secondsElapsed * moveSpeed * spatial->right());
+        //spatial->position += (secondsElapsed * moveSpeed * spatial->right());
+        spatial->direction = glm::rotate(spatial->direction, -secondsElapsed * 45, glm::vec3{0,1,0});
     }
     if(glfwGetKey('Z')){
         spatial->position += (secondsElapsed * moveSpeed * -glm::vec3(0,1,0));

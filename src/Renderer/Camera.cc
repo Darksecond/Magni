@@ -37,8 +37,11 @@ glm::mat4 Camera::orientation() const
 
 glm::mat4 Camera::viewMatrix() const
 {
-    glm::mat4 camera = orientation();
-    camera = glm::translate(camera, -_spatial.position);
+    glm::mat4 camera;
+    camera = glm::inverse(_spatial.orientation());
+    ////camera = glm::translate(camera, -_spatial.position);
+    //camera = glm::translate(camera, _spatial.parent->position + _spatial.position);
+    camera = glm::translate(camera, _spatial.globalPosition());
     return camera;
 }
 
@@ -63,9 +66,4 @@ glm::vec3 Camera::right() const {
 glm::vec3 Camera::up() const {
     glm::vec4 up = glm::inverse(orientation()) * glm::vec4(0,1,0,1);
     return glm::vec3(up);
-}
-
-void Camera::offsetPosition(const glm::vec3& offset)
-{
-    _spatial.position += offset;
 }

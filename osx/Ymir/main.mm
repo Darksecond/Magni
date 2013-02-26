@@ -142,39 +142,46 @@ int main(int argc, char* argv[])
     
     Scene scene{engines};
     
+    //car body
+    Entity& model_one = scene.assign();
+    model_one.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
+    model_one.assign<ModelComponent>(monkey, car_tex);
+    model_one.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
+    
     Entity& camera = scene.assign();
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
-    camera.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 5.0});
-    camera.assignBehavior(std::unique_ptr<Behavior>{new FPSCameraBehavior});
-    camera.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
+    auto& c_s = camera.assign<SpatialComponent>(glm::vec3{2.0, -1.0, 3.0});
+    glm::vec3 euler{-10,200,0};
+    c_s.setDirection(euler);
+    c_s.parent = model_one.component<SpatialComponent>();
+    //camera.assignBehavior(std::unique_ptr<Behavior>{new FPSCameraBehavior});
+    //camera.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
     
     //light one (spot)
     Entity& light_one = scene.assign();
-    light_one.assign<LightComponent>(glm::vec3{1.0, 1.0, 1.0}, glm::vec3{0.0, 0.15, 0.0});
+    light_one.assign<LightComponent>(glm::vec3{1.0, 1.0, 1.0}, glm::vec3{0.0, 0.25, 0.05});
     light_one.assign<SpatialComponent>(glm::vec3{7.0, 0.0, 0.0});
     
     //light two (directional)
     Entity& light_two = scene.assign();
-    light_two.assign<SpatialComponent>(glm::vec3{0.0, 3.0, 0.0});
+    light_two.assign<SpatialComponent>(glm::vec3{0.0, 90.0, 0.0});
     auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.5, 0.5, 0.5});
     light_two_lightc.lightType = LightComponent::LightType::DIRECTIONAL;
+
     
-    //model one (box)
-    Entity& model_one = scene.assign();
-    model_one.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
-    model_one.assign<ModelComponent>(monkey, car_tex);
-    
-    //model two (box)
+    //wheel
     Entity& model_two = scene.assign();
     auto& s = model_two.assign<SpatialComponent>(glm::vec3{0.15, -0.06, 0.27});
     s.scale = glm::vec3{3};
+    s.parent = model_one.component<SpatialComponent>();
     model_two.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
     model_two.assign<ModelComponent>(tire, car_tex);
     
-    //model three (box)
+    //wheel
     Entity& model_three = scene.assign();
     auto& s2 = model_three.assign<SpatialComponent>(glm::vec3{0.15, -0.06, -0.33});
     s2.scale = glm::vec3{3};
+    s2.parent = model_one.component<SpatialComponent>();
     model_three.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
     model_three.assign<ModelComponent>(tire, car_tex);
     
