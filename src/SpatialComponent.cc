@@ -5,7 +5,7 @@
 
 using namespace Ymir;
 
-SpatialComponent::SpatialComponent(glm::vec3 pos) : position{pos}, direction{}, scale{1.0, 1.0, 1.0}, parent{nullptr}
+SpatialComponent::SpatialComponent(glm::vec3 pos) : position{pos}, direction{}, scale{1.0, 1.0, 1.0}
 {
 }
 

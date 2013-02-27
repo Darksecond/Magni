@@ -14,16 +14,17 @@ Scene::~Scene()
     }
 }
 
-Entity& Scene::assign(std::unique_ptr<Entity> entity)
+Entity& Scene::assign(std::unique_ptr<Entity> entity, Entity* parent)
 {
     Entity& retval = *entity;
+    retval.parent = parent;
     entities.push_back(std::move(entity));
     engines.registerEntity(retval);
     return retval;
 }
 
-Entity& Scene::assign()
+Entity& Scene::assign(Entity* parent)
 {
     std::unique_ptr<Entity> entity{new Entity{engines}};
-    return assign(std::move(entity));
+    return assign(std::move(entity), parent);
 }

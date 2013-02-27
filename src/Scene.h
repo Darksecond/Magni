@@ -18,7 +18,7 @@ namespace Ymir
     public:
         Scene(EngineManager& engines);
         ~Scene();
-        Entity& assign(std::unique_ptr<Entity> entity);
-        Entity& assign();        
+        Entity& assign(std::unique_ptr<Entity> entity, Entity* parent = nullptr);
+        Entity& assign(Entity* parent = nullptr);
     };
 };

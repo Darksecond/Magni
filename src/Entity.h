@@ -17,6 +17,8 @@ namespace Ymir
         std::vector<std::unique_ptr<Behavior>> behaviors;
         EngineManager& engines; //TODO singleton?
     public:
+        Entity* parent;
+
         Entity(EngineManager& manager);
         
         template<typename T, typename ... Args>
@@ -73,6 +75,8 @@ namespace Ymir
     template<typename T>
     T& Entity::assign(std::shared_ptr<T> component)
     {
+        if(parent)
+            component->parent = parent->component<T>();
         components.insert({component->type(), component});
         engines.addComponent(*this, component->type());
         return *component;

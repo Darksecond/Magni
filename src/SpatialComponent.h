@@ -13,9 +13,7 @@ namespace Ymir
         glm::vec3 position;
         glm::vec3 scale;
         glm::quat direction;
-        
-        SpatialComponent* parent;
-        
+                
         SpatialComponent(SpatialComponent&) = delete;
         
         explicit SpatialComponent(glm::vec3 position);
