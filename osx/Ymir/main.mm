@@ -117,8 +117,8 @@ int main(int argc, char* argv[])
     ResourceManager<Mesh> meshManager;
     meshManager.addManifest(manifest);
     
-    std::shared_ptr<Program> test = programManager.resource("texture");
-    std::shared_ptr<Program> test2 = programManager.resource("phong");
+    std::shared_ptr<Program> texture_program = programManager.resource("texture");
+    std::shared_ptr<Program> phong_program = programManager.resource("phong");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");
     std::shared_ptr<Texture> track_tex = textureManager.resource("track.jpg");
@@ -128,7 +128,7 @@ int main(int argc, char* argv[])
     
     //engine creation
     EngineManager engines;
-    engines.assign<RenderEngine>(*test, *test2);
+    engines.assign<RenderEngine>(*texture_program, *phong_program);
     engines.assign<BehaviorEngine>();
     
     Scene scene{engines};
