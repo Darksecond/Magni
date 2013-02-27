@@ -143,12 +143,12 @@ int main(int argc, char* argv[])
     Scene scene{engines};
     
     //car body
-    Entity& model_one = scene.assign();
-    model_one.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
-    model_one.assign<ModelComponent>(monkey, car_tex);
-    model_one.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
+    Entity& car_body = scene.assign();
+    car_body.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
+    car_body.assign<ModelComponent>(monkey, car_tex);
+    car_body.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
     
-    Entity& camera = scene.assign(&model_one);
+    Entity& camera = scene.assign(&car_body);
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
     auto& c_s = camera.assign<SpatialComponent>(glm::vec3{2.0, -1.0, 3.0});
     glm::vec3 euler{-10,200,0};
@@ -166,22 +166,22 @@ int main(int argc, char* argv[])
     light_two.assign<SpatialComponent>(glm::vec3{0.0, 90.0, 0.0});
     auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.5, 0.5, 0.5});
     light_two_lightc.lightType = LightComponent::LightType::DIRECTIONAL;
-
     
-    //wheel
-    Entity& model_two = scene.assign(&model_one);
-    auto& s = model_two.assign<SpatialComponent>(glm::vec3{0.15, -0.06, 0.27});
+    //front right wheel
+    Entity& car_f_r_wheel = scene.assign(&car_body);
+    auto& s = car_f_r_wheel.assign<SpatialComponent>(glm::vec3{0.15, -0.06, 0.27});
     s.scale = glm::vec3{3};
-    model_two.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
-    model_two.assign<ModelComponent>(tire, car_tex);
+    car_f_r_wheel.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
+    car_f_r_wheel.assign<ModelComponent>(tire, car_tex);
     
-    //wheel
-    Entity& model_three = scene.assign(&model_one);
-    auto& s2 = model_three.assign<SpatialComponent>(glm::vec3{0.15, -0.06, -0.33});
+    //back right wheel
+    Entity& car_b_r_wheel = scene.assign(&car_body);
+    auto& s2 = car_b_r_wheel.assign<SpatialComponent>(glm::vec3{0.15, -0.06, -0.33});
     s2.scale = glm::vec3{3};
-    model_three.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
-    model_three.assign<ModelComponent>(tire, car_tex);
+    car_b_r_wheel.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior});
+    car_b_r_wheel.assign<ModelComponent>(tire, car_tex);
     
+    //track
     Entity& track = scene.assign();
     track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     track.assign<ModelComponent>(track_mesh, track_tex);
