@@ -114,26 +114,17 @@ int main(int argc, char* argv[])
     ResourceManager<Program, ProgramResourceLoader> programManager;
     programManager.addManifest(manifest);
     
+    ResourceManager<Mesh> meshManager;
+    meshManager.addManifest(manifest);
+    
     std::shared_ptr<Program> test = programManager.resource("texture");
     std::shared_ptr<Program> test2 = programManager.resource("phong");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");
     std::shared_ptr<Texture> track_tex = textureManager.resource("track.jpg");
-
-    
-    std::ifstream ifs{ResourceDirectory() + "/car.obj", std::ifstream::in};
-    ObjGeometry monkey_geom{ifs};
-    
-    std::ifstream ifs2{ResourceDirectory() + "/carTire.obj", std::ifstream::in};
-    ObjGeometry tire_geom{ifs2};
-    std::shared_ptr<Mesh> tire = std::make_shared<Mesh>(tire_geom);
-    
-    std::ifstream ifs3{ResourceDirectory() + "/track.obj", std::ifstream::in};
-    ObjGeometry track_geom{ifs3};
-    std::shared_ptr<Mesh> track_mesh = std::make_shared<Mesh>(track_geom);
-    
-    std::shared_ptr<Mesh> monkey = std::make_shared<Mesh>(monkey_geom);
-    std::shared_ptr<Mesh> m = std::make_shared<Mesh>(Mesh::cube());
+    std::shared_ptr<Mesh> tire = meshManager.resource("carTire.obj");
+    std::shared_ptr<Mesh> monkey = meshManager.resource("car.obj");
+    std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     
     //engine creation
     EngineManager engines;

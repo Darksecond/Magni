@@ -6,6 +6,10 @@
 #include <GLEW/glew.h>
 #include <vector>
 
+//TODO
+#include "StreamReader.h"
+#include "ObjGeometry.h"
+
 namespace Ymir
 {
     class Mesh
@@ -16,6 +20,12 @@ namespace Ymir
         size_t _numVertices;
         size_t _numIndices;
     public:
+        static Mesh fromStream(StreamReader& stream)
+        {
+            ObjGeometry geom{stream.stream()};
+            return Mesh{geom};
+        }
+        
         static Mesh cube();
         
         Mesh(Geometry& geometry);
