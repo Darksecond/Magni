@@ -29,6 +29,7 @@ namespace Ymir
         
         glm::mat4 orientation() const;
         glm::vec3 globalPosition() const;
+        glm::quat globalDirection() const;
         glm::vec3 forward() const;
         glm::vec3 right() const;
         glm::vec3 up() const;

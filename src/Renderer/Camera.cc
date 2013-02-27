@@ -32,7 +32,8 @@ Camera::Camera(CameraComponent& c, SpatialComponent& s) : _camera{c}, _spatial{s
 
 glm::mat4 Camera::orientation() const
 {
-    return glm::mat4_cast(_spatial.direction);
+    return _spatial.orientation();
+    //return glm::mat4_cast(_spatial.direction);
 }
 
 glm::mat4 Camera::viewMatrix() const

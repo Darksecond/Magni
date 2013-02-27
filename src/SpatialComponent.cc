@@ -28,14 +28,17 @@ void SpatialComponent::setDirection(glm::vec3& euler)
 glm::mat4 SpatialComponent::matrix() const
 {
     glm::mat4 matrix = glm::mat4();
-    matrix = glm::translate(matrix, -position);
-    matrix = matrix * glm::mat4_cast(direction);
+    //matrix = glm::translate(matrix, -position);
+    //matrix = matrix * glm::mat4_cast(direction);
+    matrix = glm::translate(matrix, -globalPosition());
+    matrix = matrix * glm::mat4_cast(globalDirection());
+
     matrix = glm::scale(matrix, scale);
     
-    if(parent == nullptr)
+    //if(parent == nullptr)
         return matrix;
-    else
-        return parent->matrix() * matrix;
+    //else
+        //return parent->matrix() * matrix;
 }
 
 glm::mat4 SpatialComponent::orientation() const
@@ -43,7 +46,7 @@ glm::mat4 SpatialComponent::orientation() const
     if(parent == nullptr)
         return glm::inverse(glm::mat4_cast(direction));
     else
-        return glm::mat4_cast(parent->direction * direction);
+        return glm::mat4_cast(globalDirection());
 }
 
 glm::vec3 SpatialComponent::globalPosition() const
@@ -51,7 +54,15 @@ glm::vec3 SpatialComponent::globalPosition() const
     if(parent == nullptr)
         return position;
     else
-        return parent->position + parent->direction * position;
+        return parent->globalPosition() + parent->globalDirection() * position;
+}
+
+glm::quat SpatialComponent::globalDirection() const
+{
+    if(parent == nullptr)
+        return direction;
+    else
+        return parent->globalDirection() * direction;
 }
 
 glm::vec3 SpatialComponent::forward() const
