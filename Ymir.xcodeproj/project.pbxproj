@@ -11,9 +11,9 @@
 		F644CED816C28ABF007B35C5 /* Model.cc in Sources */ = {isa = PBXBuildFile; fileRef = F644CED716C28ABF007B35C5 /* Model.cc */; };
 		F64516D216C068C000726CF5 /* CameraComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64516D116C068C000726CF5 /* CameraComponent.cc */; };
 		F645948E16B6A96D00B118C2 /* Shader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645948D16B6A96D00B118C2 /* Shader.cc */; };
-		F645949116B6ADA900B118C2 /* test.vert in Resources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* test.vert */; };
+		F645949116B6ADA900B118C2 /* texture.vert in Resources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* texture.vert */; };
 		F645949416B6AE8700B118C2 /* Program.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645949316B6AE8700B118C2 /* Program.cc */; };
-		F645949616B6B11400B118C2 /* test.frag in Resources */ = {isa = PBXBuildFile; fileRef = F645949516B6B11400B118C2 /* test.frag */; };
+		F645949616B6B11400B118C2 /* texture.frag in Resources */ = {isa = PBXBuildFile; fileRef = F645949516B6B11400B118C2 /* texture.frag */; };
 		F64C777F16CA7C3200371345 /* FPSCameraBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */; };
 		F64EC94716BEA68C00063843 /* Light.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64EC94616BEA68C00063843 /* Light.cc */; };
 		F653613B16DBABA8007B5D31 /* track.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F653613916DBABA8007B5D31 /* track.jpg */; };
@@ -80,8 +80,8 @@
 		F6B1DA1E16BFDC9D006BBC69 /* SpatialComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA1D16BFDC9D006BBC69 /* SpatialComponent.cc */; };
 		F6B1DA2216BFE2EE006BBC69 /* LightComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA2116BFE2EE006BBC69 /* LightComponent.cc */; };
 		F6B1DA2416C0158D006BBC69 /* Component.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA2316C0158D006BBC69 /* Component.cc */; };
-		F6B7B83216BDD38E003D3F9F /* test2.vert in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B82E16BDD37A003D3F9F /* test2.vert */; };
-		F6B7B83316BDD390003D3F9F /* test2.frag in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B83016BDD380003D3F9F /* test2.frag */; };
+		F6B7B83216BDD38E003D3F9F /* phong.vert in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B82E16BDD37A003D3F9F /* phong.vert */; };
+		F6B7B83316BDD390003D3F9F /* phong.frag in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B83016BDD380003D3F9F /* phong.frag */; };
 		F6C028F616C6A4CE00C7F91D /* DirectoryManifest.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */; };
 		F6CC523816D68D8300C58612 /* BehaviorEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CC523616D68D8200C58612 /* BehaviorEngine.cc */; };
 		F6CC523B16D6915600C58612 /* ObjGeometry.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CC523916D6915500C58612 /* ObjGeometry.cc */; };
@@ -146,10 +146,10 @@
 		F64516D116C068C000726CF5 /* CameraComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraComponent.cc; sourceTree = "<group>"; };
 		F645948B16B6A8F100B118C2 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
 		F645948D16B6A96D00B118C2 /* Shader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cc; sourceTree = "<group>"; };
-		F645948F16B6AD9700B118C2 /* test.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.vert; sourceTree = "<group>"; };
+		F645948F16B6AD9700B118C2 /* texture.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture.vert; sourceTree = "<group>"; };
 		F645949216B6AE1700B118C2 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
 		F645949316B6AE8700B118C2 /* Program.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cc; sourceTree = "<group>"; };
-		F645949516B6B11400B118C2 /* test.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.frag; sourceTree = "<group>"; };
+		F645949516B6B11400B118C2 /* texture.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture.frag; sourceTree = "<group>"; };
 		F64C777D16CA7C2E00371345 /* FPSCameraBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPSCameraBehavior.h; sourceTree = "<group>"; };
 		F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FPSCameraBehavior.cc; sourceTree = "<group>"; };
 		F64EC94516BEA68600063843 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
@@ -240,8 +240,8 @@
 		F6B1DA2016BFE2E8006BBC69 /* LightComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightComponent.h; sourceTree = "<group>"; };
 		F6B1DA2116BFE2EE006BBC69 /* LightComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightComponent.cc; sourceTree = "<group>"; };
 		F6B1DA2316C0158D006BBC69 /* Component.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cc; sourceTree = "<group>"; };
-		F6B7B82E16BDD37A003D3F9F /* test2.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test2.vert; sourceTree = "<group>"; };
-		F6B7B83016BDD380003D3F9F /* test2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test2.frag; sourceTree = "<group>"; };
+		F6B7B82E16BDD37A003D3F9F /* phong.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = phong.vert; sourceTree = "<group>"; };
+		F6B7B83016BDD380003D3F9F /* phong.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = phong.frag; sourceTree = "<group>"; };
 		F6C028F416C6A3FC00C7F91D /* DirectoryManifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryManifest.h; sourceTree = "<group>"; };
 		F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DirectoryManifest.cc; sourceTree = "<group>"; };
 		F6CC523616D68D8200C58612 /* BehaviorEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BehaviorEngine.cc; sourceTree = "<group>"; };
@@ -410,11 +410,11 @@
 				F687A41716B4B63300878140 /* Ymir-Info.plist */,
 				F6FB2A1616B70C3B00E6013E /* hazard.png */,
 				F627D39D16B97CA7000B06AF /* wooden-crate.jpg */,
-				F6B7B82E16BDD37A003D3F9F /* test2.vert */,
-				F6B7B83016BDD380003D3F9F /* test2.frag */,
+				F6B7B82E16BDD37A003D3F9F /* phong.vert */,
+				F6B7B83016BDD380003D3F9F /* phong.frag */,
 				F6CC523C16D695F000C58612 /* monkey.obj */,
-				F645948F16B6AD9700B118C2 /* test.vert */,
-				F645949516B6B11400B118C2 /* test.frag */,
+				F645948F16B6AD9700B118C2 /* texture.vert */,
+				F645949516B6B11400B118C2 /* texture.frag */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -769,10 +769,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F645949116B6ADA900B118C2 /* test.vert in Resources */,
-				F645949616B6B11400B118C2 /* test.frag in Resources */,
-				F6B7B83216BDD38E003D3F9F /* test2.vert in Resources */,
-				F6B7B83316BDD390003D3F9F /* test2.frag in Resources */,
+				F645949116B6ADA900B118C2 /* texture.vert in Resources */,
+				F645949616B6B11400B118C2 /* texture.frag in Resources */,
+				F6B7B83216BDD38E003D3F9F /* phong.vert in Resources */,
+				F6B7B83316BDD390003D3F9F /* phong.frag in Resources */,
 				F6FB2A1716B70C3B00E6013E /* hazard.png in Resources */,
 				F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */,
 				F6CC523D16D695F000C58612 /* monkey.obj in Resources */,

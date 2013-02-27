@@ -114,8 +114,8 @@ int main(int argc, char* argv[])
     ResourceManager<Program, ProgramResourceLoader> programManager;
     programManager.addManifest(manifest);
     
-    std::shared_ptr<Program> test = programManager.resource("test");
-    std::shared_ptr<Program> test2 = programManager.resource("test2");
+    std::shared_ptr<Program> test = programManager.resource("texture");
+    std::shared_ptr<Program> test2 = programManager.resource("phong");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");
     std::shared_ptr<Texture> track_tex = textureManager.resource("track.jpg");
@@ -163,7 +163,7 @@ int main(int argc, char* argv[])
     
     //light two (directional)
     Entity& light_two = scene.assign();
-    light_two.assign<SpatialComponent>(glm::vec3{0.0, 90.0, 0.0});
+    light_two.assign<SpatialComponent>(glm::vec3{0.0, 1.0, 0.0});
     auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.5, 0.5, 0.5});
     light_two_lightc.lightType = LightComponent::LightType::DIRECTIONAL;
     
