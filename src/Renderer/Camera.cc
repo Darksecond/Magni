@@ -55,16 +55,16 @@ glm::mat4 Camera::projectionMatrix() const
 }
 
 glm::vec3 Camera::forward() const {
-    glm::vec4 forward = glm::inverse(orientation()) * glm::vec4(0,0,-1,1);
+    glm::vec4 forward = glm::inverse(orientation()) * glm::vec4(0,0,-1,0);
     return glm::vec3(forward);
 }
 
 glm::vec3 Camera::right() const {
-    glm::vec4 right = glm::inverse(orientation()) * glm::vec4(1,0,0,1);
+    glm::vec4 right = glm::inverse(orientation()) * glm::vec4(1,0,0,0);
     return glm::vec3(right);
 }
 
 glm::vec3 Camera::up() const {
-    glm::vec4 up = glm::inverse(orientation()) * glm::vec4(0,1,0,1);
+    glm::vec4 up = glm::inverse(orientation()) * glm::vec4(0,1,0,0);
     return glm::vec3(up);
 }
