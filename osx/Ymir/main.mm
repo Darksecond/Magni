@@ -40,6 +40,14 @@
 
 using namespace Ymir;
 
+//TODO LIST
+//
+//SKYBOX
+//COLLISIONS
+//HUD
+//WIN-LOSE (OBJECTIVES)
+//SOUND
+
 const glm::vec2 SCREEN_SIZE(800, 600);
 
 static std::string ResourceDirectory()
