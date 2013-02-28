@@ -22,7 +22,7 @@ void RotateBehavior::update(double delta)
         rotation += delta * car->gas * 100;
         float wheel = 0;
         if(front)
-            wheel = -car->steering * 10;
+            wheel = -car->steering * 8.5;
         
         glm::vec3 angle{rotation, wheel, 0};
         spatial->setDirection(angle);

@@ -143,8 +143,8 @@ int main(int argc, char* argv[])
     
     Entity& camera = scene.assign(&car_body);
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
-    auto& c_s = camera.assign<SpatialComponent>(glm::vec3{1.0, -1.0, 3.0});
-    glm::vec3 euler{-10,200,0};
+    auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0.0, -1.0, 3.0});
+    glm::vec3 euler{-10,180,0};
     c_s.setDirection(euler);
     //camera.assignBehavior(std::unique_ptr<Behavior>{new FPSCameraBehavior});
     //camera.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});

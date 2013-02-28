@@ -22,8 +22,8 @@ void WSADMoveBehavior::update(double delta)
     
     const float moveSpeed = 1.0; //units per second
     const float moveMax = 5.0;
-    const float turnSpeed = 3.125;
-    const float turnMax = 22.5;
+    const float turnSpeed = 8.0;
+    const float turnMax = 8.0;
     
     //std::cout << glm::length(v) << std::endl;
     
@@ -70,9 +70,9 @@ void WSADMoveBehavior::update(double delta)
     {
         //no turning keys were pushed
         if(car->steering > 0)
-            car->steering -= turnSpeed * secondsElapsed;
+            car->steering -= 2 * turnSpeed * secondsElapsed;
         else if(car->steering < 0)
-            car->steering += turnSpeed * secondsElapsed;
+            car->steering += 2 * turnSpeed * secondsElapsed;
     }
     
     if(glfwGetKey('Z'))
