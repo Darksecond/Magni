@@ -140,6 +140,7 @@
 		F6053FEA16C6D5AE007F52FE /* StreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamReader.h; sourceTree = "<group>"; };
 		F6097E5416B84B1A00B240E7 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		F627D39D16B97CA7000B06AF /* wooden-crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wooden-crate.jpg"; sourceTree = "<group>"; };
+		F642BD8F16DF6239009EB1DB /* CarComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarComponent.h; sourceTree = "<group>"; };
 		F644CED616C28AB0007B35C5 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		F644CED716C28ABF007B35C5 /* Model.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cc; sourceTree = "<group>"; };
 		F64516D016C068BB00726CF5 /* CameraComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraComponent.h; sourceTree = "<group>"; };
@@ -607,6 +608,7 @@
 				F6B1DA2016BFE2E8006BBC69 /* LightComponent.h */,
 				F6B1DA2116BFE2EE006BBC69 /* LightComponent.cc */,
 				F681BF3C16C2758A00545107 /* ModelComponent.h */,
+				F642BD8F16DF6239009EB1DB /* CarComponent.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
