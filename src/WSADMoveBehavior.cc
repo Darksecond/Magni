@@ -24,9 +24,7 @@ void WSADMoveBehavior::update(double delta)
     const float moveMax = 5.0;
     const float turnSpeed = 8.0;
     const float turnMax = 8.0;
-    
-    //std::cout << glm::length(v) << std::endl;
-    
+        
     if(glfwGetKey('S'))
     {
         //spatial->position += (secondsElapsed * 2.0f * -spatial->forward());

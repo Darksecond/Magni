@@ -9,6 +9,8 @@
 #include <vector>
 #include <memory>
 
+#include "Message.h"
+
 namespace Ymir
 {    
     class Entity
@@ -37,6 +39,14 @@ namespace Ymir
             for(auto& behavior : behaviors)
             {
                 behavior->update(delta);
+            }
+        }
+        
+        void receive(message_type_t type) const
+        {
+            for(auto& behavior : behaviors)
+            {
+                behavior->receive(type);
             }
         }
         

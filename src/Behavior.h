@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Message.h"
+
 namespace Ymir
 {
     class Entity;
@@ -10,6 +12,10 @@ namespace Ymir
         Entity* entity;
     public:
         virtual void update(double delta) = 0;
+        
+        virtual void receive(message_type_t type)
+        {
+        }
         
         //TODO move to constructor possibly?
         //TODO or create some kind of 'start', 'init' or 'create' virtual abstract method

@@ -171,6 +171,7 @@
 		F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramResourceLoader.h; sourceTree = "<group>"; };
 		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
 		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
+		F677EE5F16E3CC6600BDAC73 /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		F67F54FC16DB7C3B00478B1C /* car.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = car.obj; sourceTree = "<group>"; };
 		F67F54FD16DB7C3B00478B1C /* carTire.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = carTire.obj; sourceTree = "<group>"; };
 		F67F54FE16DB7C3B00478B1C /* truck_color_cleantest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = truck_color_cleantest.jpg; sourceTree = "<group>"; };
@@ -595,6 +596,7 @@
 				F689424F16C906810097FB68 /* Behaviors */,
 				F6053FE816C6D532007F52FE /* Resource Management */,
 				F645948B16B6A8F100B118C2 /* Shader.h */,
+				F677EE5F16E3CC6600BDAC73 /* Message.h */,
 				F645948D16B6A96D00B118C2 /* Shader.cc */,
 				F645949216B6AE1700B118C2 /* Program.h */,
 				F645949316B6AE8700B118C2 /* Program.cc */,

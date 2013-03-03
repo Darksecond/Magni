@@ -29,8 +29,9 @@ void CollisionEngine::update(int pass, double delta)
             {
                 if(it->get()->collides(*inner_it->get()))
                 {
-                    std::cout << "Colliding!" << std::endl;
                     //send message to both entities (depending on is trigger)
+                    it->get()->entity.receive(message_type_t::COLLISION);
+                    inner_it->get()->entity.receive(message_type_t::COLLISION);
                 }
             }
         }
