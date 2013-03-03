@@ -12,7 +12,7 @@
 
 using namespace Ymir;
 
-RenderEngine::RenderEngine(Program& pt, Program& pl) : _pt{pt}, _pl{pl}, lights{}, models{}
+RenderEngine::RenderEngine(Program& pt, Program& pl, Program& po) : _pt{pt}, _pl{pl}, _po{po}, lights{}, models{}
 {
 }
 
@@ -133,6 +133,11 @@ void render(Program& pt, Program& pl, const Camera& c,
     glDisable(GL_BLEND);
 }
 
+void renderOverlay(Program& p)
+{
+    //ProgramContext pc{p};
+}
+
 void RenderEngine::update(int pass, double delta)
 {
     if(pass == 1)
@@ -144,6 +149,8 @@ void RenderEngine::update(int pass, double delta)
         {
             render(_pt, _pl, *_camera, lights, *model);
         }
+        
+        renderOverlay(_po);
         
         glfwSwapBuffers();
     }

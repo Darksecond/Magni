@@ -73,6 +73,8 @@
 		F687A52A16B4BBB200878140 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A4CB16B4B81B00878140 /* OpenGL.framework */; };
 		F689425216C908550097FB68 /* RotateBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F689425116C908550097FB68 /* RotateBehavior.cc */; };
 		F69007B116C7FE3900AC83CF /* StreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F69007B016C7FE3900AC83CF /* StreamReader.cc */; };
+		F69C21E516E3852F00511D78 /* CollisionEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F69C21E316E3852F00511D78 /* CollisionEngine.cc */; };
+		F69C21E916E3861000511D78 /* Collider.cc in Sources */ = {isa = PBXBuildFile; fileRef = F69C21E716E3861000511D78 /* Collider.cc */; };
 		F6AF410E16BB1F4000F85BC0 /* Camera.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6AF410C16BB1B8D00F85BC0 /* Camera.cc */; };
 		F6B1B55016D63ED90034DACC /* Scene.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1B54E16D63ED90034DACC /* Scene.cc */; };
 		F6B1B55616D652420034DACC /* EngineManager.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1B55416D652410034DACC /* EngineManager.cc */; };
@@ -91,6 +93,13 @@
 		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
 		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
 		F6E3E49B16B550DE00BFAC05 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49A16B550DE00BFAC05 /* COPYING.txt */; };
+		F6F7B28116E0BD22006D00ED /* overlay.vert in Resources */ = {isa = PBXBuildFile; fileRef = F6F7B27D16E0BC88006D00ED /* overlay.vert */; };
+		F6F7B28216E0BD22006D00ED /* overlay.frag in Resources */ = {isa = PBXBuildFile; fileRef = F6F7B27F16E0BC8E006D00ED /* overlay.frag */; };
+		F6F7B28716E0C60E006D00ED /* fontstash.h in Headers */ = {isa = PBXBuildFile; fileRef = F6F7B28516E0C60E006D00ED /* fontstash.h */; };
+		F6F7B28A16E0C7F7006D00ED /* DroidSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6F7B28916E0C6DE006D00ED /* DroidSerif-Regular.ttf */; };
+		F6F7B28E16E0DD2D006D00ED /* Font.h in Headers */ = {isa = PBXBuildFile; fileRef = F6F7B28C16E0DD2D006D00ED /* Font.h */; };
+		F6F7B28F16E0E91E006D00ED /* Font.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6F7B28B16E0DD2D006D00ED /* Font.cc */; };
+		F6F7B29116E0E9F2006D00ED /* stb_truetype.c in Sources */ = {isa = PBXBuildFile; fileRef = F6F7B29016E0E9F2006D00ED /* stb_truetype.c */; };
 		F6FB2A1716B70C3B00E6013E /* hazard.png in Resources */ = {isa = PBXBuildFile; fileRef = F6FB2A1616B70C3B00E6013E /* hazard.png */; };
 		F6FB2A1A16B70C7600E6013E /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = F6FB2A1916B70C7600E6013E /* stb_image.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		F6FB2A1D16B7105D00E6013E /* Texture.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6FB2A1C16B7105D00E6013E /* Texture.cc */; };
@@ -225,6 +234,11 @@
 		F689425016C908210097FB68 /* RotateBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateBehavior.h; sourceTree = "<group>"; };
 		F689425116C908550097FB68 /* RotateBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateBehavior.cc; sourceTree = "<group>"; };
 		F69007B016C7FE3900AC83CF /* StreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StreamReader.cc; sourceTree = "<group>"; };
+		F69C21E316E3852F00511D78 /* CollisionEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionEngine.cc; sourceTree = "<group>"; };
+		F69C21E416E3852F00511D78 /* CollisionEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionEngine.h; sourceTree = "<group>"; };
+		F69C21E716E3861000511D78 /* Collider.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Collider.cc; sourceTree = "<group>"; };
+		F69C21E816E3861000511D78 /* Collider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collider.h; sourceTree = "<group>"; };
+		F69C21EA16E387C700511D78 /* SphereColliderComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SphereColliderComponent.h; sourceTree = "<group>"; };
 		F6AC80BE16C4F22F00074181 /* NodeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeCache.h; sourceTree = "<group>"; };
 		F6AF410B16BB1A1F00F85BC0 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		F6AF410C16BB1B8D00F85BC0 /* Camera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cc; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -257,6 +271,15 @@
 		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
 		F6E3E49816B550B300BFAC05 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F6E3E49A16B550DE00BFAC05 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
+		F6F7B27D16E0BC88006D00ED /* overlay.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = overlay.vert; sourceTree = "<group>"; };
+		F6F7B27F16E0BC8E006D00ED /* overlay.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = overlay.frag; sourceTree = "<group>"; };
+		F6F7B28316E0C5C8006D00ED /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_truetype.h; sourceTree = "<group>"; };
+		F6F7B28416E0C60E006D00ED /* fontstash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fontstash.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		F6F7B28516E0C60E006D00ED /* fontstash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fontstash.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		F6F7B28916E0C6DE006D00ED /* DroidSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSerif-Regular.ttf"; sourceTree = "<group>"; };
+		F6F7B28B16E0DD2D006D00ED /* Font.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cc; sourceTree = "<group>"; };
+		F6F7B28C16E0DD2D006D00ED /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
+		F6F7B29016E0E9F2006D00ED /* stb_truetype.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_truetype.c; sourceTree = "<group>"; };
 		F6FB2A1616B70C3B00E6013E /* hazard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hazard.png; sourceTree = "<group>"; };
 		F6FB2A1916B70C7600E6013E /* stb_image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_image.c; sourceTree = "<group>"; };
 		F6FB2A1B16B7104F00E6013E /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
@@ -343,6 +366,12 @@
 			children = (
 				F6FB2A1916B70C7600E6013E /* stb_image.c */,
 				F6097E5416B84B1A00B240E7 /* stb_image.h */,
+				F6F7B28316E0C5C8006D00ED /* stb_truetype.h */,
+				F6F7B29016E0E9F2006D00ED /* stb_truetype.c */,
+				F6F7B28416E0C60E006D00ED /* fontstash.c */,
+				F6F7B28516E0C60E006D00ED /* fontstash.h */,
+				F6F7B28B16E0DD2D006D00ED /* Font.cc */,
+				F6F7B28C16E0DD2D006D00ED /* Font.h */,
 			);
 			name = "3rd Party";
 			sourceTree = "<group>";
@@ -409,6 +438,7 @@
 			children = (
 				F67F54FC16DB7C3B00478B1C /* car.obj */,
 				F653613E16DBADC5007B5D31 /* track.obj */,
+				F6F7B28916E0C6DE006D00ED /* DroidSerif-Regular.ttf */,
 				F653613916DBABA8007B5D31 /* track.jpg */,
 				F67F54FD16DB7C3B00478B1C /* carTire.obj */,
 				F67F54FE16DB7C3B00478B1C /* truck_color_cleantest.jpg */,
@@ -420,6 +450,8 @@
 				F6CC523C16D695F000C58612 /* monkey.obj */,
 				F645948F16B6AD9700B118C2 /* texture.vert */,
 				F645949516B6B11400B118C2 /* texture.frag */,
+				F6F7B27D16E0BC88006D00ED /* overlay.vert */,
+				F6F7B27F16E0BC8E006D00ED /* overlay.frag */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -555,6 +587,7 @@
 		F687A52E16B4BC7700878140 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F69C21E616E385F600511D78 /* Collider */,
 				F6746BF616CB8C2B00ACA326 /* Renderer */,
 				F6846D8816C58DB400071311 /* 3rd Party */,
 				F6B1DA1F16BFE2C8006BBC69 /* Components */,
@@ -600,6 +633,15 @@
 			name = Behaviors;
 			sourceTree = "<group>";
 		};
+		F69C21E616E385F600511D78 /* Collider */ = {
+			isa = PBXGroup;
+			children = (
+				F69C21E816E3861000511D78 /* Collider.h */,
+				F69C21E716E3861000511D78 /* Collider.cc */,
+			);
+			name = Collider;
+			sourceTree = "<group>";
+		};
 		F6B1DA1F16BFE2C8006BBC69 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +655,7 @@
 				F6B1DA2116BFE2EE006BBC69 /* LightComponent.cc */,
 				F681BF3C16C2758A00545107 /* ModelComponent.h */,
 				F642BD8F16DF6239009EB1DB /* CarComponent.h */,
+				F69C21EA16E387C700511D78 /* SphereColliderComponent.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -625,6 +668,8 @@
 				F6B1DA1A16BFDAE9006BBC69 /* RenderEngine.cc */,
 				F6CC523716D68D8300C58612 /* BehaviorEngine.h */,
 				F6CC523616D68D8200C58612 /* BehaviorEngine.cc */,
+				F69C21E416E3852F00511D78 /* CollisionEngine.h */,
+				F69C21E316E3852F00511D78 /* CollisionEngine.cc */,
 			);
 			name = Engines;
 			sourceTree = "<group>";
@@ -637,6 +682,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F687A48A16B4B78800878140 /* glfw.h in Headers */,
+				F6F7B28716E0C60E006D00ED /* fontstash.h in Headers */,
+				F6F7B28E16E0DD2D006D00ED /* Font.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,12 +822,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6F7B28116E0BD22006D00ED /* overlay.vert in Resources */,
+				F6F7B28216E0BD22006D00ED /* overlay.frag in Resources */,
 				F645949116B6ADA900B118C2 /* texture.vert in Resources */,
 				F645949616B6B11400B118C2 /* texture.frag in Resources */,
 				F6B7B83216BDD38E003D3F9F /* phong.vert in Resources */,
 				F6B7B83316BDD390003D3F9F /* phong.frag in Resources */,
 				F6FB2A1716B70C3B00E6013E /* hazard.png in Resources */,
 				F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */,
+				F6F7B28A16E0C7F7006D00ED /* DroidSerif-Regular.ttf in Resources */,
 				F6CC523D16D695F000C58612 /* monkey.obj in Resources */,
 				F67F54FF16DB7C3B00478B1C /* car.obj in Resources */,
 				F67F550016DB7C3B00478B1C /* carTire.obj in Resources */,
@@ -821,15 +871,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6FB2A1A16B70C7600E6013E /* stb_image.c in Sources */,
 				F687A42D16B4B68700878140 /* main.mm in Sources */,
 				F645948E16B6A96D00B118C2 /* Shader.cc in Sources */,
 				F645949416B6AE8700B118C2 /* Program.cc in Sources */,
-				F6FB2A1A16B70C7600E6013E /* stb_image.c in Sources */,
 				F6FB2A1D16B7105D00E6013E /* Texture.cc in Sources */,
 				F6AF410E16BB1F4000F85BC0 /* Camera.cc in Sources */,
 				F6FB2A2016B7113000E6013E /* Bitmap.cc in Sources */,
 				F6D9138416BC0226000C0632 /* Mesh.cc in Sources */,
 				F64EC94716BEA68C00063843 /* Light.cc in Sources */,
+				F6F7B28F16E0E91E006D00ED /* Font.cc in Sources */,
 				F6B1DA1516BFD1D7006BBC69 /* Entity.cc in Sources */,
 				F6B1DA1B16BFDAE9006BBC69 /* RenderEngine.cc in Sources */,
 				F6B1DA1E16BFDC9D006BBC69 /* SpatialComponent.cc in Sources */,
@@ -847,6 +898,9 @@
 				F6B1B55616D652420034DACC /* EngineManager.cc in Sources */,
 				F6CC523816D68D8300C58612 /* BehaviorEngine.cc in Sources */,
 				F6CC523B16D6915600C58612 /* ObjGeometry.cc in Sources */,
+				F6F7B29116E0E9F2006D00ED /* stb_truetype.c in Sources */,
+				F69C21E516E3852F00511D78 /* CollisionEngine.cc in Sources */,
+				F69C21E916E3861000511D78 /* Collider.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

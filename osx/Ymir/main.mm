@@ -24,6 +24,7 @@
 #include "SpatialComponent.h"
 #include "RenderEngine.h"
 #include "BehaviorEngine.h"
+#include "CollisionEngine.h"
 #include "CameraComponent.h"
 #include "ModelComponent.h"
 #include "CarComponent.h"
@@ -38,6 +39,8 @@
 
 #include "ProgramResourceLoader.h"
 
+#include "Font.h"
+
 using namespace Ymir;
 
 //TODO LIST
@@ -46,7 +49,7 @@ using namespace Ymir;
 //COLLISIONS
 //HUD
 //WIN-LOSE (OBJECTIVES)
-//SOUND
+//SOUND (OPENAL)
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 
@@ -128,6 +131,7 @@ int main(int argc, char* argv[])
     
     std::shared_ptr<Program> texture_program = programManager.resource("texture");
     std::shared_ptr<Program> phong_program = programManager.resource("phong");
+    std::shared_ptr<Program> overlay_program = programManager.resource("overlay");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");
     std::shared_ptr<Texture> track_tex = textureManager.resource("track.jpg");
@@ -137,8 +141,9 @@ int main(int argc, char* argv[])
     
     //engine creation
     EngineManager engines;
-    engines.assign<RenderEngine>(*texture_program, *phong_program);
+    engines.assign<RenderEngine>(*texture_program, *phong_program, *overlay_program);
     engines.assign<BehaviorEngine>();
+    engines.assign<CollisionEngine>();
     
     Scene scene{engines};
     
@@ -147,6 +152,7 @@ int main(int argc, char* argv[])
     car_body.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
     car_body.assign<ModelComponent>(monkey, car_tex);
     car_body.assign<CarComponent>();
+    car_body.assign<SphereColliderComponent>(1);
     car_body.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
     
     Entity& camera = scene.assign(&car_body);
@@ -200,6 +206,10 @@ int main(int argc, char* argv[])
     Entity& track = scene.assign();
     track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     track.assign<ModelComponent>(track_mesh, track_tex);
+    track.assign<SphereColliderComponent>(10);
+    
+    //font
+    //std::unique_ptr<Font> fnt = Font::fontFromFile("DroidSerif-Regular.ttf", 23, *overlay_program);
     
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))

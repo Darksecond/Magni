@@ -19,12 +19,13 @@ namespace Ymir
         
     public:
         std::unique_ptr<Camera> _camera;
-        Program& _pt;
-        Program& _pl;
+        Program& _pt; //texture
+        Program& _pl; //lights
+        Program& _po; //overlay
         NodeCache<Light> lights;
         NodeCache<Model> models;
 
-        RenderEngine(Program& pt, Program& pl);
+        RenderEngine(Program& pt, Program& pl, Program& po);
         
         virtual void registerEntity(Entity& entity);
         virtual void unregisterEntity(Entity& entity);
