@@ -150,9 +150,9 @@ int main(int argc, char* argv[])
     Scene scene{engines};
     
     Entity& monkey = scene.assign("monkey");
-    monkey.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
+    monkey.assign<SpatialComponent>(glm::vec3{5.0, 0.0, 0.0}).scale = glm::vec3{0.5};
     monkey.assign<ModelComponent>(monkey_mesh, t);
-    monkey.assign<SphereColliderComponent>(1.0).trigger = true;
+    monkey.assign<SphereColliderComponent>(0.5).trigger = true;
     monkey.assignBehavior(std::unique_ptr<Behavior>{new SimpleTestTriggerBehavior});
 
     //car body
@@ -160,7 +160,7 @@ int main(int argc, char* argv[])
     car_body.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
     car_body.assign<ModelComponent>(car, car_tex);
     car_body.assign<CarComponent>();
-    car_body.assign<SphereColliderComponent>(1);
+    car_body.assign<SphereColliderComponent>(0.5);
     car_body.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
     
     Entity& camera = scene.assign("camera", &car_body);
@@ -239,6 +239,8 @@ int main(int argc, char* argv[])
         //exit program if escape key is pressed
         if(glfwGetKey(GLFW_KEY_ESC))
             glfwCloseWindow();
+        
+        //std::cout << "" << std::endl;
     }
     
     glfwTerminate();
