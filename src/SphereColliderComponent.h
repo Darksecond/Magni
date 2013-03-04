@@ -13,6 +13,5 @@ namespace Ymir
         
         float radius;
         bool trigger;
-        //TODO trigger
     };
 }

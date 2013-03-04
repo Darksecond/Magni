@@ -19,6 +19,7 @@
 		F64EC94716BEA68C00063843 /* Light.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64EC94616BEA68C00063843 /* Light.cc */; };
 		F653613B16DBABA8007B5D31 /* track.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F653613916DBABA8007B5D31 /* track.jpg */; };
 		F653613F16DBADC5007B5D31 /* track.obj in Resources */ = {isa = PBXBuildFile; fileRef = F653613E16DBADC5007B5D31 /* track.obj */; };
+		F6542A0E16E49607006B64AB /* SimpleTestTriggerBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6542A0C16E49607006B64AB /* SimpleTestTriggerBehavior.cc */; };
 		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
 		F67F54FF16DB7C3B00478B1C /* car.obj in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FC16DB7C3B00478B1C /* car.obj */; };
 		F67F550016DB7C3B00478B1C /* carTire.obj in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FD16DB7C3B00478B1C /* carTire.obj */; };
@@ -168,6 +169,8 @@
 		F64EC94616BEA68C00063843 /* Light.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cc; sourceTree = "<group>"; };
 		F653613916DBABA8007B5D31 /* track.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = track.jpg; sourceTree = "<group>"; };
 		F653613E16DBADC5007B5D31 /* track.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = track.obj; sourceTree = "<group>"; };
+		F6542A0C16E49607006B64AB /* SimpleTestTriggerBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleTestTriggerBehavior.cc; sourceTree = "<group>"; };
+		F6542A0D16E49607006B64AB /* SimpleTestTriggerBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTestTriggerBehavior.h; sourceTree = "<group>"; };
 		F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramResourceLoader.h; sourceTree = "<group>"; };
 		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
 		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
@@ -631,6 +634,8 @@
 				F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */,
 				F68279AF16D415AE00BD1BAF /* WSADMoveBehavior.h */,
 				F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */,
+				F6542A0D16E49607006B64AB /* SimpleTestTriggerBehavior.h */,
+				F6542A0C16E49607006B64AB /* SimpleTestTriggerBehavior.cc */,
 			);
 			name = Behaviors;
 			sourceTree = "<group>";
@@ -903,6 +908,7 @@
 				F6F7B29116E0E9F2006D00ED /* stb_truetype.c in Sources */,
 				F69C21E516E3852F00511D78 /* CollisionEngine.cc in Sources */,
 				F69C21E916E3861000511D78 /* Collider.cc in Sources */,
+				F6542A0E16E49607006B64AB /* SimpleTestTriggerBehavior.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

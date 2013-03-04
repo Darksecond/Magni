@@ -7,6 +7,7 @@
 #include <map>
 #include <list>
 #include <memory>
+#include <string>
 
 namespace Ymir
 {
@@ -19,6 +20,6 @@ namespace Ymir
         Scene(EngineManager& engines);
         ~Scene();
         Entity& assign(std::unique_ptr<Entity> entity, Entity* parent = nullptr);
-        Entity& assign(Entity* parent = nullptr);
+        Entity& assign(const std::string& name, Entity* parent = nullptr);
     };
 };

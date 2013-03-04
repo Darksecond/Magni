@@ -23,8 +23,8 @@ Entity& Scene::assign(std::unique_ptr<Entity> entity, Entity* parent)
     return retval;
 }
 
-Entity& Scene::assign(Entity* parent)
+Entity& Scene::assign(const std::string& name, Entity* parent)
 {
-    std::unique_ptr<Entity> entity{new Entity{engines}};
+    std::unique_ptr<Entity> entity{new Entity{engines, name}};
     return assign(std::move(entity), parent);
 }

@@ -8,6 +8,7 @@
 #include <map>
 #include <vector>
 #include <memory>
+#include <string>
 
 #include "Message.h"
 
@@ -20,8 +21,9 @@ namespace Ymir
         EngineManager& engines; //TODO singleton?
     public:
         Entity* parent;
+        std::string name;
 
-        Entity(EngineManager& manager);
+        Entity(EngineManager& manager, const std::string& name);
         
         template<typename T, typename ... Args>
         T& assign(Args && ... args);

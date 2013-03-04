@@ -36,6 +36,7 @@
 #include "RotateBehavior.h"
 #include "FPSCameraBehavior.h"
 #include "WSADMoveBehavior.h"
+#include "SimpleTestTriggerBehavior.h"
 
 #include "ProgramResourceLoader.h"
 
@@ -136,8 +137,9 @@ int main(int argc, char* argv[])
     std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");
     std::shared_ptr<Texture> track_tex = textureManager.resource("track.jpg");
     std::shared_ptr<Mesh> tire = meshManager.resource("carTire.obj");
-    std::shared_ptr<Mesh> monkey = meshManager.resource("car.obj");
+    std::shared_ptr<Mesh> car = meshManager.resource("car.obj");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
+    std::shared_ptr<Mesh> monkey_mesh = meshManager.resource("monkey.obj");
     
     //engine creation
     EngineManager engines;
@@ -147,15 +149,21 @@ int main(int argc, char* argv[])
     
     Scene scene{engines};
     
+    Entity& monkey = scene.assign("monkey");
+    monkey.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
+    monkey.assign<ModelComponent>(monkey_mesh, t);
+    monkey.assign<SphereColliderComponent>(1.0).trigger = true;
+    monkey.assignBehavior(std::unique_ptr<Behavior>{new SimpleTestTriggerBehavior});
+
     //car body
-    Entity& car_body = scene.assign();
+    Entity& car_body = scene.assign("car body");
     car_body.assign<SpatialComponent>(glm::vec3{0.0, 0.0, 0.0});
-    car_body.assign<ModelComponent>(monkey, car_tex);
+    car_body.assign<ModelComponent>(car, car_tex);
     car_body.assign<CarComponent>();
     car_body.assign<SphereColliderComponent>(1);
     car_body.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
     
-    Entity& camera = scene.assign(&car_body);
+    Entity& camera = scene.assign("camera", &car_body);
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
     auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0.0, -1.0, 3.0});
     glm::vec3 euler{-10,180,0};
@@ -164,49 +172,49 @@ int main(int argc, char* argv[])
     //camera.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
     
     //light one (spot)
-    Entity& light_one = scene.assign();
+    Entity& light_one = scene.assign("light one");
     light_one.assign<LightComponent>(glm::vec3{1.0, 1.0, 1.0}, glm::vec3{0.0, 0.25, 0.05});
     light_one.assign<SpatialComponent>(glm::vec3{7.0, 0.0, 0.0});
     
     //light two (directional)
-    Entity& light_two = scene.assign();
+    Entity& light_two = scene.assign("light two");
     light_two.assign<SpatialComponent>(glm::vec3{0.0, 1.0, 0.0});
     auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.8, 0.8, 0.8});
     light_two_lightc.lightType = LightComponent::LightType::DIRECTIONAL;
     
     //back right wheel
-    Entity& car_f_r_wheel = scene.assign(&car_body);
+    Entity& car_f_r_wheel = scene.assign("wheel", &car_body);
     auto& s = car_f_r_wheel.assign<SpatialComponent>(glm::vec3{0.15, -0.06, 0.27});
     s.scale = glm::vec3{3};
     car_f_r_wheel.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior{false}});
     car_f_r_wheel.assign<ModelComponent>(tire, car_tex);
     
     //front right wheel
-    Entity& car_b_r_wheel = scene.assign(&car_body);
+    Entity& car_b_r_wheel = scene.assign("wheel", &car_body);
     auto& s2 = car_b_r_wheel.assign<SpatialComponent>(glm::vec3{0.15, -0.06, -0.33});
     s2.scale = glm::vec3{3};
     car_b_r_wheel.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior{true}});
     car_b_r_wheel.assign<ModelComponent>(tire, car_tex);
     
     //back left wheel
-    Entity& car_f_l_wheel = scene.assign(&car_body);
+    Entity& car_f_l_wheel = scene.assign("wheel", &car_body);
     auto& s3 = car_f_l_wheel.assign<SpatialComponent>(glm::vec3{-0.15, -0.06, 0.27});
     s3.scale = glm::vec3{3};
     car_f_l_wheel.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior{false}});
     car_f_l_wheel.assign<ModelComponent>(tire, car_tex);
     
     //front left wheel
-    Entity& car_b_l_wheel = scene.assign(&car_body);
+    Entity& car_b_l_wheel = scene.assign("wheel", &car_body);
     auto& s4 = car_b_l_wheel.assign<SpatialComponent>(glm::vec3{-0.15, -0.06, -0.33});
     s4.scale = glm::vec3{3};
     car_b_l_wheel.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior{true}});
     car_b_l_wheel.assign<ModelComponent>(tire, car_tex);
     
     //track
-    Entity& track = scene.assign();
+    Entity& track = scene.assign("track");
     track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     track.assign<ModelComponent>(track_mesh, track_tex);
-    track.assign<SphereColliderComponent>(10);
+    //track.assign<SphereColliderComponent>(10);
     
     //font
     //std::unique_ptr<Font> fnt = Font::fontFromFile("DroidSerif-Regular.ttf", 23, *overlay_program);
