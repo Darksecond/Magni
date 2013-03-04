@@ -18,5 +18,6 @@ namespace Ymir
         bool operator==(const Collider& other) const;
         
         bool collides(Collider& other);
+        bool trigger() const;
     };
 };

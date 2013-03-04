@@ -5,5 +5,6 @@ namespace Ymir
     enum class message_type_t
     {
         COLLISION,
+        TRIGGER,
     };
 };

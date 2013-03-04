@@ -13,7 +13,7 @@ namespace Ymir
     public:
         virtual void update(double delta) = 0;
         
-        virtual void receive(message_type_t type)
+        virtual void receive(message_type_t type, const Entity& trigger)
         {
         }
         

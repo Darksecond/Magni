@@ -46,3 +46,8 @@ bool Collider::collides(Collider& other)
     }
     return false;
 }
+
+bool Collider::trigger() const
+{
+    return entity.component<SphereColliderComponent>()->trigger;
+}

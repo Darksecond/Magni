@@ -42,11 +42,11 @@ namespace Ymir
             }
         }
         
-        void receive(message_type_t type) const
+        void receive(message_type_t type, const Entity& trigger) const
         {
             for(auto& behavior : behaviors)
             {
-                behavior->receive(type);
+                behavior->receive(type, trigger);
             }
         }
         
