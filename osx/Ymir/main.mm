@@ -58,7 +58,6 @@ using namespace Ymir;
 //WIN-LOSE (OBJECTIVES)
 //DOCUMENTATION
 //WINDOWS SUPPORT
-//AUDIO BUFFER RESOURCE MANAGER
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 
@@ -82,6 +81,9 @@ int main(int argc, char* argv[])
     ResourceManager<Mesh> meshManager;
     meshManager.addManifest(manifest);
     
+    ResourceManager<Audio::Buffer> audioBufferManager;
+    audioBufferManager.addManifest(manifest);
+    
     //engine creation
     EngineManager engines;
     engines.assign<BehaviorEngine>();
@@ -96,9 +98,7 @@ int main(int argc, char* argv[])
     std::shared_ptr<Mesh> car = meshManager.resource("car.obj");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     std::shared_ptr<Mesh> monkey_mesh = meshManager.resource("monkey.obj");
-    
-    //TODO make me a resource manager!
-    std::shared_ptr<Audio::Buffer> hello_world_buffer = std::make_shared<Audio::Buffer>(Audio::Buffer::fromFile(ResourceDirectory() + "/crash.wav"));
+    std::shared_ptr<Audio::Buffer> hello_world_buffer = audioBufferManager.resource("helloworld.wav");
     
     Scene scene{engines};
     
