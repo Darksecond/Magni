@@ -58,6 +58,7 @@ using namespace Ymir;
 //WIN-LOSE (OBJECTIVES)
 //DOCUMENTATION
 //WINDOWS SUPPORT
+//AUDIO BUFFER RESOURCE MANAGER
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 
@@ -67,64 +68,8 @@ static std::string ResourceDirectory()
     return std::string([path cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-int frames = 0;
-double t0 = 0.0;
-void showFPS() {
-    
-    double t, fps;
-    
-    // Get current time
-    t = glfwGetTime();  // Get number of seconds since glfwInit()
-    // Calculate and display FPS (frames per second) in title bar.
-    if( (t-t0) > 1.0 || frames == 0 )
-    {
-        fps = (double)frames / (t-t0);
-        std::stringstream ss;
-        ss << "Ymir | FPS: " << fps;
-        glfwSetWindowTitle(ss.str().c_str());
-        t0 = t;
-        frames = 0;
-    }
-    frames ++;
-}
-
 int main(int argc, char* argv[])
 {
-    if(!glfwInit())
-        throw std::runtime_error("glfwInit failed");
-    
-    glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
-    glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2);
-    glfwOpenWindowHint(GLFW_WINDOW_NO_RESIZE, GL_TRUE);
-    if(!glfwOpenWindow(SCREEN_SIZE.x, SCREEN_SIZE.y, 8, 8, 8, 8, 16, 0, GLFW_WINDOW))
-        throw std::runtime_error("glfwOpenWindow failed. Can your hardware handle OpenGL 3.2?");
-    
-    // GLFW settings
-    glfwDisable(GLFW_MOUSE_CURSOR);
-    glfwSetMousePos(0, 0);
-    glfwSetMouseWheel(0);
-    //glfwSwapInterval(0); //uncomment for no v-sync
-
-    glewExperimental = GL_TRUE; //stops glew crashing on OSX
-    if(glewInit() != GLEW_OK)
-        throw std::runtime_error("glewInit failed");
-    glGetError(); //ignore any errors coming from glewInit, because they can be safely ignored.
-    
-    std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
-    std::cout << "GLSL version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
-    std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
-    std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
-    
-    if(!GLEW_VERSION_3_2)
-        throw std::runtime_error("OpenGL 3.2 API is not available.");
-    
-    
-    //OpenGL settings
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-    glEnable(GL_CULL_FACE);
-    
     //resource management
     std::shared_ptr<DirectoryManifest> manifest = std::make_shared<DirectoryManifest>(ResourceDirectory());
 
@@ -142,10 +87,8 @@ int main(int argc, char* argv[])
     engines.assign<BehaviorEngine>();
     engines.assign<CollisionEngine>();
     engines.assign<AudioEngine>();
+    engines.assign<RenderEngine>(programManager);
     
-    std::shared_ptr<Program> texture_program = programManager.resource("texture");
-    std::shared_ptr<Program> phong_program = programManager.resource("phong");
-    std::shared_ptr<Program> overlay_program = programManager.resource("overlay");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");
     std::shared_ptr<Texture> track_tex = textureManager.resource("track.jpg");
@@ -156,8 +99,6 @@ int main(int argc, char* argv[])
     
     //TODO make me a resource manager!
     std::shared_ptr<Audio::Buffer> hello_world_buffer = std::make_shared<Audio::Buffer>(Audio::Buffer::fromFile(ResourceDirectory() + "/crash.wav"));
-    
-    engines.assign<RenderEngine>(*texture_program, *phong_program, *overlay_program);
     
     Scene scene{engines};
     
@@ -228,12 +169,7 @@ int main(int argc, char* argv[])
     //track
     Entity& track = scene.assign("track");
     track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
-    track.assign<ModelComponent>(track_mesh, track_tex);
-    //track.assign<SphereColliderComponent>(10);
-    
-    //font
-    //std::unique_ptr<Font> fnt = Font::fontFromFile("DroidSerif-Regular.ttf", 23, *overlay_program);
-    
+    track.assign<ModelComponent>(track_mesh, track_tex);    
     
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
@@ -241,9 +177,7 @@ int main(int argc, char* argv[])
         double thisTime = glfwGetTime();
         double delta = thisTime - lastTime;
         lastTime = thisTime;
-        
-        showFPS(); //in titlebar
-        
+                
         engines.update(-1, delta);
         engines.update(0, delta);
         engines.update(1, delta);
@@ -254,12 +188,8 @@ int main(int argc, char* argv[])
         
         //exit program if escape key is pressed
         if(glfwGetKey(GLFW_KEY_ESC))
-            glfwCloseWindow();
-        
-        //std::cout << "" << std::endl;
+            glfwCloseWindow();        
     }
-    
-    glfwTerminate();
-    
+        
     return 0;
 }

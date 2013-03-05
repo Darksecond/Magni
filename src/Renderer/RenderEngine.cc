@@ -5,6 +5,8 @@
 #include <GLM/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <memory>
+#include <iostream>
+#include <sstream>
 
 #include "Light.h"
 #include "LightComponent.h"
@@ -12,8 +14,87 @@
 
 using namespace Ymir;
 
-RenderEngine::RenderEngine(Program& pt, Program& pl, Program& po) : _pt{pt}, _pl{pl}, _po{po}, lights{}, models{}
+const glm::vec2 SCREEN_SIZE(800, 600);
+
+int frames = 0;
+double t0 = 0.0;
+void showFPS() {
+    
+    double t, fps;
+    
+    // Get current time
+    t = glfwGetTime();  // Get number of seconds since glfwInit()
+    // Calculate and display FPS (frames per second) in title bar.
+    if( (t-t0) > 1.0 || frames == 0 )
+    {
+        fps = (double)frames / (t-t0);
+        std::stringstream ss;
+        ss << "Ymir | FPS: " << fps;
+        glfwSetWindowTitle(ss.str().c_str());
+        t0 = t;
+        frames = 0;
+    }
+    frames ++;
+}
+
+RenderEngine::RenderEngine(ResourceManager<Program, ProgramResourceLoader>& programManager) : lights{}, models{}
 {
+    initGLFW();
+    initGLEW();
+    initOpenGL();
+    
+    texture_program = programManager.resource("texture");
+    phong_program = programManager.resource("phong");
+    overlay_program = programManager.resource("overlay");
+}
+    
+void RenderEngine::initGLFW()
+{
+    if(!glfwInit())
+        throw std::runtime_error("glfwInit failed");
+    
+    glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
+    glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2);
+    glfwOpenWindowHint(GLFW_WINDOW_NO_RESIZE, GL_TRUE);
+    
+    if(!glfwOpenWindow(SCREEN_SIZE.x, SCREEN_SIZE.y, 8, 8, 8, 8, 16, 0, GLFW_WINDOW))
+        throw std::runtime_error("glfwOpenWindow failed. Can your hardware handle OpenGL 3.2?");
+    
+    // GLFW settings
+    glfwDisable(GLFW_MOUSE_CURSOR);
+    glfwSetMousePos(0, 0);
+    glfwSetMouseWheel(0);
+    //glfwSwapInterval(0); //uncomment for no v-sync
+}
+
+void RenderEngine::initGLEW()
+{
+    glewExperimental = GL_TRUE; //stops glew crashing on OSX
+    if(glewInit() != GLEW_OK)
+        throw std::runtime_error("glewInit failed");
+    glGetError(); //ignore any errors coming from glewInit, because they can be safely ignored.
+    
+    std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
+    std::cout << "GLSL version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+    std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
+    std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
+    
+    if(!GLEW_VERSION_3_2)
+        throw std::runtime_error("OpenGL 3.2 API is not available.");
+}
+
+void RenderEngine::initOpenGL()
+{
+    //OpenGL settings
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+    glEnable(GL_CULL_FACE);
+}
+
+RenderEngine::~RenderEngine()
+{
+    glfwTerminate();
 }
 
 //TODO not really used anymore since Scene was introduced
@@ -147,11 +228,12 @@ void RenderEngine::update(int pass, double delta)
         
         for(auto& model : models)
         {
-            render(_pt, _pl, *_camera, lights, *model);
+            render(*texture_program, *phong_program, *_camera, lights, *model);
         }
         
-        renderOverlay(_po);
+        renderOverlay(*overlay_program);
         
+        showFPS();
         glfwSwapBuffers();
     }
 }
