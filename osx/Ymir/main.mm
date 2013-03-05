@@ -151,7 +151,9 @@ int main(int argc, char* argv[])
     std::shared_ptr<Mesh> car = meshManager.resource("car.obj");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     std::shared_ptr<Mesh> monkey_mesh = meshManager.resource("monkey.obj");
-    std::shared_ptr<Audio::Buffer> hello_world_buffer = std::make_shared<Audio::Buffer>(Audio::Buffer::fromFile(ResourceDirectory() + "/helloworld.wav"));
+    
+    //TODO make me a resource manager!
+    std::shared_ptr<Audio::Buffer> hello_world_buffer = std::make_shared<Audio::Buffer>(Audio::Buffer::fromFile(ResourceDirectory() + "/crash.wav"));
     
     engines.assign<RenderEngine>(*texture_program, *phong_program, *overlay_program);
     

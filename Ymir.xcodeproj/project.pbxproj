@@ -10,6 +10,7 @@
 		F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F627D39D16B97CA7000B06AF /* wooden-crate.jpg */; };
 		F62F58A116E6174D008B379E /* helloworld.wav in Resources */ = {isa = PBXBuildFile; fileRef = F62F58A016E6174D008B379E /* helloworld.wav */; };
 		F62F58A416E61B38008B379E /* Listener.cc in Sources */ = {isa = PBXBuildFile; fileRef = F62F58A216E61B38008B379E /* Listener.cc */; };
+		F62F58AB16E63F33008B379E /* crash.wav in Resources */ = {isa = PBXBuildFile; fileRef = F62F58AA16E63F33008B379E /* crash.wav */; };
 		F642BDA616DF9063009EB1DB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F642BDA516DF9063009EB1DB /* OpenAL.framework */; };
 		F644CED816C28ABF007B35C5 /* Model.cc in Sources */ = {isa = PBXBuildFile; fileRef = F644CED716C28ABF007B35C5 /* Model.cc */; };
 		F64516D216C068C000726CF5 /* CameraComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64516D116C068C000726CF5 /* CameraComponent.cc */; };
@@ -184,6 +185,7 @@
 		F62F58A316E61B38008B379E /* Listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listener.h; sourceTree = "<group>"; };
 		F62F58A816E62C79008B379E /* ListenerComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListenerComponent.h; sourceTree = "<group>"; };
 		F62F58A916E62FAF008B379E /* SourceComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SourceComponent.h; sourceTree = "<group>"; };
+		F62F58AA16E63F33008B379E /* crash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = crash.wav; sourceTree = "<group>"; };
 		F642BD8F16DF6239009EB1DB /* CarComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarComponent.h; sourceTree = "<group>"; };
 		F642BDA516DF9063009EB1DB /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F644CED616C28AB0007B35C5 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
@@ -516,6 +518,7 @@
 				F6B7B82E16BDD37A003D3F9F /* phong.vert */,
 				F6B7B83016BDD380003D3F9F /* phong.frag */,
 				F62F58A016E6174D008B379E /* helloworld.wav */,
+				F62F58AA16E63F33008B379E /* crash.wav */,
 				F6CC523C16D695F000C58612 /* monkey.obj */,
 				F645948F16B6AD9700B118C2 /* texture.vert */,
 				F645949516B6B11400B118C2 /* texture.frag */,
@@ -986,6 +989,7 @@
 				F653613B16DBABA8007B5D31 /* track.jpg in Resources */,
 				F653613F16DBADC5007B5D31 /* track.obj in Resources */,
 				F62F58A116E6174D008B379E /* helloworld.wav in Resources */,
+				F62F58AB16E63F33008B379E /* crash.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
