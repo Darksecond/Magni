@@ -38,7 +38,7 @@ void CollisionEngine::update(int pass, double delta)
                         {
                             for(auto e : entities)
                             {
-                                e->receive(message_type_t::TRIGGER, inner_it->get()->entity);
+                                e->receive(message_type_t::TRIGGER, it->get()->entity);
                             }
                         }
                         
@@ -46,7 +46,7 @@ void CollisionEngine::update(int pass, double delta)
                         {
                             for(auto e : entities)
                             {
-                                e->receive(message_type_t::TRIGGER, it->get()->entity);
+                                e->receive(message_type_t::TRIGGER, inner_it->get()->entity);
                             }
                         }
                     }

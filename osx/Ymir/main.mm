@@ -25,6 +25,7 @@
 #include "RenderEngine.h"
 #include "BehaviorEngine.h"
 #include "CollisionEngine.h"
+#include "AudioEngine.h"
 #include "CameraComponent.h"
 #include "ModelComponent.h"
 #include "CarComponent.h"
@@ -42,15 +43,17 @@
 
 #include "Font.h"
 
+#include "Buffer.h"
+#include "Source.h"
+#include "Listener.h"
+
 using namespace Ymir;
 
 //TODO LIST
 //
 //SKYBOX
-//COLLISIONS
 //HUD
 //WIN-LOSE (OBJECTIVES)
-//SOUND (OPENAL)
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 
@@ -146,6 +149,7 @@ int main(int argc, char* argv[])
     engines.assign<RenderEngine>(*texture_program, *phong_program, *overlay_program);
     engines.assign<BehaviorEngine>();
     engines.assign<CollisionEngine>();
+    engines.assign<AudioEngine>();
     
     Scene scene{engines};
     
@@ -218,6 +222,12 @@ int main(int argc, char* argv[])
     
     //font
     //std::unique_ptr<Font> fnt = Font::fontFromFile("DroidSerif-Regular.ttf", 23, *overlay_program);
+    
+    //audio
+    Audio::Buffer buffer = Audio::Buffer::fromFile(ResourceDirectory() + "/helloworld.wav");
+    Audio::Source source{std::shared_ptr<Audio::Buffer>{new Audio::Buffer(std::move(buffer))}};
+    Audio::Listener listener;
+    source.play();
     
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
