@@ -32,28 +32,19 @@ namespace Ymir
             
             void play()
             {
-                playing = true;
                 alSourcePlay(source);
             }
             
             void stop()
             {
-                playing = false;
                 alSourceStop(source);
-            }
-            
-            void restart()
-            {
-                if(playing)
-                {
-                    stop();
-                    play();
-                }
             }
             
             bool isPlaying()
             {
-                return playing;
+                ALenum state;
+                alGetSourcei(source, AL_SOURCE_STATE, &state);
+                return (state == AL_PLAYING);
             }
             
             void setPosition(glm::vec3 new_pos);

@@ -26,7 +26,6 @@ namespace Ymir
         {
             Audio::Source source;
             Entity& entity;
-            bool playing;
         };
         
         ALCdevice* dev;

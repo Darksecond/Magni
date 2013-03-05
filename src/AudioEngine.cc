@@ -64,7 +64,7 @@ void AudioEngine::registerEntity(Entity& entity)
     //source
     if(s != nullptr && sc != nullptr)
     {
-        source_t s{Audio::Source{sc->buffer}, entity, false};
+        source_t s{Audio::Source{sc->buffer}, entity};
         mapSource(*s.entity.component<SourceComponent>(), *s.entity.component<SpatialComponent>(), s.source);
         sources.push_back(std::move(s));
     }
@@ -99,7 +99,7 @@ void AudioEngine::addComponent(Entity& entity, const BaseComponent::Type& compon
         auto sp = entity.component<SpatialComponent>();
         if(sc != nullptr && sp != nullptr)
         {
-            source_t s{Audio::Source{sc->buffer}, entity, false};
+            source_t s{Audio::Source{sc->buffer}, entity};
             mapSource(*s.entity.component<SourceComponent>(), *s.entity.component<SpatialComponent>(), s.source);
             sources.push_back(std::move(s));
         }
