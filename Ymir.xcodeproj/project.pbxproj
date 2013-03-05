@@ -182,6 +182,8 @@
 		F62F58A016E6174D008B379E /* helloworld.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = helloworld.wav; sourceTree = "<group>"; };
 		F62F58A216E61B38008B379E /* Listener.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Listener.cc; sourceTree = "<group>"; };
 		F62F58A316E61B38008B379E /* Listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listener.h; sourceTree = "<group>"; };
+		F62F58A816E62C79008B379E /* ListenerComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListenerComponent.h; sourceTree = "<group>"; };
+		F62F58A916E62FAF008B379E /* SourceComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SourceComponent.h; sourceTree = "<group>"; };
 		F642BD8F16DF6239009EB1DB /* CarComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarComponent.h; sourceTree = "<group>"; };
 		F642BDA516DF9063009EB1DB /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F644CED616C28AB0007B35C5 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
@@ -727,6 +729,8 @@
 				F681BF3C16C2758A00545107 /* ModelComponent.h */,
 				F642BD8F16DF6239009EB1DB /* CarComponent.h */,
 				F69C21EA16E387C700511D78 /* SphereColliderComponent.h */,
+				F62F58A816E62C79008B379E /* ListenerComponent.h */,
+				F62F58A916E62FAF008B379E /* SourceComponent.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";

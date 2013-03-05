@@ -1,5 +1,7 @@
 #include "Listener.h"
 
+#include <iostream>
+
 using namespace Ymir::Audio;
 
 Listener::Listener()
@@ -14,6 +16,7 @@ Listener::Listener()
 
 void Listener::setPosition(glm::vec3 new_pos)
 {
+    std::cout << "l " << new_pos.x << " " << new_pos.y << " " << new_pos.z << std::endl;
     ALfloat listenerPos[]={new_pos.x,new_pos.y,new_pos.z};
     alListenerfv(AL_POSITION,listenerPos);
 }

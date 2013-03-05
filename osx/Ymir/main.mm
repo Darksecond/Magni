@@ -28,6 +28,8 @@
 #include "AudioEngine.h"
 #include "CameraComponent.h"
 #include "ModelComponent.h"
+#include "ListenerComponent.h"
+#include "SourceComponent.h"
 #include "CarComponent.h"
 #include "ObjGeometry.h"
 
@@ -133,6 +135,12 @@ int main(int argc, char* argv[])
     ResourceManager<Mesh> meshManager;
     meshManager.addManifest(manifest);
     
+    //engine creation
+    EngineManager engines;
+    engines.assign<BehaviorEngine>();
+    engines.assign<CollisionEngine>();
+    engines.assign<AudioEngine>();
+    
     std::shared_ptr<Program> texture_program = programManager.resource("texture");
     std::shared_ptr<Program> phong_program = programManager.resource("phong");
     std::shared_ptr<Program> overlay_program = programManager.resource("overlay");
@@ -143,13 +151,9 @@ int main(int argc, char* argv[])
     std::shared_ptr<Mesh> car = meshManager.resource("car.obj");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     std::shared_ptr<Mesh> monkey_mesh = meshManager.resource("monkey.obj");
+    std::shared_ptr<Audio::Buffer> hello_world_buffer = std::make_shared<Audio::Buffer>(Audio::Buffer::fromFile(ResourceDirectory() + "/helloworld.wav"));
     
-    //engine creation
-    EngineManager engines;
     engines.assign<RenderEngine>(*texture_program, *phong_program, *overlay_program);
-    engines.assign<BehaviorEngine>();
-    engines.assign<CollisionEngine>();
-    engines.assign<AudioEngine>();
     
     Scene scene{engines};
     
@@ -165,9 +169,11 @@ int main(int argc, char* argv[])
     car_body.assign<ModelComponent>(car, car_tex);
     car_body.assign<CarComponent>();
     car_body.assign<SphereColliderComponent>(0.5);
+    car_body.assign<SourceComponent>(hello_world_buffer).playing = true;
     car_body.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
     
     Entity& camera = scene.assign("camera", &car_body);
+    camera.assign<ListenerComponent>();
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
     auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0.0, -1.0, 3.0});
     glm::vec3 euler{-10,180,0};
@@ -223,11 +229,6 @@ int main(int argc, char* argv[])
     //font
     //std::unique_ptr<Font> fnt = Font::fontFromFile("DroidSerif-Regular.ttf", 23, *overlay_program);
     
-    //audio
-    Audio::Buffer buffer = Audio::Buffer::fromFile(ResourceDirectory() + "/helloworld.wav");
-    Audio::Source source{std::shared_ptr<Audio::Buffer>{new Audio::Buffer(std::move(buffer))}};
-    Audio::Listener listener;
-    source.play();
     
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
