@@ -12,6 +12,7 @@ namespace Ymir
         public:
             Listener();
             void setPosition(glm::vec3 new_pos);
+            void setOrientation(glm::vec3 forward, glm::vec3 up);
         };
     };
 };

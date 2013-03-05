@@ -161,6 +161,7 @@ int main(int argc, char* argv[])
     monkey.assign<SpatialComponent>(glm::vec3{5.0, 0.0, 0.0}).scale = glm::vec3{0.5};
     monkey.assign<ModelComponent>(monkey_mesh, t);
     monkey.assign<SphereColliderComponent>(0.5).trigger = true;
+    //monkey.assign<SourceComponent>(hello_world_buffer).playing = true;
     monkey.assignBehavior(std::unique_ptr<Behavior>{new SimpleTestTriggerBehavior});
 
     //car body

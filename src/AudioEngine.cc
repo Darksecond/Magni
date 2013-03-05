@@ -29,6 +29,26 @@ AudioEngine::~AudioEngine()
     delete listener;
 }
 
+void mapSource(SourceComponent& component, SpatialComponent& spatial, Audio::Source& source)
+{
+    source.setPosition(spatial.globalPosition());
+    
+    if(source.isPlaying() == true && component.playing == false)
+    {
+        source.stop();
+    }
+    if(source.isPlaying() == false && component.playing == true)
+    {
+        source.play();
+    }
+}
+
+void mapListener(ListenerComponent& component, SpatialComponent& spatial, Audio::Listener& listener)
+{
+    listener.setPosition(spatial.globalPosition());
+    listener.setOrientation(-spatial.forward(), spatial.up());
+}
+
 void AudioEngine::registerEntity(Entity& entity)
 {
     //listener
@@ -38,30 +58,21 @@ void AudioEngine::registerEntity(Entity& entity)
     if(l != nullptr && s != nullptr)
     {
         listener = new listener_t{Audio::Listener{}, entity};
-        listener->listener.setPosition(listener->entity.component<SpatialComponent>()->globalPosition());
+        mapListener(*l, *s, listener->listener);
     }
     
     //source
     if(s != nullptr && sc != nullptr)
     {
         source_t s{Audio::Source{sc->buffer}, entity, false};
-        s.source.setPosition(s.entity.component<SpatialComponent>()->globalPosition());
-        if(s.playing == true && sc->playing == false)
-        {
-            s.playing = false;
-            s.source.stop();
-        }
-        if(s.playing == false && sc->playing == true)
-        {
-            s.playing = true;
-            s.source.play();
-        }
+        mapSource(*s.entity.component<SourceComponent>(), *s.entity.component<SpatialComponent>(), s.source);
         sources.push_back(std::move(s));
     }
 }
 
 void AudioEngine::unregisterEntity(Entity& entity)
 {
+    //TODO
 }
 
 void AudioEngine::addComponent(Entity& entity, const BaseComponent::Type& component_type)
@@ -76,7 +87,8 @@ void AudioEngine::addComponent(Entity& entity, const BaseComponent::Type& compon
             if(l != nullptr && s != nullptr)
             {
                 listener = new listener_t{Audio::Listener{}, entity};
-                listener->listener.setPosition(listener->entity.component<SpatialComponent>()->globalPosition());
+                mapListener(*l, *s, listener->listener);
+
             }
         }
     }
@@ -88,17 +100,7 @@ void AudioEngine::addComponent(Entity& entity, const BaseComponent::Type& compon
         if(sc != nullptr && sp != nullptr)
         {
             source_t s{Audio::Source{sc->buffer}, entity, false};
-            s.source.setPosition(s.entity.component<SpatialComponent>()->globalPosition());
-            if(s.playing == true && sc->playing == false)
-            {
-                s.playing = false;
-                s.source.stop();
-            }
-            if(s.playing == false && sc->playing == true)
-            {
-                s.playing = true;
-                s.source.play();
-            }
+            mapSource(*s.entity.component<SourceComponent>(), *s.entity.component<SpatialComponent>(), s.source);
             sources.push_back(std::move(s));
         }
     }
@@ -110,24 +112,12 @@ void AudioEngine::update(int pass, double delta)
     {
         if(listener != nullptr)
         {
-            glm::vec3 pos = listener->entity.component<SpatialComponent>()->globalPosition();
-            listener->listener.setPosition(pos);
+            mapListener(*listener->entity.component<ListenerComponent>(), *listener->entity.component<SpatialComponent>(), listener->listener);
         }
         
         for(auto& s : sources)
         {
-            s.source.setPosition(s.entity.component<SpatialComponent>()->globalPosition());
-            auto sc = s.entity.component<SourceComponent>();
-            if(s.playing == true && sc->playing == false)
-            {
-                s.playing = false;
-                s.source.stop();
-            }
-            if(s.playing == false && sc->playing == true)
-            {
-                s.playing = true;
-                s.source.play();
-            }
+            mapSource(*s.entity.component<SourceComponent>(), *s.entity.component<SpatialComponent>(), s.source);
         }
     }
 }

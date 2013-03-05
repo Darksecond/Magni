@@ -51,6 +51,11 @@ namespace Ymir
                 }
             }
             
+            bool isPlaying()
+            {
+                return playing;
+            }
+            
             void setPosition(glm::vec3 new_pos);
         };
     };

@@ -1,7 +1,5 @@
 #include "Source.h"
 
-#include <iostream>
-
 using namespace Ymir::Audio;
 
 Source::Source(std::shared_ptr<Buffer> b) : buffer{b}
@@ -45,8 +43,6 @@ Source& Source::operator=(Source&& other)
 
 void Source::setPosition(glm::vec3 new_pos)
 {
-    std::cout << "s " << new_pos.x << " " << new_pos.y << " " << new_pos.z << std::endl;
     ALfloat source0Pos[]={ new_pos.x, new_pos.y, new_pos.z};
     alSourcefv(source, AL_POSITION, source0Pos);
-    //restart();
 }
