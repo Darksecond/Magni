@@ -56,6 +56,8 @@ using namespace Ymir;
 //SKYBOX
 //HUD
 //WIN-LOSE (OBJECTIVES)
+//DOCUMENTATION
+//WINDOWS SUPPORT
 
 const glm::vec2 SCREEN_SIZE(800, 600);
 
