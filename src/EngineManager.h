@@ -19,17 +19,26 @@ namespace Ymir
         void addComponent(Entity& entity, const BaseComponent::Type& component_type);
         void update(int pass, double delta);
         
-        void assign(std::unique_ptr<Engine> engine);
+        template<typename T>
+        T& assign(std::unique_ptr<T> engine);
         
         template<typename T, typename ... Args>
-        void assign(Args && ... args);
+        T& assign(Args && ... args);
     };
     
     //INLINE & TEMPLATE METHODS
     
     template<typename T, typename ... Args>
-    void EngineManager::assign(Args && ... args)
+    T& EngineManager::assign(Args && ... args)
     {
-        assign(std::unique_ptr<T>{new T{args ...}});
+        return assign(std::unique_ptr<T>{new T{args ...}});
+    }
+    
+    template<typename T>
+    T& EngineManager::assign(std::unique_ptr<T> engine)
+    {
+        T& ret = *engine;
+        engines.push_back(std::move(engine));
+        return ret;
     }
 };

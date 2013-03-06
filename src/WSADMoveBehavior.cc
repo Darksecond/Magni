@@ -10,8 +10,16 @@
 #include <GLM/gtx/vector_angle.hpp>
 
 #include <iostream>
+#include <sstream>
 
 using namespace Ymir;
+
+WSADMoveBehavior::WSADMoveBehavior(RenderEngine& renderer)
+{
+    //add text
+    text = std::make_shared<Text>("0 km/h", glm::vec2{50, 50}, 23);
+    renderer.addText(text);
+}
 
 void WSADMoveBehavior::update(double delta)
 {
@@ -87,4 +95,11 @@ void WSADMoveBehavior::update(double delta)
     {
         spatial->direction = glm::rotate(spatial->direction, -car->steering * glm::abs(car->gas)/10, glm::vec3{0,1,0});
     }
+    
+    //update text
+    std::stringstream newText;
+    newText.precision(0);
+    newText << std::fixed << glm::abs(car->gas) * 25;
+    newText << " km/h";
+    text->text = newText.str();
 }

@@ -1,16 +1,21 @@
 #version 150
 
-uniform mat4 modelView;
+// Input vertex data, different for all executions of this shader.
+in vec2 vertexPosition_screenspace;
+in vec2 vertexUV;
 
-in vec3 vert;
-in vec2 vertTexCoord;
+// Output data ; will be interpolated for each fragment.
+out vec2 UV;
 
-out vec2 fragTexCoord;
-
-void main() {
-    // Pass the tex coord straight through to the fragment shader
-    fragTexCoord = vertTexCoord;
+void main(){
     
-    // Apply all matrix transformations to vert
-    gl_Position = modelView * vec4(vert, 1.0);
+	// Output position of the vertex, in clip space
+	// map [0..800][0..600] to [-1..1][-1..1]
+	vec2 vertexPosition_homoneneousspace = vertexPosition_screenspace - vec2(400,300); // [0..800][0..600] -> [-400..400][-300..300]
+	vertexPosition_homoneneousspace /= vec2(400,300);
+	gl_Position =  vec4(vertexPosition_homoneneousspace,0,1);
+	
+	// UV of the vertex. No special space for this one.
+	UV = vertexUV;
 }
+

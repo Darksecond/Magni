@@ -115,6 +115,8 @@
 		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
 		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
 		F6E3E49B16B550DE00BFAC05 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49A16B550DE00BFAC05 /* COPYING.txt */; };
+		F6E6E57816E73C1F008E1F09 /* Holstein.tga in Resources */ = {isa = PBXBuildFile; fileRef = F6E6E57716E737EF008E1F09 /* Holstein.tga */; };
+		F6E6E57E16E741F4008E1F09 /* Text.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6E6E57C16E741F3008E1F09 /* Text.cc */; };
 		F6F7B28116E0BD22006D00ED /* overlay.vert in Resources */ = {isa = PBXBuildFile; fileRef = F6F7B27D16E0BC88006D00ED /* overlay.vert */; };
 		F6F7B28216E0BD22006D00ED /* overlay.frag in Resources */ = {isa = PBXBuildFile; fileRef = F6F7B27F16E0BC8E006D00ED /* overlay.frag */; };
 		F6F7B28716E0C60E006D00ED /* fontstash.h in Headers */ = {isa = PBXBuildFile; fileRef = F6F7B28516E0C60E006D00ED /* fontstash.h */; };
@@ -330,6 +332,10 @@
 		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
 		F6E3E49816B550B300BFAC05 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F6E3E49A16B550DE00BFAC05 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
+		F6E6E57716E737EF008E1F09 /* Holstein.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = Holstein.tga; sourceTree = "<group>"; };
+		F6E6E57B16E7411B008E1F09 /* TextOverlayComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextOverlayComponent.h; sourceTree = "<group>"; };
+		F6E6E57C16E741F3008E1F09 /* Text.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Text.cc; sourceTree = "<group>"; };
+		F6E6E57D16E741F3008E1F09 /* Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Text.h; sourceTree = "<group>"; };
 		F6F7B27D16E0BC88006D00ED /* overlay.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = overlay.vert; sourceTree = "<group>"; };
 		F6F7B27F16E0BC8E006D00ED /* overlay.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = overlay.frag; sourceTree = "<group>"; };
 		F6F7B28316E0C5C8006D00ED /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_truetype.h; sourceTree = "<group>"; };
@@ -425,6 +431,8 @@
 				F6AF410C16BB1B8D00F85BC0 /* Camera.cc */,
 				F644CED616C28AB0007B35C5 /* Model.h */,
 				F644CED716C28ABF007B35C5 /* Model.cc */,
+				F6E6E57D16E741F3008E1F09 /* Text.h */,
+				F6E6E57C16E741F3008E1F09 /* Text.cc */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -524,6 +532,7 @@
 				F645949516B6B11400B118C2 /* texture.frag */,
 				F6F7B27D16E0BC88006D00ED /* overlay.vert */,
 				F6F7B27F16E0BC8E006D00ED /* overlay.frag */,
+				F6E6E57716E737EF008E1F09 /* Holstein.tga */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -734,6 +743,7 @@
 				F69C21EA16E387C700511D78 /* SphereColliderComponent.h */,
 				F62F58A816E62C79008B379E /* ListenerComponent.h */,
 				F62F58A916E62FAF008B379E /* SourceComponent.h */,
+				F6E6E57B16E7411B008E1F09 /* TextOverlayComponent.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -988,6 +998,7 @@
 				F67F550116DB7C3B00478B1C /* truck_color_cleantest.jpg in Resources */,
 				F653613B16DBABA8007B5D31 /* track.jpg in Resources */,
 				F653613F16DBADC5007B5D31 /* track.obj in Resources */,
+				F6E6E57816E73C1F008E1F09 /* Holstein.tga in Resources */,
 				F62F58A116E6174D008B379E /* helloworld.wav in Resources */,
 				F62F58AB16E63F33008B379E /* crash.wav in Resources */,
 			);
@@ -1066,6 +1077,7 @@
 				F6BEF06416E5EA3100ACEDC5 /* Buffer.cc in Sources */,
 				F6BEF09A16E614A800ACEDC5 /* Source.cc in Sources */,
 				F62F58A416E61B38008B379E /* Listener.cc in Sources */,
+				F6E6E57E16E741F4008E1F09 /* Text.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

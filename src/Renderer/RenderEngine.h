@@ -8,11 +8,13 @@
 #include "Mesh.h"
 #include "Light.h"
 #include "Model.h"
+#include "Text.h"
 #include "NodeCache.h"
 #include "ResourceManager.h"
 #include "ProgramResourceLoader.h"
 
 #include <vector>
+#include <list>
 
 namespace Ymir
 {
@@ -28,13 +30,20 @@ namespace Ymir
         std::shared_ptr<Program> overlay_program; //overlay
         NodeCache<Light> lights;
         NodeCache<Model> models;
+        std::shared_ptr<Texture> holstein;
+        std::list<std::shared_ptr<Text>> texts;
 
-        RenderEngine(ResourceManager<Program, ProgramResourceLoader>&);
+        RenderEngine(ResourceManager<Program, ProgramResourceLoader>&, ResourceManager<Texture>&);
         ~RenderEngine();
         
         virtual void registerEntity(Entity& entity);
         virtual void unregisterEntity(Entity& entity);
         virtual void update(int pass, double delta);
         void addComponent(Entity& entity, const BaseComponent::Type& component_type);
+        
+        void addText(std::shared_ptr<Text> t)
+        {
+            texts.push_back(t);
+        }
     };
 };

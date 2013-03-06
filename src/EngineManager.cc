@@ -36,8 +36,3 @@ void EngineManager::update(int pass, double delta)
         engine->update(pass, delta);
     }
 }
-
-void EngineManager::assign(std::unique_ptr<Engine> engine)
-{
-    engines.push_back(std::move(engine));
-}

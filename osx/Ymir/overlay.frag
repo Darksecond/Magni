@@ -1,12 +1,14 @@
 #version 150
 
-uniform sampler2D tex;
+// Interpolated values from the vertex shaders
+in vec2 UV;
 
-in vec2 fragTexCoord;
+// Ouput data
+out vec4 color;
 
-out vec4 finalColor;
+// Values that stay constant for the whole mesh.
+uniform sampler2D myTextureSampler;
 
-void main()
-{
-    finalColor = texture(tex, fragTexCoord);
+void main(){
+	color = texture( myTextureSampler, UV );
 }

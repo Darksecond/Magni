@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
     engines.assign<BehaviorEngine>();
     engines.assign<CollisionEngine>();
     engines.assign<AudioEngine>();
-    engines.assign<RenderEngine>(programManager);
+    RenderEngine& renderEngine = engines.assign<RenderEngine>(programManager, textureManager);
     
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");
@@ -116,7 +116,7 @@ int main(int argc, char* argv[])
     car_body.assign<CarComponent>();
     car_body.assign<SphereColliderComponent>(0.5);
     car_body.assign<SourceComponent>(hello_world_buffer).playing = true;
-    car_body.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
+    car_body.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior{renderEngine}});
     
     Entity& camera = scene.assign("camera", &car_body);
     camera.assign<ListenerComponent>();
