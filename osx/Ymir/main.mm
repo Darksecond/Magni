@@ -40,6 +40,7 @@
 #include "FPSCameraBehavior.h"
 #include "WSADMoveBehavior.h"
 #include "SimpleTestTriggerBehavior.h"
+#include "CarCollisionBehavior.h"
 
 #include "ProgramResourceLoader.h"
 
@@ -99,6 +100,7 @@ int main(int argc, char* argv[])
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     std::shared_ptr<Mesh> monkey_mesh = meshManager.resource("monkey.obj");
     std::shared_ptr<Audio::Buffer> hello_world_buffer = audioBufferManager.resource("helloworld.wav");
+    std::shared_ptr<Audio::Buffer> crash_sound = audioBufferManager.resource("crash.wav");
     
     Scene scene{engines};
     
@@ -108,6 +110,11 @@ int main(int argc, char* argv[])
     monkey.assign<SphereColliderComponent>(0.5).trigger = true;
     //monkey.assign<SourceComponent>(hello_world_buffer).playing = true;
     monkey.assignBehavior(std::unique_ptr<Behavior>{new SimpleTestTriggerBehavior});
+    
+    Entity& collision_test_monkey = scene.assign("collision monkey");
+    collision_test_monkey.assign<SpatialComponent>(glm::vec3{-5.0, 0.0, 0.0}).scale = glm::vec3{0.5};
+    collision_test_monkey.assign<ModelComponent>(monkey_mesh, track_tex);
+    collision_test_monkey.assign<SphereColliderComponent>(0.5);
 
     //car body
     Entity& car_body = scene.assign("car body");
@@ -115,8 +122,9 @@ int main(int argc, char* argv[])
     car_body.assign<ModelComponent>(car, car_tex);
     car_body.assign<CarComponent>();
     car_body.assign<SphereColliderComponent>(0.5);
-    car_body.assign<SourceComponent>(hello_world_buffer).playing = true;
+    //car_body.assign<SourceComponent>(hello_world_buffer).playing = true;
     car_body.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior{renderEngine}});
+    car_body.assignBehavior(std::unique_ptr<Behavior>{new CarCollisionBehavior{crash_sound}});
     
     Entity& camera = scene.assign("camera", &car_body);
     camera.assign<ListenerComponent>();

@@ -47,6 +47,11 @@ namespace Ymir
                 return (state == AL_PLAYING);
             }
             
+            void noloop()
+            {
+                alSourcei(source, AL_LOOPING, AL_FALSE);
+            }
+            
             void setPosition(glm::vec3 new_pos);
         };
     };

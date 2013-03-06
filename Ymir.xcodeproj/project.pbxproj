@@ -117,6 +117,7 @@
 		F6E3E49B16B550DE00BFAC05 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49A16B550DE00BFAC05 /* COPYING.txt */; };
 		F6E6E57816E73C1F008E1F09 /* Holstein.tga in Resources */ = {isa = PBXBuildFile; fileRef = F6E6E57716E737EF008E1F09 /* Holstein.tga */; };
 		F6E6E57E16E741F4008E1F09 /* Text.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6E6E57C16E741F3008E1F09 /* Text.cc */; };
+		F6E6E58116E74C7E008E1F09 /* CarCollisionBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6E6E57F16E74C7E008E1F09 /* CarCollisionBehavior.cc */; };
 		F6F7B28116E0BD22006D00ED /* overlay.vert in Resources */ = {isa = PBXBuildFile; fileRef = F6F7B27D16E0BC88006D00ED /* overlay.vert */; };
 		F6F7B28216E0BD22006D00ED /* overlay.frag in Resources */ = {isa = PBXBuildFile; fileRef = F6F7B27F16E0BC8E006D00ED /* overlay.frag */; };
 		F6F7B28716E0C60E006D00ED /* fontstash.h in Headers */ = {isa = PBXBuildFile; fileRef = F6F7B28516E0C60E006D00ED /* fontstash.h */; };
@@ -336,6 +337,8 @@
 		F6E6E57B16E7411B008E1F09 /* TextOverlayComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextOverlayComponent.h; sourceTree = "<group>"; };
 		F6E6E57C16E741F3008E1F09 /* Text.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Text.cc; sourceTree = "<group>"; };
 		F6E6E57D16E741F3008E1F09 /* Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Text.h; sourceTree = "<group>"; };
+		F6E6E57F16E74C7E008E1F09 /* CarCollisionBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarCollisionBehavior.cc; sourceTree = "<group>"; };
+		F6E6E58016E74C7E008E1F09 /* CarCollisionBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarCollisionBehavior.h; sourceTree = "<group>"; };
 		F6F7B27D16E0BC88006D00ED /* overlay.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = overlay.vert; sourceTree = "<group>"; };
 		F6F7B27F16E0BC8E006D00ED /* overlay.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = overlay.frag; sourceTree = "<group>"; };
 		F6F7B28316E0C5C8006D00ED /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_truetype.h; sourceTree = "<group>"; };
@@ -714,6 +717,8 @@
 				F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */,
 				F6542A0D16E49607006B64AB /* SimpleTestTriggerBehavior.h */,
 				F6542A0C16E49607006B64AB /* SimpleTestTriggerBehavior.cc */,
+				F6E6E58016E74C7E008E1F09 /* CarCollisionBehavior.h */,
+				F6E6E57F16E74C7E008E1F09 /* CarCollisionBehavior.cc */,
 			);
 			name = Behaviors;
 			sourceTree = "<group>";
@@ -1078,6 +1083,7 @@
 				F6BEF09A16E614A800ACEDC5 /* Source.cc in Sources */,
 				F62F58A416E61B38008B379E /* Listener.cc in Sources */,
 				F6E6E57E16E741F4008E1F09 /* Text.cc in Sources */,
+				F6E6E58116E74C7E008E1F09 /* CarCollisionBehavior.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
