@@ -52,6 +52,11 @@ namespace Ymir
                 alSourcei(source, AL_LOOPING, AL_FALSE);
             }
             
+            void setPitch(float new_pitch)
+            {
+                alSourcef(source, AL_PITCH, new_pitch);
+            }
+            
             void setPosition(glm::vec3 new_pos);
         };
     };

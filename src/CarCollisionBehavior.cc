@@ -23,8 +23,8 @@ void CarCollisionBehavior::receive(message_type_t type, const Entity& trigger)
     if(type == message_type_t::COLLISION)
     {
         audio_crash->setPosition(entity->component<SpatialComponent>()->position);
-        if(!audio_crash->isPlaying()) audio_crash->play();
+        if(!audio_crash->isPlaying() && glm::abs(entity->component<CarComponent>()->gas) > 0.5) audio_crash->play();
         
-        entity->component<CarComponent>()->gas = -0.5;
+        entity->component<CarComponent>()->gas = -0.1;
     }
 }

@@ -55,7 +55,6 @@ using namespace Ymir;
 //TODO LIST
 //
 //SKYBOX
-//HUD
 //WIN-LOSE (OBJECTIVES)
 //DOCUMENTATION
 //WINDOWS SUPPORT
@@ -122,7 +121,7 @@ int main(int argc, char* argv[])
     car_body.assign<ModelComponent>(car, car_tex);
     car_body.assign<CarComponent>();
     car_body.assign<SphereColliderComponent>(0.5);
-    //car_body.assign<SourceComponent>(hello_world_buffer).playing = true;
+    //car_body.assign<SourceComponent>(engine_sound).playing = true;
     car_body.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior{renderEngine}});
     car_body.assignBehavior(std::unique_ptr<Behavior>{new CarCollisionBehavior{crash_sound}});
     

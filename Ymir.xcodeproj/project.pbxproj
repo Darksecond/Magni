@@ -334,7 +334,6 @@
 		F6E3E49816B550B300BFAC05 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F6E3E49A16B550DE00BFAC05 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 		F6E6E57716E737EF008E1F09 /* Holstein.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = Holstein.tga; sourceTree = "<group>"; };
-		F6E6E57B16E7411B008E1F09 /* TextOverlayComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextOverlayComponent.h; sourceTree = "<group>"; };
 		F6E6E57C16E741F3008E1F09 /* Text.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Text.cc; sourceTree = "<group>"; };
 		F6E6E57D16E741F3008E1F09 /* Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Text.h; sourceTree = "<group>"; };
 		F6E6E57F16E74C7E008E1F09 /* CarCollisionBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarCollisionBehavior.cc; sourceTree = "<group>"; };
@@ -748,7 +747,6 @@
 				F69C21EA16E387C700511D78 /* SphereColliderComponent.h */,
 				F62F58A816E62C79008B379E /* ListenerComponent.h */,
 				F62F58A916E62FAF008B379E /* SourceComponent.h */,
-				F6E6E57B16E7411B008E1F09 /* TextOverlayComponent.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
