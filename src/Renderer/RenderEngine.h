@@ -1,19 +1,19 @@
 #pragma once
 
-#include "Engine.h"
+#include "../Engine.h"
 
-#include "Program.h"
-#include "Texture.h"
+#include "../Program.h"
+#include "../Texture.h"
 #include "Camera.h"
-#include "Mesh.h"
+#include "../Mesh.h"
 #include "Light.h"
 #include "Model.h"
 #include "Text.h"
-#include "NodeCache.h"
-#include "ResourceManager.h"
-#include "ProgramResourceLoader.h"
-#include "CubemapResourceLoader.h"
-#include "Cubemap.h"
+#include "../NodeCache.h"
+#include "../ResourceManager.h"
+#include "../ProgramResourceLoader.h"
+#include "../CubemapResourceLoader.h"
+#include "../Cubemap.h"
 
 #include <vector>
 #include <list>
@@ -41,12 +41,12 @@ namespace Ymir
                      ResourceManager<Texture>&,
                      ResourceManager<Cubemap, CubemapResourceLoader>&);
         ~RenderEngine();
-        
+
         virtual void registerEntity(Entity& entity);
         virtual void unregisterEntity(Entity& entity);
         virtual void update(int pass, double delta);
         void addComponent(Entity& entity, const BaseComponent::Type& component_type);
-        
+
         void addText(std::shared_ptr<Text> t)
         {
             texts.push_back(t);

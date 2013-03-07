@@ -1,12 +1,19 @@
 #pragma once
 
-#include <GLEW/glew.h>
-
 #include "Bitmap.h"
 
 //TODO TEMPORARY
 #include "StreamReader.h"
 #include "stb_image.h"
+
+#ifdef __APPLE__
+    #include <GLEW/glew.h>
+#endif
+#ifdef _WIN32
+    #include <GL/glew.h>
+#endif // _WIN32
+
+#include <stdexcept>
 
 namespace Ymir
 {
@@ -42,26 +49,26 @@ namespace Ymir
             unsigned char* pixels = stbi_load_from_callbacks(&callbacks, reinterpret_cast<void*>(&stream), &width, &height, &channels, 0);
             if(!pixels)
                 throw std::runtime_error(stbi_failure_reason());
-            
+
             Bitmap bmp(width, height, (Bitmap::Format)channels, pixels);
             stbi_image_free(pixels);
-            
+
             //make texture
             return Texture{bmp};
         }
-        
+
         Texture(Bitmap& bitmap, GLint minMagFilter = GL_LINEAR, GLint wrapMode = GL_CLAMP_TO_EDGE);
         Texture(Texture&& other);
         Texture(const Texture&) = delete;
         ~Texture();
-        
+
         Texture& operator=(Texture&& other);
         Texture& operator=(const Texture&) = delete;
-        
+
         GLuint object() const;
         GLfloat width() const;
         GLfloat height() const;
-        
+
         void bind(const GLenum unit = 0) const;
         void unbind(const GLenum unit = 0) const;
     };
@@ -71,11 +78,11 @@ namespace Ymir
         const Texture& texture;
         const GLenum unit;
     public:
-        TextureContext(const Texture& t, const GLenum u = 0): texture{t}, unit{u}
+        TextureContext(const Texture& t, const GLenum u = 0): texture(t), unit(u)
         {
             texture.bind(unit);
         }
-        
+
         ~TextureContext()
         {
             texture.unbind(unit);

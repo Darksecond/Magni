@@ -1,20 +1,26 @@
 #include "AudioEngine.h"
 
-#include <OpenAL/al.h>
-#include <OpenAL/alc.h>
+#ifdef __APPLE__
+    #include <OpenAL/al.h>
+    #include <OpenAL/alc.h>
+#endif
+#ifdef _WIN32
+    #include <AL/al.h>
+    #include <AL/alc.h>
+#endif // _WIN32
 #include <ALUT/alut.h>
 #include <stdexcept>
 #include <string>
 
 using namespace Ymir;
 
-AudioEngine::AudioEngine() : listener{nullptr}, sources{}
+AudioEngine::AudioEngine() : listener(nullptr), sources()
 {
     alutInitWithoutContext(nullptr, nullptr);
     dev = alcOpenDevice(nullptr);
     if(!dev)
         throw std::runtime_error("Could not open default device");
-    
+
     ctx = alcCreateContext(dev, nullptr);
     alcMakeContextCurrent(ctx);
     if(!ctx)
@@ -32,7 +38,7 @@ AudioEngine::~AudioEngine()
 void mapSource(SourceComponent& component, SpatialComponent& spatial, Audio::Source& source)
 {
     source.setPosition(spatial.globalPosition());
-    
+
     if(source.isPlaying() == true && component.playing == false)
     {
         source.stop();
@@ -57,10 +63,11 @@ void AudioEngine::registerEntity(Entity& entity)
     auto sc = entity.component<SourceComponent>();
     if(l != nullptr && s != nullptr)
     {
-        listener = new listener_t{Audio::Listener{}, entity};
+        //listener = new listener_t{Audio::Listener(), entity};
+        listener = new listener_t(entity);
         mapListener(*l, *s, listener->listener);
     }
-    
+
     //source
     if(s != nullptr && sc != nullptr)
     {
@@ -77,7 +84,7 @@ void AudioEngine::unregisterEntity(Entity& entity)
 
 void AudioEngine::addComponent(Entity& entity, const BaseComponent::Type& component_type)
 {
-    
+
     if(component_type == ListenerComponent::type() || component_type == SpatialComponent::type())
     {
         if(listener == nullptr)
@@ -86,20 +93,20 @@ void AudioEngine::addComponent(Entity& entity, const BaseComponent::Type& compon
             auto s = entity.component<SpatialComponent>();
             if(l != nullptr && s != nullptr)
             {
-                listener = new listener_t{Audio::Listener{}, entity};
+                listener = new listener_t(entity);
                 mapListener(*l, *s, listener->listener);
 
             }
         }
     }
-    
+
     if(component_type == SpatialComponent::type() || component_type == SourceComponent::type())
     {
         auto sc = entity.component<SourceComponent>();
         auto sp = entity.component<SpatialComponent>();
         if(sc != nullptr && sp != nullptr)
         {
-            source_t s{Audio::Source{sc->buffer}, entity};
+            source_t s{Audio::Source(sc->buffer), entity};
             mapSource(*s.entity.component<SourceComponent>(), *s.entity.component<SpatialComponent>(), s.source);
             sources.push_back(std::move(s));
         }
@@ -114,7 +121,7 @@ void AudioEngine::update(int pass, double delta)
         {
             mapListener(*listener->entity.component<ListenerComponent>(), *listener->entity.component<SpatialComponent>(), listener->listener);
         }
-        
+
         for(auto& s : sources)
         {
             mapSource(*s.entity.component<SourceComponent>(), *s.entity.component<SpatialComponent>(), s.source);

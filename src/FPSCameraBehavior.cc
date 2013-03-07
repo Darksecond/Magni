@@ -3,8 +3,14 @@
 #include "SpatialComponent.h"
 #include "CameraComponent.h"
 
-#include <GLEW/glew.h>
-#include <GLFW/glfw.h>
+#ifdef __APPLE__
+    #include <GLEW/glew.h>
+    #include <GLFW/glfw.h>
+#endif
+#ifdef _WIN32
+    #include <GL/glew.h>
+    #include <GL/glfw.h>
+#endif // _WIN32
 
 using namespace Ymir;
 
@@ -29,18 +35,18 @@ void FPSCameraBehavior::offsetOrientation(float upAngle, float rightAngle) {
     _camera._horizontalAngle += rightAngle;
     while(_camera._horizontalAngle > 360.0f) _camera._horizontalAngle -= 360.0;
     while(_camera._horizontalAngle < 0.0f) _camera._horizontalAngle += 360.0;
-    
+
     _camera._verticalAngle += upAngle;
     if(_camera._verticalAngle > MaxVerticalAngle) _camera._verticalAngle = MaxVerticalAngle;
     if(_camera._verticalAngle < -MaxVerticalAngle) _camera._verticalAngle = -MaxVerticalAngle;
-    
+
     //we can't only use the quaternion, because it would be too difficult to check the maximum pitch right now
     glm::quat up = glm::angleAxis(_camera._verticalAngle, glm::vec3(1,0,0));
     glm::quat right = glm::angleAxis(_camera._horizontalAngle, glm::vec3(0,1,0));
     _spatial.direction = glm::inverse(up * right);
 }
 
-/*    
+/*
  //rotate camera based on mouse movement
  //TODO move this into a behavior for a camera
  const float mouseSensitivity = 0.1;
@@ -48,9 +54,9 @@ void FPSCameraBehavior::offsetOrientation(float upAngle, float rightAngle) {
  glfwGetMousePos(&mouseX, &mouseY);
  c.offsetOrientation(mouseSensitivity * mouseY, mouseSensitivity * mouseX);
  glfwSetMousePos(0, 0); //reset the mouse, so it doesn't go out of the window
- 
- 
- 
+
+
+
   //TODO move code to camerastrategy or something?
   //TODO or perhaps a script or behavior of some kind?
  //TODO move to behavior

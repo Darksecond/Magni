@@ -1,6 +1,12 @@
 #pragma once
 
-#include <OpenAL/al.h>
+#ifdef __APPLE__
+    #include <OpenAL/al.h>
+#endif
+#ifdef _WIN32
+    #include <AL/al.h>
+#endif // _WIN32
+
 #include <GLM/glm.hpp>
 
 namespace Ymir

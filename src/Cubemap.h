@@ -1,10 +1,18 @@
 #pragma once
 
-#include <GLEW/glew.h>
+#include "Bitmap.h"
+
+#ifdef __APPLE__
+    #include <GLEW/glew.h>
+#endif
+#ifdef _WIN32
+    #include <GL/glew.h>
+#endif // _WIN32
+
 #include <vector>
 #include <memory>
 
-#include "Bitmap.h"
+
 
 namespace Ymir
 {
@@ -16,12 +24,12 @@ namespace Ymir
         Cubemap(Cubemap&& other);
         Cubemap(const Cubemap&) = delete;
         ~Cubemap();
-        
+
         Cubemap& operator=(Cubemap&& other);
         Cubemap& operator=(const Cubemap&) = delete;
-        
+
         GLuint object() const;
-        
+
         void bind(const GLenum unit = 0) const;
         void unbind(const GLenum unit = 0) const;
     };

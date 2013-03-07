@@ -21,7 +21,7 @@ bool Light::needsComponent(const BaseComponent::Type type)
     return false;
 }
 
-Light::Light(LightComponent& light, SpatialComponent& spatial) : _light{light}, _spatial{spatial}
+Light::Light(LightComponent& light, SpatialComponent& spatial) : _light(light), _spatial(spatial)
 {
 }
 

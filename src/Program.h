@@ -1,11 +1,18 @@
 #pragma once
 
-#include <GLEW/glew.h>
+#include "Shader.h"
+
+#ifdef __APPLE__
+    #include <GLEW/glew.h>
+#endif
+
+#ifdef _WIN32
+    #include <GL/glew.h>
+#endif // _WIN32
+
 #include <GLM/gtc/type_ptr.hpp>
 #include <memory>
 #include <vector>
-
-#include "Shader.h"
 
 namespace Ymir
 {
@@ -17,18 +24,18 @@ namespace Ymir
         Program(Program&& other);
         Program(const Program&) = delete;
         ~Program();
-        
+
         Program& operator=(Program&& other);
         Program& operator=(const Program&) = delete;
-        
+
         GLuint object() const;
-        
+
         GLint attrib(const GLchar* attribName) const;
         GLint uniform(const GLchar* uniformName) const;
-        
+
         void bind() const;
         void unbind() const;
-        
+
         inline void setUniform(const GLchar* name, GLint v0)
             { glUniform1i(uniform(name), v0); }
         inline void setUniform(const GLchar* name, const glm::mat4& m, GLboolean transpose=GL_FALSE)
@@ -47,11 +54,11 @@ namespace Ymir
     {
         const Program& program;
     public:
-        ProgramContext(const Program& prog) : program{prog}
+        ProgramContext(const Program& prog) : program(prog)
         {
             program.bind();
         }
-        
+
         ~ProgramContext()
         {
             program.unbind();

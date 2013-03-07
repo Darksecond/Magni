@@ -8,11 +8,13 @@ namespace Ymir
     {
     public:
         bool front;
-        RotateBehavior(bool f = true) : front{f}
+        float rotation;
+
+        RotateBehavior(bool f = true) : front(f), rotation(0)
         {
         }
-        
-        float rotation = 0;
+
+
         virtual void update(double delta);
     };
 };

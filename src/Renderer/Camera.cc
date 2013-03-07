@@ -1,7 +1,7 @@
 #include "Camera.h"
 
-#include "CameraComponent.h"
-#include "SpatialComponent.h"
+#include "../CameraComponent.h"
+#include "../SpatialComponent.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/rotate_vector.hpp>
@@ -26,7 +26,7 @@ std::unique_ptr<Camera> Camera::fromEntity(const Entity& entity)
     return nullptr;
 }
 
-Camera::Camera(CameraComponent& c, SpatialComponent& s) : _camera{c}, _spatial{s}
+Camera::Camera(CameraComponent& c, SpatialComponent& s) : _camera(c), _spatial(s)
 {
 }
 

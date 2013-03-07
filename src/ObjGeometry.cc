@@ -1,7 +1,7 @@
 #include "ObjGeometry.h"
 
 #include <sstream>
-
+#include <tuple>
 #include <iostream>
 
 using namespace Ymir;
@@ -10,7 +10,7 @@ ObjGeometry::ObjGeometry(std::istream& stream)
 {
     load(stream);
     interlace();
-    
+
     //clean
     _v.clear();
     _vn.clear();
@@ -56,7 +56,7 @@ void ObjGeometry::load(std::istream& stream)
                 std::stringstream face(face_str);
                 int v, vt, vn;
                 std::string sv, svt, svn;
-                
+
                 std::getline(face, sv, '/');
                 std::getline(face, svt, '/');
                 std::getline(face, svn);
@@ -83,12 +83,12 @@ void ObjGeometry::interlace()
         else
         {
             //niet in map
-            
+
             //maak vertex
             auto v =  _v [std::get<1>(f) - 1];
             auto vt = _vt[std::get<2>(f) - 1];
             auto vn = _vn[std::get<3>(f) - 1];
-            
+
             Vertex vert;
             vert.x = std::get<0>(v);
             vert.y = std::get<1>(v);
@@ -99,10 +99,10 @@ void ObjGeometry::interlace()
             vert.u = std::get<0>(vt);
             vert.v = std::get<1>(vt);
             _vertices.push_back(vert);
-            
+
             //voeg toe aan indices
             _indices.push_back(_vertices.size() - 1);
-            
+
             //voeg toe aan map
             indice_mapping.insert({std::get<0>(f), _vertices.size() - 1});
         }

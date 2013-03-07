@@ -5,7 +5,7 @@
 
 using namespace Ymir;
 
-SpatialComponent::SpatialComponent(glm::vec3 pos) : position{pos}, direction{}, scale{1.0, 1.0, 1.0}
+SpatialComponent::SpatialComponent(glm::vec3 pos) : position(pos), scale(1.0, 1.0, 1.0), direction()
 {
 }
 
@@ -31,7 +31,7 @@ glm::mat4 SpatialComponent::matrix() const
     matrix = glm::translate(matrix, -globalPosition());
     matrix = matrix * glm::mat4_cast(globalDirection());
     matrix = glm::scale(matrix, scale);
-    
+
     return matrix;
 }
 

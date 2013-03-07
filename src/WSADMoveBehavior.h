@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Behavior.h"
-#include "RenderEngine.h"
+#include "Renderer/RenderEngine.h"
 #include "Renderer/Text.h"
 
 #include <GLM/glm.hpp>

@@ -61,35 +61,35 @@ static unsigned int decutf8(unsigned int* state, unsigned int* codep, unsigned i
 //---------------------------
 
 
-Font::Font(int cache_w, int cache_h, const unsigned char* data, int s, Program& p) : tex_width{cache_w}, tex_height{cache_h}, size{s}, program{p}
+Font::Font(int cache_w, int cache_h, const unsigned char* data, int s, Program& p) : tex_width(cache_w), tex_height(cache_h), size(s), program(p)
 {
     it_width = 1.0f / cache_w;
 	it_height = 1.0f / cache_h;
 
     glGenTextures(1, &tex);
     glBindTexture(GL_TEXTURE_2D, tex);
-    
+
     glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, cache_w, cache_h, 0, GL_RED, GL_UNSIGNED_BYTE, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    
+
     //create VAO, VBO and IBO
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
     glGenBuffers(1, &ibo);
-    
+
     glBindVertexArray(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-        
+
     //load font from data
     if (!stbtt_InitFont(&font, data, 0))
     {
         throw std::runtime_error("could not create font from data");
     }
-    
+
     //load font metrics
     int ascent, descent, fh, lineGap;
     stbtt_GetFontVMetrics(&font, &ascent, &descent, &lineGap);
@@ -97,7 +97,7 @@ Font::Font(int cache_w, int cache_h, const unsigned char* data, int s, Program& 
 	ascender = (float)ascent / (float)fh;
 	descender = (float)descent / (float)fh;
 	line_height = (float)(fh + lineGap) / (float)fh;
-    
+
     float scale = stbtt_ScaleForPixelHeight(&font, size);
     int x0, x1, y0, y1;
     stbtt_GetFontBoundingBox(&font, &x0, &x1, &y0, &y1);
@@ -106,10 +106,10 @@ Font::Font(int cache_w, int cache_h, const unsigned char* data, int s, Program& 
     gw *= scale;
     gh *= scale;
     int max_glyphs = (tex_width / gw)*(tex_height / gh);
-    
+
     glBufferData(GL_ARRAY_BUFFER, 4*4*sizeof(GLfloat)*max_glyphs, NULL, GL_DYNAMIC_DRAW);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6*sizeof(GLushort)*max_glyphs, NULL, GL_DYNAMIC_DRAW);
-    
+
     glEnableVertexAttribArray(program.attrib("vert"));
     glEnableVertexAttribArray(program.attrib("vertTexCoord"));
     glVertexAttribPointer(program.attrib("vert"), 2, GL_FLOAT, GL_FALSE, 4*sizeof(GLfloat), 0);
@@ -145,29 +145,29 @@ void Font::print(const std::string& text)
     const char* s = text.c_str();
     unsigned int codepoint;
 	unsigned int state = 0;
-    
+
     ProgramContext p{program};
     glBindTexture(GL_TEXTURE_2D, tex);
     glBindVertexArray(vao);
-    
+
     //gltextUniform2i(FontSystem::instance().scale_loc, self->window_w, self->window_h);
     //gltextUniform3f(FontSystem::instance().col_loc, self->pen_r, self->pen_g, self->pen_b);
 
-    
+
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    
+
 	for (; *s; ++s)
 	{
 		if (decutf8(&state, &codepoint, *(unsigned char*)s)) continue;
-        
+
         //find glyph
         //unsigned glyph = ...
-        
+
         //gltextUniform2i(FontSystem::instance().pos_loc, self->pen_x+positions[i].x_offset, self->pen_+positions[i].y_offset);
         //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, (GLvoid*)(glyph*GLYPH_IDX_SIZE));
         //self->pen_x += positions[i].x_advance >> 6;
         //self->pen_y += positions[i].y_advance >> 6;
     }
-    
+
     glBindTexture(GL_TEXTURE_2D, 0);
 }

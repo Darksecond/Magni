@@ -2,7 +2,7 @@
 
 using namespace Ymir;
 
-Scene::Scene(EngineManager& manager) : engines{manager}
+Scene::Scene(EngineManager& manager) : engines(manager)
 {
 }
 

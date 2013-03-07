@@ -14,8 +14,8 @@ namespace Ymir
     class Component : public BaseComponent
     {
     public:
-        Derived* parent = nullptr;
-        
+        Derived* parent;
+
         static const Type type()
         {
             static Type _type = type_counter++;

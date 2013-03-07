@@ -4,7 +4,7 @@
 
 using namespace Ymir;
 
-Collider::Collider(const Entity& e) : entity{e}
+Collider::Collider(const Entity& e) : entity(e)
 {
 }
 
@@ -35,10 +35,10 @@ bool Collider::collides(Collider& other)
 {
     glm::vec3 this_loc = entity.component<SpatialComponent>()->position;
     float rad = entity.component<SphereColliderComponent>()->radius;
-    
+
     glm::vec3 other_loc = other.entity.component<SpatialComponent>()->position;
     float other_rad = other.entity.component<SphereColliderComponent>()->radius;
-    
+
     float distance = glm::distance(this_loc, other_loc);
     if(distance < rad + other_rad)
     {

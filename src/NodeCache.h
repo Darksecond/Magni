@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <memory>
+#include <algorithm>
 
 namespace Ymir
 {
@@ -13,7 +14,7 @@ namespace Ymir
     public:
         typedef T value_type;
         typedef Container container_type;
-        
+
         void registerEntity(Entity& entity)
         {
             std::unique_ptr<T> node = T::fromEntity(entity);
@@ -22,7 +23,7 @@ namespace Ymir
                 container.push_back(std::move(node));
             }
         }
-        
+
         void unregisterEntity(Entity& entity)
         {
             std::unique_ptr<T> node = T::fromEntity(entity);
@@ -36,7 +37,7 @@ namespace Ymir
                              , container.end());
             }
         }
-        
+
         void addComponent(Entity& entity, const BaseComponent::Type& type)
         {
             if(T::needsComponent(type))
@@ -46,9 +47,9 @@ namespace Ymir
                     container.push_back(std::move(node));
             }
         }
-        
+
         //TODO removeComponent
-        
+
         typename Container::reference       operator[](typename Container::size_type pos) { return container[pos]; }
         typename Container::const_reference operator[](typename Container::size_type pos) const { return container[pos]; }
         typename Container::reference       front() { return container.front(); }
@@ -59,7 +60,7 @@ namespace Ymir
         typename Container::iterator        end() { return container.end(); }
         typename Container::const_iterator        end() const { return container.end(); }
         typename Container::const_iterator        cend() const { return container.cend(); }
-        
+
     //private:
         container_type container;
     };
