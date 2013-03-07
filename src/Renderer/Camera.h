@@ -11,8 +11,8 @@ namespace Ymir
     class Camera
     {
         CameraComponent& _camera;
-        SpatialComponent& _spatial;
     public:
+        SpatialComponent& _spatial;
         static std::unique_ptr<Camera> fromEntity(const Entity& e);
 
         Camera(CameraComponent& c, SpatialComponent& s);

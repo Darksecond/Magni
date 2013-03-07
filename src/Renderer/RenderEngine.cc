@@ -298,8 +298,80 @@ void renderOverlay(Program& p, Texture& holstein, Text& text)
     glDeleteBuffers(1, &UV_VBO);
 }
 
-void renderSkybox(Cubemap& sky, Program& p)
+void renderSkybox(Cubemap& sky, Program& p, Camera& c)
 {
+    static const GLfloat cube_vertices[] = {
+        -1.0,  1.0,  1.0,
+        -1.0, -1.0,  1.0,
+         1.0, -1.0,  1.0,
+         1.0,  1.0,  1.0,
+        -1.0,  1.0, -1.0,
+        -1.0, -1.0, -1.0,
+         1.0, -1.0, -1.0,
+         1.0,  1.0, -1.0,
+    };
+    
+    static const GLushort cube_indices[] = {
+        //0, 1, 2, 3,
+        //3, 2, 6, 7,
+        //7, 6, 5, 4,
+        //4, 5, 1, 0,
+        //0, 3, 7, 4,
+        //1, 2, 6, 5,
+        
+        0, 1, 2,
+        0, 2, 3,
+        
+        3, 2, 6,
+        3, 6, 7,
+        
+        7, 6, 5,
+        7, 5, 4,
+        
+        4, 5, 1,
+        4, 1, 0,
+        
+        0, 3, 7,
+        0, 7, 4,
+        
+        1, 2, 6,
+        1, 6, 5,
+    };
+    
+    ProgramContext pc{p};
+    
+    GLuint vao, vbo, ibo;
+    
+    glGenBuffers(1, &vbo);
+    glGenBuffers(1, &ibo);
+    glGenVertexArrays(1, &vao);
+    
+    glBindVertexArray(vao);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+    
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cube_vertices), cube_vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cube_indices), cube_indices, GL_STATIC_DRAW);
+    
+    glEnableVertexAttribArray(p.attrib("vertex"));
+    glVertexAttribPointer(p.attrib("vertex"), 3, GL_FLOAT, GL_FALSE, 0, 0);
+    
+    glm::mat4 M = c.projectionMatrix() * c.viewMatrix() * glm::scale(glm::translate(glm::mat4{}, -c._spatial.globalPosition()), glm::vec3{50});
+    
+    p.setUniform("PVM", M);
+
+    sky.bind(GL_TEXTURE0);
+    p.setUniform("cubemap", 0);
+    
+    glDisable(GL_CULL_FACE);
+    glDrawElements(GL_TRIANGLES, sizeof(cube_indices)/sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
+    glEnable(GL_CULL_FACE);
+    sky.unbind();
+    
+    glDeleteVertexArrays(1, &vao);
+    glDeleteBuffers(1, &vbo);
+    glDeleteBuffers(1, &ibo);
+    
 }
 
 void RenderEngine::update(int pass, double delta)
@@ -309,7 +381,7 @@ void RenderEngine::update(int pass, double delta)
         glClearColor(0.0, 0.0, 0.0, 1); // black
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
-        renderSkybox(*sky, *sky_program);
+        renderSkybox(*sky, *sky_program, *_camera);
         
         for(auto& model : models)
         {
