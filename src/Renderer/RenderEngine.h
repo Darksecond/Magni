@@ -12,6 +12,8 @@
 #include "NodeCache.h"
 #include "ResourceManager.h"
 #include "ProgramResourceLoader.h"
+#include "CubemapResourceLoader.h"
+#include "Cubemap.h"
 
 #include <vector>
 #include <list>
@@ -32,8 +34,11 @@ namespace Ymir
         NodeCache<Model> models;
         std::shared_ptr<Texture> holstein;
         std::list<std::shared_ptr<Text>> texts;
+        std::shared_ptr<Cubemap> sky;
 
-        RenderEngine(ResourceManager<Program, ProgramResourceLoader>&, ResourceManager<Texture>&);
+        RenderEngine(ResourceManager<Program, ProgramResourceLoader>&,
+                     ResourceManager<Texture>&,
+                     ResourceManager<Cubemap, CubemapResourceLoader>&);
         ~RenderEngine();
         
         virtual void registerEntity(Entity& entity);

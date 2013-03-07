@@ -18,7 +18,7 @@ Bitmap Bitmap::bitmapFromFile(const std::string& file)
     
     Bitmap bmp(width, height, (Format)channels, pixels);
     stbi_image_free(pixels);
-    return bmp;
+    return std::move(bmp);
 }
 
 Bitmap::Bitmap(unsigned int width,
@@ -31,9 +31,32 @@ Bitmap::Bitmap(unsigned int width,
     memcpy(_pixels, pixels, newSize);
 }
 
+Bitmap::Bitmap(Bitmap&& other) : _width{other._width}, _height{other._height}, _format{other._format}, _pixels{other._pixels}
+{
+    other._width = 0;
+    other._height = 0;
+    other._pixels = nullptr;
+}
+
 Bitmap::~Bitmap()
 {
     delete[] _pixels;
+}
+
+Bitmap& Bitmap::operator=(Bitmap&& other)
+{
+    delete[] _pixels;
+    
+    _pixels = other._pixels;
+    _width = other._width;
+    _height = other._height;
+    _format = other._format;
+    
+    other._width = 0;
+    other._height = 0;
+    other._pixels = nullptr;
+    
+    return *this;
 }
 
 void Bitmap::flipVertically() {

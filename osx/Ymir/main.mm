@@ -43,6 +43,7 @@
 #include "CarCollisionBehavior.h"
 
 #include "ProgramResourceLoader.h"
+#include "CubemapResourceLoader.h"
 
 #include "Font.h"
 
@@ -84,12 +85,15 @@ int main(int argc, char* argv[])
     ResourceManager<Audio::Buffer> audioBufferManager;
     audioBufferManager.addManifest(manifest);
     
+    ResourceManager<Cubemap, CubemapResourceLoader> cubemapManager;
+    cubemapManager.addManifest(manifest);
+    
     //engine creation
     EngineManager engines;
     engines.assign<BehaviorEngine>();
     engines.assign<CollisionEngine>();
     engines.assign<AudioEngine>();
-    RenderEngine& renderEngine = engines.assign<RenderEngine>(programManager, textureManager);
+    RenderEngine& renderEngine = engines.assign<RenderEngine>(programManager, textureManager, cubemapManager);
     
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");

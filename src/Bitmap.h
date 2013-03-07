@@ -21,7 +21,12 @@ namespace Ymir
                 unsigned int height,
                 Format format,
                 const unsigned char* pixels);
+        Bitmap(Bitmap&) = delete;
+        Bitmap(Bitmap&& other);
         ~Bitmap();
+        
+        Bitmap& operator=(Bitmap&) = delete;
+        Bitmap& operator=(Bitmap&& other);
         
         void flipVertically();
         unsigned char* pixelBuffer() const;

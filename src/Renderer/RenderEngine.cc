@@ -38,7 +38,11 @@ void showFPS() {
     frames ++;
 }
 
-RenderEngine::RenderEngine(ResourceManager<Program, ProgramResourceLoader>& programManager, ResourceManager<Texture>& textureManager) : lights{}, models{}, texts{}
+RenderEngine::RenderEngine(ResourceManager<Program,
+                           ProgramResourceLoader>& programManager,
+                           ResourceManager<Texture>& textureManager,
+                           ResourceManager<Cubemap, CubemapResourceLoader>& cubemapManager
+                           ) : lights{}, models{}, texts{}
 {
     initGLFW();
     initGLEW();
@@ -48,8 +52,9 @@ RenderEngine::RenderEngine(ResourceManager<Program, ProgramResourceLoader>& prog
     phong_program = programManager.resource("phong");
     overlay_program = programManager.resource("overlay");
     holstein = textureManager.resource("Holstein.tga");
+    sky = cubemapManager.resource("sky.jpg");
 }
-    
+
 void RenderEngine::initGLFW()
 {
     if(!glfwInit())
