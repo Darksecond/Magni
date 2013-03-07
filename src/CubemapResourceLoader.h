@@ -10,7 +10,6 @@
 #include <memory>
 #include <vector>
 #include <sstream>
-#include <iostream>
 
 namespace Ymir
 {
@@ -27,7 +26,6 @@ namespace Ymir
                 ident << i;
                 ident << "_";
                 ident << identifier;
-                std::cout << ident.str() << std::endl;
                 
                 auto stream = manifests.read(ident.str());
                 
