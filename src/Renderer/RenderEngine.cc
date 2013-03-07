@@ -52,7 +52,9 @@ RenderEngine::RenderEngine(ResourceManager<Program,
     phong_program = programManager.resource("phong");
     overlay_program = programManager.resource("overlay");
     holstein = textureManager.resource("Holstein.tga");
+    
     sky = cubemapManager.resource("sky.jpg");
+    sky_program = programManager.resource("sky");
 }
 
 void RenderEngine::initGLFW()
@@ -296,12 +298,18 @@ void renderOverlay(Program& p, Texture& holstein, Text& text)
     glDeleteBuffers(1, &UV_VBO);
 }
 
+void renderSkybox(Cubemap& sky, Program& p)
+{
+}
+
 void RenderEngine::update(int pass, double delta)
 {
     if(pass == 1)
     {
         glClearColor(0.0, 0.0, 0.0, 1); // black
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        renderSkybox(*sky, *sky_program);
         
         for(auto& model : models)
         {

@@ -30,6 +30,7 @@ namespace Ymir
         std::shared_ptr<Program> texture_program; //texture
         std::shared_ptr<Program> phong_program; //lights
         std::shared_ptr<Program> overlay_program; //overlay
+        std::shared_ptr<Program> sky_program; //skybox
         NodeCache<Light> lights;
         NodeCache<Model> models;
         std::shared_ptr<Texture> holstein;

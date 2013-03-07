@@ -14,6 +14,8 @@
 		F61BDCB716E892FC00768DEE /* 5_sky.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F61BDCB116E892FC00768DEE /* 5_sky.jpg */; };
 		F61BDCB816E892FC00768DEE /* 6_sky.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F61BDCB216E892FC00768DEE /* 6_sky.jpg */; };
 		F61BDCBB16E8988E00768DEE /* Cubemap.cc in Sources */ = {isa = PBXBuildFile; fileRef = F61BDCB916E8988E00768DEE /* Cubemap.cc */; };
+		F61BDCC116E8BD8100768DEE /* sky.frag in Resources */ = {isa = PBXBuildFile; fileRef = F61BDCBF16E8BD6700768DEE /* sky.frag */; };
+		F61BDCC216E8BD8300768DEE /* sky.vert in Resources */ = {isa = PBXBuildFile; fileRef = F61BDCBD16E8BD6200768DEE /* sky.vert */; };
 		F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F627D39D16B97CA7000B06AF /* wooden-crate.jpg */; };
 		F62F58A116E6174D008B379E /* helloworld.wav in Resources */ = {isa = PBXBuildFile; fileRef = F62F58A016E6174D008B379E /* helloworld.wav */; };
 		F62F58A416E61B38008B379E /* Listener.cc in Sources */ = {isa = PBXBuildFile; fileRef = F62F58A216E61B38008B379E /* Listener.cc */; };
@@ -198,6 +200,8 @@
 		F61BDCB916E8988E00768DEE /* Cubemap.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cubemap.cc; sourceTree = "<group>"; };
 		F61BDCBA16E8988E00768DEE /* Cubemap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cubemap.h; sourceTree = "<group>"; };
 		F61BDCBC16E8B7E500768DEE /* CubemapResourceLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubemapResourceLoader.h; sourceTree = "<group>"; };
+		F61BDCBD16E8BD6200768DEE /* sky.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sky.vert; sourceTree = "<group>"; };
+		F61BDCBF16E8BD6700768DEE /* sky.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sky.frag; sourceTree = "<group>"; };
 		F627D39D16B97CA7000B06AF /* wooden-crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wooden-crate.jpg"; sourceTree = "<group>"; };
 		F62F58A016E6174D008B379E /* helloworld.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = helloworld.wav; sourceTree = "<group>"; };
 		F62F58A216E61B38008B379E /* Listener.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Listener.cc; sourceTree = "<group>"; };
@@ -557,6 +561,8 @@
 				F645949516B6B11400B118C2 /* texture.frag */,
 				F6F7B27D16E0BC88006D00ED /* overlay.vert */,
 				F6F7B27F16E0BC8E006D00ED /* overlay.frag */,
+				F61BDCBD16E8BD6200768DEE /* sky.vert */,
+				F61BDCBF16E8BD6700768DEE /* sky.frag */,
 				F6E6E57716E737EF008E1F09 /* Holstein.tga */,
 			);
 			name = "Supporting Files";
@@ -1030,6 +1036,8 @@
 				F62F58A116E6174D008B379E /* helloworld.wav in Resources */,
 				F62F58AB16E63F33008B379E /* crash.wav in Resources */,
 				F61BDCB316E892FC00768DEE /* 1_sky.jpg in Resources */,
+				F61BDCC116E8BD8100768DEE /* sky.frag in Resources */,
+				F61BDCC216E8BD8300768DEE /* sky.vert in Resources */,
 				F61BDCB416E892FC00768DEE /* 2_sky.jpg in Resources */,
 				F61BDCB516E892FC00768DEE /* 3_sky.jpg in Resources */,
 				F61BDCB616E892FC00768DEE /* 4_sky.jpg in Resources */,
