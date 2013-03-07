@@ -25,7 +25,7 @@ namespace Ymir
     {
         struct listener_t
         {
-            listener_t(Entity& e) : entity(e)
+            listener_t(Entity& e) : entity(e), listener()
             {
             }
 

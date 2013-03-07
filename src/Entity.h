@@ -89,6 +89,8 @@ namespace Ymir
     {
         if(parent)
             component->parent = parent->component<T>();
+        else
+            component->parent = nullptr;
         components.insert({component->type(), component});
         engines.addComponent(*this, component->type());
         return *component;
