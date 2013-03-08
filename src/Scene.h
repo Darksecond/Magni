@@ -11,6 +11,9 @@
 
 namespace Ymir
 {
+    /**
+     * A scene contains a number of entities.
+     */
     class Scene
     {
         //TODO maybe make this a map, so we can map to entity names.

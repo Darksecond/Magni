@@ -13,7 +13,11 @@
 #include "Message.h"
 
 namespace Ymir
-{    
+{
+    /**
+     * The Entity is the main object. It contains components and behaviors.
+     * An entity can also have a parent, and it has a name.
+     */
     class Entity
     {
         std::map<BaseComponent::Type, std::shared_ptr<BaseComponent>> components;
@@ -44,6 +48,7 @@ namespace Ymir
             }
         }
         
+        //TODO move to CC file
         void receive(message_type_t type, const Entity& trigger) const
         {
             for(auto& behavior : behaviors)

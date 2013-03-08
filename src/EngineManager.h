@@ -10,6 +10,10 @@ namespace Ymir
     class Engine;
     class Entity;
     
+    /**
+     * The EngineManager contains the engines that are used in the program.
+     * It provides methods to update all engines and add new ones.
+     */
     class EngineManager
     {
         std::vector<std::unique_ptr<Engine>> engines;
