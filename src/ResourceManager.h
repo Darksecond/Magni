@@ -9,6 +9,7 @@
 
 namespace Ymir
 {
+    //TODO move to it's own file
     class ManifestContainer
     {
         std::vector<std::shared_ptr<Manifest>> manifests;
@@ -79,13 +80,23 @@ namespace Ymir
         std::shared_ptr<T> get(const std::string& identifier) { return nullptr; }
     };
 
-    
+    //TODO make it so you can set a manifest container
+    /**
+     * This is the main resourcemanager class.
+     * This will handle all resources of a certain type.
+     * It also has options to use a specific resource loader
+     * and you can specify the caching behavior for resources.
+     */
     template<typename T, typename Loader = DefaultResourceLoader<T>, typename Cache = DefaultResourceCache<T>>
     class ResourceManager
     {
         ManifestContainer manifests;
         Cache cache;        
     public:
+        /**
+         * Get a resource, identified with 'identifier'
+         * Usually you DO need the extension, but check the loader to see if it's a special case (like with Programs)
+         */
         std::shared_ptr<T> resource(const std::string& identifier);
         void addManifest(std::shared_ptr<Manifest> manifest);
     };
