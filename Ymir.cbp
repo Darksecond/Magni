@@ -8,7 +8,7 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/Ymir" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/Debug" />
+				<Option working_dir="windows/Ymir" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -67,6 +67,7 @@
 		<Unit filename="src/CubeGeometry.h" />
 		<Unit filename="src/Cubemap.cc" />
 		<Unit filename="src/Cubemap.h" />
+		<Unit filename="src/CubemapResourceLoader.cc" />
 		<Unit filename="src/CubemapResourceLoader.h" />
 		<Unit filename="src/DirectoryManifest.cc" />
 		<Unit filename="src/DirectoryManifest.h" />
