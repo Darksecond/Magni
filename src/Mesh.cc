@@ -3,6 +3,7 @@
 #include "CubeGeometry.h"
 
 #include <stdexcept>
+#include <iostream>
 
 using namespace Ymir;
 
@@ -97,16 +98,17 @@ void Mesh::draw(Program& gProgram) const
         glEnableVertexAttribArray(gProgram.attrib("vertNormal"));
         glVertexAttribPointer(gProgram.attrib("vertNormal"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
                               reinterpret_cast<const GLvoid*>(offsetof(Vertex, nx)));
+
+        // connect the uv coords to the "vertTexCoord" attribute of the vertex shader
+        glEnableVertexAttribArray(gProgram.attrib("vertTexCoord"));
+        glVertexAttribPointer(gProgram.attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,  sizeof(Vertex),
+                            reinterpret_cast<const GLvoid*>(offsetof(Vertex, u)));
     }
     catch(std::runtime_error e)
     {
         //do nothing, program does not use vertNormals
     }
 
-    // connect the uv coords to the "vertTexCoord" attribute of the vertex shader
-    glEnableVertexAttribArray(gProgram.attrib("vertTexCoord"));
-    glVertexAttribPointer(gProgram.attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,  sizeof(Vertex),
-                          reinterpret_cast<const GLvoid*>(offsetof(Vertex, u)));
 
     glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(_numIndices), GL_UNSIGNED_SHORT,
                    reinterpret_cast<const GLvoid*>(0));

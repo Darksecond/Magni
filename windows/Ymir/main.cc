@@ -60,7 +60,7 @@ const glm::vec2 SCREEN_SIZE(800, 600);
 
 static std::string ResourceDirectory()
 {
-    return "./resources/";
+    return "./";
 }
 
 int main(int argc, char* argv[])

@@ -178,6 +178,7 @@ void renderLight(Program& p, const Camera& c, const Mesh& m, const Light& l, con
     //p is part of material!
     ProgramContext pc{p};
 
+
     //always
     glm::mat4 view = c.viewMatrix();
     glm::mat4 modelView = view * model.spatial.matrix();
