@@ -99,14 +99,23 @@ void Mesh::draw(Program& gProgram) const
         glVertexAttribPointer(gProgram.attrib("vertNormal"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
                               reinterpret_cast<const GLvoid*>(offsetof(Vertex, nx)));
 
-        // connect the uv coords to the "vertTexCoord" attribute of the vertex shader
-        glEnableVertexAttribArray(gProgram.attrib("vertTexCoord"));
-        glVertexAttribPointer(gProgram.attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,  sizeof(Vertex),
-                            reinterpret_cast<const GLvoid*>(offsetof(Vertex, u)));
+
     }
     catch(std::runtime_error e)
     {
         //do nothing, program does not use vertNormals
+    }
+    
+    try
+    {
+    // connect the uv coords to the "vertTexCoord" attribute of the vertex shader
+    glEnableVertexAttribArray(gProgram.attrib("vertTexCoord"));
+    glVertexAttribPointer(gProgram.attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,  sizeof(Vertex),
+                          reinterpret_cast<const GLvoid*>(offsetof(Vertex, u)));
+    }
+    catch(std::runtime_error e)
+    {
+        //do nothing
     }
 
 

@@ -37,6 +37,7 @@
 		F67F550016DB7C3B00478B1C /* carTire.obj in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FD16DB7C3B00478B1C /* carTire.obj */; };
 		F67F550116DB7C3B00478B1C /* truck_color_cleantest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FE16DB7C3B00478B1C /* truck_color_cleantest.jpg */; };
 		F68279B016D415AE00BD1BAF /* WSADMoveBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */; };
+		F6864B6416F0A1CF00713B67 /* CubemapResourceLoader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6864B6316F0A1CF00713B67 /* CubemapResourceLoader.cc */; };
 		F687A41016B4B63300878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
 		F687A42D16B4B68700878140 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = F687A42C16B4B68700878140 /* main.mm */; };
 		F687A43416B4B73B00878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
@@ -242,6 +243,7 @@
 		F68279B116D41D7400BD1BAF /* Geometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
 		F68279B216D41E2A00BD1BAF /* CubeGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeGeometry.h; sourceTree = "<group>"; };
 		F6846D8716C56C4700071311 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceManager.h; sourceTree = "<group>"; };
+		F6864B6316F0A1CF00713B67 /* CubemapResourceLoader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubemapResourceLoader.cc; sourceTree = "<group>"; };
 		F687A40B16B4B63300878140 /* Ymir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ymir.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F687A40F16B4B63300878140 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F687A41216B4B63300878140 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -724,6 +726,7 @@
 				F6D9138216BC0222000C0632 /* Mesh.h */,
 				F6D9138316BC0226000C0632 /* Mesh.cc */,
 				F68279B116D41D7400BD1BAF /* Geometry.h */,
+				F6864B6316F0A1CF00713B67 /* CubemapResourceLoader.cc */,
 				F68279B216D41E2A00BD1BAF /* CubeGeometry.h */,
 				F6CC523A16D6915600C58612 /* ObjGeometry.h */,
 				F6CC523916D6915500C58612 /* ObjGeometry.cc */,
@@ -1122,6 +1125,7 @@
 				F6E6E57E16E741F4008E1F09 /* Text.cc in Sources */,
 				F6E6E58116E74C7E008E1F09 /* CarCollisionBehavior.cc in Sources */,
 				F61BDCBB16E8988E00768DEE /* Cubemap.cc in Sources */,
+				F6864B6416F0A1CF00713B67 /* CubemapResourceLoader.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1269,6 +1273,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "osx/Ymir/Ymir-Info.plist";
+				LLVM_LTO = NO;
 				PRODUCT_NAME = Ymir;
 				USER_HEADER_SEARCH_PATHS = src;
 				WRAPPER_EXTENSION = app;
@@ -1282,6 +1287,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "osx/Ymir/Ymir-Info.plist";
+				LLVM_LTO = NO;
 				PRODUCT_NAME = Ymir;
 				USER_HEADER_SEARCH_PATHS = src;
 				WRAPPER_EXTENSION = app;
