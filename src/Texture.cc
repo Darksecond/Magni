@@ -1,9 +1,17 @@
 #include "Texture.h"
 
+#include <stdexcept>
+
 using namespace Ymir;
 
 Texture::Texture(Bitmap& bitmap, GLint minMagFilter, GLint wrapMode) : _width(bitmap.width()), _height(bitmap.height())
 {
+    if((bitmap.width() & (bitmap.width() - 1)) != 0)
+        throw std::runtime_error("bitmap width is not a power of two");
+    
+    if((bitmap.height() & (bitmap.height() - 1)) != 0)
+        throw std::runtime_error("bitmap height is not a power of two");
+    
     glGenTextures(1, &_object);
     glBindTexture(GL_TEXTURE_2D, _object);
 
@@ -117,7 +125,7 @@ Texture Texture::fromStream(StreamReader& stream)
     if(!pixels)
         throw std::runtime_error(stbi_failure_reason());
 
-    Bitmap bmp(width, height, (Bitmap::Format)channels, pixels);
+    Bitmap bmp(width, height, static_cast<Bitmap::Format>(channels), pixels);
     stbi_image_free(pixels);
 
     //make texture
