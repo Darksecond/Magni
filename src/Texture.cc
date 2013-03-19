@@ -1,4 +1,5 @@
 #include "Texture.h"
+#include <iostream>
 
 using namespace Ymir;
 
@@ -117,7 +118,7 @@ Texture Texture::fromStream(StreamReader& stream)
     if(!pixels)
         throw std::runtime_error(stbi_failure_reason());
 
-    Bitmap bmp(width, height, (Bitmap::Format)channels, pixels);
+    Bitmap bmp(width, height, static_cast<Bitmap::Format>(channels), pixels);
     stbi_image_free(pixels);
 
     //make texture
