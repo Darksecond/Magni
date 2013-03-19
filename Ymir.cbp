@@ -97,6 +97,8 @@
 		<Unit filename="src/Program.cc" />
 		<Unit filename="src/Program.h" />
 		<Unit filename="src/ProgramResourceLoader.h" />
+		<Unit filename="src/RTSCameraBehavior.cpp" />
+		<Unit filename="src/RTSCameraBehavior.h" />
 		<Unit filename="src/Renderer/Camera.cc" />
 		<Unit filename="src/Renderer/Camera.h" />
 		<Unit filename="src/Renderer/Light.cc" />
@@ -124,6 +126,10 @@
 		<Unit filename="src/StreamReader.h" />
 		<Unit filename="src/Texture.cc" />
 		<Unit filename="src/Texture.h" />
+		<Unit filename="src/Tile.cpp" />
+		<Unit filename="src/Tile.h" />
+		<Unit filename="src/TileMap.cpp" />
+		<Unit filename="src/TileMap.h" />
 		<Unit filename="src/WSADMoveBehavior.cc" />
 		<Unit filename="src/WSADMoveBehavior.h" />
 		<Unit filename="src/fontstash.h" />

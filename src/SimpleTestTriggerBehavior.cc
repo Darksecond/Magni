@@ -11,7 +11,7 @@ void SimpleTestTriggerBehavior::update(double delta)
     time += delta;
     if(running)
         timer += delta;
-    std::cout << timer << std::endl;
+    //std::cout << timer << std::endl;
 }
 
 void SimpleTestTriggerBehavior::receive(message_type_t type, const Entity& trigger)

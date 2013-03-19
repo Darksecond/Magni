@@ -78,7 +78,7 @@ void RenderEngine::initGLFW()
         throw std::runtime_error("glfwOpenWindow failed. Can your hardware handle OpenGL 3.2?");
 
     // GLFW settings
-    glfwDisable(GLFW_MOUSE_CURSOR);
+    //glfwDisable(GLFW_MOUSE_CURSOR);
     glfwSetMousePos(0, 0);
     glfwSetMouseWheel(0);
     glfwSwapInterval(1); //uncomment for no v-sync
