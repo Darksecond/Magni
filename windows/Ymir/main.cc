@@ -97,10 +97,19 @@ int main(int argc, char* argv[])
     std::shared_ptr<Mesh> car = meshManager.resource("car.obj");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     std::shared_ptr<Mesh> monkey_mesh = meshManager.resource("monkey.obj");
+
+    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
+
     std::shared_ptr<Audio::Buffer> hello_world_buffer = audioBufferManager.resource("helloworld.wav");
     std::shared_ptr<Audio::Buffer> crash_sound = audioBufferManager.resource("crash.wav");
 
     Scene scene{engines};
+
+    Entity& house = scene.assign("house");
+    house.assign<SpatialComponent>(glm::vec3{7.0,0.0,0.0}).scale = glm::vec3{0.5};
+    house.assign<ModelComponent>(house_mesh,t);
+    house.assign<SphereColliderComponent>(0.5);
+
 
     Entity& monkey = scene.assign("monkey");
     monkey.assign<SpatialComponent>(glm::vec3{5.0, 0.0, 0.0}).scale = glm::vec3{0.5};

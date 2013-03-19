@@ -81,7 +81,7 @@ void RenderEngine::initGLFW()
     glfwDisable(GLFW_MOUSE_CURSOR);
     glfwSetMousePos(0, 0);
     glfwSetMouseWheel(0);
-    glfwSwapInterval(60); //uncomment for no v-sync
+    glfwSwapInterval(1); //uncomment for no v-sync
 }
 
 void RenderEngine::initGLEW()
