@@ -1,0 +1,492 @@
+TALUT
+v7
+r0
+t384772670.038147
+cCheck dependencies
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/Current A
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Resources Versions/Current/Resources
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/ALUT Versions/Current/ALUT
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Headers Versions/Current/Headers
+cProcessInfoPlistFile /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/Resources/Info.plist osx/ALUT/ALUT-Info.plist
+cCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutBufferData.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutBufferData.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutCodec.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutCodec.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutError.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutError.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutInit.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInit.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutInputStream.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInputStream.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutLoader.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutLoader.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutOutputStream.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutOutputStream.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutUtil.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutUtil.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutVersion.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutVersion.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutWaveform.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutWaveform.c normal x86_64 c com.apple.compilers.gcc.4_2
+cLd /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/ALUT normal x86_64
+cCpHeader build/Debug/ALUT.framework/Versions/A/Headers/alut.h osx/ALUT/alut.h
+cTouch /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004CAA740B00000000000000EE
+t1286239243
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenAL.framework/Headers/al.h
+c000000004C23B11200000000000064F9
+t1277407506
+s25849
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenAL.framework/Headers/alc.h
+c000000004C23B1120000000000001F41
+t1277407506
+s8001
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenAL.framework/OpenAL
+c000000004CAA7405000000000000DA88
+t1286239237
+s55944
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/ctype.h
+c000000004BBD2CE90000000000002C18
+t1270689001
+s11288
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/errno.h
+c000000004BBD2CE900000000000003EB
+t1270689001
+s1003
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/math.h
+c000000004A5C14A000000000000004F1
+t1247548576
+s1265
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004BBD2CE90000000000004174
+t1270689001
+s16756
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdlib.h
+c000000004BBD2CE90000000000002DF5
+t1270689001
+s11765
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/string.h
+c000000004BBD2CE90000000000001731
+t1270689001
+s5937
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/sys/stat.h
+c000000004C2399480000000000004A1D
+t1277401416
+s18973
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/sys/types.h
+c000000004C2399480000000000002905
+t1277401416
+s10501
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/time.h
+c000000004BBD2CE9000000000000178E
+t1270689001
+s6030
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/unistd.h
+c000000004BBD2CE9000000000000563E
+t1270689001
+s22078
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/lib/gcc/i686-apple-darwin10/4.2.1/include/stdint.h
+c000000004A11EB24000000000000190C
+t1242688292
+s6412
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework
+t1363079870
+s204
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/ALUT
+t3
+s21
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Headers
+t3
+s24
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Resources
+t3
+s26
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/ALUT
+t1363079869
+s49792
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/Headers/alut.h
+t1363079870
+s5178
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/Resources/Info.plist
+t1363079868
+s806
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/Current
+t3
+s1
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/ALUT.LinkFileList
+c00000000513EF2BC0000000000000480
+t1363079868
+s1152
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutBufferData.o
+t1363079869
+s9004
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutCodec.o
+t1363079869
+s7348
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutError.o
+t1363079869
+s7132
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutInit.o
+t1363079869
+s5844
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutInputStream.o
+t1363079869
+s14008
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutLoader.o
+t1363079869
+s19384
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutOutputStream.o
+t1363079869
+s7276
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutUtil.o
+t1363079869
+s5704
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutVersion.o
+t1363079869
+s3040
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutWaveform.o
+t1363079869
+s20424
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alut.h
+c00000000513EEFDF000000000000143A
+t1363079135
+s5178
+i<alc.h>
+i<al.h>
+i<OpenAL/alc.h>
+i<OpenAL/al.h>
+i<AL/al.h>
+i<AL/alc.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutBufferData.c
+c00000000513EEFDF0000000000000C2D
+t1363079135
+s3117
+i"alutInternal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutCodec.c
+c00000000513EEFDF0000000000000D2A
+t1363079135
+s3370
+i"alutInternal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutError.c
+c00000000513EEFDF000000000000098A
+t1363079135
+s2442
+i"alutInternal.h"
+i<stdio.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInit.c
+c00000000513EEFDF0000000000000D20
+t1363079135
+s3360
+i"alutInternal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInputStream.c
+c00000000513EEFDF0000000000001640
+t1363079135
+s5696
+i"alutInternal.h"
+i<stdio.h>
+i<string.h>
+i<sys/types.h>
+i<sys/stat.h>
+i<unistd.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInternal.h
+c00000000513EEFDF0000000000001587
+t1363079135
+s5511
+i"config.h"
+i<stdlib.h>
+i<stdint.h>
+i<basetsd.h>
+i"alut.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutLoader.c
+c00000000513EEFDF000000000000302B
+t1363079135
+s12331
+i"alutInternal.h"
+i<ctype.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutOutputStream.c
+c00000000513EEFDF000000000000092A
+t1363079135
+s2346
+i"alutInternal.h"
+i<string.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutUtil.c
+c00000000513EEFDF0000000000000B56
+t1363079135
+s2902
+i"alutInternal.h"
+i<time.h>
+i<errno.h>
+i<unistd.h>
+i<windows.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutVersion.c
+c00000000513EEFDF00000000000000A8
+t1363079135
+s168
+i"alutInternal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutWaveform.c
+c00000000513EEFDF000000000000E0B8
+t1363079135
+s57528
+i"alutInternal.h"
+i<math.h>
+i<string.h>
+
+Nosx/ALUT/ALUT-Info.plist
+c00000000513EEFDF00000000000003BC
+t1363079135
+s956
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies384772667#384772668#0(155"[WARN]Mac OS X deployment target '10.8' for architecture 'x86_64' and variant 'normal' is greater than the maximum value '10.6' for the Mac OS X 10.6 SDK.1(22@148"Mac OS X deployment target '10.8' for architecture 'x86_64' and variant 'normal' is greater than the maximum value '10.6' for the Mac OS X 10.6 SDK.384772668#18446744073709551615#0#0(1@0"0(0#1#0"17209968384#0"0#
+
+CCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutBufferData.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutBufferData.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772668.267434
+e384772669.284579
+r1
+xCompileC
+xbuild/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutBufferData.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutBufferData.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+occ1: warning: -Wuninitialized is not supported without -O
+lSLF07#2@78"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutBufferData.c384772668#384772669#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772668#0#58#0(6@0"384772668#0#0#0#0#0"0(0#0#70"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutBufferData.c4320133120#1389"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -DDEBUG=1 -DHAVE_USLEEP -DHAVE_STAT -DHAVE_UNISTD_H -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutBufferData.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutBufferData.o0#
+
+CCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutCodec.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutCodec.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772668.268904
+e384772669.305335
+r1
+xCompileC
+xbuild/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutCodec.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutCodec.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+occ1: warning: -Wuninitialized is not supported without -O
+lSLF07#2@73"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutCodec.c384772668#384772669#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772668#0#58#0(6@0"384772668#0#0#0#0#0"0(0#0#65"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutCodec.c4320133120#1379"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -DDEBUG=1 -DHAVE_USLEEP -DHAVE_STAT -DHAVE_UNISTD_H -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutCodec.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutCodec.o0#
+
+CCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutError.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutError.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772668.271465
+e384772669.271880
+r1
+xCompileC
+xbuild/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutError.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutError.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+occ1: warning: -Wuninitialized is not supported without -O
+lSLF07#2@73"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutError.c384772668#384772669#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772668#0#58#0(6@0"384772668#0#0#0#0#0"0(0#0#65"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutError.c4320133120#1379"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -DDEBUG=1 -DHAVE_USLEEP -DHAVE_STAT -DHAVE_UNISTD_H -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutError.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutError.o0#
+
+CCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutInit.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInit.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772668.274537
+e384772669.269458
+r1
+xCompileC
+xbuild/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutInit.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInit.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+occ1: warning: -Wuninitialized is not supported without -O
+lSLF07#2@72"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInit.c384772668#384772669#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772668#0#58#0(6@0"384772668#0#0#0#0#0"0(0#0#64"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInit.c4320133120#1377"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -DDEBUG=1 -DHAVE_USLEEP -DHAVE_STAT -DHAVE_UNISTD_H -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInit.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutInit.o0#
+
+CCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutInputStream.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInputStream.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772669.269572
+e384772669.487756
+r1
+xCompileC
+xbuild/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutInputStream.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInputStream.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+occ1: warning: -Wuninitialized is not supported without -O
+lSLF07#2@79"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInputStream.c384772669#384772669#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772669#0#58#0(6@0"384772669#0#0#0#0#0"0(0#0#71"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInputStream.c17199343616#1391"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -DDEBUG=1 -DHAVE_USLEEP -DHAVE_STAT -DHAVE_UNISTD_H -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutInputStream.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutInputStream.o0#
+
+CCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutLoader.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutLoader.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772669.271981
+e384772669.403815
+r1
+xCompileC
+xbuild/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutLoader.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutLoader.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+occ1: warning: -Wuninitialized is not supported without -O
+lSLF07#2@74"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutLoader.c384772669#384772669#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772669#0#58#0(6@0"384772669#0#0#0#0#0"0(0#0#66"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutLoader.c4320133120#1381"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -DDEBUG=1 -DHAVE_USLEEP -DHAVE_STAT -DHAVE_UNISTD_H -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutLoader.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutLoader.o0#
+
+CCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutOutputStream.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutOutputStream.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772669.285841
+e384772669.417753
+r1
+xCompileC
+xbuild/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutOutputStream.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutOutputStream.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+occ1: warning: -Wuninitialized is not supported without -O
+lSLF07#2@80"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutOutputStream.c384772669#384772669#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772669#0#58#0(6@0"384772669#0#0#0#0#0"0(0#0#72"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutOutputStream.c4320133120#1393"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -DDEBUG=1 -DHAVE_USLEEP -DHAVE_STAT -DHAVE_UNISTD_H -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutOutputStream.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutOutputStream.o0#
+
+CCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutUtil.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutUtil.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772669.305596
+e384772669.386470
+r1
+xCompileC
+xbuild/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutUtil.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutUtil.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+occ1: warning: -Wuninitialized is not supported without -O
+lSLF07#2@72"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutUtil.c384772669#384772669#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772669#0#58#0(6@0"384772669#0#0#0#0#0"0(0#0#64"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutUtil.c4320133120#1377"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -DDEBUG=1 -DHAVE_USLEEP -DHAVE_STAT -DHAVE_UNISTD_H -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutUtil.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutUtil.o0#
+
+CCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutVersion.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutVersion.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772669.386576
+e384772669.493532
+r1
+xCompileC
+xbuild/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutVersion.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutVersion.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+occ1: warning: -Wuninitialized is not supported without -O
+lSLF07#2@75"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutVersion.c384772669#384772669#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772669#0#58#0(6@0"384772669#0#0#0#0#0"0(0#0#67"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutVersion.c4320133120#1383"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -DDEBUG=1 -DHAVE_USLEEP -DHAVE_STAT -DHAVE_UNISTD_H -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutVersion.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutVersion.o0#
+
+CCompileC build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutWaveform.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutWaveform.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772669.403931
+e384772669.523429
+r1
+xCompileC
+xbuild/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutWaveform.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutWaveform.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+occ1: warning: -Wuninitialized is not supported without -O
+lSLF07#2@76"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutWaveform.c384772669#384772669#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772669#0#58#0(6@0"384772669#0#0#0#0#0"0(0#0#68"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutWaveform.c4320133120#1385"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -DDEBUG=1 -DHAVE_USLEEP -DHAVE_STAT -DHAVE_UNISTD_H -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/ALUT-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alutWaveform.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/alutWaveform.o0#
+
+CCpHeader build/Debug/ALUT.framework/Versions/A/Headers/alut.h osx/ALUT/alut.h
+s384772669.981474
+e384772670.004291
+r1
+xCpHeader
+xbuild/Debug/ALUT.framework/Versions/A/Headers/alut.h
+xosx/ALUT/alut.h
+lSLF07#2@20"Copy osx/ALUT/alut.h384772669#384772670#0(0"0(0#0#60"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alut.h4320133120#366"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/alut.h /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/Headers0#
+
+CLd /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/ALUT normal x86_64
+s384772669.523561
+e384772669.981276
+r1
+xLd
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/ALUT
+xnormal
+xx86_64
+lSLF07#2@92"Link /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/ALUT384772669#384772669#0(0"0(0#0#0"4320133120#716"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Developer/usr/bin/gcc-4.2 -arch x86_64 -dynamiclib -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -filelist /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/ALUT.build/Objects-normal/x86_64/ALUT.LinkFileList -install_name @executable_path/../Frameworks/ALUT.framework/Versions/A/ALUT -mmacosx-version-min=10.8 -framework OpenAL -prebind -single_module -compatibility_version 1 -current_version 1 -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/ALUT0#
+
+CProcessInfoPlistFile /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/Resources/Info.plist osx/ALUT/ALUT-Info.plist
+s384772668.231525
+e384772668.267336
+r1
+xProcessInfoPlistFile
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/Resources/Info.plist
+xosx/ALUT/ALUT-Info.plist
+lSLF07#2@32"Process osx/ALUT/ALUT-Info.plist384772668#384772668#0(0"0(0#0#69"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/ALUT/ALUT-Info.plist4320133120#251"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    builtin-infoPlistUtility osx/ALUT/ALUT-Info.plist -expandbuildsettings -platform macosx -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/A/Resources/Info.plist0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/ALUT Versions/Current/ALUT
+s384772668.154928
+e384772668.224734
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/ALUT
+xVersions/Current/ALUT
+lSLF07#2@84"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/ALUT384772668#384772668#0(0"0(0#0#0"4320133120#167"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/ALUT /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/ALUT0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Headers Versions/Current/Headers
+s384772668.222163
+e384772668.231430
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Headers
+xVersions/Current/Headers
+lSLF07#2@87"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Headers384772668#384772668#0(0"0(0#0#0"4320133120#173"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/Headers /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Headers0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Resources Versions/Current/Resources
+s384772668.153738
+e384772668.224610
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Resources
+xVersions/Current/Resources
+lSLF07#2@89"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Resources384772668#384772668#0(0"0(0#0#0"4320133120#177"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/Resources /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Resources0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/Current A
+s384772668.086810
+e384772668.222044
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/Current
+xA
+lSLF07#2@96"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/Current384772668#384772668#0(0"0(0#0#0"17209602560#159"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf A /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework/Versions/Current0#
+
+CTouch /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework
+s384772670.004401
+e384772670.038091
+r1
+xTouch
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework
+lSLF07#2@77"Touch /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework384772670#384772670#0(0"0(0#0#0"4320133120#146"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /usr/bin/touch -c /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/ALUT.framework0#
+
