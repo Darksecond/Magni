@@ -62,7 +62,7 @@ using namespace Ymir;
 //WINDOWS SUPPORT
 
 const glm::vec2 SCREEN_SIZE(800, 600);
-bool isDone, isDone1;
+bool isDone, isDone1, isDone2, isDone3;
 
 static std::string ResourceDirectory()
 {
@@ -71,8 +71,12 @@ static std::string ResourceDirectory()
 
 int main(int argc, char* argv[])
 {
+    // Limits for building units and buildings
     isDone = true;
     isDone1 = true;
+    isDone2 = true;
+    isDone3 = true;
+
     //resource management
     std::shared_ptr<DirectoryManifest> manifest = std::make_shared<DirectoryManifest>(ResourceDirectory());
 
@@ -102,14 +106,13 @@ int main(int argc, char* argv[])
     std::shared_ptr<Texture> house_tex = textureManager.resource("house1.bmp");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
 
+    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
     std::shared_ptr<Mesh> tire = meshManager.resource("carTire.obj");
     std::shared_ptr<Mesh> car = meshManager.resource("car.obj");
 
     std::shared_ptr<Mesh> unit_mesh = meshManager.resource("unit.obj");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     std::shared_ptr<Mesh> monkey_mesh = meshManager.resource("monkey.obj");
-
-    //std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
     std::shared_ptr<Audio::Buffer> hello_world_buffer = audioBufferManager.resource("helloworld.wav");
     std::shared_ptr<Audio::Buffer> crash_sound = audioBufferManager.resource("crash.wav");
@@ -152,6 +155,8 @@ int main(int argc, char* argv[])
         engines.update(0, delta);
         engines.update(1, delta);
 
+        glfwDisable(GLFW_KEY_REPEAT);
+
         if(glfwGetKey( GLFW_KEY_LEFT ) == GLFW_PRESS ) {
             auto test = unit.component<SpatialComponent>();
             test->position = test->position + glm::vec3{0.1,0.0,0.1};
@@ -168,8 +173,13 @@ int main(int argc, char* argv[])
             house.assign<SpatialComponent>(renderEngine.get3DPositionFromMousePosition());
             house.assign<ModelComponent>(house_mesh, t);
         }
-        if(glfwGetKey( GLFW_KEY_RIGHT) == GLFW_PRESS) {
-            gameplay.createWorker(glm::vec3{0.5,0.0,0.5});
+        if(glfwGetKey( 'O' ) == GLFW_PRESS && isDone2) {
+            isDone2 = false;
+            gameplay.createWorker(renderEngine.get3DPositionFromMousePosition());
+        }
+        if(glfwGetKey( 'P' ) == GLFW_PRESS && isDone3) {
+            isDone3 = false;
+            gameplay.createBasicInfantrie(renderEngine.get3DPositionFromMousePosition());
         }
 
         GLenum error = glGetError();

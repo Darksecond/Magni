@@ -36,7 +36,7 @@ namespace Ymir
             void createCamera();
 
             void createWorker(glm::vec3 position);
-            void createBasicInfantrie();
+            void createBasicInfantrie(glm::vec3 position);
             void createAdvancedInfantrie();
             void createEngineer();
 
