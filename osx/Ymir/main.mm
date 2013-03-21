@@ -132,8 +132,8 @@ int main(int argc, char* argv[])
     Entity& camera = scene.assign("camera", &car_body);
     camera.assign<ListenerComponent>();
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
-    auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0.0, -1.0, 3.0});
-    glm::vec3 euler{-10,180,0};
+    auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0.0, 1.0, 3.0});
+    glm::vec3 euler{-10,0,0};
     c_s.setDirection(euler);
     //camera.assignBehavior(std::unique_ptr<Behavior>{new FPSCameraBehavior});
     //camera.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
@@ -151,28 +151,28 @@ int main(int argc, char* argv[])
     
     //back right wheel
     Entity& car_f_r_wheel = scene.assign("wheel", &car_body);
-    auto& s = car_f_r_wheel.assign<SpatialComponent>(glm::vec3{0.15, -0.06, 0.27});
+    auto& s = car_f_r_wheel.assign<SpatialComponent>(glm::vec3{0.15, 0.06, 0.27});
     s.scale = glm::vec3{3};
     car_f_r_wheel.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior{false}});
     car_f_r_wheel.assign<ModelComponent>(tire, car_tex);
     
     //front right wheel
     Entity& car_b_r_wheel = scene.assign("wheel", &car_body);
-    auto& s2 = car_b_r_wheel.assign<SpatialComponent>(glm::vec3{0.15, -0.06, -0.33});
+    auto& s2 = car_b_r_wheel.assign<SpatialComponent>(glm::vec3{0.15, 0.06, -0.33});
     s2.scale = glm::vec3{3};
     car_b_r_wheel.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior{true}});
     car_b_r_wheel.assign<ModelComponent>(tire, car_tex);
     
     //back left wheel
     Entity& car_f_l_wheel = scene.assign("wheel", &car_body);
-    auto& s3 = car_f_l_wheel.assign<SpatialComponent>(glm::vec3{-0.15, -0.06, 0.27});
+    auto& s3 = car_f_l_wheel.assign<SpatialComponent>(glm::vec3{-0.15, 0.06, 0.27});
     s3.scale = glm::vec3{3};
     car_f_l_wheel.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior{false}});
     car_f_l_wheel.assign<ModelComponent>(tire, car_tex);
     
     //front left wheel
     Entity& car_b_l_wheel = scene.assign("wheel", &car_body);
-    auto& s4 = car_b_l_wheel.assign<SpatialComponent>(glm::vec3{-0.15, -0.06, -0.33});
+    auto& s4 = car_b_l_wheel.assign<SpatialComponent>(glm::vec3{-0.15, 0.06, -0.33});
     s4.scale = glm::vec3{3};
     car_b_l_wheel.assignBehavior(std::unique_ptr<Behavior>{new RotateBehavior{true}});
     car_b_l_wheel.assign<ModelComponent>(tire, car_tex);

@@ -364,7 +364,7 @@ void renderSkybox(Cubemap& sky, Program& p, Camera& c)
     glEnableVertexAttribArray(p.attrib("vertex"));
     glVertexAttribPointer(p.attrib("vertex"), 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-    glm::mat4 M = c.projectionMatrix() * c.viewMatrix() * glm::scale(glm::translate(glm::mat4{}, -c._spatial.globalPosition()), glm::vec3{50});
+    glm::mat4 M = c.projectionMatrix() * c.viewMatrix() * glm::scale(glm::translate(glm::mat4{}, c._spatial.globalPosition()), glm::vec3{50});
 
     p.setUniform("PVM", M);
 

@@ -28,7 +28,7 @@ void SpatialComponent::setDirection(glm::vec3& euler)
 glm::mat4 SpatialComponent::matrix() const
 {
     glm::mat4 matrix = glm::mat4();
-    matrix = glm::translate(matrix, -globalPosition());
+    matrix = glm::translate(matrix, globalPosition());
     matrix = matrix * glm::mat4_cast(globalDirection());
     matrix = glm::scale(matrix, scale);
 
