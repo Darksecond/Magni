@@ -1622,7 +1622,7 @@
 	<GL/glew.h>
 	<stdexcept>
 
-1363172881 source:c:\users\medragon\documents\github\ein3gpc\src\renderer\renderengine.cc
+1363869600 source:c:\users\medragon\documents\github\ein3gpc\src\renderer\renderengine.cc
 	"RenderEngine.h"
 	"Light.h"
 	"../LightComponent.h"
@@ -1702,7 +1702,7 @@
 	<sstream>
 	<stdexcept>
 
-1363078402 source:c:\users\medragon\documents\github\ein3gpc\src\simpletesttriggerbehavior.cc
+1363702623 source:c:\users\medragon\documents\github\ein3gpc\src\simpletesttriggerbehavior.cc
 	"SimpleTestTriggerBehavior.h"
 	<iostream>
 	"Entity.h"
@@ -1731,8 +1731,10 @@
 1363078402 source:c:\users\medragon\documents\github\ein3gpc\src\streamreader.cc
 	"StreamReader.h"
 
-1363176905 source:c:\users\medragon\documents\github\ein3gpc\src\texture.cc
+1363702623 source:c:\users\medragon\documents\github\ein3gpc\src\texture.cc
 	"Texture.h"
+	<iostream>
+	<stdexcept>
 
 1363088597 source:c:\users\medragon\documents\github\ein3gpc\src\wsadmovebehavior.cc
 	"WSADMoveBehavior.h"
@@ -1779,7 +1781,7 @@
 
 1363078403 c:\users\medragon\documents\github\ein3gpc\windows\glm\glm\gtx\vector_angle.inl
 
-1363171430 source:c:\users\medragon\documents\github\ein3gpc\windows\ymir\main.cc
+1363870203 source:c:\users\medragon\documents\github\ein3gpc\windows\ymir\main.cc
 	<GL/glew.h>
 	<GL/GLFW.h>
 	<GLM/glm.hpp>
@@ -1814,6 +1816,7 @@
 	"../../src/RotateBehavior.h"
 	"../../src/FPSCameraBehavior.h"
 	"../../src/WSADMoveBehavior.h"
+	"../../src/RTSCameraBehavior.h"
 	"../../src/SimpleTestTriggerBehavior.h"
 	"../../src/CarCollisionBehavior.h"
 	"../../src/ProgramResourceLoader.h"
@@ -1821,11 +1824,14 @@
 	"../../src/Audio/Buffer.h"
 	"../../src/Audio/Source.h"
 	"../../src/Audio/Listener.h"
+	"../../src/TileMap.h"
+	"../../src/Gameplay.h"
 
 1363171367 source:c:\users\medragon\documents\github\ein3gpc\src\cubemapresourceloader.cc
 	"CubemapResourceLoader.h"
 	<stdexcept>
 
+<<<<<<< HEAD
 1363696776 D
 	"../../src/RTSCameraBehavior.h"
 	"../../src/TileMap.h"
@@ -1912,6 +1918,11 @@
 	<GLEW/glew.h>
 	<GL/glew.h>
 	<stdexcept>
+=======
+1363696575 D
+	"../../src/RTSCameraBehavior.h"
+	"../../src/TileMap.h"
+>>>>>>> build unit at position with left arrow key
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\audio\buffer.cc
 
@@ -2139,8 +2150,11 @@
 	"Entity.h"
 	"Engine.h"
 	"Font.h"
+<<<<<<< HEAD
 
 1363692066 >
+=======
+>>>>>>> build unit at position with left arrow key
 	<stdexcept>
 	<iostream>
 	<fstream>
@@ -2224,8 +2238,11 @@
 	<GLEW/glew.h>
 	<GL/glew.h>
 	<stdexcept>
+<<<<<<< HEAD
 
 1363697861 f9138883df78ee35d5ee02baad92f123b353b
+=======
+>>>>>>> build unit at position with left arrow key
 	"RotateBehavior.h"
 	"Entity.h"
 	"SpatialComponent.h"
@@ -2323,6 +2340,7 @@
 	"../../src/Audio/Buffer.h"
 	"../../src/Audio/Source.h"
 	"../../src/Audio/Listener.h"
+<<<<<<< HEAD
 	"RenderEngine.h"
 	"Light.h"
 	"../LightComponent.h"
@@ -2355,6 +2373,8 @@
 	"../Cubemap.h"
 	<vector>
 	<list>
+=======
+>>>>>>> build unit at position with left arrow key
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\audio\buffer.h
 
@@ -3083,6 +3103,7 @@
 	"Program.h"
 	<stdexcept>
 
+<<<<<<< HEAD
 1363869793 source:c:\users\nick\workspace\ein3gpc\src\renderer\camera.cc
 	"Camera.h"
 	"../CameraComponent.h"
@@ -3092,6 +3113,9 @@
 	<glm/gtx/euler_angles.hpp>
 	<glm/gtc/quaternion.hpp>
 	<iostream>
+=======
+1363683330 source:c:\users\nick\workspace\ein3gpc\src\renderer\camera.cc
+>>>>>>> build unit at position with left arrow key
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\geometry.h
 	<GLEW/glew.h>
@@ -3102,6 +3126,7 @@
 	"Program.h"
 	<stdexcept>
 
+<<<<<<< HEAD
 1363860294 source:c:\users\peter\documents\github\ein3gpc\src\renderer\camera.cc
 	"Camera.h"
 	"../CameraComponent.h"
@@ -3111,6 +3136,9 @@
 	<glm/gtx/euler_angles.hpp>
 	<glm/gtc/quaternion.hpp>
 	<iostream>
+=======
+1363174041 source:c:\users\peter\documents\github\ein3gpc\src\renderer\camera.cc
+>>>>>>> build unit at position with left arrow key
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\renderer\camera.h
 
@@ -3180,7 +3208,11 @@
 
 1363176825 c:\users\peter\documents\github\ein3gpc\src\texture.h
 
+<<<<<<< HEAD
 1363869793 source:c:\users\nick\workspace\ein3gpc\src\renderer\renderengine.cc
+=======
+1363684018 source:c:\users\nick\workspace\ein3gpc\src\renderer\renderengine.cc
+>>>>>>> build unit at position with left arrow key
 	"RenderEngine.h"
 	"Light.h"
 	"../LightComponent.h"
@@ -3264,6 +3296,7 @@
 
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\shader.cc
 
+<<<<<<< HEAD
 1363697861 source:c:\users\nick\workspace\ein3gpc\src\simpletesttriggerbehavior.cc
 	"SimpleTestTriggerBehavior.h"
 	<iostream>
@@ -3278,14 +3311,28 @@
 	"SpatialComponent.h"
 	<GLM/glm.hpp>
 	<GLM/gtc/matrix_transform.hpp>
+=======
+1363683330 source:c:\users\nick\workspace\ein3gpc\src\simpletesttriggerbehavior.cc
+
+1363259797 source:c:\users\peter\documents\github\ein3gpc\src\simpletesttriggerbehavior.cc
+
+1363683330 c:\users\nick\workspace\ein3gpc\src\simpletesttriggerbehavior.h
+	"Behavior.h"
+
+1363683330 source:c:\users\nick\workspace\ein3gpc\src\spatialcomponent.cc
+>>>>>>> build unit at position with left arrow key
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\simpletesttriggerbehavior.h
 	"Behavior.h"
 
+<<<<<<< HEAD
 1363860294 source:c:\users\peter\documents\github\ein3gpc\src\spatialcomponent.cc
 	"SpatialComponent.h"
 	<GLM/glm.hpp>
 	<GLM/gtc/matrix_transform.hpp>
+=======
+1363174041 source:c:\users\peter\documents\github\ein3gpc\src\spatialcomponent.cc
+>>>>>>> build unit at position with left arrow key
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\stb_image.c
 
@@ -3318,7 +3365,26 @@
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\vector_angle.hpp
 
+<<<<<<< HEAD
 1363866916 c:\users\peter\documents\github\ein3gpc\src\renderer\renderengine.h
+=======
+1363174041 c:\users\peter\documents\github\ein3gpc\src\renderer\renderengine.h
+	"../Engine.h"
+	"../Program.h"
+	"../Texture.h"
+	"Camera.h"
+	"../Mesh.h"
+	"Light.h"
+	"Model.h"
+	"Text.h"
+	"../NodeCache.h"
+	"../ResourceManager.h"
+	"../ProgramResourceLoader.h"
+	"../CubemapResourceLoader.h"
+	"../Cubemap.h"
+	<vector>
+	<list>
+>>>>>>> build unit at position with left arrow key
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\programresourceloader.h
 	"Program.h"
@@ -3408,6 +3474,7 @@
 	"Behavior.h"
 	"Entity.h"
 
+<<<<<<< HEAD
 1363866071 source:c:\users\peter\documents\github\ein3gpc\windows\ymir\main.cc
 	<GL/glew.h>
 	<GL/GLFW.h>
@@ -3452,6 +3519,9 @@
 	"../../src/Audio/Source.h"
 	"../../src/Audio/Listener.h"
 	"../../src/TileMap.h"
+=======
+1363696575 source:c:\users\peter\documents\github\ein3gpc\windows\ymir\main.cc
+>>>>>>> build unit at position with left arrow key
 
 1363696776 source:c:\users\peter\documents\github\ein3gpc\src\tile.cpp
 	"Tile.h"
@@ -3495,5 +3565,57 @@
 	<iostream>
 	<memory>
 
+<<<<<<< HEAD
 1363697861 
+=======
+1363702623 source:c:\users\medragon\documents\github\ein3gpc\src\rtscamerabehavior.cpp
+	"RTSCameraBehavior.h"
+	"SpatialComponent.h"
+	"CameraComponent.h"
+	<GLEW/glew.h>
+	<GLFW/glfw.h>
+	<GL/glew.h>
+	<GL/glfw.h>
+	<iostream>
+
+1363702623 c:\users\medragon\documents\github\ein3gpc\src\rtscamerabehavior.h
+	"Behavior.h"
+	"Entity.h"
+
+1363702623 source:c:\users\medragon\documents\github\ein3gpc\src\tile.cpp
+	"Tile.h"
+
+1363702623 c:\users\medragon\documents\github\ein3gpc\src\tile.h
+
+1363702623 source:c:\users\medragon\documents\github\ein3gpc\src\tilemap.cpp
+	"TileMap.h"
+
+1363702623 c:\users\medragon\documents\github\ein3gpc\src\tilemap.h
+	"Tile.h"
+	<vector>
+	<iostream>
+	<memory>
+
+1363870311 source:c:\users\medragon\documents\github\ein3gpc\src\gameplay.cc
+	"Gameplay.h"
+
+1363869979 c:\users\medragon\documents\github\ein3gpc\src\gameplay.h
+	<memory>
+	"Scene.h"
+	"EngineManager.h"
+	"Entity.h"
+	"ResourceManager.h"
+	"DirectoryManifest.h"
+	"Texture.h"
+	"Mesh.h"
+	"ProgramResourceLoader.h"
+	"CubemapResourceLoader.h"
+	"Audio/Buffer.h"
+	"SpatialComponent.h"
+	"ModelComponent.h"
+	"ListenerComponent.h"
+	"CameraComponent.h"
+	"LightComponent.h"
+	"RTSCameraBehavior.h"
+>>>>>>> build unit at position with left arrow key
 
