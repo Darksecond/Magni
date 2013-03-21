@@ -143,7 +143,7 @@ int main(int argc, char* argv[])
     unit.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     unit.assign<ModelComponent>(unit_mesh, t);
 
-    TileMap* tiles = new TileMap(100, 10, 10);
+    TileMap* tiles = new TileMap(100, 2, 2);
 
     double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
@@ -158,14 +158,18 @@ int main(int argc, char* argv[])
 
         if(glfwGetKey( GLFW_KEY_LEFT ) == GLFW_PRESS ) {
             auto test = unit.component<SpatialComponent>();
-            test->position = test->position + glm::vec3{0.1,0.0,0.1};
+            glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
+            newPos.y=0;
+            test->position = newPos;
         }
+
         if(glfwGetKey( GLFW_KEY_UP ) == GLFW_PRESS && isDone) {
             isDone = false;
             Entity& house = scene.assign("houseMesh");
             house.assign<SpatialComponent>(renderEngine.get3DPositionFromMousePosition());
             house.assign<ModelComponent>(house_mesh, house_tex);
         }
+
         if(glfwGetKey( GLFW_KEY_DOWN ) == GLFW_PRESS && isDone1) {
             isDone1 = false;
             Entity& house = scene.assign("houseMesh");
@@ -182,6 +186,5 @@ int main(int argc, char* argv[])
         if(glfwGetKey(GLFW_KEY_ESC))
             glfwCloseWindow();
     }
-
     return 0;
 }
