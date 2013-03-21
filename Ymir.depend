@@ -1826,9 +1826,92 @@
 	"CubemapResourceLoader.h"
 	<stdexcept>
 
-1363696575 D
+1363696776 D
 	"../../src/RTSCameraBehavior.h"
 	"../../src/TileMap.h"
+	<stdexcept>
+	<iostream>
+	<fstream>
+	"stb_truetype.h"
+	"Program.h"
+	<GLEW/glew.h>
+	<GLFW/glfw.h>
+	<GL/glew.h>
+	<GL/glfw.h>
+	<GLM/glm.hpp>
+	<string>
+	<memory>
+	"stb_truetype.h"
+	<stdio.h>
+	"stb_truetype.h"
+	<stdlib.h>
+	<math.h>
+	<malloc.h>
+	<assert.h>
+	<string.h>
+	<memory.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL3/gl3.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	"FPSCameraBehavior.h"
+	"SpatialComponent.h"
+	"CameraComponent.h"
+	<GLEW/glew.h>
+	<GLFW/glfw.h>
+	<GL/glew.h>
+	<GL/glfw.h>
+	"Geometry.h"
+	<istream>
+	<utility>
+	<string>
+	<map>
+	<vector>
+	"Camera.h"
+	"../CameraComponent.h"
+	"../SpatialComponent.h"
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtx/rotate_vector.hpp>
+	<glm/gtx/euler_angles.hpp>
+	<glm/gtc/quaternion.hpp>
+	<iostream>
+	"../Entity.h"
+	"../CameraComponent.h"
+	"../SpatialComponent.h"
+	<GLM/glm.hpp>
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"euler_angles.inl"
+	"../Program.h"
+	"Camera.h"
+	"../LightComponent.h"
+	"../SpatialComponent.h"
+	"../Entity.h"
+	<GLM/glm.hpp>
+	<memory>
+	"../Entity.h"
+	"../ModelComponent.h"
+	"../SpatialComponent.h"
+	"../Program.h"
+	<GLM/glm.hpp>
+	"Component.h"
+	"Texture.h"
+	"Mesh.h"
+	<memory>
+	"Bitmap.h"
+	"StreamReader.h"
+	"stb_image.h"
+	<GLEW/glew.h>
+	<GL/glew.h>
+	<stdexcept>
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\audio\buffer.cc
 
@@ -2056,6 +2139,8 @@
 	"Entity.h"
 	"Engine.h"
 	"Font.h"
+
+1363692066 >
 	<stdexcept>
 	<iostream>
 	<fstream>
@@ -2139,6 +2224,8 @@
 	<GLEW/glew.h>
 	<GL/glew.h>
 	<stdexcept>
+
+1363697861 f9138883df78ee35d5ee02baad92f123b353b
 	"RotateBehavior.h"
 	"Entity.h"
 	"SpatialComponent.h"
@@ -2236,6 +2323,38 @@
 	"../../src/Audio/Buffer.h"
 	"../../src/Audio/Source.h"
 	"../../src/Audio/Listener.h"
+	"RenderEngine.h"
+	"Light.h"
+	"../LightComponent.h"
+	"../SpatialComponent.h"
+	"Text.h"
+	<GLEW/glew.h>
+	<GLFW/glfw.h>
+	<GL/glew.h>
+	<GL/glfw.h>
+	<GLM/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<memory>
+	<iostream>
+	<sstream>
+	"SimpleTestTriggerBehavior.h"
+	<iostream>
+	"Entity.h"
+	"../Engine.h"
+	"../Program.h"
+	"../Texture.h"
+	"Camera.h"
+	"../Mesh.h"
+	"Light.h"
+	"Model.h"
+	"Text.h"
+	"../NodeCache.h"
+	"../ResourceManager.h"
+	"../ProgramResourceLoader.h"
+	"../CubemapResourceLoader.h"
+	"../Cubemap.h"
+	<vector>
+	<list>
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\audio\buffer.h
 
@@ -2964,7 +3083,15 @@
 	"Program.h"
 	<stdexcept>
 
-1363683330 source:c:\users\nick\workspace\ein3gpc\src\renderer\camera.cc
+1363869793 source:c:\users\nick\workspace\ein3gpc\src\renderer\camera.cc
+	"Camera.h"
+	"../CameraComponent.h"
+	"../SpatialComponent.h"
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtx/rotate_vector.hpp>
+	<glm/gtx/euler_angles.hpp>
+	<glm/gtc/quaternion.hpp>
+	<iostream>
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\geometry.h
 	<GLEW/glew.h>
@@ -2975,7 +3102,15 @@
 	"Program.h"
 	<stdexcept>
 
-1363174041 source:c:\users\peter\documents\github\ein3gpc\src\renderer\camera.cc
+1363860294 source:c:\users\peter\documents\github\ein3gpc\src\renderer\camera.cc
+	"Camera.h"
+	"../CameraComponent.h"
+	"../SpatialComponent.h"
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtx/rotate_vector.hpp>
+	<glm/gtx/euler_angles.hpp>
+	<glm/gtc/quaternion.hpp>
+	<iostream>
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\renderer\camera.h
 
@@ -3045,7 +3180,7 @@
 
 1363176825 c:\users\peter\documents\github\ein3gpc\src\texture.h
 
-1363697861 source:c:\users\nick\workspace\ein3gpc\src\renderer\renderengine.cc
+1363869793 source:c:\users\nick\workspace\ein3gpc\src\renderer\renderengine.cc
 	"RenderEngine.h"
 	"Light.h"
 	"../LightComponent.h"
@@ -3061,7 +3196,7 @@
 	<iostream>
 	<sstream>
 
-1363683330 c:\users\nick\workspace\ein3gpc\src\renderer\renderengine.h
+1363869793 c:\users\nick\workspace\ein3gpc\src\renderer\renderengine.h
 	"../Engine.h"
 	"../Program.h"
 	"../Texture.h"
@@ -3139,12 +3274,18 @@
 1363683330 c:\users\nick\workspace\ein3gpc\src\simpletesttriggerbehavior.h
 	"Behavior.h"
 
-1363683330 source:c:\users\nick\workspace\ein3gpc\src\spatialcomponent.cc
+1363869793 source:c:\users\nick\workspace\ein3gpc\src\spatialcomponent.cc
+	"SpatialComponent.h"
+	<GLM/glm.hpp>
+	<GLM/gtc/matrix_transform.hpp>
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\simpletesttriggerbehavior.h
 	"Behavior.h"
 
-1363174041 source:c:\users\peter\documents\github\ein3gpc\src\spatialcomponent.cc
+1363860294 source:c:\users\peter\documents\github\ein3gpc\src\spatialcomponent.cc
+	"SpatialComponent.h"
+	<GLM/glm.hpp>
+	<GLM/gtc/matrix_transform.hpp>
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\stb_image.c
 
@@ -3177,22 +3318,7 @@
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\vector_angle.hpp
 
-1363174041 c:\users\peter\documents\github\ein3gpc\src\renderer\renderengine.h
-	"../Engine.h"
-	"../Program.h"
-	"../Texture.h"
-	"Camera.h"
-	"../Mesh.h"
-	"Light.h"
-	"Model.h"
-	"Text.h"
-	"../NodeCache.h"
-	"../ResourceManager.h"
-	"../ProgramResourceLoader.h"
-	"../CubemapResourceLoader.h"
-	"../Cubemap.h"
-	<vector>
-	<list>
+1363866916 c:\users\peter\documents\github\ein3gpc\src\renderer\renderengine.h
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\programresourceloader.h
 	"Program.h"
@@ -3247,7 +3373,7 @@
 1363174041 c:\users\peter\documents\github\ein3gpc\src\cubegeometry.h
 	"Geometry.h"
 
-1363684072 source:c:\users\peter\documents\github\ein3gpc\src\renderer\renderengine.cc
+1363867209 source:c:\users\peter\documents\github\ein3gpc\src\renderer\renderengine.cc
 	"RenderEngine.h"
 	"Light.h"
 	"../LightComponent.h"
@@ -3263,11 +3389,12 @@
 	<iostream>
 	<sstream>
 
-1363263925 source:c:\users\peter\documents\github\ein3gpc\src\texture.cc
+1363860295 source:c:\users\peter\documents\github\ein3gpc\src\texture.cc
 	"Texture.h"
 	<iostream>
+	<stdexcept>
 
-1363261870 source:c:\users\peter\documents\github\ein3gpc\src\rtscamerabehavior.cpp
+1363860599 source:c:\users\peter\documents\github\ein3gpc\src\rtscamerabehavior.cpp
 	"RTSCameraBehavior.h"
 	"SpatialComponent.h"
 	"CameraComponent.h"
@@ -3277,27 +3404,70 @@
 	<GL/glfw.h>
 	<iostream>
 
-1363257980 c:\users\peter\documents\github\ein3gpc\src\rtscamerabehavior.h
+1363696776 c:\users\peter\documents\github\ein3gpc\src\rtscamerabehavior.h
 	"Behavior.h"
 	"Entity.h"
 
-1363696575 source:c:\users\peter\documents\github\ein3gpc\windows\ymir\main.cc
+1363866071 source:c:\users\peter\documents\github\ein3gpc\windows\ymir\main.cc
+	<GL/glew.h>
+	<GL/GLFW.h>
+	<GLM/glm.hpp>
+	<iostream>
+	<vector>
+	<memory>
+	<sstream>
+	"../../src/Shader.h"
+	"../../src/Program.h"
+	"../../src/Bitmap.h"
+	"../../src/Texture.h"
+	"../../src/Renderer/Camera.h"
+	"../../src/Mesh.h"
+	"../../src/Renderer/Light.h"
+	"../../src/Scene.h"
+	"../../src/Entity.h"
+	"../../src/EngineManager.h"
+	"../../src/LightComponent.h"
+	"../../src/SpatialComponent.h"
+	"../../src/Renderer/RenderEngine.h"
+	"../../src/BehaviorEngine.h"
+	"../../src/CollisionEngine.h"
+	"../../src/AudioEngine.h"
+	"../../src/CameraComponent.h"
+	"../../src/ModelComponent.h"
+	"../../src/ListenerComponent.h"
+	"../../src/SourceComponent.h"
+	"../../src/CarComponent.h"
+	"../../src/ObjGeometry.h"
+	"../../src/ResourceManager.h"
+	"../../src/DirectoryManifest.h"
+	"../../src/RotateBehavior.h"
+	"../../src/FPSCameraBehavior.h"
+	"../../src/WSADMoveBehavior.h"
+	"../../src/RTSCameraBehavior.h"
+	"../../src/SimpleTestTriggerBehavior.h"
+	"../../src/CarCollisionBehavior.h"
+	"../../src/ProgramResourceLoader.h"
+	"../../src/CubemapResourceLoader.h"
+	"../../src/Audio/Buffer.h"
+	"../../src/Audio/Source.h"
+	"../../src/Audio/Listener.h"
+	"../../src/TileMap.h"
 
-1363692417 source:c:\users\peter\documents\github\ein3gpc\src\tile.cpp
+1363696776 source:c:\users\peter\documents\github\ein3gpc\src\tile.cpp
 	"Tile.h"
 
-1363692421 c:\users\peter\documents\github\ein3gpc\src\tile.h
+1363696776 c:\users\peter\documents\github\ein3gpc\src\tile.h
 
-1363692400 source:c:\users\peter\documents\github\ein3gpc\src\tilemap.cpp
+1363696776 source:c:\users\peter\documents\github\ein3gpc\src\tilemap.cpp
 	"TileMap.h"
 
-1363692066 c:\users\peter\documents\github\ein3gpc\src\tilemap.h
+1363696776 c:\users\peter\documents\github\ein3gpc\src\tilemap.h
 	"Tile.h"
 	<vector>
 	<iostream>
 	<memory>
 
-1363697861 source:c:\users\nick\workspace\ein3gpc\src\rtscamerabehavior.cpp
+1363869793 source:c:\users\nick\workspace\ein3gpc\src\rtscamerabehavior.cpp
 	"RTSCameraBehavior.h"
 	"SpatialComponent.h"
 	"CameraComponent.h"
@@ -3324,4 +3494,6 @@
 	<vector>
 	<iostream>
 	<memory>
+
+1363697861 
 

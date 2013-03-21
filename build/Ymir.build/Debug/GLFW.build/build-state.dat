@@ -1,0 +1,863 @@
+TGLFW
+v7
+r0
+t384772680.463841
+cCheck dependencies
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/Current A
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Resources Versions/Current/Resources
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/GLFW Versions/Current/GLFW
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Headers Versions/Current/Headers
+cProcessInfoPlistFile /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/A/Resources/Info.plist osx/GLFW/GLFW-Info.plist
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_enable.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_enable.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_fullscreen.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_fullscreen.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_glext.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_glext.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_init.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_init.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_joystick.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_joystick.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_thread.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_thread.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_time.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_time.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_window.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/enable.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/enable.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/fullscreen.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/fullscreen.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/glext.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/glext.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/image.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/image.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/init.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/init.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/input.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/input.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/joystick.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/joystick.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/stream.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/stream.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/tga.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/tga.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/thread.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/thread.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/time.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/time.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/window.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/window.c normal x86_64 c com.apple.compilers.gcc.4_2
+cCpHeader build/Debug/GLFW.framework/Versions/A/Headers/glfw.h osx/GLFW/include/GL/glfw.h
+cCpResource build/Debug/GLFW.framework/Versions/A/Resources/COPYING.txt osx/GLFW/COPYING.txt
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004CAA740B00000000000000EE
+t1286239243
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/ApplicationServices.framework/Headers/ApplicationServices.h
+c000000004A12050C0000000000000475
+t1242694924
+s1141
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Cocoa.framework/Cocoa
+c000000004CAA74040000000000003430
+t1286239236
+s13360
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Cocoa.framework/Headers/Cocoa.h
+c0000000040C4AA6800000000000001E5
+t1086630504
+s485
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CoreFoundation.h
+c000000004C239DAB0000000000000AF4
+t1277402539
+s2804
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/IOKit.framework/Headers/IOCFPlugIn.h
+c000000004C23A01200000000000008FD
+t1277403154
+s2301
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/IOKit.framework/Headers/IOKitLib.h
+c000000004C23A0120000000000012048
+t1277403154
+s73800
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/IOKit.framework/Headers/hid/IOHIDKeys.h
+c000000004C23A32E000000000000394F
+t1277403950
+s14671
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/IOKit.framework/Headers/hid/IOHIDLib.h
+c000000004C23A0110000000000000609
+t1277403153
+s1545
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/IOKit.framework/IOKit
+c000000004CAA7405000000000003CE34
+t1286239237
+s249396
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Kernel.framework/Headers/IOKit/hidsystem/IOHIDUsageTables.h
+c000000004C23A32E00000000000182B5
+t1277403950
+s98997
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl.h
+c000000004BD2501F0000000000025B59
+t1272074271
+s154457
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h
+c000000004BD2501F0000000000003F84
+t1272074271
+s16260
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL
+c000000004CAA7405000000000000DB14
+t1286239237
+s56084
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/AvailabilityMacros.h
+c000000004A11A9B30000000000006724
+t1242671539
+s26404
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/crt_externs.h
+c000000004BBD2CE90000000000000634
+t1270689001
+s1588
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/ctype.h
+c000000004BBD2CE90000000000002C18
+t1270689001
+s11288
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/mach/mach.h
+c000000004BD247AA0000000000001057
+t1272072106
+s4183
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/mach/mach_error.h
+c000000004BD247AA0000000000000BE3
+t1272072106
+s3043
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/mach/mach_time.h
+c000000004C2399470000000000000746
+t1277401415
+s1862
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/pthread.h
+c000000004BBD2CE900000000000038F0
+t1270689001
+s14576
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004BBD2CE90000000000004174
+t1270689001
+s16756
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdlib.h
+c000000004BBD2CE90000000000002DF5
+t1270689001
+s11765
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/string.h
+c000000004BBD2CE90000000000001731
+t1270689001
+s5937
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/sys/param.h
+c000000004C23994700000000000027BE
+t1277401415
+s10174
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/sys/sysctl.h
+c000000004C2399480000000000007974
+t1277401416
+s31092
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/sys/time.h
+c000000004C2399480000000000001E17
+t1277401416
+s7703
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/unistd.h
+c000000004BBD2CE9000000000000563E
+t1270689001
+s22078
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/lib/gcc/i686-apple-darwin10/4.2.1/include/limits.h
+c000000004A11EB240000000000000C7E
+t1242688292
+s3198
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework
+t1363079870
+s204
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/GLFW
+t3
+s21
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Headers
+t3
+s24
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Resources
+t3
+s26
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/A/GLFW
+t2
+s0
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/A/Headers/glfw.h
+t1363079880
+s19929
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/A/Resources/COPYING.txt
+t1363079880
+s956
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/A/Resources/Info.plist
+t1363079870
+s806
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/Current
+t3
+s1
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/GLFW.LinkFileList
+c00000000513EF2BE00000000000008C5
+t1363079870
+s2245
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_enable.o
+t1363079877
+s5440
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_fullscreen.o
+t1363079877
+s9744
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_glext.o
+t1363079877
+s8020
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_init.o
+t1363079877
+s15492
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_joystick.o
+t1363079878
+s28652
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_thread.o
+t1363079877
+s14752
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_time.o
+t1363079877
+s10944
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_window.o
+t2
+s0
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/enable.o
+t1363079878
+s12656
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/fullscreen.o
+t1363079878
+s6548
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/glext.o
+t1363079878
+s10516
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/image.o
+t1363079879
+s15972
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/init.o
+t1363079879
+s9820
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/input.o
+t1363079879
+s11736
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/joystick.o
+t1363079879
+s5336
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/stream.o
+t1363079879
+s9332
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/tga.o
+t1363079879
+s9312
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/thread.o
+t1363079879
+s13356
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/time.o
+t1363079880
+s4896
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/window.o
+t1363079880
+s26232
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/COPYING.txt
+c00000000513EEFDF00000000000003BC
+t1363079135
+s956
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/include/GL/glfw.h
+c00000000513EEFDF0000000000004DD9
+t1363079135
+s19929
+i<OpenGL/gl3.h>
+i<OpenGL/gl.h>
+i<OpenGL/glu.h>
+i<GL3/gl3.h>
+i<GL/gl.h>
+i<GL/glu.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_enable.m
+c00000000513EEFDF0000000000000811
+t1363079135
+s2065
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_fullscreen.m
+c00000000513EEFDF0000000000001014
+t1363079135
+s4116
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_glext.m
+c00000000513EEFDF0000000000000A15
+t1363079135
+s2581
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_init.m
+c00000000513EEFDF00000000000015A3
+t1363079135
+s5539
+i<sys/param.h>
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_joystick.m
+c00000000513EEFDF0000000000005028
+t1363079135
+s20520
+i"internal.h"
+i<unistd.h>
+i<ctype.h>
+i<mach/mach.h>
+i<mach/mach_error.h>
+i<CoreFoundation/CoreFoundation.h>
+i<IOKit/IOKitLib.h>
+i<IOKit/IOCFPlugIn.h>
+i<IOKit/hid/IOHIDLib.h>
+i<IOKit/hid/IOHIDKeys.h>
+i<Kernel/IOKit/hidsystem/IOHIDUsageTables.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_thread.c
+c00000000513EEFDF0000000000002F08
+t1363079135
+s12040
+i"internal.h"
+i<sys/time.h>
+i<sys/sysctl.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_time.m
+c00000000513EEFDF0000000000001175
+t1363079135
+s4469
+i"internal.h"
+i<mach/mach_time.h>
+i<sys/time.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m
+c00000000513EEFDF00000000000082AA
+t1363079135
+s33450
+i"internal.h"
+i<AvailabilityMacros.h>
+i<crt_externs.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/platform.h
+c00000000513EEFDF0000000000001EF2
+t1363079135
+s7922
+i<Cocoa/Cocoa.h>
+i<ApplicationServices/ApplicationServices.h>
+i<pthread.h>
+i"../../include/GL/glfw.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/enable.c
+c00000000513EEFDF00000000000020CB
+t1363079135
+s8395
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/fullscreen.c
+c00000000513EEFDF0000000000000C50
+t1363079135
+s3152
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/glext.c
+c00000000513EEFDF0000000000001FF8
+t1363079135
+s8184
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/image.c
+c00000000513EEFDF0000000000004508
+t1363079135
+s17672
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/init.c
+c00000000513EEFDF0000000000000D17
+t1363079135
+s3351
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/input.c
+c00000000513EEFDF0000000000001C36
+t1363079135
+s7222
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/internal.h
+c00000000513EEFDF0000000000002637
+t1363079135
+s9783
+i<stdlib.h>
+i<string.h>
+i<stdio.h>
+i"platform.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/joystick.c
+c00000000513EEFDF0000000000000C11
+t1363079135
+s3089
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/stream.c
+c00000000513EEFDF0000000000001416
+t1363079135
+s5142
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/tga.c
+c00000000513EEFDF0000000000002D54
+t1363079135
+s11604
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/thread.c
+c00000000513EEFDF000000000000246C
+t1363079135
+s9324
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/time.c
+c00000000513EEFDF0000000000000A76
+t1363079135
+s2678
+i"internal.h"
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/window.c
+c00000000513EEFDF000000000000747A
+t1363079135
+s29818
+i"internal.h"
+i<limits.h>
+
+Nosx/GLFW/GLFW-Info.plist
+c00000000513EEFDF00000000000003BC
+t1363079135
+s956
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies384772670#384772670#0(155"[WARN]Mac OS X deployment target '10.8' for architecture 'x86_64' and variant 'normal' is greater than the maximum value '10.6' for the Mac OS X 10.6 SDK.1(22@148"Mac OS X deployment target '10.8' for architecture 'x86_64' and variant 'normal' is greater than the maximum value '10.6' for the Mac OS X 10.6 SDK.384772670#18446744073709551615#0#0(1@0"0(0#1#0"4320133120#0"0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_enable.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_enable.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+s384772670.525887
+e384772677.032161
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_enable.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_enable.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@86"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_enable.m384772670#384772677#0(0"0(0#0#78"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_enable.m4320133120#1356"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_enable.m -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_enable.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_fullscreen.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_fullscreen.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+s384772670.526998
+e384772677.039229
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_fullscreen.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_fullscreen.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@90"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_fullscreen.m384772670#384772677#0(0"0(0#0#82"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_fullscreen.m4320133120#1364"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_fullscreen.m -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_fullscreen.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_glext.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_glext.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+s384772670.528053
+e384772677.030659
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_glext.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_glext.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@85"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_glext.m384772670#384772677#0(0"0(0#0#77"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_glext.m4320133120#1354"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_glext.m -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_glext.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_init.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_init.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+s384772670.528882
+e384772677.042577
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_init.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_init.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@84"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_init.m384772670#384772677#0(0"0(0#0#76"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_init.m4320133120#1352"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_init.m -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_init.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_joystick.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_joystick.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+s384772677.030843
+e384772678.802214
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_joystick.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_joystick.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@88"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_joystick.m384772677#384772678#0(0"0(0#0#80"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_joystick.m4320133120#1360"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_joystick.m -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_joystick.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_thread.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_thread.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772677.032255
+e384772677.992008
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_thread.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_thread.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@86"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_thread.c384772677#384772677#0(0"0(0#0#78"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_thread.c4320133120#1346"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_thread.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_thread.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_time.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_time.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+s384772677.039356
+e384772678.003608
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_time.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_time.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@84"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_time.m384772677#384772678#0(0"0(0#0#76"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_time.m4320133120#1352"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_time.m -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_time.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_window.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+s384772677.042695
+e384772678.035280
+r0
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_window.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m: In function '_glfwPlatformOpenWindow':
+o/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m:784: error: 'NSOpenGLPFAOpenGLProfile' undeclared (first use in this function)
+o/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m:784: error: (Each undeclared identifier is reported only once
+o/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m:784: error: for each function it appears in.)
+o/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m:784: error: 'NSOpenGLProfileVersion3_2Core' undeclared (first use in this function)
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_0
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_1
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_2
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_3
+o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_SUP_REFS_$_0
+o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_1
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_4
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_5
+o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_2
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_6
+o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_3
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_7
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_8
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_9
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_10
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_12
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_11
+o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_4
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_13
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_14
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_15
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_16
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_17
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_18
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_19
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_20
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_21
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_22
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_23
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_24
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_25
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_26
+o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_5
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_27
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_28
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_29
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_30
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_31
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_32
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_33
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_34
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_35
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_36
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_37
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_38
+o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_SUP_REFS_$_6
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_39
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_40
+o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_41
+lSLF07#2@86"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m384772677#384772678#0(4528"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m: In function '_glfwPlatformOpenWindow':/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m:784: error: 'NSOpenGLPFAOpenGLProfile' undeclared (first use in this function)/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m:784: error: (Each undeclared identifier is reported only once/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m:784: error: for each function it appears in.)/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m:784: error: 'NSOpenGLProfileVersion3_2Core' undeclared (first use in this function){standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_0{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_1{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_2{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_3{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_SUP_REFS_$_0{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_1{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_4{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_5{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_2{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_6{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_3{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_7{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_8{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_9{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_10{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_12{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_11{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_4{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_13{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_14{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_15{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_16{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_17{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_18{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_19{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_20{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_21{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_22{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_23{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_24{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_25{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_26{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_5{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_27{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_28{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_29{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_30{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_31{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_32{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_33{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_34{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_35{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_36{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_37{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_38{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_SUP_REFS_$_6{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_39{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_40{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_412(4@66"'NSOpenGLPFAOpenGLProfile' undeclared (first use in this function)384772678#119#158#0(6@78"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m384771935#784#0#784#0#43"'*' undeclared (first use in this function)0(4@71"'NSOpenGLProfileVersion3_2Core' undeclared (first use in this function)384772678#543#163#0(6@78"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m384771935#784#0#784#0#43"'*' undeclared (first use in this function)0(0#0#78"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m4320133120#1356"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/cocoa/cocoa_window.m -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/cocoa_window.o1#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/enable.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/enable.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772677.992150
+e384772678.493059
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/enable.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/enable.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@74"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/enable.c384772677#384772678#0(0"0(0#0#66"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/enable.c4320133120#1328"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/enable.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/enable.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/fullscreen.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/fullscreen.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772678.003728
+e384772678.489593
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/fullscreen.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/fullscreen.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@78"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/fullscreen.c384772678#384772678#0(0"0(0#0#70"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/fullscreen.c4320133120#1336"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/fullscreen.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/fullscreen.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/glext.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/glext.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772678.035403
+e384772678.488240
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/glext.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/glext.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@73"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/glext.c384772678#384772678#0(0"0(0#0#65"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/glext.c4320133120#1326"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/glext.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/glext.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/image.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/image.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772678.488491
+e384772679.154772
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/image.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/image.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@73"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/image.c384772678#384772679#0(0"0(0#0#65"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/image.c4320133120#1326"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/image.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/image.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/init.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/init.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772678.489688
+e384772679.104646
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/init.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/init.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@72"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/init.c384772678#384772679#0(0"0(0#0#64"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/init.c4320133120#1324"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/init.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/init.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/input.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/input.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772678.493174
+e384772679.167185
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/input.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/input.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@73"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/input.c384772678#384772679#0(0"0(0#0#65"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/input.c4320133120#1326"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/input.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/input.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/joystick.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/joystick.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772678.802382
+e384772679.549817
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/joystick.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/joystick.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@76"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/joystick.c384772678#384772679#0(0"0(0#0#68"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/joystick.c4320133120#1332"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/joystick.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/joystick.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/stream.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/stream.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772679.104816
+e384772679.898708
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/stream.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/stream.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@74"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/stream.c384772679#384772679#0(0"0(0#0#66"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/stream.c4320133120#1328"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/stream.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/stream.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/tga.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/tga.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772679.154931
+e384772679.910633
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/tga.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/tga.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@71"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/tga.c384772679#384772679#0(0"0(0#0#63"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/tga.c4320133120#1322"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/tga.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/tga.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/thread.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/thread.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772679.167307
+e384772679.921808
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/thread.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/thread.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@74"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/thread.c384772679#384772679#0(0"0(0#0#66"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/thread.c4320133120#1328"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/thread.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/thread.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/time.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/time.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772679.549928
+e384772680.127245
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/time.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/time.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@72"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/time.c384772679#384772680#0(0"0(0#0#64"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/time.c4320133120#1324"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/time.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/time.o0#
+
+CCompileC build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/window.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/window.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772679.898820
+e384772680.420741
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/window.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/window.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@74"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/window.c384772679#384772680#0(0"0(0#0#66"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/window.c4320133120#1328"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -w -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/GLFW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/lib/window.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLFW.build/Objects-normal/x86_64/window.o0#
+
+CCpHeader build/Debug/GLFW.framework/Versions/A/Headers/glfw.h osx/GLFW/include/GL/glfw.h
+s384772680.420910
+e384772680.431432
+r1
+xCpHeader
+xbuild/Debug/GLFW.framework/Versions/A/Headers/glfw.h
+xosx/GLFW/include/GL/glfw.h
+lSLF07#2@31"Copy osx/GLFW/include/GL/glfw.h384772680#384772680#0(0"0(0#0#71"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/include/GL/glfw.h4320133120#377"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/include/GL/glfw.h /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/A/Headers0#
+
+CCpResource build/Debug/GLFW.framework/Versions/A/Resources/COPYING.txt osx/GLFW/COPYING.txt
+s384772680.431546
+e384772680.463755
+r1
+xCpResource
+xbuild/Debug/GLFW.framework/Versions/A/Resources/COPYING.txt
+xosx/GLFW/COPYING.txt
+lSLF07#2@25"Copy osx/GLFW/COPYING.txt384772680#384772680#0(0"0(0#0#65"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/COPYING.txt4320133120#373"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/COPYING.txt /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/A/Resources0#
+
+CLd /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/A/GLFW normal x86_64
+r0
+
+CProcessInfoPlistFile /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/A/Resources/Info.plist osx/GLFW/GLFW-Info.plist
+s384772670.516947
+e384772670.525781
+r1
+xProcessInfoPlistFile
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/A/Resources/Info.plist
+xosx/GLFW/GLFW-Info.plist
+lSLF07#2@32"Process osx/GLFW/GLFW-Info.plist384772670#384772670#0(0"0(0#0#69"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLFW/GLFW-Info.plist4320133120#251"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    builtin-infoPlistUtility osx/GLFW/GLFW-Info.plist -expandbuildsettings -platform macosx -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/A/Resources/Info.plist0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/GLFW Versions/Current/GLFW
+s384772670.491165
+e384772670.511233
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/GLFW
+xVersions/Current/GLFW
+lSLF07#2@84"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/GLFW384772670#384772670#0(0"0(0#0#0"4320133120#167"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/GLFW /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/GLFW0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Headers Versions/Current/Headers
+s384772670.510031
+e384772670.516702
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Headers
+xVersions/Current/Headers
+lSLF07#2@87"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Headers384772670#384772670#0(0"0(0#0#0"4320133120#173"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/Headers /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Headers0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Resources Versions/Current/Resources
+s384772670.484698
+e384772670.511107
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Resources
+xVersions/Current/Resources
+lSLF07#2@89"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Resources384772670#384772670#0(0"0(0#0#0"4320133120#177"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/Resources /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Resources0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/Current A
+s384772670.482799
+e384772670.509898
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/Current
+xA
+lSLF07#2@96"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/Current384772670#384772670#0(0"0(0#0#0"4320133120#159"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf A /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework/Versions/Current0#
+
+CTouch /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLFW.framework
+r0
+

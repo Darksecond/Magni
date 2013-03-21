@@ -42,7 +42,7 @@ glm::mat4 Camera::viewMatrix() const
     camera = glm::inverse(_spatial.orientation());
     ////camera = glm::translate(camera, -_spatial.position);
     //camera = glm::translate(camera, _spatial.parent->position + _spatial.position);
-    camera = glm::translate(camera, _spatial.globalPosition());
+    camera = glm::translate(camera, -_spatial.globalPosition());
     return camera;
 }
 

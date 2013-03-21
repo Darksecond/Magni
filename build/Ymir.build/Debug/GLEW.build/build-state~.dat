@@ -1,0 +1,305 @@
+TGLEW
+v7
+r0
+t384772682.872831
+cCheck dependencies
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/Current A
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Resources Versions/Current/Resources
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/GLEW Versions/Current/GLEW
+cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Headers Versions/Current/Headers
+cProcessInfoPlistFile /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Resources/Info.plist osx/GLEW/GLEW-Info.plist
+cCompileC build/Ymir.build/Debug/GLEW.build/Objects-normal/x86_64/glew.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/src/glew.c normal x86_64 c com.apple.compilers.gcc.4_2
+cLd /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/GLEW normal x86_64
+cCpHeader build/Debug/GLEW.framework/Versions/A/Headers/glew.h osx/GLEW/include/GL/glew.h
+cCpHeader build/Debug/GLEW.framework/Versions/A/Headers/glxew.h osx/GLEW/include/GL/glxew.h
+cCpHeader build/Debug/GLEW.framework/Versions/A/Headers/wglew.h osx/GLEW/include/GL/wglew.h
+cCpResource build/Debug/GLEW.framework/Versions/A/Resources/LICENSE.txt osx/GLEW/LICENSE.txt
+cTouch /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004CAA740B00000000000000EE
+t1286239243
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/AGL.framework/AGL
+c000000004CAA7403000000000001192C
+t1286239235
+s71980
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Cocoa.framework/Cocoa
+c000000004CAA74040000000000003430
+t1286239236
+s13360
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h
+c000000004BD2501F0000000000003F84
+t1272074271
+s16260
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL
+c000000004CAA7405000000000000DB14
+t1286239237
+s56084
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/AvailabilityMacros.h
+c000000004A11A9B30000000000006724
+t1242671539
+s26404
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/dlfcn.h
+c000000004C74B5950000000000000B1C
+t1282717077
+s2844
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/inttypes.h
+c000000004BBD2CE900000000000027D1
+t1270689001
+s10193
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/mach-o/dyld.h
+c000000004C74B5950000000000003D47
+t1282717077
+s15687
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004BBD2CE90000000000004174
+t1270689001
+s16756
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdlib.h
+c000000004BBD2CE90000000000002DF5
+t1270689001
+s11765
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/string.h
+c000000004BBD2CE90000000000001731
+t1270689001
+s5937
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/lib/gcc/i686-apple-darwin10/4.2.1/include/stddef.h
+c000000004A11EB240000000000003197
+t1242688292
+s12695
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/lib/gcc/i686-apple-darwin10/4.2.1/include/stdint.h
+c000000004A11EB24000000000000190C
+t1242688292
+s6412
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework
+t1363079882
+s204
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/GLEW
+t3
+s21
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Headers
+t3
+s24
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Resources
+t3
+s26
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/GLEW
+t1363079882
+s590904
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Headers/glew.h
+t1363079882
+s884678
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Headers/glxew.h
+t1363079882
+s65851
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Headers/wglew.h
+t1363079882
+s61250
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Resources/Info.plist
+t1363079880
+s806
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Resources/LICENSE.txt
+t1363079882
+s3797
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/Current
+t3
+s1
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLEW.build/Objects-normal/x86_64/GLEW.LinkFileList
+c00000000513EF2C8000000000000006C
+t1363079880
+s108
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLEW.build/Objects-normal/x86_64/glew.o
+t1363079881
+s1040384
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/LICENSE.txt
+c00000000513EEFDF0000000000000ED5
+t1363079135
+s3797
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/include/GL/glew.h
+c00000000513EEFDF00000000000D7FC6
+t1363079135
+s884678
+i<stddef.h>
+i<inttypes.h>
+i<stdint.h>
+i<inttypes.h>
+i<OpenGL/glu.h>
+i<GL/glu.h>
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/include/GL/glxew.h
+c00000000513EEFDF000000000001013B
+t1363079135
+s65851
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/include/GL/wglew.h
+c00000000513EEFDF000000000000EF42
+t1363079135
+s61250
+
+N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/src/glew.c
+c00000000513EEFDF00000000000D07F3
+t1363079135
+s854003
+i<glew.h>
+i<GL/wglew.h>
+i<GL/glxew.h>
+i<dlfcn.h>
+i<stdio.h>
+i<stdlib.h>
+i<stdlib.h>
+i<string.h>
+i<AvailabilityMacros.h>
+i<dlfcn.h>
+i<mach-o/dyld.h>
+
+Nosx/GLEW/GLEW-Info.plist
+c00000000513EEFDF00000000000003BC
+t1363079135
+s956
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies384772680#384772680#0(155"[WARN]Mac OS X deployment target '10.8' for architecture 'x86_64' and variant 'normal' is greater than the maximum value '10.6' for the Mac OS X 10.6 SDK.1(22@148"Mac OS X deployment target '10.8' for architecture 'x86_64' and variant 'normal' is greater than the maximum value '10.6' for the Mac OS X 10.6 SDK.384772680#18446744073709551615#0#0(1@0"0(0#1#0"4320133120#0"0#
+
+CCompileC build/Ymir.build/Debug/GLEW.build/Objects-normal/x86_64/glew.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/src/glew.c normal x86_64 c com.apple.compilers.gcc.4_2
+s384772680.602057
+e384772681.620999
+r1
+xCompileC
+xbuild/Ymir.build/Debug/GLEW.build/Objects-normal/x86_64/glew.o
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/src/glew.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+occ1: warning: -Wuninitialized is not supported without -O
+lSLF07#2@72"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/src/glew.c384772680#384772681#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772680#0#58#0(6@0"384772680#0#0#0#0#0"0(0#0#64"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/src/glew.c4320133120#1321"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLEW.build/GLEW-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLEW.build/GLEW-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLEW.build/GLEW-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLEW.build/GLEW-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLEW.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLEW.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/src/glew.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLEW.build/Objects-normal/x86_64/glew.o0#
+
+CCpHeader build/Debug/GLEW.framework/Versions/A/Headers/glew.h osx/GLEW/include/GL/glew.h
+s384772682.759840
+e384772682.832703
+r1
+xCpHeader
+xbuild/Debug/GLEW.framework/Versions/A/Headers/glew.h
+xosx/GLEW/include/GL/glew.h
+lSLF07#2@31"Copy osx/GLEW/include/GL/glew.h384772682#384772682#0(0"0(0#0#71"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/include/GL/glew.h4320133120#377"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/include/GL/glew.h /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Headers0#
+
+CCpHeader build/Debug/GLEW.framework/Versions/A/Headers/glxew.h osx/GLEW/include/GL/glxew.h
+s384772682.760618
+e384772682.793870
+r1
+xCpHeader
+xbuild/Debug/GLEW.framework/Versions/A/Headers/glxew.h
+xosx/GLEW/include/GL/glxew.h
+lSLF07#2@32"Copy osx/GLEW/include/GL/glxew.h384772682#384772682#0(0"0(0#0#72"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/include/GL/glxew.h4320133120#378"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/include/GL/glxew.h /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Headers0#
+
+CCpHeader build/Debug/GLEW.framework/Versions/A/Headers/wglew.h osx/GLEW/include/GL/wglew.h
+s384772682.761196
+e384772682.792184
+r1
+xCpHeader
+xbuild/Debug/GLEW.framework/Versions/A/Headers/wglew.h
+xosx/GLEW/include/GL/wglew.h
+lSLF07#2@32"Copy osx/GLEW/include/GL/wglew.h384772682#384772682#0(0"0(0#0#72"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/include/GL/wglew.h4320133120#378"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/include/GL/wglew.h /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Headers0#
+
+CCpResource build/Debug/GLEW.framework/Versions/A/Resources/LICENSE.txt osx/GLEW/LICENSE.txt
+s384772682.832795
+e384772682.867704
+r1
+xCpResource
+xbuild/Debug/GLEW.framework/Versions/A/Resources/LICENSE.txt
+xosx/GLEW/LICENSE.txt
+lSLF07#2@25"Copy osx/GLEW/LICENSE.txt384772682#384772682#0(0"0(0#0#65"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/LICENSE.txt4320133120#373"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/LICENSE.txt /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Resources0#
+
+CLd /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/GLEW normal x86_64
+s384772681.621075
+e384772682.759703
+r1
+xLd
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/GLEW
+xnormal
+xx86_64
+lSLF07#2@92"Link /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/GLEW384772681#384772682#0(0"0(0#0#0"4320133120#748"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Developer/usr/bin/gcc-4.2 -arch x86_64 -dynamiclib -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -filelist /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLEW.build/Objects-normal/x86_64/GLEW.LinkFileList -install_name @executable_path/../Frameworks/GLEW.framework/Versions/A/GLEW -mmacosx-version-min=10.8 -framework OpenGL -framework AGL -framework Cocoa -prebind -single_module -compatibility_version 1 -current_version 1 -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/GLEW0#
+
+CProcessInfoPlistFile /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Resources/Info.plist osx/GLEW/GLEW-Info.plist
+s384772680.596719
+e384772680.601946
+r1
+xProcessInfoPlistFile
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Resources/Info.plist
+xosx/GLEW/GLEW-Info.plist
+lSLF07#2@32"Process osx/GLEW/GLEW-Info.plist384772680#384772680#0(0"0(0#0#69"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLEW/GLEW-Info.plist4320133120#251"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    builtin-infoPlistUtility osx/GLEW/GLEW-Info.plist -expandbuildsettings -platform macosx -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/A/Resources/Info.plist0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/GLEW Versions/Current/GLEW
+s384772680.586350
+e384772680.592677
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/GLEW
+xVersions/Current/GLEW
+lSLF07#2@84"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/GLEW384772680#384772680#0(0"0(0#0#0"4320133120#167"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/GLEW /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/GLEW0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Headers Versions/Current/Headers
+s384772680.591637
+e384772680.596607
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Headers
+xVersions/Current/Headers
+lSLF07#2@87"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Headers384772680#384772680#0(0"0(0#0#0"4320133120#173"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/Headers /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Headers0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Resources Versions/Current/Resources
+s384772680.585707
+e384772680.592535
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Resources
+xVersions/Current/Resources
+lSLF07#2@89"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Resources384772680#384772680#0(0"0(0#0#0"4320133120#177"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/Resources /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Resources0#
+
+CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/Current A
+s384772680.584523
+e384772680.591466
+r1
+xSymLink
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/Current
+xA
+lSLF07#2@96"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/Current384772680#384772680#0(0"0(0#0#0"4320133120#159"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf A /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework/Versions/Current0#
+
+CTouch /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework
+s384772682.867803
+e384772682.872633
+r1
+xTouch
+x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework
+lSLF07#2@77"Touch /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework384772682#384772682#0(0"0(0#0#0"4320133120#146"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /usr/bin/touch -c /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLEW.framework0#
+

@@ -37,21 +37,21 @@ void RTSCameraBehavior::offsetOrientation(double delta) {
 
     if(glfwGetKey('S') || mouseY > 580 )
     {
-        spatial->position += (secondsElapsed * 2.0f * glm::vec3(0,0,-1));
+        spatial->position += (secondsElapsed * 2.0f * glm::vec3(0,0,1));
     }
 
     if(glfwGetKey('A') || mouseX < 20)
     {
-        spatial->position += (secondsElapsed * 2.0f * glm::vec3(1,0,0));
+        spatial->position += (secondsElapsed * 2.0f * glm::vec3(-1,0,0));
     }
 
     if(glfwGetKey('D') || mouseX > 780)
     {
-        spatial->position += (secondsElapsed * 2.0f * glm::vec3(-1,0,0));
+        spatial->position += (secondsElapsed * 2.0f * glm::vec3(1,0,0));
     }
 
     if(glfwGetKey('W') || mouseY < 20 )
     {
-        spatial->position += (secondsElapsed * 2.0f * glm::vec3(0,0,1));
+        spatial->position += (secondsElapsed * 2.0f * glm::vec3(0,0,-1));
     }
 }

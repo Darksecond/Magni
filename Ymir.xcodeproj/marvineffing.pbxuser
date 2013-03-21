@@ -1,0 +1,130 @@
+// !$*UTF8*$!
+{
+	426CAD0A16EF2A34009E7DC9 /* Ymir */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Ymir;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	426CAE0A16EF2A54009E7DC9 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	426CAE0B16EF2A54009E7DC9 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	426CAE0E16EF2AAC009E7DC9 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "'NSOpenGLPFAOpenGLProfile' undeclared (first use in this function)";
+		fRef = F687A45B16B4B78800878140 /* cocoa_window.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 783;
+		rType = 1;
+	};
+	426CAE0F16EF2AAC009E7DC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F687A45B16B4B78800878140 /* cocoa_window.m */;
+		name = "cocoa_window.m: 784";
+		rLen = 0;
+		rLoc = 22298;
+		rType = 0;
+		vrLen = 532;
+		vrLoc = 22051;
+	};
+	F687A40216B4B63300878140 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 426CAD0A16EF2A34009E7DC9 /* Ymir */;
+		activeTarget = F687A40A16B4B63300878140 /* Ymir */;
+		codeSenseManager = 426CAE0B16EF2A54009E7DC9 /* Code sense */;
+		executables = (
+			426CAD0A16EF2A34009E7DC9 /* Ymir */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					356,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 384772660;
+			PBXWorkspaceStateSaveDate = 384772660;
+		};
+		perUserProjectItems = {
+			426CAE0E16EF2AAC009E7DC9 /* XCBuildMessageTextBookmark */ = 426CAE0E16EF2AAC009E7DC9 /* XCBuildMessageTextBookmark */;
+			426CAE0F16EF2AAC009E7DC9 /* PBXTextBookmark */ = 426CAE0F16EF2AAC009E7DC9 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 426CAE0A16EF2A54009E7DC9 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	F687A40A16B4B63300878140 /* Ymir */ = {
+		activeExec = 0;
+		executables = (
+			426CAD0A16EF2A34009E7DC9 /* Ymir */,
+		);
+	};
+	F687A43216B4B73B00878140 /* GLFW */ = {
+		activeExec = 0;
+	};
+	F687A45B16B4B78800878140 /* cocoa_window.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {551, 14872}}";
+			sepNavSelRange = "{22298, 0}";
+			sepNavVisRange = "{22095, 418}";
+		};
+	};
+	F687A4D316B4B89800878140 /* GLEW */ = {
+		activeExec = 0;
+	};
+	F687A50016B4BA1100878140 /* GLM */ = {
+		activeExec = 0;
+	};
+	F6BEF06916E5EDEF00ACEDC5 /* ALUT */ = {
+		activeExec = 0;
+	};
+}

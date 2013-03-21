@@ -60,6 +60,7 @@ using namespace Ymir;
 //WINDOWS SUPPORT
 
 const glm::vec2 SCREEN_SIZE(800, 600);
+bool isDone, isDone1;
 
 static std::string ResourceDirectory()
 {
@@ -68,6 +69,8 @@ static std::string ResourceDirectory()
 
 int main(int argc, char* argv[])
 {
+    isDone = true;
+    isDone1 = true;
     //resource management
     std::shared_ptr<DirectoryManifest> manifest = std::make_shared<DirectoryManifest>(ResourceDirectory());
 
@@ -96,13 +99,15 @@ int main(int argc, char* argv[])
     std::shared_ptr<Texture> track_tex = textureManager.resource("grass.png");
     std::shared_ptr<Texture> house_tex = textureManager.resource("house1.bmp");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
-    //std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");
+
     std::shared_ptr<Mesh> tire = meshManager.resource("carTire.obj");
     std::shared_ptr<Mesh> car = meshManager.resource("car.obj");
 
     std::shared_ptr<Mesh> unit_mesh = meshManager.resource("unit.obj");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     std::shared_ptr<Mesh> monkey_mesh = meshManager.resource("monkey.obj");
+
+    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
     std::shared_ptr<Audio::Buffer> hello_world_buffer = audioBufferManager.resource("helloworld.wav");
     std::shared_ptr<Audio::Buffer> crash_sound = audioBufferManager.resource("crash.wav");
@@ -112,11 +117,10 @@ int main(int argc, char* argv[])
     Entity& camera = scene.assign("camera");
     camera.assign<ListenerComponent>();
     camera.assign<CameraComponent>(SCREEN_SIZE.x / SCREEN_SIZE.y);
-    auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0.0, -5.0, 0});
+    auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0.0, 5.0, 0});
     glm::vec3 euler{-60,0,0};
     c_s.setDirection(euler);
-    //camera.assignBehavior(std::unique_ptr<Behavior>{new FPSCameraBehavior});
-    //camera.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
+
     camera.assignBehavior(std::unique_ptr<Behavior>{new RTSCameraBehavior});
 
     //light one (spot)
@@ -135,11 +139,9 @@ int main(int argc, char* argv[])
     track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     track.assign<ModelComponent>(track_mesh, track_tex);
 
-
     Entity& unit = scene.assign("unit");
     unit.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     unit.assign<ModelComponent>(unit_mesh, t);
-
 
     TileMap* tiles = new TileMap(100, 10, 10);
 
@@ -154,10 +156,23 @@ int main(int argc, char* argv[])
         engines.update(0, delta);
         engines.update(1, delta);
 
-        if(glfwGetKey( GLFW_KEY_DOWN ) == GLFW_PRESS ) {
+        if(glfwGetKey( GLFW_KEY_LEFT ) == GLFW_PRESS ) {
             auto test = unit.component<SpatialComponent>();
             test->position = test->position + glm::vec3{0.1,0.0,0.1};
         }
+        if(glfwGetKey( GLFW_KEY_UP ) == GLFW_PRESS && isDone) {
+            isDone = false;
+            Entity& house = scene.assign("houseMesh");
+            house.assign<SpatialComponent>(renderEngine.get3DPositionFromMousePosition());
+            house.assign<ModelComponent>(house_mesh, house_tex);
+        }
+        if(glfwGetKey( GLFW_KEY_DOWN ) == GLFW_PRESS && isDone1) {
+            isDone1 = false;
+            Entity& house = scene.assign("houseMesh");
+            house.assign<SpatialComponent>(renderEngine.get3DPositionFromMousePosition());
+            house.assign<ModelComponent>(house_mesh, t);
+        }
+
 
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)

@@ -364,7 +364,7 @@ void renderSkybox(Cubemap& sky, Program& p, Camera& c)
     glEnableVertexAttribArray(p.attrib("vertex"));
     glVertexAttribPointer(p.attrib("vertex"), 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-    glm::mat4 M = c.projectionMatrix() * c.viewMatrix() * glm::scale(glm::translate(glm::mat4{}, -c._spatial.globalPosition()), glm::vec3{50});
+    glm::mat4 M = c.projectionMatrix() * c.viewMatrix() * glm::scale(glm::translate(glm::mat4{}, c._spatial.globalPosition()), glm::vec3{50});
 
     p.setUniform("PVM", M);
 
@@ -404,4 +404,43 @@ void RenderEngine::update(int pass, double delta)
         showFPS();
         glfwSwapBuffers();
     }
+}
+
+glm::vec3 RenderEngine::get3DPositionFromMousePosition() {
+	int xMouse(0), yMouse(0);
+	glfwGetMousePos(&xMouse,&yMouse);
+
+	float w = float(800);
+	float h = float(600);
+    float x = xMouse;
+    float y = h - yMouse;
+
+    GLfloat depth;
+    glReadPixels(x, y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+
+	glm::vec4 viewport = glm::vec4(0.0f, 0.0f, w, h);
+	glm::mat4 tmpView = _camera->viewMatrix();
+	glm::mat4 tmpProj = _camera->projectionMatrix();
+	glm::vec3 screenPos = glm::vec3(x, y, depth);
+	glm::vec3 worldPos = glm::unProject(screenPos, tmpView, tmpProj, viewport);
+
+	return worldPos;
+}
+
+glm::vec3 RenderEngine::get3DPositionFromCoordinates(int xPos, int yPos) {
+	float w = float(800);
+	float h = float(600);
+    float x = xPos;
+    float y = h - yPos;
+
+    GLfloat depth;
+    glReadPixels(x, y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+
+	glm::vec4 viewport = glm::vec4(0.0f, 0.0f, w, h);
+	glm::mat4 tmpView = _camera->viewMatrix();
+	glm::mat4 tmpProj = _camera->projectionMatrix();
+	glm::vec3 screenPos = glm::vec3(x, y, depth);
+	glm::vec3 worldPos = glm::unProject(screenPos, tmpView, tmpProj, viewport);
+
+	return worldPos;
 }
