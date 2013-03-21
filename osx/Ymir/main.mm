@@ -25,6 +25,7 @@
 #include "RenderEngine.h"
 #include "BehaviorEngine.h"
 #include "CollisionEngine.h"
+#include "EnergyEngine.h"
 #include "AudioEngine.h"
 #include "CameraComponent.h"
 #include "ModelComponent.h"
@@ -94,6 +95,7 @@ int main(int argc, char* argv[])
     engines.assign<CollisionEngine>();
     engines.assign<AudioEngine>();
     RenderEngine& renderEngine = engines.assign<RenderEngine>(programManager, textureManager, cubemapManager);
+    engines.assign<EnergyEngine>(renderEngine);
     
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");
@@ -125,6 +127,7 @@ int main(int argc, char* argv[])
     car_body.assign<ModelComponent>(car, car_tex);
     car_body.assign<CarComponent>();
     car_body.assign<SphereColliderComponent>(0.5);
+    car_body.assign<EnergyComponent>(-3);
     //car_body.assign<SourceComponent>(engine_sound).playing = true;
     car_body.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior{renderEngine}});
     car_body.assignBehavior(std::unique_ptr<Behavior>{new CarCollisionBehavior{crash_sound}});
