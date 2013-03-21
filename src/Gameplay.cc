@@ -54,6 +54,38 @@ void Gameplay::createEngineer()
     // TODO
 }
 
+void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
+{
+    position.y = 0.0;
+    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
+    std::shared_ptr<Texture> house_tex = textureManager.resource("house1.bmp");
+
+    Entity& house = scene.assign("houseMesh");
+    house.assign<SpatialComponent>(position);
+    house.assign<ModelComponent>(house_mesh, house_tex);
+}
+
+void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
+{
+    position.y = 0.0;
+    std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
+    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
+
+    Entity& house = scene.assign("houseMesh");
+    house.assign<SpatialComponent>(position);
+    house.assign<ModelComponent>(house_mesh, t);
+}
+
+void Gameplay::buildPowerCore()
+{
+
+}
+
+void Gameplay::buildAcademyOfAdvancedTechnologies()
+{
+
+}
+
 Scene& Gameplay::getScene()
 {
     return scene;

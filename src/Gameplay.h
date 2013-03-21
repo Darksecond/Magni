@@ -40,6 +40,11 @@ namespace Ymir
             void createAdvancedInfantrie();
             void createEngineer();
 
+            void buildCentralIntelligenceCore(glm::vec3 position);
+            void buildOrbitalDropBeacon(glm::vec3 position);
+            void buildPowerCore();
+            void buildAcademyOfAdvancedTechnologies();
+
             Scene& getScene();
     };
 };

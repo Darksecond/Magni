@@ -166,22 +166,18 @@ int main(int argc, char* argv[])
 
         if(glfwGetKey( GLFW_KEY_UP ) == GLFW_PRESS && isDone) {
             isDone = false;
-            Entity& house = scene.assign("houseMesh");
-            house.assign<SpatialComponent>(renderEngine.get3DPositionFromMousePosition());
-            house.assign<ModelComponent>(house_mesh, house_tex);
+            gameplay.buildCentralIntelligenceCore(renderEngine.get3DPositionFromMousePosition());
         }
 
         if(glfwGetKey( GLFW_KEY_DOWN ) == GLFW_PRESS && isDone1) {
             isDone1 = false;
-            Entity& house = scene.assign("houseMesh");
-            house.assign<SpatialComponent>(renderEngine.get3DPositionFromMousePosition());
-            house.assign<ModelComponent>(house_mesh, t);
+            gameplay.buildOrbitalDropBeacon(renderEngine.get3DPositionFromMousePosition());
         }
-        if(glfwGetKey( 'O' ) == GLFW_PRESS && isDone2) {
+        if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS && isDone2) {
             isDone2 = false;
             gameplay.createWorker(renderEngine.get3DPositionFromMousePosition());
         }
-        if(glfwGetKey( 'P' ) == GLFW_PRESS && isDone3) {
+        if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_RIGHT ) == GLFW_PRESS && isDone3) {
             isDone3 = false;
             gameplay.createBasicInfantrie(renderEngine.get3DPositionFromMousePosition());
         }
