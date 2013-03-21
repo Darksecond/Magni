@@ -100,11 +100,9 @@ int main(int argc, char* argv[])
     std::shared_ptr<Mesh> tire = meshManager.resource("carTire.obj");
     std::shared_ptr<Mesh> car = meshManager.resource("car.obj");
 
-    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
+    std::shared_ptr<Mesh> unit_mesh = meshManager.resource("unit.obj");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     std::shared_ptr<Mesh> monkey_mesh = meshManager.resource("monkey.obj");
-
-    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
     std::shared_ptr<Audio::Buffer> hello_world_buffer = audioBufferManager.resource("helloworld.wav");
     std::shared_ptr<Audio::Buffer> crash_sound = audioBufferManager.resource("crash.wav");
@@ -138,6 +136,10 @@ int main(int argc, char* argv[])
     track.assign<ModelComponent>(track_mesh, track_tex);
 
 
+    Entity& unit = scene.assign("unit");
+    unit.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
+    unit.assign<ModelComponent>(unit_mesh, t);
+
 
     TileMap* tiles = new TileMap(100, 10, 10);
 
@@ -152,10 +154,9 @@ int main(int argc, char* argv[])
         engines.update(0, delta);
         engines.update(1, delta);
 
-        if(glfwGetKey( GLFW_KEY_UP ) == GLFW_PRESS ) {
-            Entity& house = scene.assign("houseMesh");
-            house.assign<SpatialComponent>(glm::vec3{5.0, 0, 0});
-            house.assign<ModelComponent>(house_mesh, t);
+        if(glfwGetKey( GLFW_KEY_DOWN ) == GLFW_PRESS ) {
+            auto test = unit.component<SpatialComponent>();
+            test->position = test->position + glm::vec3{0.1,0.0,0.1};
         }
 
         GLenum error = glGetError();
