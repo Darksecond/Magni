@@ -47,6 +47,9 @@ namespace Ymir
         virtual void update(int pass, double delta);
         void addComponent(Entity& entity, const BaseComponent::Type& component_type);
 
+        glm::vec3 get3DPositionFromMousePosition();
+        glm::vec3 get3DPositionFromCoordinates(int xPos, int yPos);
+
         void addText(std::shared_ptr<Text> t)
         {
             texts.push_back(t);

@@ -405,3 +405,42 @@ void RenderEngine::update(int pass, double delta)
         glfwSwapBuffers();
     }
 }
+
+glm::vec3 RenderEngine::get3DPositionFromMousePosition() {
+	int xMouse(0), yMouse(0);
+	glfwGetMousePos(&xMouse,&yMouse);
+
+	float w = float(800);
+	float h = float(600);
+    float x = xMouse;
+    float y = h - yMouse;
+
+    GLfloat depth;
+    glReadPixels(x, y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+
+	glm::vec4 viewport = glm::vec4(0.0f, 0.0f, w, h);
+	glm::mat4 tmpView = _camera->viewMatrix();
+	glm::mat4 tmpProj = _camera->projectionMatrix();
+	glm::vec3 screenPos = glm::vec3(x, y, depth);
+	glm::vec3 worldPos = glm::unProject(screenPos, tmpView, tmpProj, viewport);
+
+	return worldPos;
+}
+
+glm::vec3 RenderEngine::get3DPositionFromCoordinates(int xPos, int yPos) {
+	float w = float(800);
+	float h = float(600);
+    float x = xPos;
+    float y = h - yPos;
+
+    GLfloat depth;
+    glReadPixels(x, y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+
+	glm::vec4 viewport = glm::vec4(0.0f, 0.0f, w, h);
+	glm::mat4 tmpView = _camera->viewMatrix();
+	glm::mat4 tmpProj = _camera->projectionMatrix();
+	glm::vec3 screenPos = glm::vec3(x, y, depth);
+	glm::vec3 worldPos = glm::unProject(screenPos, tmpView, tmpProj, viewport);
+
+	return worldPos;
+}

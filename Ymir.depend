@@ -1826,21 +1826,19 @@
 	"CubemapResourceLoader.h"
 	<stdexcept>
 
-<<<<<<< HEAD
+1363696575 D
+	"../../src/RTSCameraBehavior.h"
+	"../../src/TileMap.h"
+
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\audio\buffer.cc
-=======
+
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\audio\buffer.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
+
+1363692066 59e561a7eb7d94f514b4f9e6a3cb25633a8e1
 	"Buffer.h"
 	<stdexcept>
 	<stdlib.h>
 	<string>
-
-<<<<<<< HEAD
-1363683330 c:\users\nick\workspace\ein3gpc\src\audio\buffer.h
-=======
-1363174041 c:\users\peter\documents\github\ein3gpc\src\audio\buffer.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
 	<OpenAL/al.h>
 	<OpenAL/alc.h>
 	<AL/al.h>
@@ -1850,56 +1848,18 @@
 	<stdexcept>
 	<cstdlib>
 	"../StreamReader.h"
-
-<<<<<<< HEAD
-1363683331 c:\users\nick\workspace\ein3gpc\windows\openal\include\al\al.h
-
-1363683331 c:\users\nick\workspace\ein3gpc\windows\openal\include\al\alc.h
-
-1363683331 c:\users\nick\workspace\ein3gpc\windows\openal\include\alut\alut.h
-=======
-1363174045 c:\users\peter\documents\github\ein3gpc\windows\openal\include\al\al.h
-
-1363174045 c:\users\peter\documents\github\ein3gpc\windows\openal\include\al\alc.h
-
-1363174045 c:\users\peter\documents\github\ein3gpc\windows\openal\include\alut\alut.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
 	<alc.h>
 	<al.h>
 	<OpenAL/alc.h>
 	<OpenAL/al.h>
 	<AL/al.h>
 	<AL/alc.h>
-
-<<<<<<< HEAD
-1363683330 c:\users\nick\workspace\ein3gpc\src\streamreader.h
-=======
-1363174041 c:\users\peter\documents\github\ein3gpc\src\streamreader.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
 	<cstddef>
 	<string>
 	<istream>
-
-<<<<<<< HEAD
-1363683330 source:c:\users\nick\workspace\ein3gpc\src\audio\listener.cc
-	"Listener.h"
-
-1363683330 c:\users\nick\workspace\ein3gpc\src\audio\listener.h
-=======
-1363174041 source:c:\users\peter\documents\github\ein3gpc\src\audio\listener.cc
-	"Listener.h"
-
-1363174041 c:\users\peter\documents\github\ein3gpc\src\audio\listener.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
 	<OpenAL/al.h>
 	<AL/al.h>
 	<GLM/glm.hpp>
-
-<<<<<<< HEAD
-1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\glm.hpp
-=======
-1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\glm.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
 	"core/_fixes.hpp"
 	<cmath>
 	<climits>
@@ -1920,43 +1880,15 @@
 	"./core/func_integer.hpp"
 	"./core/func_noise.hpp"
 	"./core/_swizzle.hpp"
-
-<<<<<<< HEAD
-1363683330 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\_fixes.hpp
-	<cmath>
-
-1363683330 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\setup.hpp
-=======
-1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\_fixes.hpp
-	<cmath>
-
-1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\setup.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
 	<intrin.h>
 	<immintrin.h>
 	<immintrin.h>
 	<smmintrin.h>
 	<pmmintrin.h>
 	<emmintrin.h>
-
-<<<<<<< HEAD
-1363683330 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\_detail.hpp
-=======
-1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\_detail.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
 	"setup.hpp"
 	<cassert>
 	<cstdint>
-
-<<<<<<< HEAD
-1363683330 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\_vectorize.hpp
-
-1363683330 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type.hpp
-=======
-1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\_vectorize.hpp
-
-1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
 	"type_half.hpp"
 	"type_float.hpp"
 	"type_int.hpp"
@@ -1974,8 +1906,393 @@
 	"type_mat4x2.hpp"
 	"type_mat4x3.hpp"
 	"type_mat4x4.hpp"
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+	<OpenAL/al.h>
+	<openAL/alc.h>
+	<AL/al.h>
+	<AL/alc.h>
+	<GLM/glm.hpp>
+	<memory>
+	"Buffer.h"
+	"AudioEngine.h"
+	<OpenAL/al.h>
+	<OpenAL/alc.h>
+	<AL/al.h>
+	<AL/alc.h>
+	<ALUT/alut.h>
+	<stdexcept>
+	<string>
+	"Engine.h"
+	"ListenerComponent.h"
+	"SpatialComponent.h"
+	"SourceComponent.h"
+	"Audio/Listener.h"
+	"Audio/Buffer.h"
+	"Audio/Source.h"
+	"Entity.h"
+	<OpenAL/alc.h>
+	<AL/alc.h>
+	<list>
+	"Component.h"
+	"Audio/Buffer.h"
+	<memory>
+	"Component.h"
+	"Program.h"
+	<GLM/glm.hpp>
+	"Shader.h"
+	<GLEW/glew.h>
+	<GL/glew.h>
+	<GLM/gtc/type_ptr.hpp>
+	<memory>
+	<vector>
+	<GLEW/glew.h>
+	<GL/glew.h>
+	<string>
+	<memory>
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cstring>
+	"type_ptr.inl"
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"constants.inl"
+	"Component.h"
+	"Audio/Buffer.h"
+	<memory>
+	"Component.h"
+	"Behavior.h"
+	"EngineManager.h"
+	<map>
+	<vector>
+	<memory>
+	<string>
+	"Message.h"
+	"Component.h"
+	<vector>
+	<memory>
+	"Bitmap.h"
+	"stb_image.h"
+	<stdexcept>
+	<cstring>
+	<stdio.h>
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"CarCollisionBehavior.h"
+	"SpatialComponent.h"
+	"CarComponent.h"
+	"Entity.h"
+	<iostream>
+	"Behavior.h"
+	"Audio/Source.h"
+	"Audio/Buffer.h"
+	<memory>
+	"Entity.h"
+	"SphereColliderComponent.h"
+	"SpatialComponent.h"
+	"Engine.h"
+	"NodeCache.h"
+	"Collider.h"
+	<list>
+	"Entity.h"
+	<vector>
+	<memory>
+	<algorithm>
+	"Bitmap.h"
+	<GLEW/glew.h>
+	<GL/glew.h>
+	<vector>
+	<memory>
+	"Manifest.h"
+	<memory>
+	<vector>
+	<string>
+	<map>
+	"StreamReader.h"
+	<memory>
+	<string>
+	"StreamReader.h"
+	<string>
+	<fstream>
+	"EngineManager.h"
+	"Entity.h"
+	"Engine.h"
+	"Font.h"
+	<stdexcept>
+	<iostream>
+	<fstream>
+	"stb_truetype.h"
+	"Program.h"
+	<GLEW/glew.h>
+	<GLFW/glfw.h>
+	<GL/glew.h>
+	<GL/glfw.h>
+	<GLM/glm.hpp>
+	<string>
+	<memory>
+	"stb_truetype.h"
+	<stdio.h>
+	"stb_truetype.h"
+	<stdlib.h>
+	<math.h>
+	<malloc.h>
+	<assert.h>
+	<string.h>
+	<memory.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL3/gl3.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	"FPSCameraBehavior.h"
+	"SpatialComponent.h"
+	"CameraComponent.h"
+	<GLEW/glew.h>
+	<GLFW/glfw.h>
+	<GL/glew.h>
+	<GL/glfw.h>
+	"Geometry.h"
+	<istream>
+	<utility>
+	<string>
+	<map>
+	<vector>
+	"Camera.h"
+	"../CameraComponent.h"
+	"../SpatialComponent.h"
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtx/rotate_vector.hpp>
+	<glm/gtx/euler_angles.hpp>
+	<glm/gtc/quaternion.hpp>
+	<iostream>
+	"../Entity.h"
+	"../CameraComponent.h"
+	"../SpatialComponent.h"
+	<GLM/glm.hpp>
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"euler_angles.inl"
+	"../Program.h"
+	"Camera.h"
+	"../LightComponent.h"
+	"../SpatialComponent.h"
+	"../Entity.h"
+	<GLM/glm.hpp>
+	<memory>
+	"../Entity.h"
+	"../ModelComponent.h"
+	"../SpatialComponent.h"
+	"../Program.h"
+	<GLM/glm.hpp>
+	"Component.h"
+	"Texture.h"
+	"Mesh.h"
+	<memory>
+	"Bitmap.h"
+	"StreamReader.h"
+	"stb_image.h"
+	<GLEW/glew.h>
+	<GL/glew.h>
+	<stdexcept>
+	"RotateBehavior.h"
+	"Entity.h"
+	"SpatialComponent.h"
+	"CarComponent.h"
+	"Entity.h"
+	"EngineManager.h"
+	<map>
+	<list>
+	<memory>
+	<string>
+	"Shader.h"
+	<fstream>
+	<sstream>
+	<stdexcept>
+	"SimpleTestTriggerBehavior.h"
+	<iostream>
+	"Entity.h"
+	"SpatialComponent.h"
+	<GLM/glm.hpp>
+	<GLM/gtc/matrix_transform.hpp>
+	<stdio.h>
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"WSADMoveBehavior.h"
+	"Entity.h"
+	"SpatialComponent.h"
+	"CarComponent.h"
+	<GLEW/glew.h>
+	<GLFW/glfw.h>
+	<GL/glew.h>
+	<GL/glfw.h>
+	<GLM/glm.hpp>
+	<GLM/gtx/vector_angle.hpp>
+	<iostream>
+	<sstream>
+	"Behavior.h"
+	"Renderer/RenderEngine.h"
+	"Renderer/Text.h"
+	<GLM/glm.hpp>
+	"../glm.hpp"
+	"../gtc/epsilon.hpp"
+	"../gtx/quaternion.hpp"
+	"../gtx/rotate_vector.hpp"
+	"vector_angle.inl"
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	"epsilon.inl"
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	"quaternion.inl"
+	<GL/glew.h>
+	<GL/GLFW.h>
+	<GLM/glm.hpp>
+	<iostream>
+	<vector>
+	<memory>
+	<sstream>
+	"../../src/Shader.h"
+	"../../src/Program.h"
+	"../../src/Bitmap.h"
+	"../../src/Texture.h"
+	"../../src/Renderer/Camera.h"
+	"../../src/Mesh.h"
+	"../../src/Renderer/Light.h"
+	"../../src/Scene.h"
+	"../../src/Entity.h"
+	"../../src/EngineManager.h"
+	"../../src/LightComponent.h"
+	"../../src/SpatialComponent.h"
+	"../../src/Renderer/RenderEngine.h"
+	"../../src/BehaviorEngine.h"
+	"../../src/CollisionEngine.h"
+	"../../src/AudioEngine.h"
+	"../../src/CameraComponent.h"
+	"../../src/ModelComponent.h"
+	"../../src/ListenerComponent.h"
+	"../../src/SourceComponent.h"
+	"../../src/CarComponent.h"
+	"../../src/ObjGeometry.h"
+	"../../src/ResourceManager.h"
+	"../../src/DirectoryManifest.h"
+	"../../src/RotateBehavior.h"
+	"../../src/FPSCameraBehavior.h"
+	"../../src/WSADMoveBehavior.h"
+	"../../src/SimpleTestTriggerBehavior.h"
+	"../../src/CarCollisionBehavior.h"
+	"../../src/ProgramResourceLoader.h"
+	"../../src/CubemapResourceLoader.h"
+	"../../src/Audio/Buffer.h"
+	"../../src/Audio/Source.h"
+	"../../src/Audio/Listener.h"
 
-<<<<<<< HEAD
+1363683330 c:\users\nick\workspace\ein3gpc\src\audio\buffer.h
+
+1363174041 c:\users\peter\documents\github\ein3gpc\src\audio\buffer.h
+
+1363683331 c:\users\nick\workspace\ein3gpc\windows\openal\include\al\al.h
+
+1363683331 c:\users\nick\workspace\ein3gpc\windows\openal\include\al\alc.h
+
+1363683331 c:\users\nick\workspace\ein3gpc\windows\openal\include\alut\alut.h
+
+1363174045 c:\users\peter\documents\github\ein3gpc\windows\openal\include\al\al.h
+
+1363174045 c:\users\peter\documents\github\ein3gpc\windows\openal\include\al\alc.h
+
+1363174045 c:\users\peter\documents\github\ein3gpc\windows\openal\include\alut\alut.h
+
+1363683330 c:\users\nick\workspace\ein3gpc\src\streamreader.h
+
+1363174041 c:\users\peter\documents\github\ein3gpc\src\streamreader.h
+
+1363683330 source:c:\users\nick\workspace\ein3gpc\src\audio\listener.cc
+	"Listener.h"
+
+1363683330 c:\users\nick\workspace\ein3gpc\src\audio\listener.h
+
+1363174041 source:c:\users\peter\documents\github\ein3gpc\src\audio\listener.cc
+	"Listener.h"
+
+1363174041 c:\users\peter\documents\github\ein3gpc\src\audio\listener.h
+
+1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\glm.hpp
+
+1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\glm.hpp
+
+1363683330 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\_fixes.hpp
+	<cmath>
+
+1363683330 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\setup.hpp
+
+1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\_fixes.hpp
+	<cmath>
+
+1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\setup.hpp
+
+1363683330 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\_detail.hpp
+
+1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\_detail.hpp
+
+1363683330 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\_vectorize.hpp
+
+1363683330 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type.hpp
+
+1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\_vectorize.hpp
+
+1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type.hpp
+
 1363683330 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type_half.hpp
 	<cstdlib>
 	"type_half.inl"
@@ -1998,7 +2315,7 @@
 	<cstdlib>
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type_vec1.hpp
-=======
+
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type_half.hpp
 	<cstdlib>
 	"type_half.inl"
@@ -2021,15 +2338,7 @@
 	<cstdlib>
 
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type_vec1.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec1.inl"
 
-<<<<<<< HEAD
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type_vec.hpp
 	"type_gentype.hpp"
 
@@ -2041,7 +2350,7 @@
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type_vec1.inl
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type_vec2.hpp
-=======
+
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type_vec.hpp
 	"type_gentype.hpp"
 
@@ -2053,47 +2362,23 @@
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type_vec1.inl
 
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type_vec2.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec2.inl"
 
-<<<<<<< HEAD
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type_vec2.inl
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type_vec3.hpp
-=======
+
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type_vec2.inl
 
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type_vec3.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec3.inl"
 
-<<<<<<< HEAD
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type_vec3.inl
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type_vec4.hpp
-=======
+
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type_vec3.inl
 
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type_vec4.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec4.inl"
 
-<<<<<<< HEAD
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type_vec4.inl
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\core\type_mat2x2.hpp
@@ -2205,7 +2490,7 @@
 	"Source.h"
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\audio\source.h
-=======
+
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type_vec4.inl
 
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\core\type_mat2x2.hpp
@@ -2317,47 +2602,15 @@
 	"Source.h"
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\audio\source.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	<OpenAL/al.h>
-	<openAL/alc.h>
-	<AL/al.h>
-	<AL/alc.h>
-	<GLM/glm.hpp>
-	<memory>
-	"Buffer.h"
 
-<<<<<<< HEAD
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\audioengine.cc
-=======
+
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\audioengine.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"AudioEngine.h"
-	<OpenAL/al.h>
-	<OpenAL/alc.h>
-	<AL/al.h>
-	<AL/alc.h>
-	<ALUT/alut.h>
-	<stdexcept>
-	<string>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\audioengine.h
-=======
-1363174041 c:\users\peter\documents\github\ein3gpc\src\audioengine.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Engine.h"
-	"ListenerComponent.h"
-	"SpatialComponent.h"
-	"SourceComponent.h"
-	"Audio/Listener.h"
-	"Audio/Buffer.h"
-	"Audio/Source.h"
-	"Entity.h"
-	<OpenAL/alc.h>
-	<AL/alc.h>
-	<list>
 
-<<<<<<< HEAD
+1363174041 c:\users\peter\documents\github\ein3gpc\src\audioengine.h
+
 1363683330 c:\users\nick\workspace\ein3gpc\src\engine.h
 	"Component.h"
 	<memory>
@@ -2365,7 +2618,7 @@
 1363683330 c:\users\nick\workspace\ein3gpc\src\component.h
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\listenercomponent.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\engine.h
 	"Component.h"
 	<memory>
@@ -2373,66 +2626,27 @@
 1363174041 c:\users\peter\documents\github\ein3gpc\src\component.h
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\listenercomponent.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Component.h"
-	"Audio/Buffer.h"
-	<memory>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\spatialcomponent.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\spatialcomponent.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Component.h"
-	"Program.h"
-	<GLM/glm.hpp>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\program.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\program.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Shader.h"
-	<GLEW/glew.h>
-	<GL/glew.h>
-	<GLM/gtc/type_ptr.hpp>
-	<memory>
-	<vector>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\shader.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\shader.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	<GLEW/glew.h>
-	<GL/glew.h>
-	<string>
-	<memory>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\windows\glew\include\gl\glew.h
-=======
+
 1363174042 c:\users\peter\documents\github\ein3gpc\windows\glew\include\gl\glew.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	<stddef.h>
-	<inttypes.h>
-	<stdint.h>
-	<inttypes.h>
-	<OpenGL/glu.h>
-	<GL/glu.h>
 
-<<<<<<< HEAD
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\type_ptr.hpp
-=======
-1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\type_ptr.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"../gtc/quaternion.hpp"
-	<cstring>
-	"type_ptr.inl"
 
-<<<<<<< HEAD
+1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\type_ptr.hpp
+
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\half_float.hpp
 	"../glm.hpp"
 	"half_float.inl"
@@ -2440,7 +2654,7 @@
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\half_float.inl
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\quaternion.hpp
-=======
+
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\half_float.hpp
 	"../glm.hpp"
 	"half_float.inl"
@@ -2448,22 +2662,11 @@
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\half_float.inl
 
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\quaternion.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"../gtc/constants.hpp"
-	"quaternion.inl"
 
-<<<<<<< HEAD
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\constants.hpp
-=======
-1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\constants.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"constants.inl"
 
-<<<<<<< HEAD
+1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\constants.hpp
+
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\constants.inl
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\quaternion.inl
@@ -2472,7 +2675,7 @@
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\type_ptr.inl
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\sourcecomponent.h
-=======
+
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\constants.inl
 
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\quaternion.inl
@@ -2481,45 +2684,25 @@
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\type_ptr.inl
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\sourcecomponent.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Component.h"
-	"Audio/Buffer.h"
-	<memory>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\entity.h
-=======
-1363174041 c:\users\peter\documents\github\ein3gpc\src\entity.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Component.h"
-	"Behavior.h"
-	"EngineManager.h"
-	<map>
-	<vector>
-	<memory>
-	<string>
-	"Message.h"
 
-<<<<<<< HEAD
+1363174041 c:\users\peter\documents\github\ein3gpc\src\entity.h
+
 1363683330 c:\users\nick\workspace\ein3gpc\src\behavior.h
 	"Message.h"
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\message.h
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\enginemanager.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\behavior.h
 	"Message.h"
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\message.h
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\enginemanager.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Component.h"
-	<vector>
-	<memory>
 
-<<<<<<< HEAD
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\behaviorengine.cc
 	"BehaviorEngine.h"
 	"Entity.h"
@@ -2529,7 +2712,7 @@
 	<list>
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\bitmap.cc
-=======
+
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\behaviorengine.cc
 	"BehaviorEngine.h"
 	"Entity.h"
@@ -2539,13 +2722,7 @@
 	<list>
 
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\bitmap.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Bitmap.h"
-	"stb_image.h"
-	<stdexcept>
-	<cstring>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\bitmap.h
 	<string>
 
@@ -2553,7 +2730,7 @@
 	"stb_image.c"
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\stb_image.c
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\bitmap.h
 	<string>
 
@@ -2561,17 +2738,7 @@
 	"stb_image.c"
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\stb_image.c
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	<stdio.h>
-	<math.h>
-	<string.h>
-	<stdio.h>
-	<stdlib.h>
-	<memory.h>
-	<assert.h>
-	<stdarg.h>
 
-<<<<<<< HEAD
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\cameracomponent.cc
 	"CameraComponent.h"
 
@@ -2579,7 +2746,7 @@
 	"Component.h"
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\carcollisionbehavior.cc
-=======
+
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\cameracomponent.cc
 	"CameraComponent.h"
 
@@ -2587,23 +2754,11 @@
 	"Component.h"
 
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\carcollisionbehavior.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"CarCollisionBehavior.h"
-	"SpatialComponent.h"
-	"CarComponent.h"
-	"Entity.h"
-	<iostream>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\carcollisionbehavior.h
-=======
-1363174041 c:\users\peter\documents\github\ein3gpc\src\carcollisionbehavior.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Behavior.h"
-	"Audio/Source.h"
-	"Audio/Buffer.h"
 
-<<<<<<< HEAD
+1363174041 c:\users\peter\documents\github\ein3gpc\src\carcollisionbehavior.h
+
 1363683330 c:\users\nick\workspace\ein3gpc\src\carcomponent.h
 	"Component.h"
 	<memory>
@@ -2613,7 +2768,7 @@
 	<iostream>
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\collider.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\carcomponent.h
 	"Component.h"
 	<memory>
@@ -2623,13 +2778,7 @@
 	<iostream>
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\collider.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	<memory>
-	"Entity.h"
-	"SphereColliderComponent.h"
-	"SpatialComponent.h"
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\spherecollidercomponent.h
 	"Component.h"
 
@@ -2638,7 +2787,7 @@
 	<iostream>
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\collisionengine.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\spherecollidercomponent.h
 	"Component.h"
 
@@ -2647,23 +2796,11 @@
 	<iostream>
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\collisionengine.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Engine.h"
-	"NodeCache.h"
-	"Collider.h"
-	<list>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\nodecache.h
-=======
-1363174041 c:\users\peter\documents\github\ein3gpc\src\nodecache.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Entity.h"
-	<vector>
-	<memory>
-	<algorithm>
 
-<<<<<<< HEAD
+1363174041 c:\users\peter\documents\github\ein3gpc\src\nodecache.h
+
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\component.cc
 	"Component.h"
 
@@ -2671,7 +2808,7 @@
 	"Cubemap.h"
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\cubemap.h
-=======
+
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\component.cc
 	"Component.h"
 
@@ -2679,14 +2816,7 @@
 	"Cubemap.h"
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\cubemap.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Bitmap.h"
-	<GLEW/glew.h>
-	<GL/glew.h>
-	<vector>
-	<memory>
 
-<<<<<<< HEAD
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\cubemapresourceloader.cc
 	"CubemapResourceLoader.h"
 	<stdexcept>
@@ -2702,7 +2832,7 @@
 	<sstream>
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\resourcemanager.h
-=======
+
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\directorymanifest.cc
 	"DirectoryManifest.h"
 
@@ -2714,23 +2844,11 @@
 	<fstream>
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\resourcemanager.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Manifest.h"
-	<memory>
-	<vector>
-	<string>
-	<map>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\manifest.h
-=======
-1363174041 c:\users\peter\documents\github\ein3gpc\src\manifest.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"StreamReader.h"
-	<memory>
-	<string>
 
-<<<<<<< HEAD
+1363174041 c:\users\peter\documents\github\ein3gpc\src\manifest.h
+
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\directorymanifest.cc
 	"DirectoryManifest.h"
 
@@ -2742,23 +2860,13 @@
 	<fstream>
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\filestreamreader.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\filestreamreader.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"StreamReader.h"
-	<string>
-	<fstream>
 
-<<<<<<< HEAD
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\enginemanager.cc
-=======
-1363174041 source:c:\users\peter\documents\github\ein3gpc\src\enginemanager.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"EngineManager.h"
-	"Entity.h"
-	"Engine.h"
 
-<<<<<<< HEAD
+1363174041 source:c:\users\peter\documents\github\ein3gpc\src\enginemanager.cc
+
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\entity.cc
 	"Entity.h"
 
@@ -2766,7 +2874,7 @@
 	"FileStreamReader.h"
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\font.cc
-=======
+
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\entity.cc
 	"Entity.h"
 
@@ -2774,68 +2882,23 @@
 	"FileStreamReader.h"
 
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\font.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Font.h"
-	<stdexcept>
-	<iostream>
-	<fstream>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\font.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\font.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"stb_truetype.h"
-	"Program.h"
-	<GLEW/glew.h>
-	<GLFW/glfw.h>
-	<GL/glew.h>
-	<GL/glfw.h>
-	<GLM/glm.hpp>
-	<string>
-	<memory>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\stb_truetype.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\stb_truetype.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"stb_truetype.h"
-	<stdio.h>
-	"stb_truetype.h"
-	<stdlib.h>
-	<math.h>
-	<malloc.h>
-	<assert.h>
-	<string.h>
-	<memory.h>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\windows\glfw\include\gl\glfw.h
-=======
+
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glfw\include\gl\glfw.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	<OpenGL/gl3.h>
-	<OpenGL/gl.h>
-	<OpenGL/glu.h>
-	<GL3/gl3.h>
-	<GL/gl.h>
-	<GL/glu.h>
 
-<<<<<<< HEAD
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\fpscamerabehavior.cc
-=======
-1363257822 source:c:\users\peter\documents\github\ein3gpc\src\fpscamerabehavior.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"FPSCameraBehavior.h"
-	"SpatialComponent.h"
-	"CameraComponent.h"
-	<GLEW/glew.h>
-	<GLFW/glfw.h>
-	<GL/glew.h>
-	<GL/glfw.h>
 
-<<<<<<< HEAD
+1363257822 source:c:\users\peter\documents\github\ein3gpc\src\fpscamerabehavior.cc
+
 1363683330 c:\users\nick\workspace\ein3gpc\src\fpscamerabehavior.h
 	"Behavior.h"
 	"Entity.h"
@@ -2868,7 +2931,7 @@
 	<vector>
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\objgeometry.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\fpscamerabehavior.h
 	"Behavior.h"
 	"Entity.h"
@@ -2887,15 +2950,7 @@
 	<iostream>
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\objgeometry.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Geometry.h"
-	<istream>
-	<utility>
-	<string>
-	<map>
-	<vector>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\cubegeometry.h
 	"Geometry.h"
 
@@ -2910,7 +2965,7 @@
 	<stdexcept>
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\renderer\camera.cc
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\geometry.h
 	<GLEW/glew.h>
 	<GL/glew.h>
@@ -2920,8 +2975,7 @@
 	"Program.h"
 	<stdexcept>
 
-1363174041 source:c:\users\peter\documents\github\ein3gpc\src\renderer\camera.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
+1363860294 source:c:\users\peter\documents\github\ein3gpc\src\renderer\camera.cc
 	"Camera.h"
 	"../CameraComponent.h"
 	"../SpatialComponent.h"
@@ -2931,17 +2985,10 @@
 	<glm/gtc/quaternion.hpp>
 	<iostream>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\renderer\camera.h
-=======
-1363174041 c:\users\peter\documents\github\ein3gpc\src\renderer\camera.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../Entity.h"
-	"../CameraComponent.h"
-	"../SpatialComponent.h"
-	<GLM/glm.hpp>
 
-<<<<<<< HEAD
+1363174041 c:\users\peter\documents\github\ein3gpc\src\renderer\camera.h
+
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\matrix_transform.hpp
 	"../glm.hpp"
 	"matrix_transform.inl"
@@ -2949,7 +2996,7 @@
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\matrix_transform.inl
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\rotate_vector.hpp
-=======
+
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\matrix_transform.hpp
 	"../glm.hpp"
 	"matrix_transform.inl"
@@ -2957,100 +3004,55 @@
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\matrix_transform.inl
 
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtx\rotate_vector.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../glm.hpp"
-	"../gtx/transform.hpp"
-	"rotate_vector.inl"
 
-<<<<<<< HEAD
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\transform.hpp
-=======
-1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtx\transform.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../glm.hpp"
-	"../gtc/matrix_transform.hpp"
-	"transform.inl"
 
-<<<<<<< HEAD
+1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtx\transform.hpp
+
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\transform.inl
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\rotate_vector.inl
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\euler_angles.hpp
-=======
+
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtx\transform.inl
 
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtx\rotate_vector.inl
 
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtx\euler_angles.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"euler_angles.inl"
 
-<<<<<<< HEAD
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\euler_angles.inl
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\renderer\light.cc
 	"Light.h"
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\renderer\light.h
-=======
+
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtx\euler_angles.inl
 
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\renderer\light.cc
 	"Light.h"
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\renderer\light.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../Program.h"
-	"Camera.h"
-	"../LightComponent.h"
-	"../SpatialComponent.h"
-	"../Entity.h"
-	<GLM/glm.hpp>
-	<memory>
 
-<<<<<<< HEAD
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\renderer\model.cc
 	"Model.h"
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\renderer\model.h
-=======
+
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\renderer\model.cc
 	"Model.h"
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\renderer\model.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../Entity.h"
-	"../ModelComponent.h"
-	"../SpatialComponent.h"
-	"../Program.h"
-	<GLM/glm.hpp>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\modelcomponent.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\modelcomponent.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Component.h"
-	"Texture.h"
-	"Mesh.h"
-	<memory>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\texture.h
-=======
-1363176825 c:\users\peter\documents\github\ein3gpc\src\texture.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Bitmap.h"
-	"StreamReader.h"
-	"stb_image.h"
-	<GLEW/glew.h>
-	<GL/glew.h>
-	<stdexcept>
 
-<<<<<<< HEAD
+1363176825 c:\users\peter\documents\github\ein3gpc\src\texture.h
+
 1363684018 source:c:\users\nick\workspace\ein3gpc\src\renderer\renderengine.cc
 	"RenderEngine.h"
 	"Light.h"
@@ -3096,7 +3098,7 @@
 	"Text.h"
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\rotatebehavior.cc
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\mesh.h
 	"Program.h"
 	"Geometry.h"
@@ -3114,13 +3116,7 @@
 	<string>
 
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\rotatebehavior.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"RotateBehavior.h"
-	"Entity.h"
-	"SpatialComponent.h"
-	"CarComponent.h"
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\rotatebehavior.h
 	"Behavior.h"
 
@@ -3128,7 +3124,7 @@
 	"Scene.h"
 
 1363683330 c:\users\nick\workspace\ein3gpc\src\scene.h
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\rotatebehavior.h
 	"Behavior.h"
 
@@ -3136,63 +3132,35 @@
 	"Scene.h"
 
 1363174041 c:\users\peter\documents\github\ein3gpc\src\scene.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Entity.h"
-	"EngineManager.h"
-	<map>
-	<list>
-	<memory>
-	<string>
 
-<<<<<<< HEAD
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\shader.cc
-=======
-1363174041 source:c:\users\peter\documents\github\ein3gpc\src\shader.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Shader.h"
-	<fstream>
-	<sstream>
-	<stdexcept>
 
-<<<<<<< HEAD
+1363174041 source:c:\users\peter\documents\github\ein3gpc\src\shader.cc
+
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\simpletesttriggerbehavior.cc
-=======
-1363259797 source:c:\users\peter\documents\github\ein3gpc\src\simpletesttriggerbehavior.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
+
+1363696776 source:c:\users\peter\documents\github\ein3gpc\src\simpletesttriggerbehavior.cc
 	"SimpleTestTriggerBehavior.h"
 	<iostream>
 	"Entity.h"
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\simpletesttriggerbehavior.h
 	"Behavior.h"
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\spatialcomponent.cc
-=======
+
 1363174041 c:\users\peter\documents\github\ein3gpc\src\simpletesttriggerbehavior.h
 	"Behavior.h"
 
-1363174041 source:c:\users\peter\documents\github\ein3gpc\src\spatialcomponent.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
+1363860294 source:c:\users\peter\documents\github\ein3gpc\src\spatialcomponent.cc
 	"SpatialComponent.h"
 	<GLM/glm.hpp>
 	<GLM/gtc/matrix_transform.hpp>
 
-<<<<<<< HEAD
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\stb_image.c
-=======
-1363174041 source:c:\users\peter\documents\github\ein3gpc\src\stb_image.c
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	<stdio.h>
-	<math.h>
-	<string.h>
-	<stdio.h>
-	<stdlib.h>
-	<memory.h>
-	<assert.h>
-	<stdarg.h>
 
-<<<<<<< HEAD
+1363174041 source:c:\users\peter\documents\github\ein3gpc\src\stb_image.c
+
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\stb_truetype.c
 	"stb_truetype.h"
 
@@ -3204,7 +3172,7 @@
 	<stdexcept>
 
 1363683330 source:c:\users\nick\workspace\ein3gpc\src\wsadmovebehavior.cc
-=======
+
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\stb_truetype.c
 	"stb_truetype.h"
 
@@ -3212,34 +3180,14 @@
 	"StreamReader.h"
 
 1363174041 source:c:\users\peter\documents\github\ein3gpc\src\wsadmovebehavior.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"WSADMoveBehavior.h"
-	"Entity.h"
-	"SpatialComponent.h"
-	"CarComponent.h"
-	<GLEW/glew.h>
-	<GLFW/glfw.h>
-	<GL/glew.h>
-	<GL/glfw.h>
-	<GLM/glm.hpp>
-	<GLM/gtx/vector_angle.hpp>
-	<iostream>
-	<sstream>
 
-<<<<<<< HEAD
 1363683330 c:\users\nick\workspace\ein3gpc\src\wsadmovebehavior.h
-=======
-1363174041 c:\users\peter\documents\github\ein3gpc\src\wsadmovebehavior.h
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"Behavior.h"
-	"Renderer/RenderEngine.h"
-	"Renderer/Text.h"
-	<GLM/glm.hpp>
 
-<<<<<<< HEAD
+1363174041 c:\users\peter\documents\github\ein3gpc\src\wsadmovebehavior.h
+
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\vector_angle.hpp
-=======
-1363174041 c:\users\peter\documents\github\ein3gpc\src\renderer\renderengine.h
+
+1363866916 c:\users\peter\documents\github\ein3gpc\src\renderer\renderengine.h
 	"../Engine.h"
 	"../Program.h"
 	"../Texture.h"
@@ -3271,44 +3219,26 @@
 	<sstream>
 
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtx\vector_angle.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../glm.hpp"
-	"../gtc/epsilon.hpp"
-	"../gtx/quaternion.hpp"
-	"../gtx/rotate_vector.hpp"
-	"vector_angle.inl"
 
-<<<<<<< HEAD
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\epsilon.hpp
-=======
-1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\epsilon.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"../gtc/quaternion.hpp"
-	"epsilon.inl"
 
-<<<<<<< HEAD
+1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\epsilon.hpp
+
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtc\epsilon.inl
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\quaternion.hpp
-=======
+
 1363174043 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtc\epsilon.inl
 
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtx\quaternion.hpp
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
-	"../glm.hpp"
-	"../gtc/quaternion.hpp"
-	"quaternion.inl"
 
-<<<<<<< HEAD
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\quaternion.inl
 	<limits>
 
 1363683331 c:\users\nick\workspace\ein3gpc\windows\glm\glm\gtx\vector_angle.inl
 
 1363695474 source:c:\users\nick\workspace\ein3gpc\windows\ymir\main.cc
-=======
+
 1363174044 c:\users\peter\documents\github\ein3gpc\windows\glm\glm\gtx\quaternion.inl
 	<limits>
 
@@ -3327,7 +3257,7 @@
 1363174041 c:\users\peter\documents\github\ein3gpc\src\cubegeometry.h
 	"Geometry.h"
 
-1363684072 source:c:\users\peter\documents\github\ein3gpc\src\renderer\renderengine.cc
+1363867209 source:c:\users\peter\documents\github\ein3gpc\src\renderer\renderengine.cc
 	"RenderEngine.h"
 	"Light.h"
 	"../LightComponent.h"
@@ -3343,11 +3273,12 @@
 	<iostream>
 	<sstream>
 
-1363263925 source:c:\users\peter\documents\github\ein3gpc\src\texture.cc
+1363860295 source:c:\users\peter\documents\github\ein3gpc\src\texture.cc
 	"Texture.h"
 	<iostream>
+	<stdexcept>
 
-1363261870 source:c:\users\peter\documents\github\ein3gpc\src\rtscamerabehavior.cpp
+1363860599 source:c:\users\peter\documents\github\ein3gpc\src\rtscamerabehavior.cpp
 	"RTSCameraBehavior.h"
 	"SpatialComponent.h"
 	"CameraComponent.h"
@@ -3357,12 +3288,11 @@
 	<GL/glfw.h>
 	<iostream>
 
-1363257980 c:\users\peter\documents\github\ein3gpc\src\rtscamerabehavior.h
+1363696776 c:\users\peter\documents\github\ein3gpc\src\rtscamerabehavior.h
 	"Behavior.h"
 	"Entity.h"
 
-1363696575 source:c:\users\peter\documents\github\ein3gpc\windows\ymir\main.cc
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
+1363866071 source:c:\users\peter\documents\github\ein3gpc\windows\ymir\main.cc
 	<GL/glew.h>
 	<GL/GLFW.h>
 	<GLM/glm.hpp>
@@ -3397,10 +3327,7 @@
 	"../../src/RotateBehavior.h"
 	"../../src/FPSCameraBehavior.h"
 	"../../src/WSADMoveBehavior.h"
-<<<<<<< HEAD
-=======
 	"../../src/RTSCameraBehavior.h"
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
 	"../../src/SimpleTestTriggerBehavior.h"
 	"../../src/CarCollisionBehavior.h"
 	"../../src/ProgramResourceLoader.h"
@@ -3408,22 +3335,19 @@
 	"../../src/Audio/Buffer.h"
 	"../../src/Audio/Source.h"
 	"../../src/Audio/Listener.h"
-<<<<<<< HEAD
-=======
 	"../../src/TileMap.h"
 
-1363692417 source:c:\users\peter\documents\github\ein3gpc\src\tile.cpp
+1363696776 source:c:\users\peter\documents\github\ein3gpc\src\tile.cpp
 	"Tile.h"
 
-1363692421 c:\users\peter\documents\github\ein3gpc\src\tile.h
+1363696776 c:\users\peter\documents\github\ein3gpc\src\tile.h
 
-1363692400 source:c:\users\peter\documents\github\ein3gpc\src\tilemap.cpp
+1363696776 source:c:\users\peter\documents\github\ein3gpc\src\tilemap.cpp
 	"TileMap.h"
 
-1363692066 c:\users\peter\documents\github\ein3gpc\src\tilemap.h
+1363696776 c:\users\peter\documents\github\ein3gpc\src\tilemap.h
 	"Tile.h"
 	<vector>
 	<iostream>
 	<memory>
->>>>>>> 59859e561a7eb7d94f514b4f9e6a3cb25633a8e1
 
