@@ -73,7 +73,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
-    Entity& house = scene.assign("houseMesh");
+    Entity& house = scene.assign("OrbitalDropBeacon");
     house.assign<SpatialComponent>(position);
     house.assign<ModelComponent>(house_mesh, t);
 }
