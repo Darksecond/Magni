@@ -91,7 +91,7 @@ void Gameplay::buildAcademyOfAdvancedTechnologies()
 void Gameplay::sellEntity(Entity* aEntity) {
     if(aEntity != nullptr) {
         scene.deleteEntity(aEntity);
-        currentSelectedUnit = NULL;
+        currentSelectedUnit = nullptr;
     }
     /* TODO
     * Remove entity from scene graph DONE
