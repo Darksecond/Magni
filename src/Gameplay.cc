@@ -1,6 +1,8 @@
 
 #include "Gameplay.h"
 
+#include <iostream>
+
 using namespace Ymir;
 
 Gameplay::Gameplay(EngineManager& engines, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, glm::vec2 screenSize) : scene(engines), textureManager(textureManager), meshManager(meshManager), screenSize(screenSize)
@@ -16,7 +18,7 @@ void Gameplay::createCamera()
     glm::vec3 euler{-60,0,0};
     c_s.setDirection(euler);
     //camera.assignBehavior(std::unique_ptr<Behavior>{new FPSCameraBehavior});
-    //camera.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
+    // camera.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
     camera.assignBehavior(std::unique_ptr<Behavior>{new RTSCameraBehavior});
 }
 
@@ -84,6 +86,25 @@ void Gameplay::buildPowerCore()
 void Gameplay::buildAcademyOfAdvancedTechnologies()
 {
 
+}
+
+void Gameplay::sellEntity(Entity& aEntity) {
+   try{
+    std::cout << "Selling : " << aEntity.name << std::endl;
+    /*
+    * Remove entity from scene graph
+    * Add money to resources. based on health left en intial building costs?
+    * int money = 0.5*(aEntity.Health*aEntityCosts.)
+    * if( money < 1 ) {
+    *   money = 0
+    *
+    */
+    }
+   catch(...) {
+    std::cout << "Woops error while trying to sell an entity" << std::endl;
+    std::cout << "Are you sure you own this entity" << std::endl;
+    std::cout << "Did you sell it already? And not yet deselected?" << std::endl;
+   }
 }
 
 Scene& Gameplay::getScene()

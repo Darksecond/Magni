@@ -182,6 +182,12 @@ int main(int argc, char* argv[])
             gameplay.createBasicInfantrie(renderEngine.get3DPositionFromMousePosition());
         }
 
+
+        if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
+            std::cout << "GOING TO SELL STUFF" << std::endl;
+            gameplay.sellEntity(unit);
+        }
+
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)
             std::cerr << "OpenGL Error " << error << ": " << (const char*)gluErrorString(error) << std::endl;

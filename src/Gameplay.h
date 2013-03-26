@@ -21,6 +21,8 @@
 
 #include "RTSCameraBehavior.h"
 
+#include "Entity.h"
+
 namespace Ymir
 {
     class Gameplay
@@ -44,6 +46,8 @@ namespace Ymir
             void buildOrbitalDropBeacon(glm::vec3 position);
             void buildPowerCore();
             void buildAcademyOfAdvancedTechnologies();
+
+            void sellEntity(Entity& aEntity);
 
             Scene& getScene();
     };
