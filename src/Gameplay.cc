@@ -86,6 +86,27 @@ void Gameplay::buildAcademyOfAdvancedTechnologies()
 
 }
 
+void Gameplay::updateSelectedEntity(glm::vec3 position)
+{
+    double distance = 10000;
+    Entity* theEntity;
+
+    for(std::unique_ptr<Entity>& entity : scene.entities)
+    {
+        auto test = entity->component<SpatialComponent>();
+        double distanceBetween = glm::distance(test->position, position);
+
+        if(distanceBetween < 2.5f && distanceBetween < distance)
+            theEntity = entity.get();
+    }
+
+    currentSelectedUnit = theEntity;
+}
+
+Entity* Gameplay::getCurrentSelectedEntity() {
+    return currentSelectedUnit;
+}
+
 Scene& Gameplay::getScene()
 {
     return scene;

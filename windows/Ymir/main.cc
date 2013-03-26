@@ -157,27 +157,32 @@ int main(int argc, char* argv[])
 
         glfwDisable(GLFW_KEY_REPEAT);
 
-        if(glfwGetKey( GLFW_KEY_LEFT ) == GLFW_PRESS ) {
-            auto test = unit.component<SpatialComponent>();
+        if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
+            gameplay.updateSelectedEntity(renderEngine.get3DPositionFromMousePosition());
+        }
+
+        if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
+            Entity* selectedUnit = gameplay.getCurrentSelectedEntity();
+
+            auto test = selectedUnit->component<SpatialComponent>();
             glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
-            newPos.y=0;
+            newPos.y = 0;
             test->position = newPos;
         }
 
-        if(glfwGetKey( GLFW_KEY_UP ) == GLFW_PRESS && isDone) {
+        if(glfwGetKey( 'I' ) == GLFW_PRESS && isDone) {
             isDone = false;
             gameplay.buildCentralIntelligenceCore(renderEngine.get3DPositionFromMousePosition());
         }
-
-        if(glfwGetKey( GLFW_KEY_DOWN ) == GLFW_PRESS && isDone1) {
+        if(glfwGetKey( 'O' ) == GLFW_PRESS && isDone1) {
             isDone1 = false;
             gameplay.buildOrbitalDropBeacon(renderEngine.get3DPositionFromMousePosition());
         }
-        if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS && isDone2) {
+        if(glfwGetKey( 'J' ) == GLFW_PRESS && isDone2) {
             isDone2 = false;
             gameplay.createWorker(renderEngine.get3DPositionFromMousePosition());
         }
-        if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_RIGHT ) == GLFW_PRESS && isDone3) {
+        if(glfwGetKey( 'K' ) == GLFW_PRESS && isDone3) {
             isDone3 = false;
             gameplay.createBasicInfantrie(renderEngine.get3DPositionFromMousePosition());
         }
