@@ -24,9 +24,9 @@ void Gameplay::createCamera()
 
 void Gameplay::createWorker(glm::vec3 position)
 {
-    position.y = 0.0;
-    std::shared_ptr<Texture> worker_tex = textureManager.resource("wooden-crate.jpg");
-    std::shared_ptr<Mesh> worker_mesh = meshManager.resource("monkey.obj");
+    position.y = 0.3;
+    std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
+    std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
     Entity& worker = scene.assign("worker");
     worker.assign<SpatialComponent>(position);
@@ -104,16 +104,18 @@ void Gameplay::sellEntity(Entity* aEntity) {
 
 void Gameplay::updateSelectedEntity(glm::vec3 position)
 {
-    double distance = 10000;
-    Entity* theEntity;
+    double distance = 2.5f;
+    Entity* theEntity = nullptr;
 
     for(std::unique_ptr<Entity>& entity : scene.entities)
     {
         auto test = entity->component<SpatialComponent>();
         double distanceBetween = glm::distance(test->position, position);
 
-        if(distanceBetween < 2.5f && distanceBetween < distance)
+        if(distanceBetween < 2.5f && distanceBetween < distance) {
+            distance = distanceBetween;
             theEntity = entity.get();
+        }
     }
     currentSelectedUnit = theEntity;
 }
