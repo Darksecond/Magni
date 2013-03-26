@@ -49,6 +49,8 @@ namespace Ymir
             void buildAcademyOfAdvancedTechnologies();
 
             void sellEntity(Entity* aEntity);
+        
+            Entity* getEntityAtPosition(glm::vec3 pos);
             void updateSelectedEntity(glm::vec3 position);
             Entity* getCurrentSelectedEntity();
             Scene& getScene();

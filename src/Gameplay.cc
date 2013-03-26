@@ -104,20 +104,26 @@ void Gameplay::sellEntity(Entity* aEntity) {
 
 void Gameplay::updateSelectedEntity(glm::vec3 position)
 {
+    currentSelectedUnit = getEntityAtPosition(position);
+}
+
+Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
+{
     double distance = 2.5f;
     Entity* theEntity = nullptr;
-
+    
     for(std::unique_ptr<Entity>& entity : scene.entities)
     {
         auto test = entity->component<SpatialComponent>();
         double distanceBetween = glm::distance(test->position, position);
-
+        
         if(distanceBetween < 2.5f && distanceBetween < distance) {
             distance = distanceBetween;
             theEntity = entity.get();
         }
     }
-    currentSelectedUnit = theEntity;
+    
+    return theEntity;
 }
 
 Entity* Gameplay::getCurrentSelectedEntity() {
