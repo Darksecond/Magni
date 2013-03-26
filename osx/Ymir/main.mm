@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-#include "../../src/Application.h"
+#include "Application.h"
 
 using namespace Ymir;
 

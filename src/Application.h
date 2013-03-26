@@ -1,7 +1,15 @@
 #pragma once
 
+#ifdef __APPLE__
+#include <GLEW/glew.h>
+#include<GLFW/glfw.h>
+#endif
+
+#ifdef _WIN32
 #include <GL/glew.h>
 #include <GL/GLFW.h>
+#endif // _WIN32
+
 #include <GLM/glm.hpp>
 
 #include "DirectoryManifest.h"

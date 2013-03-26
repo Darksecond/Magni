@@ -1,5 +1,7 @@
 #include "Application.h"
 
+#include "EnergyEngine.h"
+
 using namespace Ymir;
 
 Application::Application()
@@ -25,6 +27,7 @@ void Application::createEngines()
     engines->assign<CollisionEngine>();
     engines->assign<AudioEngine>();
     renderEngine = &engines->assign<RenderEngine>(programManager, textureManager, cubemapManager);
+    engines->assign<EnergyEngine>(*renderEngine);
 }
 
 void Application::buildGame()
