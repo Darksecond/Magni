@@ -32,6 +32,7 @@ namespace Ymir
             ResourceManager<Mesh>& meshManager;
             Scene scene;
             glm::vec2 screenSize;
+            Entity* currentSelectedUnit;
         public:
             Gameplay(EngineManager& engines, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, glm::vec2 screenSize);
 
@@ -47,8 +48,9 @@ namespace Ymir
             void buildPowerCore();
             void buildAcademyOfAdvancedTechnologies();
 
-            void sellEntity(Entity& aEntity);
-
+            void sellEntity(Entity* aEntity);
+            void updateSelectedEntity(glm::vec3 position);
+            Entity* getCurrentSelectedEntity();
             Scene& getScene();
     };
 };

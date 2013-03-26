@@ -157,35 +157,42 @@ int main(int argc, char* argv[])
 
         glfwDisable(GLFW_KEY_REPEAT);
 
-        if(glfwGetKey( GLFW_KEY_LEFT ) == GLFW_PRESS ) {
-            auto test = unit.component<SpatialComponent>();
-            glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
-            newPos.y=0;
-            test->position = newPos;
+        if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
+            gameplay.updateSelectedEntity(renderEngine.get3DPositionFromMousePosition());
         }
 
-        if(glfwGetKey( GLFW_KEY_UP ) == GLFW_PRESS && isDone) {
+        if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
+
+            Entity* selectedUnit = gameplay.getCurrentSelectedEntity();
+            if(selectedUnit != nullptr) {
+                auto test = selectedUnit->component<SpatialComponent>();
+                glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
+                newPos.y = 0;
+                test->position = newPos;
+            } else {
+            std::cout << "Nothing to move" << std::endl;
+            }
+        }
+
+        if(glfwGetKey( 'I' ) == GLFW_PRESS && isDone) {
             isDone = false;
             gameplay.buildCentralIntelligenceCore(renderEngine.get3DPositionFromMousePosition());
         }
-
-        if(glfwGetKey( GLFW_KEY_DOWN ) == GLFW_PRESS && isDone1) {
+        if(glfwGetKey( 'O' ) == GLFW_PRESS && isDone1) {
             isDone1 = false;
             gameplay.buildOrbitalDropBeacon(renderEngine.get3DPositionFromMousePosition());
         }
-        if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS && isDone2) {
+        if(glfwGetKey( 'J' ) == GLFW_PRESS && isDone2) {
             isDone2 = false;
             gameplay.createWorker(renderEngine.get3DPositionFromMousePosition());
         }
-        if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_RIGHT ) == GLFW_PRESS && isDone3) {
+        if(glfwGetKey( 'K' ) == GLFW_PRESS && isDone3) {
             isDone3 = false;
             gameplay.createBasicInfantrie(renderEngine.get3DPositionFromMousePosition());
         }
-
-
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
-            std::cout << "GOING TO SELL STUFF" << std::endl;
-            gameplay.sellEntity(unit);
+            Entity* entity = gameplay.getCurrentSelectedEntity();
+                gameplay.sellEntity(entity);
         }
 
         GLenum error = glGetError();

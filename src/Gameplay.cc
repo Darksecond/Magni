@@ -5,8 +5,8 @@
 
 using namespace Ymir;
 
-Gameplay::Gameplay(EngineManager& engines, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, glm::vec2 screenSize) : scene(engines), textureManager(textureManager), meshManager(meshManager), screenSize(screenSize)
-{
+Gameplay::Gameplay(EngineManager& engines, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, glm::vec2 screenSize) : scene(engines), textureManager(textureManager), meshManager(meshManager), screenSize(screenSize) {
+
 }
 
 void Gameplay::createCamera()
@@ -88,23 +88,38 @@ void Gameplay::buildAcademyOfAdvancedTechnologies()
 
 }
 
-void Gameplay::sellEntity(Entity& aEntity) {
-   try{
-    std::cout << "Selling : " << aEntity.name << std::endl;
-    /*
-    * Remove entity from scene graph
+void Gameplay::sellEntity(Entity* aEntity) {
+    if(aEntity != nullptr) {
+        scene.deleteEntity(aEntity);
+        currentSelectedUnit = NULL;
+    }
+    /* TODO
+    * Remove entity from scene graph DONE
     * Add money to resources. based on health left en intial building costs?
     * int money = 0.5*(aEntity.Health*aEntityCosts.)
     * if( money < 1 ) {
     *   money = 0
-    *
     */
+}
+
+void Gameplay::updateSelectedEntity(glm::vec3 position)
+{
+    double distance = 10000;
+    Entity* theEntity;
+
+    for(std::unique_ptr<Entity>& entity : scene.entities)
+    {
+        auto test = entity->component<SpatialComponent>();
+        double distanceBetween = glm::distance(test->position, position);
+
+        if(distanceBetween < 2.5f && distanceBetween < distance)
+            theEntity = entity.get();
     }
-   catch(...) {
-    std::cout << "Woops error while trying to sell an entity" << std::endl;
-    std::cout << "Are you sure you own this entity" << std::endl;
-    std::cout << "Did you sell it already? And not yet deselected?" << std::endl;
-   }
+    currentSelectedUnit = theEntity;
+}
+
+Entity* Gameplay::getCurrentSelectedEntity() {
+    return currentSelectedUnit;
 }
 
 Scene& Gameplay::getScene()
