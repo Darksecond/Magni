@@ -1,5 +1,8 @@
 #import <Foundation/Foundation.h>
 
+<<<<<<< HEAD
+#include "Application.h"
+=======
 #include <GLEW/glew.h>
 #include <GLFW/GLFW.h>
 #include <GLM/glm.hpp>
@@ -33,6 +36,7 @@
 #include "SourceComponent.h"
 #include "CarComponent.h"
 #include "ObjGeometry.h"
+#include "CurrencyEngine.h"
 
 #include "ResourceManager.h"
 #include "DirectoryManifest.h"
@@ -51,17 +55,9 @@
 #include "Buffer.h"
 #include "Source.h"
 #include "Listener.h"
+>>>>>>> Currency gameplay added
 
 using namespace Ymir;
-
-//TODO LIST
-//
-//SKYBOX
-//WIN-LOSE (OBJECTIVES)
-//DOCUMENTATION
-//WINDOWS SUPPORT
-
-const glm::vec2 SCREEN_SIZE(800, 600);
 
 static std::string ResourceDirectory()
 {
@@ -71,6 +67,14 @@ static std::string ResourceDirectory()
 
 int main(int argc, char* argv[])
 {
+<<<<<<< HEAD
+    Application application = Application();
+    application.createManagers(ResourceDirectory());
+    application.createEngines();
+    application.buildGame();
+    application.runGame();
+
+=======
     //resource management
     std::shared_ptr<DirectoryManifest> manifest = std::make_shared<DirectoryManifest>(ResourceDirectory());
 
@@ -95,7 +99,8 @@ int main(int argc, char* argv[])
     engines.assign<CollisionEngine>();
     engines.assign<AudioEngine>();
     RenderEngine& renderEngine = engines.assign<RenderEngine>(programManager, textureManager, cubemapManager);
-    engines.assign<EnergyEngine>(renderEngine);
+    //engines.assign<EnergyEngine>(renderEngine);
+    engines.assign<CurrencyEngine>(renderEngine);
     
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Texture> car_tex = textureManager.resource("truck_color_cleantest.jpg");
@@ -128,6 +133,7 @@ int main(int argc, char* argv[])
     car_body.assign<CarComponent>();
     car_body.assign<SphereColliderComponent>(0.5);
     car_body.assign<EnergyComponent>(-3);
+    car_body.assign<CurrencyComponent>(3);
     //car_body.assign<SourceComponent>(engine_sound).playing = true;
     car_body.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior{renderEngine}});
     car_body.assignBehavior(std::unique_ptr<Behavior>{new CarCollisionBehavior{crash_sound}});
@@ -205,5 +211,6 @@ int main(int argc, char* argv[])
             glfwCloseWindow();        
     }
         
+>>>>>>> Currency gameplay added
     return 0;
 }

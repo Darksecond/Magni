@@ -40,6 +40,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/Application.cc" />
+		<Unit filename="src/Application.h" />
 		<Unit filename="src/AudioEngine.cc" />
 		<Unit filename="src/AudioEngine.h" />
 		<Unit filename="src/Audio/Buffer.cc" />
@@ -71,6 +73,9 @@
 		<Unit filename="src/CubemapResourceLoader.h" />
 		<Unit filename="src/DirectoryManifest.cc" />
 		<Unit filename="src/DirectoryManifest.h" />
+		<Unit filename="src/EnergyComponent.h" />
+		<Unit filename="src/EnergyEngine.cc" />
+		<Unit filename="src/EnergyEngine.h" />
 		<Unit filename="src/Engine.h" />
 		<Unit filename="src/EngineManager.cc" />
 		<Unit filename="src/EngineManager.h" />
