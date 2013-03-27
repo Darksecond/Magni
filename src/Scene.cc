@@ -32,25 +32,12 @@ Entity& Scene::assign(const std::string& name, Entity* parent)
 }
 
 void Scene::deleteEntity(Entity * entity) {
-    std::list<std::unique_ptr<Entity>>::const_iterator iterator;
     std::list<std::unique_ptr<Entity>>::iterator it;
-
-    std::cout << " LIJST VOOR : " << std::endl;
-    for (it=entities.begin(); it != entities.end(); ++it) {
-        std::cout << (*(*it).get()).name << std::endl;
-    }
-
     for (it=entities.begin(); it != entities.end(); ++it) {
         if  (  (*(*it).get()).name  == entity->name ) {
-            break;
+            break; // found entitiy
         }
     }
-   // std::cout << (*(*it).get()).name << std::endl;
     engines.unregisterEntity(*entity);
     entities.erase(it);
-
-    std::cout << std::endl << " LIJST NA : " << std::endl;
-    for (it=entities.begin(); it != entities.end(); ++it) {
-        std::cout << (*(*it).get()).name << std::endl;
-    }
 }
