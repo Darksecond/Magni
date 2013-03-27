@@ -44,6 +44,9 @@
 		F653613F16DBADC5007B5D31 /* track.obj in Resources */ = {isa = PBXBuildFile; fileRef = F653613E16DBADC5007B5D31 /* track.obj */; };
 		F6542A0E16E49607006B64AB /* SimpleTestTriggerBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6542A0C16E49607006B64AB /* SimpleTestTriggerBehavior.cc */; };
 		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
+		F67A392E1702F5BB004AAF05 /* orbitaldrop.obj in Resources */ = {isa = PBXBuildFile; fileRef = F67A392D1702F5BB004AAF05 /* orbitaldrop.obj */; };
+		F67A3946170304DD004AAF05 /* untitled.obj in Resources */ = {isa = PBXBuildFile; fileRef = F67A3945170304DD004AAF05 /* untitled.obj */; };
+		F67A394B17031820004AAF05 /* AttackEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F67A394917031820004AAF05 /* AttackEngine.cc */; };
 		F67F54FF16DB7C3B00478B1C /* car.obj in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FC16DB7C3B00478B1C /* car.obj */; };
 		F67F550016DB7C3B00478B1C /* carTire.obj in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FD16DB7C3B00478B1C /* carTire.obj */; };
 		F67F550116DB7C3B00478B1C /* truck_color_cleantest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F67F54FE16DB7C3B00478B1C /* truck_color_cleantest.jpg */; };
@@ -262,6 +265,12 @@
 		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
 		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
 		F677EE5F16E3CC6600BDAC73 /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		F67A392D1702F5BB004AAF05 /* orbitaldrop.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = orbitaldrop.obj; sourceTree = "<group>"; };
+		F67A3945170304DD004AAF05 /* untitled.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = untitled.obj; sourceTree = "<group>"; };
+		F67A3947170316B8004AAF05 /* HealthComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HealthComponent.h; sourceTree = "<group>"; };
+		F67A394817031771004AAF05 /* AttackComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttackComponent.h; sourceTree = "<group>"; };
+		F67A394917031820004AAF05 /* AttackEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackEngine.cc; sourceTree = "<group>"; };
+		F67A394A17031820004AAF05 /* AttackEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackEngine.h; sourceTree = "<group>"; };
 		F67F54FC16DB7C3B00478B1C /* car.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = car.obj; sourceTree = "<group>"; };
 		F67F54FD16DB7C3B00478B1C /* carTire.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = carTire.obj; sourceTree = "<group>"; };
 		F67F54FE16DB7C3B00478B1C /* truck_color_cleantest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = truck_color_cleantest.jpg; sourceTree = "<group>"; };
@@ -585,6 +594,8 @@
 				F67F54FC16DB7C3B00478B1C /* car.obj */,
 				F653613E16DBADC5007B5D31 /* track.obj */,
 				F6F7B28916E0C6DE006D00ED /* DroidSerif-Regular.ttf */,
+				F67A392D1702F5BB004AAF05 /* orbitaldrop.obj */,
+				F67A3945170304DD004AAF05 /* untitled.obj */,
 				F653613916DBABA8007B5D31 /* track.jpg */,
 				F67F54FD16DB7C3B00478B1C /* carTire.obj */,
 				F67F54FE16DB7C3B00478B1C /* truck_color_cleantest.jpg */,
@@ -829,6 +840,8 @@
 				F62F58A816E62C79008B379E /* ListenerComponent.h */,
 				F62F58A916E62FAF008B379E /* SourceComponent.h */,
 				F6C1976D16FB11CF00148326 /* EnergyComponent.h */,
+				F67A3947170316B8004AAF05 /* HealthComponent.h */,
+				F67A394817031771004AAF05 /* AttackComponent.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -847,6 +860,8 @@
 				F6BEF05E16E5E68600ACEDC5 /* AudioEngine.cc */,
 				F6C1976F16FB138D00148326 /* EnergyEngine.h */,
 				F6C1976E16FB138D00148326 /* EnergyEngine.cc */,
+				F67A394917031820004AAF05 /* AttackEngine.cc */,
+				F67A394A17031820004AAF05 /* AttackEngine.h */,
 			);
 			name = Engines;
 			sourceTree = "<group>";
@@ -1102,6 +1117,8 @@
 				F60D92AF1701D97300D0E6F4 /* house1.bmp in Resources */,
 				F60D92B21701D98F00D0E6F4 /* worker.obj in Resources */,
 				F60D92B31701D98F00D0E6F4 /* workertex.png in Resources */,
+				F67A392E1702F5BB004AAF05 /* orbitaldrop.obj in Resources */,
+				F67A3946170304DD004AAF05 /* untitled.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1188,6 +1205,7 @@
 				F60D92A31701C36A00D0E6F4 /* Tile.cpp in Sources */,
 				F60D92A41701C36A00D0E6F4 /* TileMap.cpp in Sources */,
 				F60D92A71701D86100D0E6F4 /* Application.cc in Sources */,
+				F67A394B17031820004AAF05 /* AttackEngine.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

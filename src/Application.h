@@ -28,6 +28,7 @@
 #include "BehaviorEngine.h"
 #include "CollisionEngine.h"
 #include "AudioEngine.h"
+#include "AttackEngine.h"
 
 namespace Ymir
 {
@@ -43,6 +44,7 @@ namespace Ymir
             Gameplay * gameplay;
             EngineManager * engines;
             RenderEngine * renderEngine;
+            AttackEngine* attackEngine;
 
             glm::vec2 SCREEN_SIZE;
             double lastTime;
