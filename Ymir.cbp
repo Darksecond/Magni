@@ -75,6 +75,7 @@
 		<Unit filename="src/DirectoryManifest.h" />
 		<Unit filename="src/EnergyComponent.h" />
 		<Unit filename="src/EnergyEngine.cc" />
+		<Unit filename="src/EnergyEngine.h" />
 		<Unit filename="src/Engine.h" />
 		<Unit filename="src/EngineManager.cc" />
 		<Unit filename="src/EngineManager.h" />

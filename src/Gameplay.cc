@@ -1,11 +1,9 @@
-
 #include "Gameplay.h"
-
-#include <iostream>
 
 using namespace Ymir;
 
-Gameplay::Gameplay(EngineManager& engines, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, glm::vec2 screenSize) : scene(engines), textureManager(textureManager), meshManager(meshManager), screenSize(screenSize) {
+Gameplay::Gameplay(EngineManager& engines, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize) : scene(engines), textureManager(textureManager), meshManager(meshManager), renderEngine(renderEngine), screenSize(screenSize)
+{
 
 }
 
@@ -65,6 +63,7 @@ void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
     Entity& house = scene.assign("houseMesh");
     house.assign<SpatialComponent>(position);
     house.assign<ModelComponent>(house_mesh, house_tex);
+    house.assign<EnergyComponent>(150);
 }
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
@@ -76,6 +75,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
     Entity& house = scene.assign("OrbitalDropBeacon");
     house.assign<SpatialComponent>(position);
     house.assign<ModelComponent>(house_mesh, t);
+    house.assign<EnergyComponent>(-100);
 }
 
 void Gameplay::buildPowerCore()
@@ -88,7 +88,21 @@ void Gameplay::buildAcademyOfAdvancedTechnologies()
 
 }
 
-void Gameplay::sellEntity(Entity* aEntity) {
+void Gameplay::winGame()
+{
+    std::shared_ptr<Text> winningText = std::make_shared<Text>("YOU ARE VICTORIOUS", glm::vec2{10, 10}, 20);
+    renderEngine.addText(winningText);
+
+}
+
+void Gameplay::loseGame()
+{
+    std::shared_ptr<Text> losingText = std::make_shared<Text>("YOU ARE DEFEATED", glm::vec2{10, 30}, 20);
+    renderEngine.addText(losingText);
+}
+
+void Gameplay::sellEntity(Entity* aEntity)
+{
     if(aEntity != nullptr) {
         scene.deleteEntity(aEntity);
         currentSelectedUnit = nullptr;
@@ -111,22 +125,23 @@ Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
 {
     double distance = 2.5f;
     Entity* theEntity = nullptr;
-    
+
     for(std::unique_ptr<Entity>& entity : scene.entities)
     {
         auto test = entity->component<SpatialComponent>();
         double distanceBetween = glm::distance(test->position, position);
-        
+
         if(distanceBetween < 2.5f && distanceBetween < distance) {
             distance = distanceBetween;
             theEntity = entity.get();
         }
     }
-    
+
     return theEntity;
 }
 
-Entity* Gameplay::getCurrentSelectedEntity() {
+Entity* Gameplay::getCurrentSelectedEntity()
+{
     return currentSelectedUnit;
 }
 

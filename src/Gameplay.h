@@ -1,6 +1,8 @@
 #pragma once
 
 #include <memory>
+#include <iostream>
+#include <string>
 
 #include "Scene.h"
 #include "EngineManager.h"
@@ -12,16 +14,18 @@
 #include "ProgramResourceLoader.h"
 #include "CubemapResourceLoader.h"
 #include "Audio/Buffer.h"
+#include "Entity.h"
+#include "Renderer/RenderEngine.h"
 
 #include "SpatialComponent.h"
 #include "ModelComponent.h"
 #include "ListenerComponent.h"
 #include "CameraComponent.h"
 #include "LightComponent.h"
+#include "EnergyComponent.h"
 
 #include "RTSCameraBehavior.h"
 
-#include "Entity.h"
 
 namespace Ymir
 {
@@ -33,8 +37,9 @@ namespace Ymir
             Scene scene;
             glm::vec2 screenSize;
             Entity* currentSelectedUnit;
+            RenderEngine& renderEngine;
         public:
-            Gameplay(EngineManager& engines, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, glm::vec2 screenSize);
+            Gameplay(EngineManager& engines, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize);
 
             void createCamera();
 
@@ -49,7 +54,10 @@ namespace Ymir
             void buildAcademyOfAdvancedTechnologies();
 
             void sellEntity(Entity* aEntity);
-        
+
+            void winGame();
+            void loseGame();
+
             Entity* getEntityAtPosition(glm::vec3 pos);
             void updateSelectedEntity(glm::vec3 position);
             Entity* getCurrentSelectedEntity();

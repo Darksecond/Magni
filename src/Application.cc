@@ -39,7 +39,7 @@ void Application::buildGame()
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     // end cleanup -----------------------------------
 
-    gameplay = new Gameplay(*engines, textureManager, meshManager, SCREEN_SIZE);
+    gameplay = new Gameplay(*engines, textureManager, meshManager, *renderEngine, SCREEN_SIZE);
     gameplay->createCamera();
 
     TileMap* tiles = new TileMap(100, 2, 2);
@@ -51,11 +51,13 @@ void Application::buildGame()
 void Application::runGame()
 {
     // TODO cleanup ----------------------------------
-    bool isDone, isDone1, isDone2, isDone3;
+    bool isDone, isDone1, isDone2, isDone3, isDone4, isDone5;
     isDone = true;
     isDone1 = true;
     isDone2 = true;
     isDone3 = true;
+    isDone4 = true;
+    isDone5 = true;
 
     std::shared_ptr<Texture> track_tex = textureManager.resource("grass.png");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
@@ -134,6 +136,14 @@ void Application::runGame()
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
             Entity* entity = gameplay->getCurrentSelectedEntity();
                 gameplay->sellEntity(entity);
+        }
+        if(glfwGetKey( 'W') == GLFW_PRESS && isDone4) {
+            isDone4 = false;
+            gameplay->winGame();
+        }
+        if(glfwGetKey( 'E') == GLFW_PRESS && isDone5) {
+            isDone5 = false;
+            gameplay->loseGame();
         }
         // end cleanup -----------------------------------
 
