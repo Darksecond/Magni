@@ -1,4 +1,5 @@
 #include "Gameplay.h"
+#include <iostream>
 
 using namespace Ymir;
 
@@ -57,7 +58,7 @@ void Gameplay::createEngineer()
 void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
 {
     position.y = 0.0;
-    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
+    std::shared_ptr<Mesh> house_mesh = meshManager.resource("orbitaldropbeacon.obj");
     std::shared_ptr<Texture> house_tex = textureManager.resource("house1.bmp");
 
     Entity& house = scene.assign("houseMesh");
