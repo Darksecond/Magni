@@ -4,7 +4,7 @@
 
 using namespace Ymir;
 
-Application::Application()
+Application::Application() : SCREEN_SIZE(800, 600)
 {
 
 }

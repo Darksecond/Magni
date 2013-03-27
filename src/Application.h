@@ -44,7 +44,7 @@ namespace Ymir
             EngineManager * engines;
             RenderEngine * renderEngine;
 
-            glm::vec2 SCREEN_SIZE{800, 600};
+            glm::vec2 SCREEN_SIZE;
             double lastTime;
 
         public:
