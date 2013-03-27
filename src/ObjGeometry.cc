@@ -86,7 +86,9 @@ void ObjGeometry::interlace()
 
             //maak vertex
             auto v =  _v [std::get<1>(f) - 1];
-            auto vt = _vt[std::get<2>(f) - 1];
+            std::tuple<float, float> vt;
+            if(std::get<2>(f) > 0)
+                _vt[std::get<2>(f) - 1];
             auto vn = _vn[std::get<3>(f) - 1];
 
             Vertex vert;
@@ -96,8 +98,16 @@ void ObjGeometry::interlace()
             vert.nx = std::get<0>(vn);
             vert.ny = std::get<1>(vn);
             vert.nz = std::get<2>(vn);
-            vert.u = std::get<0>(vt);
-            vert.v = std::get<1>(vt);
+            if(std::get<2>(f) > 0)
+            {
+                vert.u = std::get<0>(vt);
+                vert.v = std::get<1>(vt);
+            }
+            else
+            {
+                vert.u = 0;
+                vert.v = 0;
+            }
             _vertices.push_back(vert);
 
             //voeg toe aan indices
