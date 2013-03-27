@@ -10,7 +10,7 @@ EnergyEngine::EnergyEngine(RenderEngine& renderer) : energies()
     //text!
     produced_text = std::make_shared<Text>("0 Energy produced", glm::vec2{500, 50}, 10);
     consumed_text = std::make_shared<Text>("0 Energy used", glm::vec2{500, 60}, 10);
-    
+
     renderer.addText(produced_text);
     renderer.addText(consumed_text);
 }
@@ -29,7 +29,7 @@ void EnergyEngine::update(int pass, double delta)
     {
         int produced = 0;
         int consumed = 0;
-        
+
         for(auto c : energies)
         {
             if(c->energy_consumption < 0)
@@ -37,10 +37,14 @@ void EnergyEngine::update(int pass, double delta)
             if(c->energy_consumption > 0)
                 consumed += c->energy_consumption;
         }
-        
+
         //update texts
-        produced_text->text = std::to_string(produced) + " Energy produced";
-        consumed_text->text = std::to_string(consumed) + " Energy used";
+        std::stringstream produced_text_stream;
+        produced_text_stream << produced << " Energy produced";
+        produced_text->text = produced_text_stream.str();
+        std::stringstream consumed_text_stream;
+        consumed_text_stream << consumed << " Energy used";
+        consumed_text->text = consumed_text_stream.str();
     }
 }
 
