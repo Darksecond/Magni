@@ -72,6 +72,9 @@
 		<Unit filename="src/Cubemap.h" />
 		<Unit filename="src/CubemapResourceLoader.cc" />
 		<Unit filename="src/CubemapResourceLoader.h" />
+		<Unit filename="src/CurrencyComponent.h" />
+		<Unit filename="src/CurrencyEngine.cc" />
+		<Unit filename="src/CurrencyEngine.h" />
 		<Unit filename="src/DirectoryManifest.cc" />
 		<Unit filename="src/DirectoryManifest.h" />
 		<Unit filename="src/EnergyComponent.h" />
