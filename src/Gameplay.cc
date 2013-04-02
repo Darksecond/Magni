@@ -107,7 +107,10 @@ void Gameplay::sellEntity(Entity* aEntity)
     if(aEntity != nullptr) {
         scene.deleteEntity(aEntity);
         currentSelectedUnit = nullptr;
+        std::cout << " You now got +4 money :) " << std::endl;
     }
+
+
     /* TODO
     * Remove entity from scene graph DONE
     * Add money to resources. based on health left en intial building costs?
