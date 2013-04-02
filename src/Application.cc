@@ -2,6 +2,10 @@
 
 #include "EnergyEngine.h"
 
+//TODO TEMP
+#include "HealthComponent.h"
+#include "AttackComponent.h"
+
 using namespace Ymir;
 
 Application::Application() : SCREEN_SIZE(800, 600)
@@ -28,6 +32,7 @@ void Application::createEngines()
     engines->assign<AudioEngine>();
     renderEngine = &engines->assign<RenderEngine>(programManager, textureManager, cubemapManager);
     engines->assign<EnergyEngine>(*renderEngine);
+    attackEngine = &engines->assign<AttackEngine>(meshManager, textureManager);
 }
 
 void Application::buildGame()
@@ -61,10 +66,11 @@ void Application::runGame()
 
     std::shared_ptr<Texture> track_tex = textureManager.resource("grass.png");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
-    std::shared_ptr<Mesh> unit_mesh = meshManager.resource("unit.obj");
+    std::shared_ptr<Mesh> unit_mesh = meshManager.resource("untitled.obj");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
 
     Scene& scene = gameplay->getScene();
+    attackEngine->setScene(&scene);
 
     //light one (spot)
     Entity& light_one = scene.assign("light one");
@@ -137,13 +143,26 @@ void Application::runGame()
             Entity* entity = gameplay->getCurrentSelectedEntity();
                 gameplay->sellEntity(entity);
         }
-        if(glfwGetKey( 'W') == GLFW_PRESS && isDone4) {
+        if(glfwGetKey( 'R') == GLFW_PRESS && isDone4) {
             isDone4 = false;
             gameplay->winGame();
         }
         if(glfwGetKey( 'E') == GLFW_PRESS && isDone5) {
             isDone5 = false;
             gameplay->loseGame();
+        }
+        if(glfwGetKey('T') == GLFW_PRESS)
+        {
+            Entity* attacking_unit = gameplay->getCurrentSelectedEntity();
+            Entity* to_be_attacked = gameplay->getEntityAtPosition(renderEngine->get3DPositionFromMousePosition());
+            if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
+            {
+                if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
+                {
+                    attackEngine->attack(*to_be_attacked, *attacking_unit);
+                    std::cout << "Unit: " << attacking_unit->name << " is attacking: " << to_be_attacked->name << std::endl;
+                }
+            }
         }
         // end cleanup -----------------------------------
 

@@ -1,4 +1,7 @@
 #include "Gameplay.h"
+#include "AttackComponent.h"
+#include "HealthComponent.h"
+
 #include <iostream>
 
 using namespace Ymir;
@@ -30,6 +33,7 @@ void Gameplay::createWorker(glm::vec3 position)
     Entity& worker = scene.assign("worker");
     worker.assign<SpatialComponent>(position);
     worker.assign<ModelComponent>(worker_mesh, worker_tex);
+    worker.assign<HealthComponent>(100);
     // TODO add other components
 }
 
@@ -42,6 +46,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
     Entity& basicInfantrie = scene.assign("basicInfantrie");
     basicInfantrie.assign<SpatialComponent>(position);
     basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
+    basicInfantrie.assign<AttackComponent>(1, 20);
     // TODO add other components
 }
 
