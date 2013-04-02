@@ -23,6 +23,7 @@
 #include "CameraComponent.h"
 #include "LightComponent.h"
 #include "EnergyComponent.h"
+#include "OwnerComponent.h"
 
 #include "RTSCameraBehavior.h"
 

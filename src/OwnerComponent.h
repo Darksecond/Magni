@@ -3,9 +3,6 @@
 =======
 
 #include "Component.h"
-#include "Program.h"
-
-#include <GLM/glm.hpp>
 
 namespace Ymir
 {
@@ -13,7 +10,9 @@ namespace Ymir
     {
 
     public:
-        OwnerComponent(OwnerComponent&) = delete;
+        int playerNumber;
+
+        explicit OwnerComponent(int playernumber);
     };
 };
 >>>>>>> 1b4116aa58ac365b2647b54364c0f967ac4502fd
