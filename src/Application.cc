@@ -118,8 +118,6 @@ void Application::runGame()
                 glm::vec3 newPos = renderEngine->get3DPositionFromMousePosition();
                 newPos.y = 0;
                 test->position = newPos;
-            } else {
-            std::cout << "Nothing to move" << std::endl;
             }
         }
 

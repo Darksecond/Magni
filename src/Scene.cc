@@ -34,15 +34,10 @@ Entity& Scene::assign(const std::string& name, Entity* parent)
 void Scene::deleteEntity(Entity * entity) {
     std::list<std::unique_ptr<Entity>>::iterator it;
     for (it=entities.begin(); it != entities.end(); ++it) {
-        if  ((*(*it).get()).name == entity->name ) {
-            break; // found entitiy
+        if ((*it).get() == entity) {
+            //yay found it :) now break from loop !
+            break;
         }
-//       if ( *( * (*it).get()) == (*entity) ) { }
-//        std::cout << typeid( ( * (*it).get()) ).name() << std::endl;
-  //      std::cout << typeid(*entity).name() << std::endl;
-   //     if  ((*(*it).get()) == (*entity) ) {
-     //       break; // found entitiy
-       // }
     }
     engines.unregisterEntity(*entity);
     entities.erase(it);

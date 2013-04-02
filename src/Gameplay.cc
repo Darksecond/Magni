@@ -110,9 +110,12 @@ void Gameplay::loseGame()
 void Gameplay::sellEntity(Entity* aEntity)
 {
     if(aEntity != nullptr) {
-        scene.deleteEntity(aEntity);
-        currentSelectedUnit = nullptr;
-        std::cout << " You now got +4 money :) " << std::endl;
+        auto light = aEntity->component<LightComponent>();
+        if ( light == nullptr ) {
+            scene.deleteEntity(aEntity);
+            currentSelectedUnit = nullptr;
+            std::cout << " You now got +4 money :) " << std::endl;
+        }
     }
 
 
