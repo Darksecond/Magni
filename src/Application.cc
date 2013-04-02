@@ -143,7 +143,7 @@ void Application::runGame()
             Entity* entity = gameplay->getCurrentSelectedEntity();
                 gameplay->sellEntity(entity);
         }
-        if(glfwGetKey( 'W') == GLFW_PRESS && isDone4) {
+        if(glfwGetKey( 'R') == GLFW_PRESS && isDone4) {
             isDone4 = false;
             gameplay->winGame();
         }

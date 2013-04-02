@@ -42,6 +42,7 @@
 		</Compiler>
 		<Unit filename="src/Application.cc" />
 		<Unit filename="src/Application.h" />
+		<Unit filename="src/AttackEngine.cc" />
 		<Unit filename="src/AudioEngine.cc" />
 		<Unit filename="src/AudioEngine.h" />
 		<Unit filename="src/Audio/Buffer.cc" />
