@@ -30,6 +30,10 @@
 #include "AudioEngine.h"
 #include "AttackEngine.h"
 
+
+#include "EnergyEngine.h"
+#include "CurrencyEngine.h"
+
 namespace Ymir
 {
     class Application {
@@ -44,8 +48,8 @@ namespace Ymir
             Gameplay * gameplay;
             EngineManager * engines;
             RenderEngine * renderEngine;
-            AttackEngine* attackEngine;
-
+            AttackEngine * attackEngine;
+            CurrencyEngine * currencyEngine;
             glm::vec2 SCREEN_SIZE;
             double lastTime;
 

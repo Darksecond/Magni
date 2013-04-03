@@ -27,7 +27,7 @@
 
 #include "RTSCameraBehavior.h"
 
-
+#include "CurrencyEngine.h"
 namespace Ymir
 {
     class Gameplay
@@ -39,10 +39,13 @@ namespace Ymir
             glm::vec2 screenSize;
             Entity* currentSelectedUnit;
             RenderEngine& renderEngine;
+            CurrencyEngine& currencyEngine;
+
 
         public:
             int objectOwner;
-            Gameplay(EngineManager& engines, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize);
+
+            Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize);
 
             void createCamera();
 

@@ -1,7 +1,5 @@
 #include "Application.h"
 
-#include "EnergyEngine.h"
-
 //TODO TEMP
 #include "HealthComponent.h"
 #include "AttackComponent.h"
@@ -31,7 +29,12 @@ void Application::createEngines()
     engines->assign<CollisionEngine>();
     engines->assign<AudioEngine>();
     renderEngine = &engines->assign<RenderEngine>(programManager, textureManager, cubemapManager);
+
+
     engines->assign<EnergyEngine>(*renderEngine);
+
+    currencyEngine = &engines->assign<CurrencyEngine>(*renderEngine);
+
     attackEngine = &engines->assign<AttackEngine>(meshManager, textureManager);
 }
 
@@ -44,7 +47,7 @@ void Application::buildGame()
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     // end cleanup -----------------------------------
 
-    gameplay = new Gameplay(*engines, textureManager, meshManager, *renderEngine, SCREEN_SIZE);
+    gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE);
     gameplay->createCamera();
 
     TileMap* tiles = new TileMap(100, 2, 2);

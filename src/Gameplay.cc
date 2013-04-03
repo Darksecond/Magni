@@ -6,9 +6,11 @@
 
 using namespace Ymir;
 
-Gameplay::Gameplay(EngineManager& engines, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize) : scene(engines), textureManager(textureManager), meshManager(meshManager), renderEngine(renderEngine), screenSize(screenSize), objectOwner(1)
+Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
+    RenderEngine& renderEngine, glm::vec2 screenSize)
+        : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
+            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1)
 {
-
 }
 
 void Gameplay::createCamera()
@@ -116,9 +118,9 @@ void Gameplay::sellEntity(Entity* aEntity)
     if(aEntity != nullptr) {
         auto light = aEntity->component<LightComponent>();
         if ( light == nullptr ) {
+            currencyEngine.currency += 403.141596;
             scene.deleteEntity(aEntity);
             currentSelectedUnit = nullptr;
-            std::cout << " You now got +4 money :) " << std::endl;
         }
     }
     /* TODO
@@ -132,17 +134,15 @@ void Gameplay::sellEntity(Entity* aEntity)
 
 void Gameplay::moveEntity() {
     Entity* aEntity = getCurrentSelectedEntity();
-    auto owner = aEntity->component<OwnerComponent>();
+    if(aEntity != nullptr ) {
+        auto owner = aEntity->component<OwnerComponent>();
 
-    if(aEntity != nullptr && owner->playerNumber == objectOwner) {
-        auto spatial = aEntity->component<SpatialComponent>();
-        glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
-        newPos.y = 0;
-        spatial->position = newPos;
-
-        std::cout << "This object is from player: " << owner->playerNumber << std::endl;
-    } else {
-        std::cout << "Nothing to move" << std::endl;
+        if(owner->playerNumber == objectOwner) {
+            auto spatial = aEntity->component<SpatialComponent>();
+            glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
+            newPos.y = 0;
+            spatial->position = newPos;
+        }
     }
 }
 
