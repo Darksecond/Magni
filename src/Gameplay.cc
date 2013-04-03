@@ -140,7 +140,7 @@ void Gameplay::moveEntity() {
         newPos.y = 0;
         spatial->position = newPos;
 
-        std::cout << "This object is from player: " << test2->playerNumber << std::endl;
+        std::cout << "This object is from player: " << owner->playerNumber << std::endl;
     } else {
         std::cout << "Nothing to move" << std::endl;
     }
