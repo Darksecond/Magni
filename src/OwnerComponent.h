@@ -10,6 +10,6 @@ namespace Ymir
     public:
         int playerNumber;
 
-        explicit OwnerComponent(int playernumber);
+        explicit OwnerComponent(int thisnumber) : playerNumber(thisnumber) {}
     };
 };

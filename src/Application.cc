@@ -50,7 +50,6 @@ void Application::buildGame()
     TileMap* tiles = new TileMap(100, 2, 2);
 
     lastTime = glfwGetTime();
-
 }
 
 void Application::runGame()
@@ -111,13 +110,18 @@ void Application::runGame()
         }
 
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
-
             Entity* selectedUnit = gameplay->getCurrentSelectedEntity();
+
             if(selectedUnit != nullptr) {
                 auto test = selectedUnit->component<SpatialComponent>();
+                auto test2 = selectedUnit->component<OwnerComponent>();
                 glm::vec3 newPos = renderEngine->get3DPositionFromMousePosition();
                 newPos.y = 0;
                 test->position = newPos;
+
+                std::cout << "This object is from player: " << test2->playerNumber << std::endl;
+            } else {
+                std::cout << "Nothing to move" << std::endl;
             }
         }
 

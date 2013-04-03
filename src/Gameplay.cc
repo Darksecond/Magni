@@ -34,6 +34,7 @@ void Gameplay::createWorker(glm::vec3 position)
     worker.assign<SpatialComponent>(position);
     worker.assign<ModelComponent>(worker_mesh, worker_tex);
     worker.assign<HealthComponent>(100);
+    worker.assign<OwnerComponent>(1);
     // TODO add other components
 }
 
@@ -47,6 +48,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
     basicInfantrie.assign<SpatialComponent>(position);
     basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
     basicInfantrie.assign<AttackComponent>(1, 20);
+    basicInfantrie.assign<OwnerComponent>(1);
     // TODO add other components
 }
 
@@ -70,6 +72,7 @@ void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
     house.assign<SpatialComponent>(position);
     house.assign<ModelComponent>(house_mesh, house_tex);
     house.assign<EnergyComponent>(150);
+    house.assign<OwnerComponent>(1);
 }
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
@@ -82,6 +85,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
     house.assign<SpatialComponent>(position);
     house.assign<ModelComponent>(house_mesh, t);
     house.assign<EnergyComponent>(-100);
+    house.assign<OwnerComponent>(1);
 }
 
 void Gameplay::buildPowerCore()
