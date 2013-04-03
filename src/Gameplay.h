@@ -55,6 +55,7 @@ namespace Ymir
             void buildAcademyOfAdvancedTechnologies();
 
             void sellEntity(Entity* aEntity);
+            void moveEntity();
 
             void winGame();
             void loseGame();

@@ -111,14 +111,7 @@ void Application::runGame()
         }
 
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
-
-            Entity* selectedUnit = gameplay->getCurrentSelectedEntity();
-            if(selectedUnit != nullptr) {
-                auto test = selectedUnit->component<SpatialComponent>();
-                glm::vec3 newPos = renderEngine->get3DPositionFromMousePosition();
-                newPos.y = 0;
-                test->position = newPos;
-            }
+            gameplay->moveEntity();
         }
 
         if(glfwGetKey( 'I' ) == GLFW_PRESS && isDone) {

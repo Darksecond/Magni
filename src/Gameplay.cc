@@ -117,8 +117,6 @@ void Gameplay::sellEntity(Entity* aEntity)
             std::cout << " You now got +4 money :) " << std::endl;
         }
     }
-
-
     /* TODO
     * Remove entity from scene graph DONE
     * Add money to resources. based on health left en intial building costs?
@@ -126,6 +124,19 @@ void Gameplay::sellEntity(Entity* aEntity)
     * if( money < 1 ) {
     *   money = 0
     */
+}
+
+void Gameplay::moveEntity() {
+    Entity* aEntity = getCurrentSelectedEntity();
+    if(aEntity != nullptr) {
+        auto light = aEntity->component<LightComponent>();
+            if ( light == nullptr ) {
+                auto test = aEntity->component<SpatialComponent>();
+                glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
+                newPos.y = 0;
+                test->position = newPos;
+            }
+    }
 }
 
 void Gameplay::updateSelectedEntity(glm::vec3 position)
