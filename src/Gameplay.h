@@ -66,5 +66,3 @@ namespace Ymir
             Scene& getScene();
     };
 };
-
-
