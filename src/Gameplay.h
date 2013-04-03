@@ -39,7 +39,9 @@ namespace Ymir
             glm::vec2 screenSize;
             Entity* currentSelectedUnit;
             RenderEngine& renderEngine;
+
         public:
+            int objectOwner;
             Gameplay(EngineManager& engines, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize);
 
             void createCamera();
@@ -59,6 +61,7 @@ namespace Ymir
 
             void winGame();
             void loseGame();
+            void switchOwner(int owner);
 
             Entity* getEntityAtPosition(glm::vec3 pos);
             void updateSelectedEntity(glm::vec3 position);

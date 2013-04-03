@@ -141,6 +141,14 @@ void Application::runGame()
             isDone5 = false;
             gameplay->loseGame();
         }
+        if(glfwGetKey('Z') == GLFW_PRESS) {
+            std::cout << "Current owner is now: " << gameplay->objectOwner << std::endl;
+            gameplay->switchOwner(1);
+        }
+        if(glfwGetKey('X') == GLFW_PRESS) {
+            std::cout << "Current owner is now: " << gameplay->objectOwner << std::endl;
+            gameplay->switchOwner(2);
+        }
         if(glfwGetKey('T') == GLFW_PRESS)
         {
             Entity* attacking_unit = gameplay->getCurrentSelectedEntity();
@@ -155,7 +163,6 @@ void Application::runGame()
             }
         }
         // end cleanup -----------------------------------
-
 
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)
