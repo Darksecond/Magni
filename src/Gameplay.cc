@@ -123,25 +123,19 @@ void Gameplay::sellEntity(Entity* aEntity)
             currentSelectedUnit = nullptr;
         }
     }
-    /* TODO
-    * Remove entity from scene graph DONE
-    * Add money to resources. based on health left en intial building costs?
-    * int money = 0.5*(aEntity.Health*aEntityCosts.)
-    * if( money < 1 ) {
-    *   money = 0
-    */
 }
 
 void Gameplay::moveEntity() {
     Entity* aEntity = getCurrentSelectedEntity();
     if(aEntity != nullptr ) {
         auto owner = aEntity->component<OwnerComponent>();
-
-        if(owner->playerNumber == objectOwner) {
-            auto spatial = aEntity->component<SpatialComponent>();
-            glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
-            newPos.y = 0;
-            spatial->position = newPos;
+        if(owner != nullptr) {
+            if(owner->playerNumber == objectOwner) {
+                auto spatial = aEntity->component<SpatialComponent>();
+                glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
+                newPos.y = 0;
+                spatial->position = newPos;
+            }
         }
     }
 }

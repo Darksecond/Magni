@@ -2,7 +2,7 @@
 //  CurrencyEngine.cpp
 //  Ymir
 //
-//  Created by Marvin Effing on 26-03-13.
+//  Created by Nick und Peter on 26-03-13.
 //  Copyright (c) 2013 Tim Peters. All rights reserved.
 //
 #include "CurrencyEngine.h"
@@ -12,7 +12,7 @@ using namespace Ymir;
 
 CurrencyEngine::CurrencyEngine(RenderEngine& renderer) {
 
-    currencyText = std::make_shared<Text>("You have 0 money", glm::vec2{300, 50},16); //position: 300,50, font size 10
+    currencyText = std::make_shared<Text>("You have 0 money", glm::vec2{10, 10},24); //position: 300,50, font size 10
     renderer.addText(currencyText);
 }
 
