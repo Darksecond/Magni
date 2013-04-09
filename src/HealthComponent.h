@@ -9,7 +9,8 @@ namespace Ymir
     class HealthComponent : public Component<HealthComponent>
     {
     public:
-        HealthComponent(uint32_t h) : health(h) {}
+        HealthComponent(uint32_t h) : health(h), startHealth(h) {}
         int32_t health;
+        int startHealth;
     };
 };

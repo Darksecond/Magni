@@ -9,8 +9,9 @@ using namespace Ymir;
 Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
     RenderEngine& renderEngine, glm::vec2 screenSize)
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1)
+            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr)
 {
+
 }
 
 void Gameplay::createCamera()
@@ -36,6 +37,7 @@ void Gameplay::createWorker(glm::vec3 position)
     worker.assign<SpatialComponent>(position);
     worker.assign<ModelComponent>(worker_mesh, worker_tex);
     worker.assign<HealthComponent>(100);
+    worker.assign<CurrencyComponent>(100);
     worker.assign<OwnerComponent>(objectOwner);
     // TODO add other components
 }
@@ -67,7 +69,7 @@ void Gameplay::createEngineer()
 void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
 {
     position.y = 0.0;
-    std::shared_ptr<Mesh> house_mesh = meshManager.resource("orbitaldropbeacon.obj");
+    std::shared_ptr<Mesh> house_mesh = meshManager.resource("untitled.obj");
     std::shared_ptr<Texture> house_tex = textureManager.resource("house1.bmp");
 
     Entity& house = scene.assign("houseMesh");
@@ -102,14 +104,14 @@ void Gameplay::buildAcademyOfAdvancedTechnologies()
 
 void Gameplay::winGame()
 {
-    std::shared_ptr<Text> winningText = std::make_shared<Text>("YOU ARE VICTORIOUS", glm::vec2{10, 10}, 20);
+    std::shared_ptr<Text> winningText = std::make_shared<Text>("YOU ARE VICTORIOUS", glm::vec2{10, 580}, 20);
     renderEngine.addText(winningText);
 
 }
 
 void Gameplay::loseGame()
 {
-    std::shared_ptr<Text> losingText = std::make_shared<Text>("YOU ARE DEFEATED", glm::vec2{10, 30}, 20);
+    std::shared_ptr<Text> losingText = std::make_shared<Text>("YOU ARE DEFEATED", glm::vec2{10, 580}, 20);
     renderEngine.addText(losingText);
 }
 
@@ -118,9 +120,17 @@ void Gameplay::sellEntity(Entity* aEntity)
     if(aEntity != nullptr) {
         auto light = aEntity->component<LightComponent>();
         if ( light == nullptr ) {
-            currencyEngine.currency += 403.141596;
-            scene.deleteEntity(aEntity);
-            currentSelectedUnit = nullptr;
+            auto healthComponent = aEntity->component<HealthComponent>();
+            if ( healthComponent  != nullptr) {
+                auto currencyComponent = aEntity->component<CurrencyComponent>();
+                if ( currencyComponent   != nullptr) {
+                    double healthPercentage =  healthComponent->health;
+                    healthPercentage /= healthComponent->startHealth;
+                    currencyEngine.currency += currencyComponent->price * healthPercentage;
+                    scene.deleteEntity(aEntity);
+                    currentSelectedUnit = nullptr;
+                }
+            }
         }
     }
 }
