@@ -93,6 +93,7 @@
 		<Unit filename="src/Gameplay.cc" />
 		<Unit filename="src/Gameplay.h" />
 		<Unit filename="src/Geometry.h" />
+		<Unit filename="src/HealthComponent.h" />
 		<Unit filename="src/LightComponent.cc" />
 		<Unit filename="src/LightComponent.h" />
 		<Unit filename="src/ListenerComponent.h" />
