@@ -26,10 +26,10 @@ void RTSCameraBehavior::update(double delta)
 void RTSCameraBehavior::offsetOrientation(double delta) {
     auto spatial = entity->component<SpatialComponent>();
     auto camera = entity->component<CameraComponent>();
-    CameraComponent& _camera __unused = *camera;
-    SpatialComponent& _spatial __unused = *spatial;
+    CameraComponent& _camera = *camera;
+    SpatialComponent& _spatial = *spatial;
 
-    const float mouseSensitivity __unused = 0.1;
+    const float mouseSensitivity  = 0.1;
     int mouseX, mouseY;
     glfwGetMousePos(&mouseX, &mouseY);
 
