@@ -50,7 +50,7 @@ void Application::buildGame()
     gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE);
     gameplay->createCamera();
 
-    TileMap* tiles = new TileMap(100, 2, 2);
+    TileMap* tiles __unused = new TileMap(100, 2, 2);
 
     lastTime = glfwGetTime();
 }
