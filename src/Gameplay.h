@@ -45,6 +45,10 @@ namespace Ymir
         public:
             int objectOwner;
 
+            int workerPrice;
+            int basicInfanteriePrice;
+            int orbitalDropBeaconPrice;
+
             Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize);
 
             void createCamera();

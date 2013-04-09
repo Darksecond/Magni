@@ -9,7 +9,7 @@ using namespace Ymir;
 Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
     RenderEngine& renderEngine, glm::vec2 screenSize)
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr)
+            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(150),orbitalDropBeaconPrice(250)
 {
 
 }
@@ -29,31 +29,43 @@ void Gameplay::createCamera()
 
 void Gameplay::createWorker(glm::vec3 position)
 {
-    position.y = 0.3;
-    std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
-    std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
+    if(currencyEngine.currency >= workerPrice) {
+        position.y = 0.3;
+        std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
+        std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
-    Entity& worker = scene.assign("worker");
-    worker.assign<SpatialComponent>(position);
-    worker.assign<ModelComponent>(worker_mesh, worker_tex);
-    worker.assign<HealthComponent>(100);
-    worker.assign<CurrencyComponent>(100);
-    worker.assign<OwnerComponent>(objectOwner);
-    // TODO add other components
+        Entity& worker = scene.assign("worker");
+        worker.assign<SpatialComponent>(position);
+        worker.assign<ModelComponent>(worker_mesh, worker_tex);
+        worker.assign<HealthComponent>(100);
+        worker.assign<CurrencyComponent>(workerPrice);
+        worker.assign<OwnerComponent>(objectOwner);
+        currencyEngine.currency -= workerPrice;
+    } else {
+        std::cout << "Not enough money for a worker unit " << std::endl;
+    }
 }
 
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
-    position.y = 0.0;
-    std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
-    std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
+    if(currencyEngine.currency >= basicInfanteriePrice) {
+        position.y = 0.0;
+        std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
+        std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
 
-    Entity& basicInfantrie = scene.assign("basicInfantrie");
-    basicInfantrie.assign<SpatialComponent>(position);
-    basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
-    basicInfantrie.assign<AttackComponent>(1, 20);
-    basicInfantrie.assign<OwnerComponent>(objectOwner);
-    // TODO add other components
+        Entity& basicInfantrie = scene.assign("basicInfantrie");
+        basicInfantrie.assign<SpatialComponent>(position);
+        basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
+        basicInfantrie.assign<AttackComponent>(1, 20);
+        basicInfantrie.assign<OwnerComponent>(objectOwner);
+        basicInfantrie.assign<HealthComponent>(150);
+        basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
+        currencyEngine.currency -= basicInfanteriePrice;
+
+        // TODO add other components
+    } else {
+        std::cout << "Not enough money for basic infantrie" << std::endl;
+    }
 }
 
 void Gameplay::createAdvancedInfantrie()
@@ -68,28 +80,38 @@ void Gameplay::createEngineer()
 
 void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
 {
-    position.y = 0.0;
-    std::shared_ptr<Mesh> house_mesh = meshManager.resource("untitled.obj");
-    std::shared_ptr<Texture> house_tex = textureManager.resource("house1.bmp");
+        position.y = 0.0;
+        std::shared_ptr<Mesh> house_mesh = meshManager.resource("ciCore.obj");
+        std::shared_ptr<Texture> house_tex = textureManager.resource("house1.bmp");
 
-    Entity& house = scene.assign("houseMesh");
-    house.assign<SpatialComponent>(position);
-    house.assign<ModelComponent>(house_mesh, house_tex);
-    house.assign<EnergyComponent>(150);
-    house.assign<OwnerComponent>(objectOwner);
+        Entity& house = scene.assign("houseMesh");
+        house.assign<SpatialComponent>(position);
+        house.assign<ModelComponent>(house_mesh, house_tex);
+        house.assign<EnergyComponent>(150);
+        house.assign<OwnerComponent>(objectOwner);
 }
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 {
-    position.y = 0.0;
-    std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
-    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
-    Entity& house = scene.assign("OrbitalDropBeacon");
-    house.assign<SpatialComponent>(position);
-    house.assign<ModelComponent>(house_mesh, t);
-    house.assign<EnergyComponent>(-100);
-    house.assign<OwnerComponent>(objectOwner);
+ if (currencyEngine.currency >= orbitalDropBeaconPrice) {
+        position.y = 0.0;
+        std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
+        std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
+
+        Entity& house = scene.assign("OrbitalDropBeacon");
+        house.assign<SpatialComponent>(position);
+        house.assign<ModelComponent>(house_mesh, t);
+        house.assign<EnergyComponent>(-100);
+        house.assign<OwnerComponent>(objectOwner);
+        house.assign<HealthComponent>(250);
+        house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
+        currencyEngine.currency -= orbitalDropBeaconPrice;
+
+    } else {
+        std::cout << "Not enough money for Orbital drop beacon" << std::endl;
+    }
+
 }
 
 void Gameplay::buildPowerCore()
