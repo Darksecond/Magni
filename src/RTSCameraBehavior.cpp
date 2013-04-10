@@ -29,7 +29,7 @@ void RTSCameraBehavior::offsetOrientation(double delta) {
     CameraComponent& _camera = *camera;
     SpatialComponent& _spatial = *spatial;
 
-    const float mouseSensitivity = 0.1;
+    const float mouseSensitivity  = 0.1;
     int mouseX, mouseY;
     glfwGetMousePos(&mouseX, &mouseY);
 

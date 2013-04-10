@@ -68,7 +68,6 @@ void Application::runGame()
 
     std::shared_ptr<Texture> track_tex = textureManager.resource("grass.png");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
-    std::shared_ptr<Mesh> unit_mesh = meshManager.resource("untitled.obj");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
 
     Scene& scene = gameplay->getScene();
@@ -90,9 +89,7 @@ void Application::runGame()
     track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     track.assign<ModelComponent>(track_mesh, track_tex);
 
-    Entity& unit = scene.assign("unit");
-    unit.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
-    unit.assign<ModelComponent>(unit_mesh, t);
+    gameplay->buildCentralIntelligenceCore(glm::vec3{0, 0.00, 0});
     // end cleanup -----------------------------------
 
     while(glfwGetWindowParam(GLFW_OPENED))
@@ -115,14 +112,9 @@ void Application::runGame()
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
             gameplay->moveEntity();
         }
-
-        if(glfwGetKey( 'I' ) == GLFW_PRESS && isDone) {
-            isDone = false;
-            gameplay->buildCentralIntelligenceCore(renderEngine->get3DPositionFromMousePosition());
-        }
         if(glfwGetKey( 'O' ) == GLFW_PRESS && isDone1) {
-            isDone1 = false;
-            gameplay->buildOrbitalDropBeacon(renderEngine->get3DPositionFromMousePosition());
+                isDone1 = false;
+                gameplay->buildOrbitalDropBeacon(renderEngine->get3DPositionFromMousePosition());
         }
         if(glfwGetKey( 'J' ) == GLFW_PRESS && isDone2) {
             isDone2 = false;

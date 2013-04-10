@@ -26,7 +26,7 @@ void CurrencyEngine::unregisterEntity(Entity& ent) {
 
 void CurrencyEngine::update(int pass, double delta) {
     if(pass == 0) {
-        currency += delta * 3.1415;
+        currency += delta * 6.2830;
         int temp = currency;
         std::stringstream produced_text_stream;
         produced_text_stream << temp << " money";
