@@ -41,6 +41,9 @@ namespace Ymir
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
 
+            Entity& CentralIntelligenceCoreOwner;
+            Entity& CentralIntelligenceCoreEnemy;
+
 
         public:
             int objectOwner;
