@@ -51,7 +51,7 @@ glm::mat4 Camera::projectionMatrix() const
     //50.0 = field of view
     //0.01  = near plane
     //100.0 = far plane
-    return glm::perspective<float>(50.0, _camera._aspectratio, 0.01, 100.0);
+    return glm::perspective<float>(50.0, _camera.get_aspect_ratio(), 0.01, 100.0);
 }
 
 glm::vec3 Camera::forward() const {
