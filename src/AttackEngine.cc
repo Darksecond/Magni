@@ -63,7 +63,7 @@ void AttackEngine::attack(Entity& attackee, const Entity& attacker)
         //add stuff!
         _attack_animation_entity->assign<ModelComponent>(mesh_manager.resource("monkey.obj"), texture_manager.resource("track.jpg"));
         auto& spatial = _attack_animation_entity->assign<SpatialComponent>(glm::vec3(0));
-        spatial.position = attackee.component<SpatialComponent>()->position;
+        spatial.set_position(attackee.component<SpatialComponent>()->get_position());
         
         _attack_animation_life = attack->duration;
     }

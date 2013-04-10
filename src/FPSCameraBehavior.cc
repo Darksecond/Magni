@@ -43,7 +43,7 @@ void FPSCameraBehavior::offsetOrientation(float upAngle, float rightAngle) {
     //we can't only use the quaternion, because it would be too difficult to check the maximum pitch right now
     glm::quat up = glm::angleAxis(_camera.get_vertical_angle(), glm::vec3(1,0,0));
     glm::quat right = glm::angleAxis(_camera.get_horizontal_angle(), glm::vec3(0,1,0));
-    _spatial.direction = glm::inverse(up * right);
+    _spatial.setDirection(glm::inverse(up * right));
 }
 
 /*

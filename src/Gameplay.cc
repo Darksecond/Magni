@@ -144,7 +144,7 @@ void Gameplay::moveEntity() {
                 auto spatial = aEntity->component<SpatialComponent>();
                 glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
                 newPos.y = 0;
-                spatial->position = newPos;
+                spatial->set_position(newPos);
             }
         }
     }
@@ -163,7 +163,7 @@ Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
     for(std::unique_ptr<Entity>& entity : scene.entities)
     {
         auto test = entity->component<SpatialComponent>();
-        double distanceBetween = glm::distance(test->position, position);
+        double distanceBetween = glm::distance(test->get_position(), position);
 
         if(distanceBetween < 2.5f && distanceBetween < distance) {
             distance = distanceBetween;

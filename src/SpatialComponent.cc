@@ -14,12 +14,12 @@ const glm::vec3 SpatialComponent::directionEuler() const
     return glm::eulerAngles(direction);
 }
 
-void SpatialComponent::setDirection(glm::quat& quat)
+void SpatialComponent::setDirection(const glm::quat& quat)
 {
     direction = quat;
 }
 
-void SpatialComponent::setDirection(glm::vec3& euler)
+void SpatialComponent::setDirection(const glm::vec3& euler)
 {
     direction = glm::quat{glm::radians(euler)};
 }

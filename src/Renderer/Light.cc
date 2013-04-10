@@ -32,7 +32,7 @@ void Light::attach(Program& p, const Camera& c) const
     p.setUniform("light.ambient", _light.ambient);
     p.setUniform("light.specular", _light.specular);
     int w = _light.lightType == LightComponent::LightType::POINT;
-    p.setUniform("light.position", c.viewMatrix() * glm::vec4{_spatial.position, w});
+    p.setUniform("light.position", c.viewMatrix() * glm::vec4{_spatial.get_position(), w});
 }
 
 bool Light::operator==(const Light& other) const
