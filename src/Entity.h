@@ -96,6 +96,8 @@ namespace Ymir
             component->parent = parent->component<T>();
         else
             component->parent = nullptr;
+        
+        component->entity = this;
         components.insert({component->type(), component});
         engines.addComponent(*this, component->type());
         return *component;
@@ -107,5 +109,10 @@ namespace Ymir
 
         std::shared_ptr<T> component = std::make_shared<T>(args ...);
         return assign(component);
+    }
+    
+    inline void component_update_block(BaseComponent::Type component_type, void* data, size_t data_size)
+    {
+        //TODO prepare block for sending to Scene
     }
 };
