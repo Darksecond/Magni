@@ -40,6 +40,8 @@ namespace Ymir
             Entity* currentSelectedUnit;
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
+        
+            float infantryTimer, buildingTimer;
 
 
         public:
@@ -74,5 +76,7 @@ namespace Ymir
             void updateSelectedEntity(glm::vec3 position);
             Entity* getCurrentSelectedEntity();
             Scene& getScene();
+
+            void updateTimer(float delta);
     };
 };
