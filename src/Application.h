@@ -29,7 +29,7 @@
 #include "CollisionEngine.h"
 #include "AudioEngine.h"
 #include "AttackEngine.h"
-
+#include "Network.h"
 
 #include "EnergyEngine.h"
 #include "CurrencyEngine.h"

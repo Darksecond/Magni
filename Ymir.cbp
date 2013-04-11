@@ -30,6 +30,7 @@
 					<Add library="glu32" />
 					<Add library="OpenAL32" />
 					<Add library="alut" />
+					<Add library="wsock32" />
 					<Add directory="windows/GLEW/lib" />
 					<Add directory="windows/GLFW/lib-mingw" />
 					<Add directory="windows/OpenAL/libs" />
@@ -101,6 +102,12 @@
 		<Unit filename="src/Mesh.h" />
 		<Unit filename="src/Message.h" />
 		<Unit filename="src/ModelComponent.h" />
+		<Unit filename="src/Network.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="src/Network.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="src/NodeCache.h" />
 		<Unit filename="src/ObjGeometry.cc" />
 		<Unit filename="src/ObjGeometry.h" />

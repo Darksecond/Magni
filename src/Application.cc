@@ -4,8 +4,6 @@
 #include "HealthComponent.h"
 #include "AttackComponent.h"
 
-#include "Net.h"
-
 using namespace Ymir;
 
 Application::Application() : SCREEN_SIZE(800, 600)
@@ -58,50 +56,7 @@ void Application::buildGame()
 
 void Application::runGame()
 {
-    // initialize socket layer
-	if ( !net::InitializeSockets() )
-	{
-		printf( "failed to initialize sockets\n" );
-	}
-
-	// create socket
-
-	int port = 30000;
-	printf( "creating socket on port %d\n", port );
-
-	net::Socket socket;
-	if (!socket.Open( port )) {
-		printf( "failed to create socket!\n" );
-	}
-
-	while ( true )
-	{
-		const char data[] = "hello world!";
-
-		socket.Send( net::Address(127,0,0,1,port), data, sizeof(data) );
-
-		while ( true )
-		{
-			net::Address sender;
-			unsigned char buffer[256];
-
-			int bytes_read = socket.Receive( sender, buffer, sizeof( buffer ) );
-
-			if ( !bytes_read )
-				break;
-
-			printf( "received packet from %d.%d.%d.%d:%d (%d bytes)\n",
-				sender.GetA(), sender.GetB(), sender.GetC(), sender.GetD(),
-				sender.GetPort(), bytes_read );
-		}
-
-		net::wait( 1.00f );
-	}
-
-	net::ShutdownSockets();
-
-
-    /*// TODO cleanup ----------------------------------
+    // TODO cleanup ----------------------------------
     bool isDone, isDone1, isDone2, isDone3, isDone4, isDone5;
     isDone = true;
     isDone1 = true;
@@ -138,6 +93,8 @@ void Application::runGame()
     unit.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     unit.assign<ModelComponent>(unit_mesh, t);
     // end cleanup -----------------------------------
+
+    //Network* network = new Network();
 
     while(glfwGetWindowParam(GLFW_OPENED))
     {
@@ -218,5 +175,5 @@ void Application::runGame()
         //exit program if escape key is pressed
         if(glfwGetKey(GLFW_KEY_ESC))
             glfwCloseWindow();
-    }*/
+    }
 }

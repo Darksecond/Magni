@@ -38,6 +38,7 @@
 #endif
 
 #include <assert.h>
+#include <stdio.h>
 
 namespace net
 {
@@ -45,7 +46,7 @@ namespace net
 
 #if PLATFORM == PLATFORM_WINDOWS
 
-	void wait( float seconds )
+	inline void wait( float seconds )
 	{
 		Sleep( (int) ( seconds * 1000.0f ) );
 	}
