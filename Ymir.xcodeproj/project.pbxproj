@@ -27,10 +27,15 @@
 		F61BDCBB16E8988E00768DEE /* Cubemap.cc in Sources */ = {isa = PBXBuildFile; fileRef = F61BDCB916E8988E00768DEE /* Cubemap.cc */; };
 		F61BDCC116E8BD8100768DEE /* sky.frag in Resources */ = {isa = PBXBuildFile; fileRef = F61BDCBF16E8BD6700768DEE /* sky.frag */; };
 		F61BDCC216E8BD8300768DEE /* sky.vert in Resources */ = {isa = PBXBuildFile; fileRef = F61BDCBD16E8BD6200768DEE /* sky.vert */; };
+		F61D00641716CAA800B7315F /* libboost_system-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D00631716CAA800B7315F /* libboost_system-mt.a */; };
+		F61D00661716CAAD00B7315F /* libboost_thread-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D00651716CAAD00B7315F /* libboost_thread-mt.a */; };
+		F61D006A1716CDFD00B7315F /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D00681716CDFC00B7315F /* Server.cpp */; };
+		F61D006D1716CE1000B7315F /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D006B1716CE1000B7315F /* Network.cpp */; };
 		F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F627D39D16B97CA7000B06AF /* wooden-crate.jpg */; };
 		F62F58A116E6174D008B379E /* helloworld.wav in Resources */ = {isa = PBXBuildFile; fileRef = F62F58A016E6174D008B379E /* helloworld.wav */; };
 		F62F58A416E61B38008B379E /* Listener.cc in Sources */ = {isa = PBXBuildFile; fileRef = F62F58A216E61B38008B379E /* Listener.cc */; };
 		F62F58AB16E63F33008B379E /* crash.wav in Resources */ = {isa = PBXBuildFile; fileRef = F62F58AA16E63F33008B379E /* crash.wav */; };
+		F63C7D9F1716C5B90024CA50 /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F63C7D9D1716C5B90024CA50 /* Client.cpp */; };
 		F642BDA616DF9063009EB1DB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F642BDA516DF9063009EB1DB /* OpenAL.framework */; };
 		F644CED816C28ABF007B35C5 /* Model.cc in Sources */ = {isa = PBXBuildFile; fileRef = F644CED716C28ABF007B35C5 /* Model.cc */; };
 		F64516D216C068C000726CF5 /* CameraComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64516D116C068C000726CF5 /* CameraComponent.cc */; };
@@ -235,6 +240,13 @@
 		F61BDCBC16E8B7E500768DEE /* CubemapResourceLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubemapResourceLoader.h; sourceTree = "<group>"; };
 		F61BDCBD16E8BD6200768DEE /* sky.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sky.vert; sourceTree = "<group>"; };
 		F61BDCBF16E8BD6700768DEE /* sky.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sky.frag; sourceTree = "<group>"; };
+		F61D00631716CAA800B7315F /* libboost_system-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_system-mt.a"; path = "../../../../usr/local/lib/libboost_system-mt.a"; sourceTree = "<group>"; };
+		F61D00651716CAAD00B7315F /* libboost_thread-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_thread-mt.a"; path = "../../../../usr/local/lib/libboost_thread-mt.a"; sourceTree = "<group>"; };
+		F61D00671716CD4100B7315F /* Net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Net.h; sourceTree = "<group>"; };
+		F61D00681716CDFC00B7315F /* Server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
+		F61D00691716CDFC00B7315F /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		F61D006B1716CE1000B7315F /* Network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Network.cpp; sourceTree = "<group>"; };
+		F61D006C1716CE1000B7315F /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		F627D39D16B97CA7000B06AF /* wooden-crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wooden-crate.jpg"; sourceTree = "<group>"; };
 		F62F58A016E6174D008B379E /* helloworld.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = helloworld.wav; sourceTree = "<group>"; };
 		F62F58A216E61B38008B379E /* Listener.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Listener.cc; sourceTree = "<group>"; };
@@ -242,6 +254,8 @@
 		F62F58A816E62C79008B379E /* ListenerComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListenerComponent.h; sourceTree = "<group>"; };
 		F62F58A916E62FAF008B379E /* SourceComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SourceComponent.h; sourceTree = "<group>"; };
 		F62F58AA16E63F33008B379E /* crash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = crash.wav; sourceTree = "<group>"; };
+		F63C7D9D1716C5B90024CA50 /* Client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Client.cpp; sourceTree = "<group>"; };
+		F63C7D9E1716C5B90024CA50 /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		F642BD8F16DF6239009EB1DB /* CarComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarComponent.h; sourceTree = "<group>"; };
 		F642BDA516DF9063009EB1DB /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F644CED616C28AB0007B35C5 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
@@ -433,6 +447,8 @@
 				F687A4F616B4B96F00878140 /* GLEW.framework in Frameworks */,
 				F687A4F716B4B96F00878140 /* GLFW.framework in Frameworks */,
 				F687A41016B4B63300878140 /* Cocoa.framework in Frameworks */,
+				F61D00641716CAA800B7315F /* libboost_system-mt.a in Frameworks */,
+				F61D00661716CAAD00B7315F /* libboost_thread-mt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +540,8 @@
 		F687A40016B4B63300878140 = {
 			isa = PBXGroup;
 			children = (
+				F61D00651716CAAD00B7315F /* libboost_thread-mt.a */,
+				F61D00631716CAA800B7315F /* libboost_system-mt.a */,
 				F687A41516B4B63300878140 /* Ymir */,
 				F687A43516B4B73B00878140 /* GLFW */,
 				F687A4D616B4B89900878140 /* GLEW */,
@@ -761,6 +779,8 @@
 				F6B1DA2516C045B6006BBC69 /* Engines */,
 				F689424F16C906810097FB68 /* Behaviors */,
 				F6053FE816C6D532007F52FE /* Resource Management */,
+				F63C7D9D1716C5B90024CA50 /* Client.cpp */,
+				F63C7D9E1716C5B90024CA50 /* Client.h */,
 				F60D92A51701D86100D0E6F4 /* Application.cc */,
 				F60D92A61701D86100D0E6F4 /* Application.h */,
 				F645948B16B6A8F100B118C2 /* Shader.h */,
@@ -773,6 +793,11 @@
 				F6B1DA1316BFD1D7006BBC69 /* Entity.cc */,
 				F6FB2A1B16B7104F00E6013E /* Texture.h */,
 				F6FB2A1C16B7105D00E6013E /* Texture.cc */,
+				F61D00671716CD4100B7315F /* Net.h */,
+				F61D006B1716CE1000B7315F /* Network.cpp */,
+				F61D006C1716CE1000B7315F /* Network.h */,
+				F61D00681716CDFC00B7315F /* Server.cpp */,
+				F61D00691716CDFC00B7315F /* Server.h */,
 				F61BDCBA16E8988E00768DEE /* Cubemap.h */,
 				F60D929A1701C2F800D0E6F4 /* Gameplay.cc */,
 				F60D92981701C2ED00D0E6F4 /* Gameplay.h */,
@@ -1214,6 +1239,9 @@
 				F60D92A71701D86100D0E6F4 /* Application.cc in Sources */,
 				F67A394B17031820004AAF05 /* AttackEngine.cc in Sources */,
 				F6D1EA401713FFF200906822 /* CurrencyEngine.cc in Sources */,
+				F63C7D9F1716C5B90024CA50 /* Client.cpp in Sources */,
+				F61D006A1716CDFD00B7315F /* Server.cpp in Sources */,
+				F61D006D1716CE1000B7315F /* Network.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1357,10 +1385,14 @@
 		F687A42A16B4B63300878140 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = "osx/Ymir/Ymir-Info.plist";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				LLVM_LTO = NO;
 				PRODUCT_NAME = Ymir;
 				USER_HEADER_SEARCH_PATHS = src;
@@ -1371,10 +1403,14 @@
 		F687A42B16B4B63300878140 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = "osx/Ymir/Ymir-Info.plist";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				LLVM_LTO = NO;
 				PRODUCT_NAME = Ymir;
 				USER_HEADER_SEARCH_PATHS = src;
