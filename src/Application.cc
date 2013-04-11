@@ -57,13 +57,15 @@ void Application::buildGame()
 void Application::runGame()
 {
     // TODO cleanup ----------------------------------
-    bool isDone, isDone1, isDone2, isDone3, isDone4, isDone5;
+    bool isDone, isDone1, isDone2, isDone3, isDone4, isDone5, serverDone, clientDone;
     isDone = true;
     isDone1 = true;
     isDone2 = true;
     isDone3 = true;
     isDone4 = true;
     isDone5 = true;
+    serverDone = false;
+    clientDone = false;
 
     std::shared_ptr<Texture> track_tex = textureManager.resource("grass.png");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
@@ -94,8 +96,6 @@ void Application::runGame()
     unit.assign<ModelComponent>(unit_mesh, t);
     // end cleanup -----------------------------------
 
-    //Network* network = new Network();
-
     while(glfwGetWindowParam(GLFW_OPENED))
     {
         double thisTime = glfwGetTime();
@@ -111,6 +111,16 @@ void Application::runGame()
         // TODO cleanup ----------------------------------
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
             gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
+        }
+
+        if(glfwGetKey( 'C' ) == GLFW_PRESS && !clientDone) {
+            clientDone = true;
+            Client *client = new Client();
+        }
+
+        if(glfwGetKey( 'V' ) == GLFW_PRESS && !serverDone) {
+            serverDone = true;
+            Server *server = new Server();
         }
 
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {

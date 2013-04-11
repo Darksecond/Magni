@@ -10,7 +10,6 @@ namespace Ymir
     protected:
         static const int port = 30000;
         net::Socket socket;
-        char data[];
 
     public:
         Network();

@@ -15,10 +15,12 @@
 				<Compiler>
 					<Add option="-std=c++0x" />
 					<Add option="-g" />
+					<Add option="-DBOOST_THREAD_USE_LIB" />
 					<Add directory="windows/OpenAL/include" />
 					<Add directory="windows/GLM" />
 					<Add directory="windows/GLEW/include" />
 					<Add directory="windows/GLFW/include" />
+					<Add directory="C:/MinGW/boost_1_53" />
 				</Compiler>
 				<Linker>
 					<Add library="kernel32" />
@@ -31,10 +33,13 @@
 					<Add library="OpenAL32" />
 					<Add library="alut" />
 					<Add library="wsock32" />
+					<Add library="boost_system-mgw46-mt-1_53" />
+					<Add library="boost_thread-mgw46-mt-1_53" />
 					<Add directory="windows/GLEW/lib" />
 					<Add directory="windows/GLFW/lib-mingw" />
 					<Add directory="windows/OpenAL/libs" />
 					<Add directory="windows/OpenAL/libs/Win32" />
+					<Add directory="C:/MinGW/boost_1_53/stage/lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -62,6 +67,8 @@
 		<Unit filename="src/CarCollisionBehavior.cc" />
 		<Unit filename="src/CarCollisionBehavior.h" />
 		<Unit filename="src/CarComponent.h" />
+		<Unit filename="src/Client.cpp" />
+		<Unit filename="src/Client.h" />
 		<Unit filename="src/Collider.cc" />
 		<Unit filename="src/Collider.h" />
 		<Unit filename="src/CollisionEngine.cc" />
@@ -102,9 +109,7 @@
 		<Unit filename="src/Mesh.h" />
 		<Unit filename="src/Message.h" />
 		<Unit filename="src/ModelComponent.h" />
-		<Unit filename="src/Network.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="src/Network.cpp" />
 		<Unit filename="src/Network.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -137,6 +142,8 @@
 		<Unit filename="src/RotateBehavior.h" />
 		<Unit filename="src/Scene.cc" />
 		<Unit filename="src/Scene.h" />
+		<Unit filename="src/Server.cpp" />
+		<Unit filename="src/Server.h" />
 		<Unit filename="src/Shader.cc" />
 		<Unit filename="src/Shader.h" />
 		<Unit filename="src/SimpleTestTriggerBehavior.cc" />
