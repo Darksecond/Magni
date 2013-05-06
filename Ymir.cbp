@@ -81,6 +81,7 @@
 		<Unit filename="src/DirectoryManifest.h" />
 		<Unit filename="src/EnergyComponent.h" />
 		<Unit filename="src/EnergyEngine.cc" />
+		<Unit filename="src/EnergyEngine.h" />
 		<Unit filename="src/Engine.h" />
 		<Unit filename="src/EngineManager.cc" />
 		<Unit filename="src/EngineManager.h" />
@@ -149,6 +150,8 @@
 		<Unit filename="src/Tile.h" />
 		<Unit filename="src/TileMap.cpp" />
 		<Unit filename="src/TileMap.h" />
+		<Unit filename="src/Timer.cc" />
+		<Unit filename="src/Timer.h" />
 		<Unit filename="src/WSADMoveBehavior.cc" />
 		<Unit filename="src/WSADMoveBehavior.h" />
 		<Unit filename="src/fontstash.h" />

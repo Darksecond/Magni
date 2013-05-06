@@ -6,6 +6,7 @@
 
 #include <map>
 #include <list>
+#include <map>
 #include <memory>
 #include <string>
 
@@ -24,7 +25,8 @@ namespace Ymir
         Entity& assign(std::unique_ptr<Entity> entity, Entity* parent = nullptr);
         Entity& assign(const std::string& name, Entity* parent = nullptr);
         void deleteEntity(Entity* entity);
+        bool containsEntity(std::string name);
 
-        std::list<std::unique_ptr<Entity>> entities;
+        std::map<std::string,std::unique_ptr<Entity>> entities;
     };
 };

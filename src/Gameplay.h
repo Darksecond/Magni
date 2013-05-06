@@ -41,10 +41,6 @@ namespace Ymir
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
 
-            Entity& CentralIntelligenceCoreOwner;
-            Entity& CentralIntelligenceCoreEnemy;
-
-
         public:
             int objectOwner;
 
@@ -69,6 +65,8 @@ namespace Ymir
             void sellEntity(Entity* aEntity);
             void moveEntity();
 
+            bool centralIntelligenceCoreDestoyed();
+            bool enemyCentralIntelligenceCoreDestroyed();
             void winGame();
             void loseGame();
             void switchOwner(int owner);

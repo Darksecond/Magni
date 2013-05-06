@@ -9,7 +9,7 @@ using namespace Ymir;
 Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
     RenderEngine& renderEngine, glm::vec2 screenSize)
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(150),orbitalDropBeaconPrice(250)
+            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250)
 {
 
 }
@@ -57,7 +57,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
         basicInfantrie.assign<SpatialComponent>(position);
         basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
         basicInfantrie.assign<AttackComponent>(1, 20);
-        basicInfantrie.assign<OwnerComponent>(objectOwner);
+        basicInfantrie.assign<OwnerComponent>(2);
         basicInfantrie.assign<HealthComponent>(150);
         basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
         currencyEngine.currency -= basicInfanteriePrice;
@@ -81,15 +81,24 @@ void Gameplay::createEngineer()
 void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
 {
         position.y = 0.0;
-        std::shared_ptr<Mesh> house_mesh = meshManager.resource("ciCore.obj");
-        std::shared_ptr<Texture> house_tex = textureManager.resource("house1.bmp");
+        std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
+        std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("house1.bmp");
 
-        Entity& house = scene.assign("houseMesh");
-        house.assign<SpatialComponent>(position);
-        house.assign<ModelComponent>(house_mesh, house_tex);
-        house.assign<EnergyComponent>(150);
-        house.assign<OwnerComponent>(objectOwner);
+        Entity& ciCore = scene.assign("CiCore");
+        ciCore.assign<SpatialComponent>(position);
+        ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
+        ciCore.assign<EnergyComponent>(150);
+        ciCore.assign<HealthComponent>(1);
+        ciCore.assign<OwnerComponent>(objectOwner);
+
+        Entity& cCore = scene.assign("ECiCore");
+        cCore.assign<SpatialComponent>(glm::vec3{3,0,3});
+        cCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
+        cCore.assign<EnergyComponent>(150);
+        cCore.assign<HealthComponent>(1);
+        cCore.assign<OwnerComponent>(2);
 }
+
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 {
@@ -103,8 +112,8 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
         house.assign<SpatialComponent>(position);
         house.assign<ModelComponent>(house_mesh, t);
         house.assign<EnergyComponent>(-100);
+        house.assign<HealthComponent>(1);
         house.assign<OwnerComponent>(objectOwner);
-        house.assign<HealthComponent>(250);
         house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
         currencyEngine.currency -= orbitalDropBeaconPrice;
 
@@ -182,8 +191,9 @@ Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
     double distance = 2.5f;
     Entity* theEntity = nullptr;
 
-    for(std::unique_ptr<Entity>& entity : scene.entities)
+    for (auto& entitiesEntry : scene.entities)
     {
+        std::unique_ptr<Entity>& entity = entitiesEntry.second;
         auto test = entity->component<SpatialComponent>();
         double distanceBetween = glm::distance(test->position, position);
 
@@ -208,4 +218,20 @@ Scene& Gameplay::getScene()
 
 void Gameplay::switchOwner(int owner) {
     objectOwner = owner;
+}
+
+bool Gameplay::centralIntelligenceCoreDestoyed()
+{
+    if (scene.containsEntity("CiCore")) {
+        return false;
+    }
+    return true;
+}
+
+bool Gameplay::enemyCentralIntelligenceCoreDestroyed()
+{
+    if (scene.containsEntity("ECiCore")) {
+        return false;
+    }
+    return true;
 }
