@@ -9,7 +9,7 @@ using namespace Ymir;
 Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
     RenderEngine& renderEngine, glm::vec2 screenSize)
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250)
+            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0)
 {
 
 }
@@ -36,7 +36,7 @@ void Gameplay::createWorker(glm::vec3 position)
             std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
             std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
-            Entity& worker = scene.assign("worker");
+            Entity& worker = scene.assign("worker" + unitIdentifyCounter++);
             worker.assign<SpatialComponent>(position);
             worker.assign<ModelComponent>(worker_mesh, worker_tex);
             worker.assign<HealthComponent>(100);
@@ -52,14 +52,14 @@ void Gameplay::createWorker(glm::vec3 position)
 
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
-//    std::cout << infantryTimer << std::endl;
-//        if (infantryTimer > 5) {
+    std::cout << infantryTimer << std::endl;
+        if (infantryTimer > 5) {
         if(currencyEngine.currency >= basicInfanteriePrice) {
             position.y = 0.0;
             std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
             std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
 
-            Entity& basicInfantrie = scene.assign("basicInfantrie");
+            Entity& basicInfantrie = scene.assign("basicInfantrie" + unitIdentifyCounter++);
             basicInfantrie.assign<SpatialComponent>(position);
             basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
             basicInfantrie.assign<AttackComponent>(1, 20);
@@ -72,8 +72,8 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
         } else {
             std::cout << "Not enough money for basic infantrie" << std::endl;
         }
-//            infantryTimer = 0;
-//    }
+            infantryTimer = 0;
+    }
 }
 
 void Gameplay::createAdvancedInfantrie()
@@ -129,7 +129,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
                 std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
                 std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
-                Entity& house = scene.assign("OrbitalDropBeacon");
+                Entity& house = scene.assign("OrbitalDropBeacon" + unitIdentifyCounter++);
                 house.assign<SpatialComponent>(position);
                 house.assign<ModelComponent>(house_mesh, t);
                 house.assign<EnergyComponent>(-100);

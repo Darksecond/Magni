@@ -40,8 +40,9 @@ namespace Ymir
             Entity* currentSelectedUnit;
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
-        
+
             float infantryTimer, buildingTimer;
+            int unitIdentifyCounter;
 
         public:
             int objectOwner;
