@@ -346,6 +346,8 @@
 		F687A51616B4BA9300878140 /* gtx */ = {isa = PBXFileReference; lastKnownFileType = folder; name = gtx; path = glm/gtx; sourceTree = "<group>"; };
 		F687A51716B4BA9300878140 /* virtrev */ = {isa = PBXFileReference; lastKnownFileType = folder; name = virtrev; path = glm/virtrev; sourceTree = "<group>"; };
 		F687A51E16B4BABD00878140 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F6882B831737AF5C0011857F /* NetworkPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkPacket.h; sourceTree = "<group>"; };
+		F6882B841737AF5C0011857F /* NetworkValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkValue.h; sourceTree = "<group>"; };
 		F689424C16C9066E0097FB68 /* Behavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Behavior.h; sourceTree = "<group>"; };
 		F689425016C908210097FB68 /* RotateBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateBehavior.h; sourceTree = "<group>"; };
 		F689425116C908550097FB68 /* RotateBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateBehavior.cc; sourceTree = "<group>"; };
@@ -771,6 +773,7 @@
 		F687A52E16B4BC7700878140 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F6882B801737AF170011857F /* Networking */,
 				F6BEF06116E5E9F900ACEDC5 /* Audio */,
 				F69C21E616E385F600511D78 /* Collider */,
 				F6746BF616CB8C2B00ACA326 /* Renderer */,
@@ -822,6 +825,15 @@
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
+		};
+		F6882B801737AF170011857F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F6882B831737AF5C0011857F /* NetworkPacket.h */,
+				F6882B841737AF5C0011857F /* NetworkValue.h */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
 		};
 		F689424F16C906810097FB68 /* Behaviors */ = {
 			isa = PBXGroup;
