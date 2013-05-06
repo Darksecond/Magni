@@ -57,15 +57,13 @@ void Application::buildGame()
 void Application::runGame()
 {
     // TODO cleanup ----------------------------------
-    bool isDone, isDone1, isDone2, isDone3, isDone4, isDone5, serverDone, clientDone;
+    bool isDone, isDone1, isDone2, isDone3, isDone4, isDone5;
     isDone = true;
     isDone1 = true;
     isDone2 = true;
     isDone3 = true;
     isDone4 = true;
     isDone5 = true;
-    serverDone = false;
-    clientDone = false;
 
     std::shared_ptr<Texture> track_tex = textureManager.resource("grass.png");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
@@ -96,6 +94,9 @@ void Application::runGame()
     unit.assign<ModelComponent>(unit_mesh, t);
     // end cleanup -----------------------------------
 
+    Client *client = new Client();
+    client->setIPAdress(127, 0, 0, 1);
+
     while(glfwGetWindowParam(GLFW_OPENED))
     {
         double thisTime = glfwGetTime();
@@ -113,20 +114,13 @@ void Application::runGame()
             gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
         }
 
-        if(glfwGetKey( 'C' ) == GLFW_PRESS && !clientDone) {
-            clientDone = true;
-            Client *client = new Client();
+        if(glfwGetKey( 'C' ) == GLFW_PRESS) {
+            unsigned char data[] = "hello world!";
+            client->write(data);
         }
-
-        if(glfwGetKey( 'V' ) == GLFW_PRESS && !serverDone) {
-            serverDone = true;
-            Server *server = new Server();
-        }
-
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
             gameplay->moveEntity();
         }
-
         if(glfwGetKey( 'I' ) == GLFW_PRESS && isDone) {
             isDone = false;
             gameplay->buildCentralIntelligenceCore(renderEngine->get3DPositionFromMousePosition());
@@ -145,7 +139,7 @@ void Application::runGame()
         }
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
             Entity* entity = gameplay->getCurrentSelectedEntity();
-                gameplay->sellEntity(entity);
+            gameplay->sellEntity(entity);
         }
         if(glfwGetKey( 'R') == GLFW_PRESS && isDone4) {
             isDone4 = false;

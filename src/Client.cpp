@@ -6,32 +6,39 @@ Client::Client()
 {
     net::InitializeSockets();
 
-    int clientport = 29999;
-	printf( "creating socket on port %d\n", clientport );
+	printf( "creating socket on port %d\n", port );
 
-	if (!socket.Open( clientport )) {
+	if (!socket.Open( port )) {
 		printf( "failed to create socket!\n" );
 	}
 
-    _thread  = boost::thread(&Client::setupSender, this);
-    //boost::thread *t =  boost::thread(&Client::setupSender, this);
+    _thread  = boost::thread(&Client::read, this);
 }
 
 Client::~Client() {
 
 }
 
-void Client::setupSender() {
-	while (true) {
-		const char data[] = "hello world!";
-		socket.Send( net::Address(127,0,0,1, port), data, sizeof(data) );
-	}
-}
-
 void Client::read() {
+    while ( true )
+    {
+        net::Address sender;
+        unsigned char buffer[256];
 
+        socket.Receive( sender, buffer, sizeof( buffer ));
+
+        if(sender.GetA() != 0)
+            std::cout << buffer << std::endl;
+    }
 }
 
-void Client::write() {
+void Client::write(unsigned char *data) {
+    socket.Send( net::Address(a,b,c,d, port), data, 256 );
+}
 
+void Client::setIPAdress(int aa, int bb, int cc, int dd) {
+    a = aa;
+    b = bb;
+    c = cc;
+    d = dd;
 }

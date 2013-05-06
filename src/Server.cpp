@@ -26,9 +26,6 @@ void Server::setupListener() {
 
         int bytes_read = socket.Receive( sender, buffer, sizeof( buffer ));
 
-        if(!bytes_read)
-            break;
-
         printf( "received packet from %d.%d.%d.%d:%d (%d bytes)\n",
             sender.GetA(), sender.GetB(), sender.GetC(), sender.GetD(),
             sender.GetPort(), bytes_read );

@@ -8,12 +8,14 @@ namespace Ymir
     {
         private:
             boost::thread _thread;
+            int a, b, c, d;
+
         public:
             Client();
             virtual ~Client();
 
-            void setupSender();
             virtual void read();
-            virtual void write();
+            virtual void write(unsigned char* data);
+            void setIPAdress(int a, int b, int c, int d);
     };
 };

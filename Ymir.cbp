@@ -142,8 +142,6 @@
 		<Unit filename="src/RotateBehavior.h" />
 		<Unit filename="src/Scene.cc" />
 		<Unit filename="src/Scene.h" />
-		<Unit filename="src/Server.cpp" />
-		<Unit filename="src/Server.h" />
 		<Unit filename="src/Shader.cc" />
 		<Unit filename="src/Shader.h" />
 		<Unit filename="src/SimpleTestTriggerBehavior.cc" />
