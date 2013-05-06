@@ -57,15 +57,6 @@ void Application::buildGame()
 
 void Application::runGame()
 {
-    // TODO cleanup ----------------------------------
-    bool isDone, isDone1, isDone2, isDone3, isDone4, isDone5;
-    isDone = true;
-    isDone1 = true;
-    isDone2 = true;
-    isDone3 = true;
-    isDone4 = true;
-    isDone5 = true;
-
     std::shared_ptr<Texture> track_tex = textureManager.resource("grass.png");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
@@ -90,6 +81,7 @@ void Application::runGame()
     track.assign<ModelComponent>(track_mesh, track_tex);
 
     gameplay->buildCentralIntelligenceCore(glm::vec3{5, 0.00, 1});
+
     // end cleanup -----------------------------------
 
     Timer* checkDefeatTimer = new Timer(2);
@@ -100,11 +92,13 @@ void Application::runGame()
         double delta = thisTime - lastTime;
         lastTime = thisTime;
 
+        gameplay->updateTimer(delta);
+
         engines->update(-1, delta);
         engines->update(0, delta);
         engines->update(1, delta);
 
-        glfwDisable(GLFW_KEY_REPEAT);
+        glfwEnable(GLFW_KEY_REPEAT);
 
         // TODO cleanup ----------------------------------
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
@@ -114,28 +108,23 @@ void Application::runGame()
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
             gameplay->moveEntity();
         }
-        if(glfwGetKey( 'O' ) == GLFW_PRESS && isDone1) {
-                isDone1 = false;
+        if(glfwGetKey( 'O' ) == GLFW_PRESS) {
                 gameplay->buildOrbitalDropBeacon(renderEngine->get3DPositionFromMousePosition());
         }
-        if(glfwGetKey( 'J' ) == GLFW_PRESS && isDone2) {
-            isDone2 = false;
+        if(glfwGetKey( 'J' ) == GLFW_PRESS) {
             gameplay->createWorker(renderEngine->get3DPositionFromMousePosition());
         }
-        if(glfwGetKey( 'K' ) == GLFW_PRESS && isDone3) {
-            isDone3 = false;
+        if(glfwGetKey( 'K' ) == GLFW_PRESS) {
             gameplay->createBasicInfantrie(renderEngine->get3DPositionFromMousePosition());
         }
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
             Entity* entity = gameplay->getCurrentSelectedEntity();
                 gameplay->sellEntity(entity);
         }
-        if(glfwGetKey( 'R') == GLFW_PRESS && isDone4) {
-            isDone4 = false;
+        if(glfwGetKey( 'R') == GLFW_PRESS) {
             gameplay->winGame();
         }
-        if(glfwGetKey( 'E') == GLFW_PRESS && isDone5) {
-            isDone5 = false;
+        if(glfwGetKey( 'E') == GLFW_PRESS) {
             gameplay->loseGame();
         }
         if(glfwGetKey('Z') == GLFW_PRESS) {
