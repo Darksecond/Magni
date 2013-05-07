@@ -115,8 +115,10 @@ void Application::runGame()
         }
 
         if(glfwGetKey( 'C' ) == GLFW_PRESS) {
-            unsigned char data[] = "hello world!";
-            client->write(data);
+            NetworkPacket* np = new NetworkPacket();
+            np->set(0, 153325135414);
+
+            client->write(np->char_array());
         }
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
             gameplay->moveEntity();

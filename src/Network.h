@@ -16,6 +16,6 @@ namespace Ymir
         virtual ~Network();
 
         virtual void read() = 0;
-        virtual void write(unsigned char* data) = 0;
+        virtual void write(const unsigned char* data) = 0;
     };
 };

@@ -5,7 +5,7 @@ using namespace Ymir;
 Client::Client()
 {
     net::InitializeSockets();
-
+    _datasize = 0;
 	printf( "creating socket on port %d\n", port );
 
 	if (!socket.Open( port )) {
@@ -22,18 +22,22 @@ Client::~Client() {
 void Client::read() {
     while ( true )
     {
-        net::Address sender;
-        unsigned char buffer[256];
+        if(_datasize != 0) {
+            net::Address sender;
+            unsigned char buffer[_datasize];
 
-        socket.Receive( sender, buffer, sizeof( buffer ));
+            socket.Receive( sender, buffer, sizeof( buffer ));
 
-        if(sender.GetA() != 0)
-            std::cout << buffer << std::endl;
+            if(sender.GetA() != 0)
+                for(int i = 0; i < sizeof(buffer); i++)
+                    std::cout << buffer[i];
+        }
     }
 }
 
-void Client::write(unsigned char *data) {
-    socket.Send( net::Address(a,b,c,d, port), data, 256 );
+void Client::write(const unsigned char *data) {
+    _datasize = sizeof( data );
+    socket.Send( net::Address(a,b,c,d, port), data, _datasize );
 }
 
 void Client::setIPAdress(int aa, int bb, int cc, int dd) {
