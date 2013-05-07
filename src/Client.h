@@ -15,7 +15,7 @@ namespace Ymir
             virtual ~Client();
 
             virtual void read();
-            virtual void write(const unsigned char* data);
+            virtual void write(const unsigned char* data, const size_t size);
             void setIPAdress(int a, int b, int c, int d);
     };
 };

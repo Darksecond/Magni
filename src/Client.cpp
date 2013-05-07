@@ -2,6 +2,8 @@
 
 using namespace Ymir;
 
+static const int BUFFER_SIZE = 512;
+
 Client::Client()
 {
     net::InitializeSockets();
@@ -22,22 +24,18 @@ Client::~Client() {
 void Client::read() {
     while ( true )
     {
-        if(_datasize != 0) {
-            net::Address sender;
-            unsigned char buffer[_datasize];
-
-            socket.Receive( sender, buffer, sizeof( buffer ));
-
-            if(sender.GetA() != 0)
-                for(int i = 0; i < sizeof(buffer); i++)
-                    std::cout << buffer[i];
-        }
+        net::Address sender;
+        unsigned char buffer[BUFFER_SIZE];
+        
+        unsigned long bytes_received = socket.Receive( sender, buffer, BUFFER_SIZE);
+        
+        for(int i = 0; i < bytes_received; i++)
+            std::cout << buffer[i];
     }
 }
 
-void Client::write(const unsigned char *data) {
-    _datasize = sizeof( data );
-    socket.Send( net::Address(a,b,c,d, port), data, _datasize );
+void Client::write(const unsigned char *data, const size_t size) {
+    socket.Send( net::Address(a,b,c,d, port), data, size );
 }
 
 void Client::setIPAdress(int aa, int bb, int cc, int dd) {
