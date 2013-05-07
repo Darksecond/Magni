@@ -406,6 +406,20 @@ void RenderEngine::update(int pass, double delta)
     }
 }
 
+glm::vec3 RenderEngine::GetTilePosition(){
+    glm::vec3 mousepos = get3DPositionFromMousePosition();
+    //tilemap doorlopen totdat goede tile
+    mousepos.y = 0;
+    float x = mousepos.x - 0.5;
+    float z = mousepos.z -0.5;
+    int xx = x;
+    int zz = z;
+    x = xx + 0.5;
+    z = zz + 0.5;
+    std::cout << xx << " " << zz << std::endl;
+    return glm::vec3(x,0,z);
+}
+
 glm::vec3 RenderEngine::get3DPositionFromMousePosition() {
 	int xMouse(0), yMouse(0);
 	glfwGetMousePos(&xMouse,&yMouse);
@@ -423,7 +437,6 @@ glm::vec3 RenderEngine::get3DPositionFromMousePosition() {
 	glm::mat4 tmpProj = _camera->projectionMatrix();
 	glm::vec3 screenPos = glm::vec3(x, y, depth);
 	glm::vec3 worldPos = glm::unProject(screenPos, tmpView, tmpProj, viewport);
-    std::cout << worldPos.x << " "  << worldPos.y << " "  << worldPos.z << std::endl;
 	return worldPos;
 }
 

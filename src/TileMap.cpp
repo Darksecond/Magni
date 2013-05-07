@@ -23,4 +23,3 @@ Tile::Type TileMap::getType(int x, int y) {
 void TileMap::setType(int x, int y, Tile::Type type) {
     (_tilemap[x][y])._type = type;
 }
-

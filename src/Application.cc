@@ -109,13 +109,13 @@ void Application::runGame()
             gameplay->moveEntity();
         }
         if(glfwGetKey( 'O' ) == GLFW_PRESS) {
-                gameplay->buildOrbitalDropBeacon(renderEngine->get3DPositionFromMousePosition());
+                gameplay->buildOrbitalDropBeacon(renderEngine->GetTilePosition());
         }
         if(glfwGetKey( 'J' ) == GLFW_PRESS) {
-            gameplay->createWorker(renderEngine->get3DPositionFromMousePosition());
+            gameplay->createWorker(renderEngine->GetTilePosition());
         }
         if(glfwGetKey( 'K' ) == GLFW_PRESS) {
-            gameplay->createBasicInfantrie(renderEngine->get3DPositionFromMousePosition());
+            gameplay->createBasicInfantrie(renderEngine->GetTilePosition());
         }
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
             Entity* entity = gameplay->getCurrentSelectedEntity();
@@ -138,7 +138,7 @@ void Application::runGame()
         if(glfwGetKey('T') == GLFW_PRESS)
         {
             Entity* attacking_unit = gameplay->getCurrentSelectedEntity();
-            Entity* to_be_attacked = gameplay->getEntityAtPosition(renderEngine->get3DPositionFromMousePosition());
+            Entity* to_be_attacked = gameplay->getEntityAtPosition(renderEngine->GetTilePosition());
             if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
             {
                 if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
