@@ -40,9 +40,9 @@ namespace Ymir
             Entity* currentSelectedUnit;
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
-        
-            float infantryTimer, buildingTimer;
 
+            float infantryTimer, buildingTimer;
+            int unitIdentifyCounter;
 
         public:
             int objectOwner;
@@ -68,6 +68,8 @@ namespace Ymir
             void sellEntity(Entity* aEntity);
             void moveEntity();
 
+            bool centralIntelligenceCoreDestoyed();
+            bool enemyCentralIntelligenceCoreDestroyed();
             void winGame();
             void loseGame();
             void switchOwner(int owner);

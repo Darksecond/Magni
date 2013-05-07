@@ -80,8 +80,11 @@ void Application::runGame()
     track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     track.assign<ModelComponent>(track_mesh, track_tex);
 
-//    gameplay->buildCentralIntelligenceCore(glm::vec3{0, 0.00, 0});
+    gameplay->buildCentralIntelligenceCore(glm::vec3{5, 0.00, 1});
+
     // end cleanup -----------------------------------
+
+    Timer* checkDefeatTimer = new Timer(2);
 
     while(glfwGetWindowParam(GLFW_OPENED))
     {
@@ -140,11 +143,23 @@ void Application::runGame()
             {
                 if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
                 {
-                    attackEngine->attack(*to_be_attacked, *attacking_unit);
                     std::cout << "Unit: " << attacking_unit->name << " is attacking: " << to_be_attacked->name << std::endl;
+                    attackEngine->attack(*to_be_attacked, *attacking_unit);
                 }
             }
         }
+
+        checkDefeatTimer->update(delta);
+        if (checkDefeatTimer->reached()) {
+            checkDefeatTimer->reset();
+            if (gameplay->centralIntelligenceCoreDestoyed()) {
+                gameplay->loseGame();
+            }
+            if (gameplay->enemyCentralIntelligenceCoreDestroyed()) {
+                gameplay->winGame();
+            }
+        }
+
         // end cleanup -----------------------------------
 
         GLenum error = glGetError();
