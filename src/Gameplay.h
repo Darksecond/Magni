@@ -24,6 +24,8 @@
 #include "LightComponent.h"
 #include "EnergyComponent.h"
 #include "OwnerComponent.h"
+#include "UniqueNumberGenerator.h"
+#include "IDComponent.h"
 
 #include "RTSCameraBehavior.h"
 
@@ -40,6 +42,7 @@ namespace Ymir
             Entity* currentSelectedUnit;
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
+            UniqueNumberGenerator* ung;
 
             float infantryTimer, buildingTimer;
             int unitIdentifyCounter;

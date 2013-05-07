@@ -11,7 +11,7 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
             renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0)
 {
-
+    ung = new UniqueNumberGenerator();
 }
 
 void Gameplay::createCamera()
@@ -22,8 +22,6 @@ void Gameplay::createCamera()
     auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0.0, 5.0, 0});
     glm::vec3 euler{-60,0,0};
     c_s.setDirection(euler);
-    //camera.assignBehavior(std::unique_ptr<Behavior>{new FPSCameraBehavior});
-    // camera.assignBehavior(std::unique_ptr<Behavior>{new WSADMoveBehavior});
     camera.assignBehavior(std::unique_ptr<Behavior>{new RTSCameraBehavior});
 }
 
@@ -36,17 +34,21 @@ void Gameplay::createWorker(glm::vec3 position)
             std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
             std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
-            Entity& worker = scene.assign("worker" + unitIdentifyCounter++);
+            int newnumber = ung->getNewUniqueNumber();
+            Entity& worker = scene.assign("worker" + newnumber);
+            std::cout << newnumber << std::endl;
             worker.assign<SpatialComponent>(position);
             worker.assign<ModelComponent>(worker_mesh, worker_tex);
             worker.assign<HealthComponent>(100);
             worker.assign<CurrencyComponent>(workerPrice);
             worker.assign<OwnerComponent>(objectOwner);
+            worker.assign<IDComponent>(newnumber);
+
             currencyEngine.currency -= workerPrice;
+            infantryTimer = 0;
         } else {
             std::cout << "Not enough money for a worker unit " << std::endl;
         }
-        infantryTimer = 0;
     }
 }
 
@@ -59,20 +61,22 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
             std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
 
-            Entity& basicInfantrie = scene.assign("basicInfantrie" + unitIdentifyCounter++);
+            int newnumber = ung->getNewUniqueNumber();
+            Entity& basicInfantrie = scene.assign("basicInfantrie" + newnumber);
             basicInfantrie.assign<SpatialComponent>(position);
             basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
             basicInfantrie.assign<AttackComponent>(1, 20);
             basicInfantrie.assign<OwnerComponent>(objectOwner);
             basicInfantrie.assign<HealthComponent>(150);
             basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
+            basicInfantrie.assign<IDComponent>(newnumber);
             currencyEngine.currency -= basicInfanteriePrice;
 
+            infantryTimer = 0;
             // TODO add other components
         } else {
             std::cout << "Not enough money for basic infantrie" << std::endl;
         }
-            infantryTimer = 0;
     }
 }
 
@@ -129,19 +133,22 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
                 std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
                 std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
-                Entity& house = scene.assign("OrbitalDropBeacon" + unitIdentifyCounter++);
+                int newnumber = ung->getNewUniqueNumber();
+                Entity& house = scene.assign("OrbitalDropBeacon" + newnumber);
                 house.assign<SpatialComponent>(position);
                 house.assign<ModelComponent>(house_mesh, t);
                 house.assign<EnergyComponent>(-100);
                 house.assign<OwnerComponent>(objectOwner);
                 house.assign<HealthComponent>(250);
                 house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
+                house.assign<IDComponent>(newnumber);
+
                 currencyEngine.currency -= orbitalDropBeaconPrice;
+                buildingTimer = 0;
 
             } else {
                 std::cout << "Not enough money for Orbital drop beacon" << std::endl;
             }
-        buildingTimer = 0;
     }
 }
 
@@ -151,21 +158,19 @@ void Gameplay::buildPowerCore()
 }
 
 void Gameplay::buildAcademyOfAdvancedTechnologies()
-    {
-        std::cout << buildingTimer << std::endl;
-        if ( buildingTimer > 5) {
-            //TODO: implementation
-            //...
-            buildingTimer = 0;
-        }
-
+{
+    std::cout << buildingTimer << std::endl;
+    if ( buildingTimer > 5) {
+        //TODO: implementation
+        //...
+        buildingTimer = 0;
     }
+}
 
 void Gameplay::winGame()
 {
     std::shared_ptr<Text> winningText = std::make_shared<Text>("YOU ARE VICTORIOUS", glm::vec2{10, 580}, 20);
     renderEngine.addText(winningText);
-
 }
 
 void Gameplay::loseGame()
