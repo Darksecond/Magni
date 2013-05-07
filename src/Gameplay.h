@@ -41,9 +41,15 @@ namespace Ymir
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
 
+            float infantryTimer, buildingTimer;
+            int unitIdentifyCounter;
 
         public:
             int objectOwner;
+
+            int workerPrice;
+            int basicInfanteriePrice;
+            int orbitalDropBeaconPrice;
 
             Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize);
 
@@ -62,6 +68,8 @@ namespace Ymir
             void sellEntity(Entity* aEntity);
             void moveEntity();
 
+            bool centralIntelligenceCoreDestoyed();
+            bool enemyCentralIntelligenceCoreDestroyed();
             void winGame();
             void loseGame();
             void switchOwner(int owner);
@@ -70,5 +78,7 @@ namespace Ymir
             void updateSelectedEntity(glm::vec3 position);
             Entity* getCurrentSelectedEntity();
             Scene& getScene();
+
+            void updateTimer(float delta);
     };
 };

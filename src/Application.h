@@ -32,6 +32,7 @@
 #include "Client.h"
 #include "Server.h"
 #include "NetworkPacket.h"
+#include "Timer.h"
 
 #include "EnergyEngine.h"
 #include "CurrencyEngine.h"

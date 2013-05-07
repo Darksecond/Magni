@@ -9,7 +9,7 @@ using namespace Ymir;
 Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
     RenderEngine& renderEngine, glm::vec2 screenSize)
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr)
+            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0)
 {
 
 }
@@ -29,67 +29,120 @@ void Gameplay::createCamera()
 
 void Gameplay::createWorker(glm::vec3 position)
 {
-    position.y = 0.3;
-    std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
-    std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
+    std::cout << infantryTimer << std::endl;
+    if (infantryTimer > 5) {
+        if(currencyEngine.currency >= workerPrice) {
+            position.y = 0.3;
+            std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
+            std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
-    Entity& worker = scene.assign("worker");
-    worker.assign<SpatialComponent>(position);
-    worker.assign<ModelComponent>(worker_mesh, worker_tex);
-    worker.assign<HealthComponent>(100);
-    worker.assign<CurrencyComponent>(100);
-    worker.assign<OwnerComponent>(objectOwner);
-    // TODO add other components
+            Entity& worker = scene.assign("worker" + unitIdentifyCounter++);
+            worker.assign<SpatialComponent>(position);
+            worker.assign<ModelComponent>(worker_mesh, worker_tex);
+            worker.assign<HealthComponent>(100);
+            worker.assign<CurrencyComponent>(workerPrice);
+            worker.assign<OwnerComponent>(objectOwner);
+            currencyEngine.currency -= workerPrice;
+        } else {
+            std::cout << "Not enough money for a worker unit " << std::endl;
+        }
+        infantryTimer = 0;
+    }
 }
 
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
-    position.y = 0.0;
-    std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
-    std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
+    std::cout << infantryTimer << std::endl;
+        if (infantryTimer > 5) {
+        if(currencyEngine.currency >= basicInfanteriePrice) {
+            position.y = 0.0;
+            std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
+            std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
 
-    Entity& basicInfantrie = scene.assign("basicInfantrie");
-    basicInfantrie.assign<SpatialComponent>(position);
-    basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
-    basicInfantrie.assign<AttackComponent>(1, 20);
-    basicInfantrie.assign<OwnerComponent>(objectOwner);
-    // TODO add other components
+            Entity& basicInfantrie = scene.assign("basicInfantrie" + unitIdentifyCounter++);
+            basicInfantrie.assign<SpatialComponent>(position);
+            basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
+            basicInfantrie.assign<AttackComponent>(1, 20);
+            basicInfantrie.assign<OwnerComponent>(objectOwner);
+            basicInfantrie.assign<HealthComponent>(150);
+            basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
+            currencyEngine.currency -= basicInfanteriePrice;
+
+            // TODO add other components
+        } else {
+            std::cout << "Not enough money for basic infantrie" << std::endl;
+        }
+            infantryTimer = 0;
+    }
 }
 
 void Gameplay::createAdvancedInfantrie()
 {
+    std::cout << infantryTimer << std::endl;
+    if (infantryTimer > 5) {
+        //TODO: implementation
+        //...
+        infantryTimer = 0;
+    }
     // TODO
 }
 
 void Gameplay::createEngineer()
 {
+    std::cout << infantryTimer << std::endl;
+    if (infantryTimer > 5) {
+        //TODO: implementation
+        //...
+        infantryTimer = 0;
+    }
     // TODO
 }
 
 void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
 {
-    position.y = 0.0;
-    std::shared_ptr<Mesh> house_mesh = meshManager.resource("untitled.obj");
-    std::shared_ptr<Texture> house_tex = textureManager.resource("house1.bmp");
+        position.y = 0.0;
+        std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
+        std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("house1.bmp");
 
-    Entity& house = scene.assign("houseMesh");
-    house.assign<SpatialComponent>(position);
-    house.assign<ModelComponent>(house_mesh, house_tex);
-    house.assign<EnergyComponent>(150);
-    house.assign<OwnerComponent>(objectOwner);
+        Entity& ciCore = scene.assign("CiCore");
+        ciCore.assign<SpatialComponent>(position);
+        ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
+        ciCore.assign<EnergyComponent>(150);
+        ciCore.assign<HealthComponent>(1);
+        ciCore.assign<OwnerComponent>(objectOwner);
+
+        Entity& cCore = scene.assign("ECiCore");
+        cCore.assign<SpatialComponent>(glm::vec3{3,0,3});
+        cCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
+        cCore.assign<EnergyComponent>(150);
+        cCore.assign<HealthComponent>(1);
+        cCore.assign<OwnerComponent>(2);
 }
+
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 {
-    position.y = 0.0;
-    std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
-    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
+    std::cout << buildingTimer << std::endl;
+    if ( buildingTimer > 5) {
+         if (currencyEngine.currency >= orbitalDropBeaconPrice) {
+                position.y = 0.0;
+                std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
+                std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
-    Entity& house = scene.assign("OrbitalDropBeacon");
-    house.assign<SpatialComponent>(position);
-    house.assign<ModelComponent>(house_mesh, t);
-    house.assign<EnergyComponent>(-100);
-    house.assign<OwnerComponent>(objectOwner);
+                Entity& house = scene.assign("OrbitalDropBeacon" + unitIdentifyCounter++);
+                house.assign<SpatialComponent>(position);
+                house.assign<ModelComponent>(house_mesh, t);
+                house.assign<EnergyComponent>(-100);
+                house.assign<OwnerComponent>(objectOwner);
+                house.assign<HealthComponent>(250);
+                house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
+                currencyEngine.currency -= orbitalDropBeaconPrice;
+
+            } else {
+                std::cout << "Not enough money for Orbital drop beacon" << std::endl;
+            }
+        buildingTimer = 0;
+    }
 }
 
 void Gameplay::buildPowerCore()
@@ -98,9 +151,15 @@ void Gameplay::buildPowerCore()
 }
 
 void Gameplay::buildAcademyOfAdvancedTechnologies()
-{
+    {
+        std::cout << buildingTimer << std::endl;
+        if ( buildingTimer > 5) {
+            //TODO: implementation
+            //...
+            buildingTimer = 0;
+        }
 
-}
+    }
 
 void Gameplay::winGame()
 {
@@ -160,8 +219,9 @@ Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
     double distance = 2.5f;
     Entity* theEntity = nullptr;
 
-    for(std::unique_ptr<Entity>& entity : scene.entities)
+    for (auto& entitiesEntry : scene.entities)
     {
+        std::unique_ptr<Entity>& entity = entitiesEntry.second;
         auto test = entity->component<SpatialComponent>();
         double distanceBetween = glm::distance(test->get_position(), position);
 
@@ -186,4 +246,25 @@ Scene& Gameplay::getScene()
 
 void Gameplay::switchOwner(int owner) {
     objectOwner = owner;
+}
+
+bool Gameplay::centralIntelligenceCoreDestoyed()
+{
+    if (scene.containsEntity("CiCore")) {
+        return false;
+    }
+    return true;
+}
+
+bool Gameplay::enemyCentralIntelligenceCoreDestroyed()
+{
+    if (scene.containsEntity("ECiCore")) {
+        return false;
+    }
+    return true;
+}
+
+void Gameplay::updateTimer(float delta) {
+    infantryTimer += delta;
+    buildingTimer += delta;
 }

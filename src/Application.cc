@@ -56,18 +56,8 @@ void Application::buildGame()
 
 void Application::runGame()
 {
-    // TODO cleanup ----------------------------------
-    bool isDone, isDone1, isDone2, isDone3, isDone4, isDone5;
-    isDone = true;
-    isDone1 = true;
-    isDone2 = true;
-    isDone3 = true;
-    isDone4 = true;
-    isDone5 = true;
-
     std::shared_ptr<Texture> track_tex = textureManager.resource("grass.png");
     std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
-    std::shared_ptr<Mesh> unit_mesh = meshManager.resource("untitled.obj");
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
 
     Scene& scene = gameplay->getScene();
@@ -89,25 +79,26 @@ void Application::runGame()
     track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     track.assign<ModelComponent>(track_mesh, track_tex);
 
-    Entity& unit = scene.assign("unit");
-    unit.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
-    unit.assign<ModelComponent>(unit_mesh, t);
+    gameplay->buildCentralIntelligenceCore(glm::vec3{5, 0.00, 1});
+
     // end cleanup -----------------------------------
 
     Client *client = new Client();
     client->setIPAdress(127, 0, 0, 1);
-
+    Timer* checkDefeatTimer = new Timer(2);
     while(glfwGetWindowParam(GLFW_OPENED))
     {
         double thisTime = glfwGetTime();
         double delta = thisTime - lastTime;
         lastTime = thisTime;
 
+        gameplay->updateTimer(delta);
+
         engines->update(-1, delta);
         engines->update(0, delta);
         engines->update(1, delta);
 
-        glfwDisable(GLFW_KEY_REPEAT);
+        glfwEnable(GLFW_KEY_REPEAT);
 
         // TODO cleanup ----------------------------------
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
@@ -124,32 +115,23 @@ void Application::runGame()
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
             gameplay->moveEntity();
         }
-        if(glfwGetKey( 'I' ) == GLFW_PRESS && isDone) {
-            isDone = false;
-            gameplay->buildCentralIntelligenceCore(renderEngine->get3DPositionFromMousePosition());
+        if(glfwGetKey( 'O' ) == GLFW_PRESS) {
+                gameplay->buildOrbitalDropBeacon(renderEngine->get3DPositionFromMousePosition());
         }
-        if(glfwGetKey( 'O' ) == GLFW_PRESS && isDone1) {
-            isDone1 = false;
-            gameplay->buildOrbitalDropBeacon(renderEngine->get3DPositionFromMousePosition());
-        }
-        if(glfwGetKey( 'J' ) == GLFW_PRESS && isDone2) {
-            isDone2 = false;
+        if(glfwGetKey( 'J' ) == GLFW_PRESS) {
             gameplay->createWorker(renderEngine->get3DPositionFromMousePosition());
         }
-        if(glfwGetKey( 'K' ) == GLFW_PRESS && isDone3) {
-            isDone3 = false;
+        if(glfwGetKey( 'K' ) == GLFW_PRESS) {
             gameplay->createBasicInfantrie(renderEngine->get3DPositionFromMousePosition());
         }
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
             Entity* entity = gameplay->getCurrentSelectedEntity();
             gameplay->sellEntity(entity);
         }
-        if(glfwGetKey( 'R') == GLFW_PRESS && isDone4) {
-            isDone4 = false;
+        if(glfwGetKey( 'R') == GLFW_PRESS) {
             gameplay->winGame();
         }
-        if(glfwGetKey( 'E') == GLFW_PRESS && isDone5) {
-            isDone5 = false;
+        if(glfwGetKey( 'E') == GLFW_PRESS) {
             gameplay->loseGame();
         }
         if(glfwGetKey('Z') == GLFW_PRESS) {
@@ -168,11 +150,23 @@ void Application::runGame()
             {
                 if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
                 {
-                    attackEngine->attack(*to_be_attacked, *attacking_unit);
                     std::cout << "Unit: " << attacking_unit->name << " is attacking: " << to_be_attacked->name << std::endl;
+                    attackEngine->attack(*to_be_attacked, *attacking_unit);
                 }
             }
         }
+
+        checkDefeatTimer->update(delta);
+        if (checkDefeatTimer->reached()) {
+            checkDefeatTimer->reset();
+            if (gameplay->centralIntelligenceCoreDestoyed()) {
+                gameplay->loseGame();
+            }
+            if (gameplay->enemyCentralIntelligenceCoreDestroyed()) {
+                gameplay->winGame();
+            }
+        }
+
         // end cleanup -----------------------------------
 
         GLenum error = glGetError();

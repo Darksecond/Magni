@@ -44,18 +44,18 @@ void AttackEngine::attack(Entity& attackee, const Entity& attacker)
 {
     if(scene == nullptr)
         throw std::runtime_error("No scene specified, cannot attack");
-    
+
     HealthComponent* health = attackee.component<HealthComponent>();
     AttackComponent* attack = attacker.component<AttackComponent>();
-    
+
     health->health -= attack->attack;
-    
+
     if(health->health <= 0)
     {
         //unit is dead, delete?
         scene->deleteEntity(&attackee);
     }
-    
+
     if(_attack_animation_entity == nullptr)
     {
         //show attack 'animation'
@@ -64,7 +64,7 @@ void AttackEngine::attack(Entity& attackee, const Entity& attacker)
         _attack_animation_entity->assign<ModelComponent>(mesh_manager.resource("monkey.obj"), texture_manager.resource("track.jpg"));
         auto& spatial = _attack_animation_entity->assign<SpatialComponent>(glm::vec3(0));
         spatial.set_position(attackee.component<SpatialComponent>()->get_position());
-        
+        //spatial.position = attackee.component<SpatialComponent>()->position;
         _attack_animation_life = attack->duration;
     }
 }

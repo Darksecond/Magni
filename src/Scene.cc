@@ -12,7 +12,7 @@ Scene::~Scene()
 {
     for(auto& entity : entities)
     {
-        engines.unregisterEntity(*entity);
+        engines.unregisterEntity(*entity.second);
     }
 }
 
@@ -20,7 +20,7 @@ Entity& Scene::assign(std::unique_ptr<Entity> entity, Entity* parent)
 {
     Entity& retval = *entity;
     retval.parent = parent;
-    entities.push_back(std::move(entity));
+    entities.insert(std::pair<std::string, std::unique_ptr<Entity>>(entity->name, std::move(entity)));
     engines.registerEntity(retval);
     return retval;
 }
@@ -31,14 +31,17 @@ Entity& Scene::assign(const std::string& name, Entity* parent)
     return assign(std::move(entity), parent);
 }
 
-void Scene::deleteEntity(Entity * entity) {
-    std::list<std::unique_ptr<Entity>>::iterator it;
-    for (it=entities.begin(); it != entities.end(); ++it) {
-        if ((*it).get() == entity) {
-            //yay found it :) now break from loop !
-            break;
-        }
-    }
+void Scene::deleteEntity(Entity * entity)
+{
     engines.unregisterEntity(*entity);
-    entities.erase(it);
+    entities.erase(entity->name);
+}
+
+bool Scene::containsEntity(std::string name)
+{
+    auto it = entities.find(name);
+    if (it == entities.end()) {
+        return false;
+    }
+    return true;
 }

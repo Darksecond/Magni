@@ -38,6 +38,8 @@
 		F63C7D9F1716C5B90024CA50 /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F63C7D9D1716C5B90024CA50 /* Client.cpp */; };
 		F642BDA616DF9063009EB1DB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F642BDA516DF9063009EB1DB /* OpenAL.framework */; };
 		F644CED816C28ABF007B35C5 /* Model.cc in Sources */ = {isa = PBXBuildFile; fileRef = F644CED716C28ABF007B35C5 /* Model.cc */; };
+		F644EE151738FEC200D918FA /* Timer.cc in Sources */ = {isa = PBXBuildFile; fileRef = F644EE131738FEC200D918FA /* Timer.cc */; };
+		F644EE171738FF0700D918FA /* ciCore.obj in Resources */ = {isa = PBXBuildFile; fileRef = F644EE161738FF0700D918FA /* ciCore.obj */; };
 		F64516D216C068C000726CF5 /* CameraComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64516D116C068C000726CF5 /* CameraComponent.cc */; };
 		F645948E16B6A96D00B118C2 /* Shader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645948D16B6A96D00B118C2 /* Shader.cc */; };
 		F645949116B6ADA900B118C2 /* texture.vert in Resources */ = {isa = PBXBuildFile; fileRef = F645948F16B6AD9700B118C2 /* texture.vert */; };
@@ -260,6 +262,9 @@
 		F642BDA516DF9063009EB1DB /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F644CED616C28AB0007B35C5 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		F644CED716C28ABF007B35C5 /* Model.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cc; sourceTree = "<group>"; };
+		F644EE131738FEC200D918FA /* Timer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cc; sourceTree = "<group>"; };
+		F644EE141738FEC200D918FA /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		F644EE161738FF0700D918FA /* ciCore.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ciCore.obj; path = windows/Ymir/ciCore.obj; sourceTree = SOURCE_ROOT; };
 		F64516D016C068BB00726CF5 /* CameraComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraComponent.h; sourceTree = "<group>"; };
 		F64516D116C068C000726CF5 /* CameraComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraComponent.cc; sourceTree = "<group>"; };
 		F645948B16B6A8F100B118C2 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
@@ -618,6 +623,7 @@
 				F67F54FC16DB7C3B00478B1C /* car.obj */,
 				F653613E16DBADC5007B5D31 /* track.obj */,
 				F6F7B28916E0C6DE006D00ED /* DroidSerif-Regular.ttf */,
+				F644EE161738FF0700D918FA /* ciCore.obj */,
 				F67A392D1702F5BB004AAF05 /* orbitaldrop.obj */,
 				F67A3945170304DD004AAF05 /* untitled.obj */,
 				F653613916DBABA8007B5D31 /* track.jpg */,
@@ -792,6 +798,8 @@
 				F645949216B6AE1700B118C2 /* Program.h */,
 				F645949316B6AE8700B118C2 /* Program.cc */,
 				F6AC80BE16C4F22F00074181 /* NodeCache.h */,
+				F644EE131738FEC200D918FA /* Timer.cc */,
+				F644EE141738FEC200D918FA /* Timer.h */,
 				F6B1DA1416BFD1D7006BBC69 /* Entity.h */,
 				F6B1DA1316BFD1D7006BBC69 /* Entity.cc */,
 				F6FB2A1B16B7104F00E6013E /* Texture.h */,
@@ -1163,6 +1171,7 @@
 				F60D92B31701D98F00D0E6F4 /* workertex.png in Resources */,
 				F67A392E1702F5BB004AAF05 /* orbitaldrop.obj in Resources */,
 				F67A3946170304DD004AAF05 /* untitled.obj in Resources */,
+				F644EE171738FF0700D918FA /* ciCore.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1254,6 +1263,7 @@
 				F63C7D9F1716C5B90024CA50 /* Client.cpp in Sources */,
 				F61D006A1716CDFD00B7315F /* Server.cpp in Sources */,
 				F61D006D1716CE1000B7315F /* Network.cpp in Sources */,
+				F644EE151738FEC200D918FA /* Timer.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

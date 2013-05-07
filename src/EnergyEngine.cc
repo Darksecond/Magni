@@ -21,6 +21,15 @@ void EnergyEngine::registerEntity(Entity& entity)
 
 void EnergyEngine::unregisterEntity(Entity& entity)
 {
+    for(EnergyComponent* c : energies)
+    {
+        if(entity.component<EnergyComponent>() == c)
+        {
+            //delete c
+            energies.remove(c);
+            break;
+        }
+    }
 }
 
 void EnergyEngine::update(int pass, double delta)
