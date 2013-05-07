@@ -31,7 +31,7 @@ void Client::read() {
 
         if(bytes_received)
         {
-            NetworkPacket np(buffer, bytes_received);
+            NetworkPacket np(buffer);
             std::cout << np.get<int>(0) << std::endl;
             std::cout << np.get_array<char*>(1) << std::endl;
             std::cout << std::endl;
