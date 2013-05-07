@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NetworkValue.h"
+#include "NetworkHeader.h"
 
 #include <vector>
 #include <memory>
@@ -15,11 +16,16 @@ public:
 	{
 	}
     
-	explicit NetworkPacket(const uint8_t* array, size_t size) : _size(size), _count(0), _array(new uint8_t[size]), _values(), _dirty(false), _readonly(true)
+	explicit NetworkPacket(const uint8_t* array) : _size(0), _count(0), _array(nullptr), _values(), _dirty(false), _readonly(true)
 	{
-		memcpy(_array, array, size);
+		//TODO this can be improved
+		//     we can save the header, and make it changeable.
+		NetworkHeader header(array);
+		_size = header.size();
+		_count = header.count();
         
-		build_count_from_array();
+		_array = new uint8_t[_size];
+		memcpy(_array, array, _size);
 	}
     
 	~NetworkPacket()
@@ -71,7 +77,7 @@ public:
 	void build_value_from_array(size_t index)
 	{
 		int j = 0;
-		for(uint8_t* i = _array + sizeof(size_t); i < _array + _size;)
+		for(uint8_t* i = _array + NetworkHeader::header_length(); i < _array + _size;)
 		{
 			size_t value_size = *reinterpret_cast<size_t*>(i);
 			i += sizeof(size_t);
@@ -95,7 +101,7 @@ public:
 	void build_value_array_from_array(size_t index)
 	{
 		int j = 0;
-		for(uint8_t* i = _array + sizeof(size_t); i < _array + _size;)
+		for(uint8_t* i = _array + NetworkHeader::header_length(); i < _array + _size;)
 		{
 			size_t value_size = *reinterpret_cast<size_t*>(i);
 			i += sizeof(size_t);
@@ -152,7 +158,7 @@ public:
     
 	void build_array()
 	{
-		_size = sizeof(size_t); //header
+		_size = NetworkHeader::header_length(); //header = size + count fields
 		for(auto& ptr : _values)
 		{
 			if(ptr)
@@ -167,16 +173,9 @@ public:
 		int i = 0;
         
 		//header
-		
-		//number of values
-		union
-		{
-			size_t as_size_t;
-			char as_char[sizeof(size_t)];
-		} count;
-		count.as_size_t = _count;
-		memcpy(_array+i, count.as_char, sizeof(count));
-		i += sizeof(count);
+		NetworkHeader header(_size, _count);
+		memcpy(_array+i, header.to_char_array(), header.header_length());
+		i += header.header_length();
 		
 		for(auto& ptr : _values)
 		{
@@ -236,9 +235,4 @@ private:
 	std::vector<std::unique_ptr<BaseNetworkValue>> _values;
 	bool _dirty;
 	bool _readonly;
-    
-	void build_count_from_array()
-	{
-		_count = *reinterpret_cast<size_t*>(_array);
-	}
 };

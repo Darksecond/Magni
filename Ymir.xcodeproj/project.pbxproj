@@ -265,6 +265,7 @@
 		F644EE131738FEC200D918FA /* Timer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cc; sourceTree = "<group>"; };
 		F644EE141738FEC200D918FA /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
 		F644EE161738FF0700D918FA /* ciCore.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ciCore.obj; path = windows/Ymir/ciCore.obj; sourceTree = SOURCE_ROOT; };
+		F644EE18173918EE00D918FA /* NetworkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkHeader.h; sourceTree = "<group>"; };
 		F64516D016C068BB00726CF5 /* CameraComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraComponent.h; sourceTree = "<group>"; };
 		F64516D116C068C000726CF5 /* CameraComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraComponent.cc; sourceTree = "<group>"; };
 		F645948B16B6A8F100B118C2 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
@@ -839,6 +840,7 @@
 			children = (
 				F6882B831737AF5C0011857F /* NetworkPacket.h */,
 				F6882B841737AF5C0011857F /* NetworkValue.h */,
+				F644EE18173918EE00D918FA /* NetworkHeader.h */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
