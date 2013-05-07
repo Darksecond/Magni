@@ -23,10 +23,12 @@ public:
 
 	inline const size_t& size() { return _size; }
 	inline const size_t& count() { return _count; }
-
+	inline const uint32_t& id() { return _id; }
+	inline const uint32_t& type() { return _type; }
+    
 	static inline size_t header_length()
 	{
-		return sizeof(size_t) + sizeof(size_t);
+		return sizeof(size_t) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t);
 	}
 
 	inline const uint8_t* to_char_array()
@@ -38,6 +40,8 @@ public:
 private:
 	size_t _size;
 	size_t _count;
+    uint32_t _id;
+    uint32_t _type;
 	uint8_t* _array;
 	bool _dirty;
 
@@ -49,6 +53,12 @@ private:
 
 		_count = *reinterpret_cast<const size_t*>(array+i);
 		i += sizeof(size_t);
+        
+		_id = *reinterpret_cast<const uint32_t*>(array+i);
+		i += sizeof(uint32_t);
+        
+		_type = *reinterpret_cast<const uint32_t*>(array+i);
+		i += sizeof(uint32_t);
 	}
 
 	void build_array()
@@ -77,7 +87,27 @@ private:
 		count.as_size_t = _count;
 		memcpy(_array+i, count.as_char, sizeof(count));
 		i += sizeof(count);
-
+        
+        //id
+		union
+		{
+			uint32_t as_uint;
+			char as_char[sizeof(uint32_t)];
+		} id;
+		id.as_uint = _id;
+		memcpy(_array+i, id.as_char, sizeof(count));
+		i += sizeof(count);
+        
+        //type
+		union
+		{
+			uint32_t as_uint;
+			char as_char[sizeof(uint32_t)];
+		} type;
+		type.as_uint = _type;
+		memcpy(_array+i, type.as_char, sizeof(count));
+		i += sizeof(count);
+        
 		_dirty = false;
 	}
 };

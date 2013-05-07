@@ -12,7 +12,11 @@
 class NetworkPacket
 {
 public:
-	NetworkPacket() : _size(0), _count(0), _array(nullptr), _values(), _dirty(true), _readonly(false)
+    NetworkPacket() : _dirty(true), _readonly(false), _array(nullptr)
+    {
+    }
+    
+	NetworkPacket(uint32_t id, uint32_t type) : _size(0), _count(0), _array(nullptr), _values(), _dirty(true), _readonly(false), _id(id), _type(type)
 	{
 	}
     
@@ -23,6 +27,8 @@ public:
 		NetworkHeader header(array);
 		_size = header.size();
 		_count = header.count();
+        _id = header.id();
+        _type = header.type();
         
 		_array = new uint8_t[_size];
 		memcpy(_array, array, _size);
@@ -228,9 +234,21 @@ public:
 	{
 		return _count;
 	}
+    
+    uint32_t id()
+    {
+        return _id;
+    }
+    
+    uint32_t type()
+    {
+        return _type;
+    }
 private:
 	size_t _size;
 	size_t _count;
+    uint32_t _id;
+    uint32_t _type;
 	uint8_t* _array;
 	std::vector<std::unique_ptr<BaseNetworkValue>> _values;
 	bool _dirty;
