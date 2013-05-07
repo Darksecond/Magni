@@ -88,7 +88,7 @@ void Application::runGame()
         double thisTime = glfwGetTime();
         double delta = thisTime - lastTime;
         lastTime = thisTime;
-        
+
         gameplay->updateTimer(delta);
 
         engines->update(-1, delta);

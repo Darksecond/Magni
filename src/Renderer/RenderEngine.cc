@@ -423,7 +423,7 @@ glm::vec3 RenderEngine::get3DPositionFromMousePosition() {
 	glm::mat4 tmpProj = _camera->projectionMatrix();
 	glm::vec3 screenPos = glm::vec3(x, y, depth);
 	glm::vec3 worldPos = glm::unProject(screenPos, tmpView, tmpProj, viewport);
-
+    std::cout << worldPos.x << " "  << worldPos.y << " "  << worldPos.z << std::endl;
 	return worldPos;
 }
 
