@@ -107,7 +107,7 @@ void Application::runGame()
 
         if(glfwGetKey( 'C' ) == GLFW_PRESS) {
             NetworkPacket np;
-            np.set(0, 153325135414);
+            np.set(0, 1337);
             np.set_array(1, "Hello, World");
 
             client->write(np.char_array(), np.size());

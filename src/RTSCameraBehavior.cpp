@@ -35,22 +35,6 @@ void RTSCameraBehavior::offsetOrientation(double delta) {
 
     float secondsElapsed = delta;
 
-    if(glfwGetKey('S') || mouseY > 580 ) {
-        spatial->set_position(spatial->get_position() + (secondsElapsed * 2.0f * glm::vec3(0,0,1)));
-    }
-
-    if(glfwGetKey('A') || mouseX < 20) {
-        spatial->set_position(spatial->get_position() + (secondsElapsed * 2.0f * glm::vec3(-1,0,0)));
-    }
-
-    if(glfwGetKey('D') || mouseX > 780) {
-        spatial->set_position(spatial->get_position() + (secondsElapsed * 2.0f * glm::vec3(1,0,0)));
-    }
-
-    if(glfwGetKey('W') || mouseY < 20 ) {
-        spatial->set_position(spatial->get_position() + (secondsElapsed * 2.0f * glm::vec3(0,0,-1)));
-    }
-
     if(glfwGetMouseWheel()) {
         if(lastScrollWheelIndex == NULL)
             lastScrollWheelIndex = 0;
@@ -63,5 +47,23 @@ void RTSCameraBehavior::offsetOrientation(double delta) {
             spatial->set_position(spatial->get_position() + spatial->forward(realWheelIndex));
 
         lastScrollWheelIndex = mouseWheelIndex;
+    }
+
+    float sensitivityMultiplier = (spatial->get_position().y / 5.0f) * 1.25f;
+
+    if(glfwGetKey('S') || mouseY > 580 ) {
+        spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(0,0,1)));
+    }
+
+    if(glfwGetKey('A') || mouseX < 20) {
+        spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(-1,0,0)));
+    }
+
+    if(glfwGetKey('D') || mouseX > 780) {
+        spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(1,0,0)));
+    }
+
+    if(glfwGetKey('W') || mouseY < 20 ) {
+        spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(0,0,-1)));
     }
 }

@@ -26,11 +26,16 @@ void Client::read() {
     {
         net::Address sender;
         unsigned char buffer[BUFFER_SIZE];
-        
+
         unsigned long bytes_received = socket.Receive( sender, buffer, BUFFER_SIZE);
-        
-        for(int i = 0; i < bytes_received; i++)
-            std::cout << buffer[i];
+
+        if(bytes_received)
+        {
+            NetworkPacket np(buffer, bytes_received);
+            std::cout << np.get<int>(0) << std::endl;
+            std::cout << np.get_array<char*>(1) << std::endl;
+            std::cout << std::endl;
+        }
     }
 }
 

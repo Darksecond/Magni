@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Network.h"
+#include "NetworkPacket.h"
 
 namespace Ymir
 {
