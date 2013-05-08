@@ -10,7 +10,7 @@
 #include "GLM/glm.hpp"
 using namespace Ymir;
 
-CurrencyEngine::CurrencyEngine(RenderEngine& renderer) {
+CurrencyEngine::CurrencyEngine(RenderEngine& renderer) : currency(0) {
 
     currencyText = std::make_shared<Text>("You have 0 money", glm::vec2{10, 10},24); //position: 300,50, font size 10
     renderer.addText(currencyText);
