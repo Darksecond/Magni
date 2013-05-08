@@ -16,7 +16,7 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
 
     client = new Client();
     client->gp = this;
-    client->setIPAdress(192, 168, 0, 2);
+    client->setIPAdress(127, 0, 0, 1);
 }
 
 void Gameplay::createCamera()
@@ -33,6 +33,7 @@ void Gameplay::createCamera()
 void Gameplay::createWorker(glm::vec3 position)
 {
     std::cout << infantryTimer << std::endl;
+
     if (infantryTimer > 5) {
         if(currencyEngine.currency >= workerPrice) {
             position.y = 0.3;
@@ -41,7 +42,7 @@ void Gameplay::createWorker(glm::vec3 position)
 
             int newnumber = ung->getNewUniqueNumber();
             std::stringstream name;
-            name << "worker";
+            name << "worker ";
             name << newnumber;
             Entity& worker = scene.assign(name.str());
             worker.assign<SpatialComponent>(position);
@@ -51,14 +52,11 @@ void Gameplay::createWorker(glm::vec3 position)
             worker.assign<OwnerComponent>(objectOwner);
             worker.assign<IDComponent>(newnumber);
 
-            std::cout << newnumber << std::endl;
-            NetworkPacket np;
-            np.set(0, newnumber);
-            np.set_array(1, "BUILD");
-            np.set_array(2, "WORKER");
-            np.set(3, position.x);
-            np.set(4, position.y);
-            np.set(5, position.z);
+            NetworkPacket np(newnumber, BUILD);
+            np.set(0, WORKER);
+            np.set(1, position.x);
+            np.set(2, position.y);
+            np.set(3, position.z);
 
             client->write(np.char_array(), np.size());
 
@@ -76,7 +74,7 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
     std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
     std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
-    Entity& worker = scene.assign("worker" + id);
+    Entity& worker = scene.assign("worker " + id);
     worker.assign<SpatialComponent>(position);
     worker.assign<ModelComponent>(worker_mesh, worker_tex);
     worker.assign<HealthComponent>(100);
@@ -90,14 +88,14 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
     std::cout << infantryTimer << std::endl;
-        if (infantryTimer > 5) {
+    if (infantryTimer > 5) {
         if(currencyEngine.currency >= basicInfanteriePrice) {
             position.y = 0.0;
             std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
             std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
 
             int newnumber = ung->getNewUniqueNumber();
-            Entity& basicInfantrie = scene.assign("basicInfantrie" + newnumber);
+            Entity& basicInfantrie = scene.assign("basicInfantrie " + newnumber);
             basicInfantrie.assign<SpatialComponent>(position);
             basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
             basicInfantrie.assign<AttackComponent>(1, 20);
@@ -106,6 +104,12 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
             basicInfantrie.assign<IDComponent>(newnumber);
             currencyEngine.currency -= basicInfanteriePrice;
+
+            NetworkPacket np(newnumber, BUILD);
+            np.set(0, B_INFANTRY);
+            np.set(1, position.x);
+            np.set(2, position.y);
+            np.set(3, position.z);
 
             infantryTimer = 0;
             // TODO add other components
@@ -121,6 +125,13 @@ void Gameplay::createAdvancedInfantrie()
     if (infantryTimer > 5) {
         //TODO: implementation
         //...
+
+        //NetworkPacket np(0, mode[BUILD]);
+        //np.set(0, unit[A_INFANTRY]);
+        //np.set(1, position.x);
+        //np.set(2, position.y);
+        //np.set(3, position.z);
+
         infantryTimer = 0;
     }
     // TODO
@@ -164,26 +175,26 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
     std::cout << buildingTimer << std::endl;
     if ( buildingTimer > 5) {
          if (currencyEngine.currency >= orbitalDropBeaconPrice) {
-                position.y = 0.0;
-                std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
-                std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
+            position.y = 0.0;
+            std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
+            std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
-                int newnumber = ung->getNewUniqueNumber();
-                Entity& house = scene.assign("OrbitalDropBeacon" + newnumber);
-                house.assign<SpatialComponent>(position);
-                house.assign<ModelComponent>(house_mesh, t);
-                house.assign<EnergyComponent>(-100);
-                house.assign<OwnerComponent>(objectOwner);
-                house.assign<HealthComponent>(250);
-                house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
-                house.assign<IDComponent>(newnumber);
+            int newnumber = ung->getNewUniqueNumber();
+            Entity& house = scene.assign("OrbitalDropBeacon " + newnumber);
+            house.assign<SpatialComponent>(position);
+            house.assign<ModelComponent>(house_mesh, t);
+            house.assign<EnergyComponent>(-100);
+            house.assign<OwnerComponent>(objectOwner);
+            house.assign<HealthComponent>(250);
+            house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
+            house.assign<IDComponent>(newnumber);
 
-                currencyEngine.currency -= orbitalDropBeaconPrice;
-                buildingTimer = 0;
+            currencyEngine.currency -= orbitalDropBeaconPrice;
+            buildingTimer = 0;
 
-            } else {
-                std::cout << "Not enough money for Orbital drop beacon" << std::endl;
-            }
+        } else {
+            std::cout << "Not enough money for Orbital drop beacon" << std::endl;
+        }
     }
 }
 
@@ -228,6 +239,8 @@ void Gameplay::sellEntity(Entity* aEntity)
                     currencyEngine.currency += currencyComponent->price * healthPercentage;
                     scene.deleteEntity(aEntity);
                     currentSelectedUnit = nullptr;
+
+
                 }
             }
         }
@@ -244,9 +257,25 @@ void Gameplay::moveEntity() {
                 glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
                 newPos.y = 0;
                 spatial->set_position(newPos);
+
+                std::string str = aEntity->name;
+                unsigned pos = str.find(" ");
+                std::string str3 = str.substr (pos + 1);
+                std::cout << str3 << '\n';
+                int numb;
+                std::istringstream ( str3 ) >> numb;
+
+                NetworkPacket np(numb, MOVE);
+                np.set(0, newPos.x);
+                np.set(1, newPos.y);
+                np.set(2, newPos.z);
             }
         }
     }
+}
+
+void Gameplay::moveEntity(glm::vec3 position, int id) {
+    std::cout << "Shit needs to move" << std::endl;
 }
 
 void Gameplay::updateSelectedEntity(glm::vec3 position)

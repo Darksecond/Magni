@@ -6,7 +6,7 @@
 class NetworkHeader
 {
 public:
-	NetworkHeader(const uint32_t& size, const uint32_t& count) : _size(size), _count(count), _array(nullptr), _dirty(true)
+	NetworkHeader(const uint32_t& size, const uint32_t& count, const uint32_t& id, const uint32_t& type) : _size(size), _count(count), _array(nullptr), _dirty(true), _id(id), _type(type)
 	{
 	}
 
@@ -25,7 +25,7 @@ public:
 	inline const uint32_t& count() { return _count; }
 	inline const uint32_t& id() { return _id; }
 	inline const uint32_t& type() { return _type; }
-    
+
 	static inline size_t header_length()
 	{
 		return sizeof(uint32_t) + sizeof(uint32_t) + sizeof(uint32_t) + sizeof(uint32_t);
@@ -53,10 +53,10 @@ private:
 
 		_count = *reinterpret_cast<const uint32_t*>(array+i);
 		i += sizeof(uint32_t);
-        
+
 		_id = *reinterpret_cast<const uint32_t*>(array+i);
 		i += sizeof(uint32_t);
-        
+
 		_type = *reinterpret_cast<const uint32_t*>(array+i);
 		i += sizeof(uint32_t);
 	}
@@ -77,7 +77,7 @@ private:
 		size.as_size_t = _size;
 		memcpy(_array+i, size.as_char, sizeof(size));
 		i += sizeof(size);
-		
+
 		//number of values (count)
 		union
 		{
@@ -87,7 +87,7 @@ private:
 		count.as_size_t = _count;
 		memcpy(_array+i, count.as_char, sizeof(count));
 		i += sizeof(count);
-        
+
         //id
 		union
 		{
@@ -97,7 +97,7 @@ private:
 		id.as_uint = _id;
 		memcpy(_array+i, id.as_char, sizeof(count));
 		i += sizeof(count);
-        
+
         //type
 		union
 		{
@@ -107,7 +107,7 @@ private:
 		type.as_uint = _type;
 		memcpy(_array+i, type.as_char, sizeof(count));
 		i += sizeof(count);
-        
+
 		_dirty = false;
 	}
 };

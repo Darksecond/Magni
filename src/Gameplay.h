@@ -59,6 +59,9 @@ namespace Ymir
             int basicInfanteriePrice;
             int orbitalDropBeaconPrice;
 
+            enum {BUILD = 0, MOVE, SELL};
+            enum {WORKER = 0, B_INFANTRY, A_INFANTRY};
+
             Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize);
 
             void createCamera();
@@ -76,6 +79,7 @@ namespace Ymir
 
             void sellEntity(Entity* aEntity);
             void moveEntity();
+            void moveEntity(glm::vec3 position, int id);
 
             bool centralIntelligenceCoreDestoyed();
             bool enemyCentralIntelligenceCoreDestroyed();

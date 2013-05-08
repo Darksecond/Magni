@@ -15,11 +15,11 @@ public:
     NetworkPacket() : _dirty(true), _readonly(false), _array(nullptr)
     {
     }
-    
+
 	NetworkPacket(uint32_t id, uint32_t type) : _size(0), _count(0), _array(nullptr), _values(), _dirty(true), _readonly(false), _id(id), _type(type)
 	{
 	}
-    
+
 	explicit NetworkPacket(const uint8_t* array) : _size(0), _count(0), _array(nullptr), _values(), _dirty(false), _readonly(true)
 	{
 		//TODO this can be improved
@@ -29,16 +29,16 @@ public:
 		_count = header.count();
         _id = header.id();
         _type = header.type();
-        
+
 		_array = new uint8_t[_size];
 		memcpy(_array, array, _size);
 	}
-    
+
 	~NetworkPacket()
 	{
 		delete _array;
 	}
-    
+
 	template <typename T>
 	void set(int index, const T value)
 	{
@@ -48,11 +48,11 @@ public:
 			_values.resize(index+1);
 			_count = index + 1;
 		}
-        
+
 		_values.at(index) = std::move(std::unique_ptr<NetworkValue<T>>(new NetworkValue<T>(value)));
 		_dirty = true;
 	}
-    
+
 	/**
 	 * Use this to set arrays which have a build in known length, like string literals.
 	 */
@@ -61,7 +61,7 @@ public:
 	{
 		set_array(index, value, N);
 	}
-    
+
 	/**
 	 * Use this to set arrays of which the compiler does not know the length.
 	 */
@@ -74,11 +74,11 @@ public:
 			_values.resize(index+1);
 			_count = index + 1;
 		}
-        
+
 		_values.at(index) = std::move(std::unique_ptr<NetworkArray<T>>(new NetworkArray<T>(value, N)));
 		_dirty = true;
 	}
-    
+
 	template <typename T>
 	void build_value_from_array(size_t index)
 	{
@@ -87,14 +87,14 @@ public:
 		{
 			size_t value_size = *reinterpret_cast<uint32_t*>(i);
 			i += sizeof(uint32_t);
-            
+
 			if(j == index)
 			{
 				if(index >= _values.size())
 				{
 					_values.resize(index+1);
 				}
-                
+
 				T value = *reinterpret_cast<T*>(i);
 				_values[index] = std::move(std::unique_ptr<NetworkValue<T>>(new NetworkValue<T>(value)));
 			}
@@ -102,7 +102,7 @@ public:
 			++j;
 		}
 	}
-    
+
 	template <typename T>
 	void build_value_array_from_array(size_t index)
 	{
@@ -111,14 +111,14 @@ public:
 		{
 			size_t value_size = *reinterpret_cast<uint32_t*>(i);
 			i += sizeof(uint32_t);
-            
+
 			if(j == index)
 			{
 				if(index >= _values.size())
 				{
 					_values.resize(index+1);
 				}
-                
+
 				T* value = reinterpret_cast<T*>(i);
 				_values[index] = std::move(std::unique_ptr<NetworkArray<T>>(new NetworkArray<T>(value, value_size/sizeof(T))));
 			}
@@ -126,22 +126,22 @@ public:
 			++j;
 		}
 	}
-    
+
 	template <typename T>
 	const T& get(int index)
 	{
 		if(index >= _count)
 			throw std::runtime_error("you are trying to access an invalid index");
-        
+
 		if(index >= _values.size() || _values[index] == nullptr)
 		{
 			build_value_from_array<T>(index);
 		}
-        
+
 		NetworkValue<T>* value = static_cast<NetworkValue<T>*>(_values[index].get());
 		return value->value();
 	}
-    
+
 	/**
 	 * Use this to access array elements.
 	 * The Type needs to be of a pointer type, like char* or int*
@@ -152,16 +152,16 @@ public:
 	{
 		if(index >= _count)
 			throw std::runtime_error("you are trying to access an invalid index");
-        
+
 		if(index >= _values.size() || _values[index] == nullptr)
 		{
 			build_value_array_from_array<typename std::remove_pointer<T>::type>(index);
 		}
-        
+
 		NetworkArray<typename std::remove_pointer<T>::type>* value = static_cast<NetworkArray<typename std::remove_pointer<T>::type>*>(_values[index].get());
 		return value->value();
 	}
-    
+
 	void build_array()
 	{
 		_size = NetworkHeader::header_length(); //header = size + count fields
@@ -171,18 +171,18 @@ public:
 				_size += ptr->size();
 		}
 		_size += _count * sizeof(uint32_t);
-        
+
 		delete _array;
 		_array = new uint8_t[_size];
-        
+
 		//build up _array
 		int i = 0;
-        
+
 		//header
-		NetworkHeader header(_size, _count);
+		NetworkHeader header(_size, _count, _id, _type);
 		memcpy(_array+i, header.to_char_array(), header.header_length());
 		i += header.header_length();
-		
+
 		for(auto& ptr : _values)
 		{
 			if(ptr)
@@ -196,7 +196,7 @@ public:
 				length.as_size_t = ptr->size();
 				memcpy(_array+i, length.as_char, sizeof(length));
 				i += sizeof(length);
-                
+
 				//body of value
 				memcpy(_array+i, ptr->to_char_array(), ptr->size());
 				i += ptr->size();
@@ -214,32 +214,32 @@ public:
 				i += sizeof(length);
 			}
 		}
-        
+
 		_dirty = false;
 	}
-    
+
 	const uint8_t* char_array()
 	{
 		if(_dirty) build_array();
 		return _array;
 	}
-    
+
 	size_t size()
 	{
 		if(_dirty) build_array();
 		return _size;
 	}
-    
+
 	size_t count()
 	{
 		return _count;
 	}
-    
+
     uint32_t id()
     {
         return _id;
     }
-    
+
     uint32_t type()
     {
         return _type;
