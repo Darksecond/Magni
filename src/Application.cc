@@ -83,9 +83,8 @@ void Application::runGame()
 
     // end cleanup -----------------------------------
 
-    Client *client = new Client();
-    client->setIPAdress(127, 0, 0, 1);
     Timer* checkDefeatTimer = new Timer(2);
+
     while(glfwGetWindowParam(GLFW_OPENED))
     {
         double thisTime = glfwGetTime();
@@ -105,13 +104,6 @@ void Application::runGame()
             gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
         }
 
-        if(glfwGetKey( 'C' ) == GLFW_PRESS) {
-            NetworkPacket np;
-            np.set(0, 1337);
-            np.set_array(1, "Hello, World");
-
-            client->write(np.char_array(), np.size());
-        }
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
             gameplay->moveEntity();
         }

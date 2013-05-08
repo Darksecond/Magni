@@ -12,6 +12,10 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
             renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0)
 {
     ung = new UniqueNumberGenerator();
+
+    client = new Client();
+    client->gp = this;
+    client->setIPAdress(127, 0, 0, 1);
 }
 
 void Gameplay::createCamera()
@@ -36,7 +40,6 @@ void Gameplay::createWorker(glm::vec3 position)
 
             int newnumber = ung->getNewUniqueNumber();
             Entity& worker = scene.assign("worker" + newnumber);
-            std::cout << newnumber << std::endl;
             worker.assign<SpatialComponent>(position);
             worker.assign<ModelComponent>(worker_mesh, worker_tex);
             worker.assign<HealthComponent>(100);
@@ -44,12 +47,39 @@ void Gameplay::createWorker(glm::vec3 position)
             worker.assign<OwnerComponent>(objectOwner);
             worker.assign<IDComponent>(newnumber);
 
+            NetworkPacket np;
+            np.set(0, newnumber);
+            np.set_array(1, "BUILD");
+            np.set_array(2, "WORKER");
+            np.set(3, position.x);
+            np.set(4, position.y);
+            np.set(5, position.z);
+
+            client->write(np.char_array(), np.size());
+
             currencyEngine.currency -= workerPrice;
             infantryTimer = 0;
         } else {
             std::cout << "Not enough money for a worker unit " << std::endl;
         }
     }
+}
+
+void Gameplay::createGhostWorker(glm::vec3 position, int id)
+{
+    position.y = 0.3;
+    std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
+    std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
+
+    Entity& worker = scene.assign("worker" + id);
+    worker.assign<SpatialComponent>(position);
+    worker.assign<ModelComponent>(worker_mesh, worker_tex);
+    worker.assign<HealthComponent>(100);
+    worker.assign<CurrencyComponent>(workerPrice);
+    worker.assign<OwnerComponent>(2);
+    worker.assign<IDComponent>(id);
+
+    std::cout << "Builded a unit via network with ID: " << id << std::endl;
 }
 
 void Gameplay::createBasicInfantrie(glm::vec3 position)

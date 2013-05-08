@@ -2,9 +2,13 @@
 
 #include "Network.h"
 #include "NetworkPacket.h"
+#include "Gameplay.h"
+#include <GLM/glm.hpp>
 
 namespace Ymir
 {
+    class Gameplay;
+
     class Client : public Network
     {
         private:
@@ -14,6 +18,8 @@ namespace Ymir
         public:
             Client();
             virtual ~Client();
+
+            Gameplay* gp;
 
             virtual void read();
             virtual void write(const unsigned char* data, const size_t size);

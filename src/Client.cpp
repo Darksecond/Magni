@@ -32,8 +32,17 @@ void Client::read() {
         if(bytes_received)
         {
             NetworkPacket np(buffer);
-            std::cout << np.get<int>(0) << std::endl;
-            std::cout << np.get_array<char*>(1) << std::endl;
+            std::cout << "ID: "         << np.get<int>(0) << std::endl;
+            std::cout << "Order: "      << np.get_array<char*>(1) << std::endl;
+            std::cout << "Object: "     << np.get_array<char*>(2) << std::endl;
+            std::cout << "Position: "   << np.get<float>(3) << " , "
+                                        << np.get<float>(4) << " , "
+                                        << np.get<float>(5) <<
+                                        std::endl;
+
+            glm::vec3 position = glm::vec3(np.get<float>(3) + 2, np.get<float>(4), np.get<float>(5));
+            gp->createGhostWorker(position, np.get<int>(0));
+
             std::cout << std::endl;
         }
     }

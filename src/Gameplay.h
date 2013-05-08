@@ -26,12 +26,15 @@
 #include "OwnerComponent.h"
 #include "UniqueNumberGenerator.h"
 #include "IDComponent.h"
-
+#include "NetworkPacket.h"
+#include "Client.h"
 #include "RTSCameraBehavior.h"
-
 #include "CurrencyEngine.h"
+
 namespace Ymir
 {
+    class Client;
+
     class Gameplay
     {
         private:
@@ -42,7 +45,9 @@ namespace Ymir
             Entity* currentSelectedUnit;
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
+
             UniqueNumberGenerator* ung;
+            Client* client;
 
             float infantryTimer, buildingTimer;
             int unitIdentifyCounter;
@@ -59,6 +64,7 @@ namespace Ymir
             void createCamera();
 
             void createWorker(glm::vec3 position);
+            void createGhostWorker(glm::vec3 position, int id);
             void createBasicInfantrie(glm::vec3 position);
             void createAdvancedInfantrie();
             void createEngineer();
