@@ -85,8 +85,8 @@ public:
 		int j = 0;
 		for(uint8_t* i = _array + NetworkHeader::header_length(); i < _array + _size;)
 		{
-			size_t value_size = *reinterpret_cast<size_t*>(i);
-			i += sizeof(size_t);
+			size_t value_size = *reinterpret_cast<uint32_t*>(i);
+			i += sizeof(uint32_t);
             
 			if(j == index)
 			{
@@ -109,8 +109,8 @@ public:
 		int j = 0;
 		for(uint8_t* i = _array + NetworkHeader::header_length(); i < _array + _size;)
 		{
-			size_t value_size = *reinterpret_cast<size_t*>(i);
-			i += sizeof(size_t);
+			size_t value_size = *reinterpret_cast<uint32_t*>(i);
+			i += sizeof(uint32_t);
             
 			if(j == index)
 			{
@@ -170,7 +170,7 @@ public:
 			if(ptr)
 				_size += ptr->size();
 		}
-		_size += _count * sizeof(size_t);
+		_size += _count * sizeof(uint32_t);
         
 		delete _array;
 		_array = new uint8_t[_size];
@@ -190,8 +190,8 @@ public:
 				//header for value
 				union
 				{
-					size_t as_size_t;
-					char as_char[sizeof(size_t)];
+					uint32_t as_size_t;
+					char as_char[sizeof(uint32_t)];
 				} length;
 				length.as_size_t = ptr->size();
 				memcpy(_array+i, length.as_char, sizeof(length));
@@ -206,8 +206,8 @@ public:
 				//header for null value (size 0)
 				union
 				{
-					size_t as_size_t;
-					char as_char[sizeof(size_t)];
+					uint32_t as_size_t;
+					char as_char[sizeof(uint32_t)];
 				} length;
 				length.as_size_t = 0;
 				memcpy(_array+i, length.as_char, sizeof(length));
