@@ -13,8 +13,6 @@ Client::Client()
 	if (!socket.Open( port )) {
 		printf( "failed to create socket!\n" );
 	}
-
-    _thread  = boost::thread(&Client::read, this);
 }
 
 Client::~Client() {
