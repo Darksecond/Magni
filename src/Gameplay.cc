@@ -51,6 +51,7 @@ void Gameplay::createWorker(glm::vec3 position)
             worker.assign<OwnerComponent>(objectOwner);
             worker.assign<IDComponent>(newnumber);
 
+            std::cout << newnumber << std::endl;
             NetworkPacket np;
             np.set(0, newnumber);
             np.set_array(1, "BUILD");

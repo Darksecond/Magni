@@ -38,7 +38,7 @@ void Client::read() {
                                         << np.get<float>(5) <<
                                         std::endl;
 
-            glm::vec3 position = glm::vec3(np.get<float>(3) + 2, np.get<float>(4), np.get<float>(5));
+            glm::vec3 position = glm::vec3(np.get<float>(3), np.get<float>(4), np.get<float>(5));
             gp->createGhostWorker(position, np.get<uint32_t>(0));
 
             std::cout << std::endl;
