@@ -47,12 +47,12 @@ namespace Ymir
             CurrencyEngine& currencyEngine;
 
             UniqueNumberGenerator* ung;
-            Client* client;
 
             float infantryTimer, buildingTimer;
             int unitIdentifyCounter;
 
         public:
+            Client* client;
             int objectOwner;
 
             int workerPrice;
