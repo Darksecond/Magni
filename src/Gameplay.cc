@@ -3,6 +3,7 @@
 #include "HealthComponent.h"
 
 #include <iostream>
+#include <sstream>
 
 using namespace Ymir;
 
@@ -15,7 +16,7 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
 
     client = new Client();
     client->gp = this;
-    client->setIPAdress(127, 0, 0, 1);
+    client->setIPAdress(192, 168, 0, 1);
 }
 
 void Gameplay::createCamera()
@@ -39,7 +40,10 @@ void Gameplay::createWorker(glm::vec3 position)
             std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
             int newnumber = ung->getNewUniqueNumber();
-            Entity& worker = scene.assign("worker" + newnumber);
+            std::stringstream name;
+            name << "worker";
+            name << newnumber;
+            Entity& worker = scene.assign(name.str());
             worker.assign<SpatialComponent>(position);
             worker.assign<ModelComponent>(worker_mesh, worker_tex);
             worker.assign<HealthComponent>(100);

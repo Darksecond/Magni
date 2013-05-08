@@ -6,7 +6,7 @@
 class NetworkHeader
 {
 public:
-	NetworkHeader(const size_t& size, const size_t& count) : _size(size), _count(count), _array(nullptr), _dirty(true)
+	NetworkHeader(const uint32_t& size, const uint32_t& count) : _size(size), _count(count), _array(nullptr), _dirty(true)
 	{
 	}
 
@@ -21,14 +21,14 @@ public:
 			delete _array;
 	}
 
-	inline const size_t& size() { return _size; }
-	inline const size_t& count() { return _count; }
+	inline const uint32_t& size() { return _size; }
+	inline const uint32_t& count() { return _count; }
 	inline const uint32_t& id() { return _id; }
 	inline const uint32_t& type() { return _type; }
     
 	static inline size_t header_length()
 	{
-		return sizeof(size_t) + sizeof(size_t) + sizeof(uint32_t) + sizeof(uint32_t);
+		return sizeof(uint32_t) + sizeof(uint32_t) + sizeof(uint32_t) + sizeof(uint32_t);
 	}
 
 	inline const uint8_t* to_char_array()
@@ -38,8 +38,8 @@ public:
 		return _array;
 	}
 private:
-	size_t _size;
-	size_t _count;
+	uint32_t _size;
+	uint32_t _count;
     uint32_t _id;
     uint32_t _type;
 	uint8_t* _array;
@@ -48,11 +48,11 @@ private:
 	void build_headers_from_array(const uint8_t* array)
 	{
 		int i = 0;
-		_size = *reinterpret_cast<const size_t*>(array+i);
-		i += sizeof(size_t);
+		_size = *reinterpret_cast<const uint32_t*>(array+i);
+		i += sizeof(uint32_t);
 
-		_count = *reinterpret_cast<const size_t*>(array+i);
-		i += sizeof(size_t);
+		_count = *reinterpret_cast<const uint32_t*>(array+i);
+		i += sizeof(uint32_t);
         
 		_id = *reinterpret_cast<const uint32_t*>(array+i);
 		i += sizeof(uint32_t);
@@ -71,8 +71,8 @@ private:
 		//size
 		union
 		{
-			size_t as_size_t;
-			char as_char[sizeof(size_t)];
+			uint32_t as_size_t;
+			char as_char[sizeof(uint32_t)];
 		} size;
 		size.as_size_t = _size;
 		memcpy(_array+i, size.as_char, sizeof(size));
@@ -81,8 +81,8 @@ private:
 		//number of values (count)
 		union
 		{
-			size_t as_size_t;
-			char as_char[sizeof(size_t)];
+			uint32_t as_size_t;
+			char as_char[sizeof(uint32_t)];
 		} count;
 		count.as_size_t = _count;
 		memcpy(_array+i, count.as_char, sizeof(count));

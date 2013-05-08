@@ -31,6 +31,7 @@
 		F61D00661716CAAD00B7315F /* libboost_thread-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D00651716CAAD00B7315F /* libboost_thread-mt.a */; };
 		F61D006A1716CDFD00B7315F /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D00681716CDFC00B7315F /* Server.cpp */; };
 		F61D006D1716CE1000B7315F /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D006B1716CE1000B7315F /* Network.cpp */; };
+		F6268B03173A5238009486C0 /* UniqueNumberGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6268B01173A5238009486C0 /* UniqueNumberGenerator.cpp */; };
 		F627D39E16B97CA7000B06AF /* wooden-crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F627D39D16B97CA7000B06AF /* wooden-crate.jpg */; };
 		F62F58A116E6174D008B379E /* helloworld.wav in Resources */ = {isa = PBXBuildFile; fileRef = F62F58A016E6174D008B379E /* helloworld.wav */; };
 		F62F58A416E61B38008B379E /* Listener.cc in Sources */ = {isa = PBXBuildFile; fileRef = F62F58A216E61B38008B379E /* Listener.cc */; };
@@ -249,6 +250,8 @@
 		F61D00691716CDFC00B7315F /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
 		F61D006B1716CE1000B7315F /* Network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Network.cpp; sourceTree = "<group>"; };
 		F61D006C1716CE1000B7315F /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
+		F6268B01173A5238009486C0 /* UniqueNumberGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UniqueNumberGenerator.cpp; sourceTree = "<group>"; };
+		F6268B02173A5238009486C0 /* UniqueNumberGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniqueNumberGenerator.h; sourceTree = "<group>"; };
 		F627D39D16B97CA7000B06AF /* wooden-crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wooden-crate.jpg"; sourceTree = "<group>"; };
 		F62F58A016E6174D008B379E /* helloworld.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = helloworld.wav; sourceTree = "<group>"; };
 		F62F58A216E61B38008B379E /* Listener.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Listener.cc; sourceTree = "<group>"; };
@@ -791,6 +794,8 @@
 				F6053FE816C6D532007F52FE /* Resource Management */,
 				F63C7D9D1716C5B90024CA50 /* Client.cpp */,
 				F63C7D9E1716C5B90024CA50 /* Client.h */,
+				F6268B01173A5238009486C0 /* UniqueNumberGenerator.cpp */,
+				F6268B02173A5238009486C0 /* UniqueNumberGenerator.h */,
 				F60D92A51701D86100D0E6F4 /* Application.cc */,
 				F60D92A61701D86100D0E6F4 /* Application.h */,
 				F645948B16B6A8F100B118C2 /* Shader.h */,
@@ -1266,6 +1271,7 @@
 				F61D006A1716CDFD00B7315F /* Server.cpp in Sources */,
 				F61D006D1716CE1000B7315F /* Network.cpp in Sources */,
 				F644EE151738FEC200D918FA /* Timer.cc in Sources */,
+				F6268B03173A5238009486C0 /* UniqueNumberGenerator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
