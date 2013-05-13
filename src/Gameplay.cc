@@ -37,8 +37,7 @@ void Gameplay::drawGrid(bool draw)
 
 void Gameplay::createWorker(glm::vec3 position)
 {
-    std::cout << infantryTimer << std::endl;
-
+    std::cout << 5-infantryTimer << std::endl;
     if (infantryTimer > 5) {
         if(currencyEngine.currency >= workerPrice) {
             position.y = 0.3;
@@ -86,8 +85,8 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
 
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
-    std::cout << infantryTimer << std::endl;
-    if (infantryTimer > 5) {
+    std::cout << 5-infantryTimer << std::endl;
+        if (infantryTimer > 5) {
         if(currencyEngine.currency >= basicInfanteriePrice) {
             position.y = 0.0;
             std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
@@ -118,7 +117,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
 
 void Gameplay::createAdvancedInfantrie()
 {
-    std::cout << infantryTimer << std::endl;
+    std::cout << 5-infantryTimer << std::endl;
     if (infantryTimer > 5) {
         //TODO: implementation
         //...
@@ -136,7 +135,7 @@ void Gameplay::createAdvancedInfantrie()
 
 void Gameplay::createEngineer()
 {
-    std::cout << infantryTimer << std::endl;
+    std::cout << 5-infantryTimer << std::endl;
     if (infantryTimer > 5) {
         //TODO: implementation
         //...
@@ -169,7 +168,7 @@ void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 {
-    std::cout << buildingTimer << std::endl;
+    std::cout << 5-buildingTimer << std::endl;
     if ( buildingTimer > 5) {
          if (currencyEngine.currency >= orbitalDropBeaconPrice) {
             position.y = 0.0;

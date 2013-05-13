@@ -49,7 +49,7 @@ void Application::buildGame()
     gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE);
     gameplay->createCamera();
 
-    TileMap* tiles = new TileMap(100, 2, 2);
+    TileMap* tiles = new TileMap(400, 1, 1); //400 want 20 * 20
     gameplay->setTileMap(tiles);
 
     lastTime = glfwGetTime();
@@ -100,11 +100,12 @@ void Application::runGame()
 
         glfwEnable(GLFW_KEY_REPEAT);
 
+        std::cout << renderEngine->get3DPositionFromMousePosition().x << "," << renderEngine->get3DPositionFromMousePosition().y << "," << renderEngine->get3DPositionFromMousePosition().z << std::endl;
+
         // TODO cleanup ----------------------------------
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
             gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
         }
-
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
             gameplay->moveEntity();
         }
@@ -124,7 +125,7 @@ void Application::runGame()
         if(glfwGetKey( 'G' ) == GLFW_PRESS) {
             gameplay->drawGrid(true);
         } else {
-            gameplay->drawGrid(false);
+//            gameplay->drawGrid(false);
         }
         if(glfwGetKey( 'R') == GLFW_PRESS) {
             gameplay->winGame();
