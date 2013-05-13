@@ -530,7 +530,7 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
     GLuint vertexbuffer;
     glGenBuffers(1, &vertexbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), g_vertex_buffer_data, GL_STATIC_DRAW);
 
     p.setUniform("MVP", MVP);
 
@@ -546,7 +546,7 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
         (void*)0
     );
 
-    glDrawArrays(GL_LINES, 0, bufferSize);
+    glDrawArrays(GL_LINES, 0, bufferSize / 3);
 
     glDisableVertexAttribArray(0);
 
