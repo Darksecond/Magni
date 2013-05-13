@@ -29,7 +29,7 @@ void Gameplay::createCamera()
 
 void Gameplay::createWorker(glm::vec3 position)
 {
-    std::cout << infantryTimer << std::endl;
+    std::cout << 5-infantryTimer << std::endl;
     if (infantryTimer > 5) {
         if(currencyEngine.currency >= workerPrice) {
             position.y = 0.3;
@@ -52,7 +52,7 @@ void Gameplay::createWorker(glm::vec3 position)
 
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
-    std::cout << infantryTimer << std::endl;
+    std::cout << 5-infantryTimer << std::endl;
         if (infantryTimer > 5) {
         if(currencyEngine.currency >= basicInfanteriePrice) {
             position.y = 0.0;
@@ -78,7 +78,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
 
 void Gameplay::createAdvancedInfantrie()
 {
-    std::cout << infantryTimer << std::endl;
+    std::cout << 5-infantryTimer << std::endl;
     if (infantryTimer > 5) {
         //TODO: implementation
         //...
@@ -89,7 +89,7 @@ void Gameplay::createAdvancedInfantrie()
 
 void Gameplay::createEngineer()
 {
-    std::cout << infantryTimer << std::endl;
+    std::cout << 5-infantryTimer << std::endl;
     if (infantryTimer > 5) {
         //TODO: implementation
         //...
@@ -122,7 +122,7 @@ void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 {
-    std::cout << buildingTimer << std::endl;
+    std::cout << 5-buildingTimer << std::endl;
     if ( buildingTimer > 5) {
          if (currencyEngine.currency >= orbitalDropBeaconPrice) {
                 position.y = 0.0;
@@ -152,7 +152,7 @@ void Gameplay::buildPowerCore()
 
 void Gameplay::buildAcademyOfAdvancedTechnologies()
     {
-        std::cout << buildingTimer << std::endl;
+        std::cout << 5-buildingTimer << std::endl;
         if ( buildingTimer > 5) {
             //TODO: implementation
             //...
