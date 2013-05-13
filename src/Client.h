@@ -13,7 +13,6 @@ namespace Ymir
     class Client : public Network
     {
         private:
-            boost::thread _thread;
             int a, b, c, d, _datasize;
             UniqueNumberGenerator* ung;
 

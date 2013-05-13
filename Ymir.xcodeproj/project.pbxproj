@@ -27,8 +27,6 @@
 		F61BDCBB16E8988E00768DEE /* Cubemap.cc in Sources */ = {isa = PBXBuildFile; fileRef = F61BDCB916E8988E00768DEE /* Cubemap.cc */; };
 		F61BDCC116E8BD8100768DEE /* sky.frag in Resources */ = {isa = PBXBuildFile; fileRef = F61BDCBF16E8BD6700768DEE /* sky.frag */; };
 		F61BDCC216E8BD8300768DEE /* sky.vert in Resources */ = {isa = PBXBuildFile; fileRef = F61BDCBD16E8BD6200768DEE /* sky.vert */; };
-		F61D00641716CAA800B7315F /* libboost_system-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D00631716CAA800B7315F /* libboost_system-mt.a */; };
-		F61D00661716CAAD00B7315F /* libboost_thread-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D00651716CAAD00B7315F /* libboost_thread-mt.a */; };
 		F61D006A1716CDFD00B7315F /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D00681716CDFC00B7315F /* Server.cpp */; };
 		F61D006D1716CE1000B7315F /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D006B1716CE1000B7315F /* Network.cpp */; };
 		F6268B03173A5238009486C0 /* UniqueNumberGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6268B01173A5238009486C0 /* UniqueNumberGenerator.cpp */; };
@@ -119,8 +117,6 @@
 		F6B1DA1E16BFDC9D006BBC69 /* SpatialComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA1D16BFDC9D006BBC69 /* SpatialComponent.cc */; };
 		F6B1DA2216BFE2EE006BBC69 /* LightComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA2116BFE2EE006BBC69 /* LightComponent.cc */; };
 		F6B1DA2416C0158D006BBC69 /* Component.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6B1DA2316C0158D006BBC69 /* Component.cc */; };
-		F6B6A8231740F53800B8186E /* grid.frag in Sources */ = {isa = PBXBuildFile; fileRef = F6B6A8211740F53800B8186E /* grid.frag */; };
-		F6B6A8241740F53800B8186E /* grid.vert in Sources */ = {isa = PBXBuildFile; fileRef = F6B6A8221740F53800B8186E /* grid.vert */; };
 		F6B6A8251740F56E00B8186E /* grid.frag in Resources */ = {isa = PBXBuildFile; fileRef = F6B6A8211740F53800B8186E /* grid.frag */; };
 		F6B6A8261740F57000B8186E /* grid.vert in Resources */ = {isa = PBXBuildFile; fileRef = F6B6A8221740F53800B8186E /* grid.vert */; };
 		F6B7B83216BDD38E003D3F9F /* phong.vert in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B82E16BDD37A003D3F9F /* phong.vert */; };
@@ -247,8 +243,6 @@
 		F61BDCBC16E8B7E500768DEE /* CubemapResourceLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubemapResourceLoader.h; sourceTree = "<group>"; };
 		F61BDCBD16E8BD6200768DEE /* sky.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sky.vert; sourceTree = "<group>"; };
 		F61BDCBF16E8BD6700768DEE /* sky.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sky.frag; sourceTree = "<group>"; };
-		F61D00631716CAA800B7315F /* libboost_system-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_system-mt.a"; path = "../../../../usr/local/lib/libboost_system-mt.a"; sourceTree = "<group>"; };
-		F61D00651716CAAD00B7315F /* libboost_thread-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_thread-mt.a"; path = "../../../../usr/local/lib/libboost_thread-mt.a"; sourceTree = "<group>"; };
 		F61D00671716CD4100B7315F /* Net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Net.h; sourceTree = "<group>"; };
 		F61D00681716CDFC00B7315F /* Server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
 		F61D00691716CDFC00B7315F /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
@@ -464,8 +458,6 @@
 				F687A4F616B4B96F00878140 /* GLEW.framework in Frameworks */,
 				F687A4F716B4B96F00878140 /* GLFW.framework in Frameworks */,
 				F687A41016B4B63300878140 /* Cocoa.framework in Frameworks */,
-				F61D00641716CAA800B7315F /* libboost_system-mt.a in Frameworks */,
-				F61D00661716CAAD00B7315F /* libboost_thread-mt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,8 +549,6 @@
 		F687A40016B4B63300878140 = {
 			isa = PBXGroup;
 			children = (
-				F61D00651716CAAD00B7315F /* libboost_thread-mt.a */,
-				F61D00631716CAA800B7315F /* libboost_system-mt.a */,
 				F687A41516B4B63300878140 /* Ymir */,
 				F687A43516B4B73B00878140 /* GLFW */,
 				F687A4D616B4B89900878140 /* GLEW */,
@@ -1282,8 +1272,6 @@
 				F61D006D1716CE1000B7315F /* Network.cpp in Sources */,
 				F644EE151738FEC200D918FA /* Timer.cc in Sources */,
 				F6268B03173A5238009486C0 /* UniqueNumberGenerator.cpp in Sources */,
-				F6B6A8231740F53800B8186E /* grid.frag in Sources */,
-				F6B6A8241740F53800B8186E /* grid.vert in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1432,9 +1420,9 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "osx/Ymir/Ymir-Info.plist";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "";
 				LLVM_LTO = NO;
 				PRODUCT_NAME = Ymir;
 				USER_HEADER_SEARCH_PATHS = src;
@@ -1450,9 +1438,9 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "osx/Ymir/Ymir-Info.plist";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "";
 				LLVM_LTO = NO;
 				PRODUCT_NAME = Ymir;
 				USER_HEADER_SEARCH_PATHS = src;

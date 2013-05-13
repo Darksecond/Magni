@@ -7,7 +7,6 @@ namespace Ymir
     class Server : public Network
     {
     private:
-        boost::thread _thread;
     public:
         Server();
         virtual ~Server();

@@ -10,8 +10,6 @@ Server::Server() {
 	if (!socket.Open( port )) {
 		printf( "failed to create socket!\n" );
 	}
-
-    _thread  = boost::thread(&Server::setupListener, this);
 }
 
 Server::~Server() {

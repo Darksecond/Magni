@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Net.h"
-#include <boost/thread.hpp>
 
 namespace Ymir
 {
