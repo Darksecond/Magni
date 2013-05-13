@@ -113,6 +113,7 @@
 		<Unit filename="src/Network.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="src/NetworkHeader.h" />
 		<Unit filename="src/NetworkPacket.h" />
 		<Unit filename="src/NetworkValue.h" />
 		<Unit filename="src/NodeCache.h" />

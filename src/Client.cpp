@@ -13,6 +13,8 @@ Client::Client()
 	if (!socket.Open( port )) {
 		printf( "failed to create socket!\n" );
 	}
+
+    ung = new UniqueNumberGenerator();
 }
 
 Client::~Client() {
@@ -30,19 +32,18 @@ void Client::read() {
         if(bytes_received)
         {
             NetworkPacket np(buffer);
-            std::cout << np.type() << std::endl;
+            std::cout << "Type: " << np.type() << std::endl;
 
             if(np.type() == Gameplay::BUILD) {
                 if(np.get<int>(Gameplay::B_INFANTRY)) {
                     glm::vec3 position = glm::vec3(np.get<float>(1), np.get<float>(2), np.get<float>(3));
-                    gp->createGhostWorker(position, np.id());
+                    gp->createGhostWorker(position, ung->flip(np.id()));
                 }
             }
 
             if(np.type() == Gameplay::MOVE) {
-                std::cout << "Derp" << std::endl;
                 glm::vec3 position = glm::vec3(np.get<float>(0), np.get<float>(1), np.get<float>(2));
-                gp->moveEntity(position, np.id());
+                gp->moveEntity(position, ung->flip(np.id()));
             }
         }
     }
@@ -50,27 +51,29 @@ void Client::read() {
 
 void Client::readReal()
 {
-        net::Address sender;
-        unsigned char buffer[BUFFER_SIZE];
+    net::Address sender;
+    unsigned char buffer[BUFFER_SIZE];
 
-        unsigned long bytes_received = socket.Receive( sender, buffer, BUFFER_SIZE);
+    unsigned long bytes_received = socket.Receive( sender, buffer, BUFFER_SIZE);
 
-        if(bytes_received)
-        {
-            NetworkPacket np(buffer);
-            std::cout << "ID: "         << np.get<uint32_t>(0) << std::endl;
-            std::cout << "Order: "      << np.get_array<char*>(1) << std::endl;
-            std::cout << "Object: "     << np.get_array<char*>(2) << std::endl;
-            std::cout << "Position: "   << np.get<float>(3) << " , "
-                                        << np.get<float>(4) << " , "
-                                        << np.get<float>(5) <<
-                                        std::endl;
+    if(bytes_received)
+    {
+        NetworkPacket np(buffer);
+        std::cout << "Type: " << np.type() << std::endl;
 
-            glm::vec3 position = glm::vec3(np.get<float>(3) + 2, np.get<float>(4), np.get<float>(5));
-            gp->createGhostWorker(position, np.get<uint32_t>(0));
-
-            std::cout << std::endl;
+        if(np.type() == Gameplay::BUILD) {
+            if(np.get<int>(Gameplay::B_INFANTRY)) {
+                glm::vec3 position = glm::vec3(np.get<float>(1), np.get<float>(2), np.get<float>(3));
+                gp->createGhostWorker(position, np.id());
+            }
         }
+
+        if(np.type() == Gameplay::MOVE) {
+            std::cout << "Derp" << std::endl;
+            glm::vec3 position = glm::vec3(np.get<float>(0), np.get<float>(1), np.get<float>(2));
+            gp->moveEntity(position, np.id());
+        }
+    }
 }
 
 void Client::write(const unsigned char *data, const size_t size) {

@@ -1,11 +1,13 @@
 #include "Scene.h"
 #include <iostream>
 #include <typeinfo>
+#include <sstream>
 
 using namespace Ymir;
 
 Scene::Scene(EngineManager& manager) : engines(manager)
 {
+    ung = new UniqueNumberGenerator();
 }
 
 Scene::~Scene()
@@ -27,7 +29,22 @@ Entity& Scene::assign(std::unique_ptr<Entity> entity, Entity* parent)
 
 Entity& Scene::assign(const std::string& name, Entity* parent)
 {
-    std::unique_ptr<Entity> entity{new Entity{engines, name}};
+    int newnumber = ung->getNewUniqueNumber();
+    std::stringstream ss;
+    ss << name;
+    ss << newnumber;
+    std::cout << ss.str() << std::endl;
+    std::unique_ptr<Entity> entity{new Entity{engines, ss.str(), newnumber}};
+    return assign(std::move(entity), parent);
+}
+
+Entity& Scene::assign(const std::string& name, const int id, Entity* parent)
+{
+    std::stringstream ss;
+    ss << name;
+    ss << id;
+    std::cout << ss.str() << std::endl;
+    std::unique_ptr<Entity> entity{new Entity{engines, ss.str(), id}};
     return assign(std::move(entity), parent);
 }
 
@@ -44,4 +61,15 @@ bool Scene::containsEntity(std::string name)
         return false;
     }
     return true;
+}
+
+Entity* Scene::getEntity(int id) {
+    for(auto& entity : entities)
+    {
+        if(entity.second->id == id) {
+            return entity.second.get();
+        }
+    }
+
+    return nullptr;
 }

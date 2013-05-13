@@ -4,6 +4,7 @@
 #include "NetworkPacket.h"
 #include "Gameplay.h"
 #include <GLM/glm.hpp>
+#include "UniqueNumberGenerator.h"
 
 namespace Ymir
 {
@@ -14,6 +15,7 @@ namespace Ymir
         private:
             boost::thread _thread;
             int a, b, c, d, _datasize;
+            UniqueNumberGenerator* ung;
 
         public:
             Client();

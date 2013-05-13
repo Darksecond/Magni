@@ -158,7 +158,7 @@ void Application::runGame()
                 gameplay->winGame();
             }
         }
-        
+
         gameplay->client->readReal();
 
         // end cleanup -----------------------------------
