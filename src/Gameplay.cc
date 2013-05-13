@@ -9,7 +9,7 @@
     Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
         RenderEngine& renderEngine, glm::vec2 screenSize)
             : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-                renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(1),basicInfanteriePrice(150),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0)
+renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(1), workerEnergy(10),basicInfanteriePrice(15),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), basicInfantryEnergy(-10), advancedInfantryPrice(250), advancedInfantryEnergy(10), powerCorePrice(200), powerCoreEnergy(-50)
     {
 
     }
@@ -29,6 +29,7 @@
 
     void Gameplay::createWorker(glm::vec3 position)
     {
+        
         std::cout << infantryTimer << std::endl;
         if (infantryTimer > 5) {
             if(currencyEngine.currency >= workerPrice) {
@@ -37,12 +38,16 @@
                 std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
                 Entity& worker = scene.assign("worker");
+                worker.assignBehavior(std::unique_ptr<Behavior>{new EnergyBehaviour});
+                
                 worker.assign<SpatialComponent>(position);
                 worker.assign<ModelComponent>(worker_mesh, worker_tex);
                 worker.assign<HealthComponent>(100);
                 worker.assign<CurrencyComponent>(workerPrice);
                 worker.assign<OwnerComponent>(objectOwner);
+                worker.assign<EnergyComponent>(workerEnergy);
                 currencyEngine.currency -= workerPrice;
+                
             } else {
                 std::cout << "Not enough money for a worker unit " << std::endl;
             }
@@ -54,25 +59,26 @@
     {
         std::cout << infantryTimer << std::endl;
             if (infantryTimer > 5) {
-            if(currencyEngine.currency >= basicInfanteriePrice) {
-                position.y = 0.0;
-                std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
-                std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
+                if(currencyEngine.currency >= basicInfanteriePrice) {
+                    position.y = 0.0;
+                    std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
+                    std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
 
-                Entity& basicInfantrie = scene.assign("basicInfantrie");
-                basicInfantrie.assign<SpatialComponent>(position);
-                basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
-                basicInfantrie.assign<AttackComponent>(1, 20);
-                basicInfantrie.assign<OwnerComponent>(objectOwner);
-                basicInfantrie.assign<HealthComponent>(150);
-                basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
-                currencyEngine.currency -= basicInfanteriePrice;
+                    Entity& basicInfantrie = scene.assign("basicInfantrie");
+                    basicInfantrie.assign<SpatialComponent>(position);
+                    basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
+                    basicInfantrie.assign<AttackComponent>(1, 20);
+                    basicInfantrie.assign<OwnerComponent>(objectOwner);
+                    basicInfantrie.assign<HealthComponent>(150);
+                    basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
+                    basicInfantrie.assign<EnergyComponent>(basicInfantryEnergy);
+                    currencyEngine.currency -= basicInfanteriePrice;
 
-                // TODO add other components
-            } else {
-                std::cout << "Not enough money for basic infantrie" << std::endl;
-            }
-                infantryTimer = 0;
+                    // TODO add other components
+                } else {
+                    std::cout << "Not enough money for basic infantrie" << std::endl;
+                }
+                    infantryTimer = 0;
         }
     }
 
@@ -138,6 +144,16 @@
 
     void Gameplay::buildPowerCore()
     {
+        std::cout << buildingTimer << std::endl;
+        if ( buildingTimer > 5) {
+            if (currencyEngine.currency >= powerCorePrice) {
+            //TODO: implementation
+            //...
+            } else {
+                std::cout << "Not enough money for Power Core" << std::endl;
+            }
+            buildingTimer = 0;
+        }
 
     }
 
