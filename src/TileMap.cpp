@@ -41,4 +41,3 @@ int TileMap::getMapAmount()
 {
     return mapAmount;
 }
-

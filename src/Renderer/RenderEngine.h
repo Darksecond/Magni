@@ -45,6 +45,8 @@ namespace Ymir
         std::list<std::shared_ptr<Text>> texts;
         std::shared_ptr<Cubemap> sky;
 
+
+
         RenderEngine(ResourceManager<Program, ProgramResourceLoader>&,
                      ResourceManager<Texture>&,
                      ResourceManager<Cubemap, CubemapResourceLoader>&);
@@ -55,6 +57,7 @@ namespace Ymir
         virtual void update(int pass, double delta);
         void addComponent(Entity& entity, const BaseComponent::Type& component_type);
 
+        glm::vec3 GetTilePosition();
         glm::vec3 get3DPositionFromMousePosition();
         glm::vec3 get3DPositionFromCoordinates(int xPos, int yPos);
 
