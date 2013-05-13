@@ -28,6 +28,13 @@ void Gameplay::createCamera()
     camera.assignBehavior(std::unique_ptr<Behavior>{new RTSCameraBehavior});
 }
 
+
+void Gameplay::drawGrid(bool draw)
+{
+    renderEngine.setGrid(draw);
+}
+
+
 void Gameplay::createWorker(glm::vec3 position)
 {
     std::cout << infantryTimer << std::endl;
@@ -326,4 +333,12 @@ bool Gameplay::enemyCentralIntelligenceCoreDestroyed()
 void Gameplay::updateTimer(float delta) {
     infantryTimer += delta;
     buildingTimer += delta;
+}
+
+void Gameplay::setTileMap(TileMap* tilemap)
+{
+    if (tilemap) {
+        tileMap = tilemap;
+        renderEngine.setTileMap(tileMap);
+    }
 }

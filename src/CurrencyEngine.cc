@@ -12,7 +12,7 @@ using namespace Ymir;
 
 CurrencyEngine::CurrencyEngine(RenderEngine& renderer) : currency(0) {
 
-    currencyText = std::make_shared<Text>("You have 0 money", glm::vec2{10, 10},24); //position: 300,50, font size 10
+    currencyText = std::make_shared<Text>("You have 0 Money", glm::vec2{10, 10},20); //position: 300,50, font size 10
     renderer.addText(currencyText);
 }
 
@@ -26,7 +26,7 @@ void CurrencyEngine::unregisterEntity(Entity& ent) {
 
 void CurrencyEngine::update(int pass, double delta) {
     if(pass == 0) {
-        currency += delta * 6.2830;
+        currency += delta * 6.2830 * 2;
         int temp = currency;
         std::stringstream produced_text_stream;
         produced_text_stream << temp << " money";
