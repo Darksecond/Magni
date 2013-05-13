@@ -42,7 +42,9 @@
 		</Compiler>
 		<Unit filename="src/Application.cc" />
 		<Unit filename="src/Application.h" />
+		<Unit filename="src/AttackComponent.h" />
 		<Unit filename="src/AttackEngine.cc" />
+		<Unit filename="src/AttackEngine.h" />
 		<Unit filename="src/AudioEngine.cc" />
 		<Unit filename="src/AudioEngine.h" />
 		<Unit filename="src/Audio/Buffer.cc" />
@@ -79,6 +81,7 @@
 		<Unit filename="src/DirectoryManifest.h" />
 		<Unit filename="src/EnergyComponent.h" />
 		<Unit filename="src/EnergyEngine.cc" />
+		<Unit filename="src/EnergyEngine.h" />
 		<Unit filename="src/Engine.h" />
 		<Unit filename="src/EngineManager.cc" />
 		<Unit filename="src/EngineManager.h" />
@@ -93,6 +96,7 @@
 		<Unit filename="src/Gameplay.cc" />
 		<Unit filename="src/Gameplay.h" />
 		<Unit filename="src/Geometry.h" />
+		<Unit filename="src/HealthComponent.h" />
 		<Unit filename="src/LightComponent.cc" />
 		<Unit filename="src/LightComponent.h" />
 		<Unit filename="src/ListenerComponent.h" />
@@ -146,6 +150,8 @@
 		<Unit filename="src/Tile.h" />
 		<Unit filename="src/TileMap.cpp" />
 		<Unit filename="src/TileMap.h" />
+		<Unit filename="src/Timer.cc" />
+		<Unit filename="src/Timer.h" />
 		<Unit filename="src/WSADMoveBehavior.cc" />
 		<Unit filename="src/WSADMoveBehavior.h" />
 		<Unit filename="src/fontstash.h" />

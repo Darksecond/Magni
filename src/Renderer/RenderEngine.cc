@@ -19,6 +19,7 @@
 #include <memory>
 #include <iostream>
 #include <sstream>
+#include <math.h>
 
 using namespace Ymir;
 
@@ -49,7 +50,7 @@ RenderEngine::RenderEngine(ResourceManager<Program,
                            ProgramResourceLoader>& programManager,
                            ResourceManager<Texture>& textureManager,
                            ResourceManager<Cubemap, CubemapResourceLoader>& cubemapManager
-                           ) : lights{}, models{}, texts{}
+                           ) : lights{}, models{}, texts{}, grid(false)
 {
     initGLFW();
     initGLEW();
@@ -62,6 +63,10 @@ RenderEngine::RenderEngine(ResourceManager<Program,
 
     sky = cubemapManager.resource("sky.jpg");
     sky_program = programManager.resource("sky");
+
+    // grid refactor nomination
+    grid_program = programManager.resource("grid");
+    // end refactor nomination
 }
 
 void RenderEngine::initGLFW()
@@ -391,9 +396,14 @@ void RenderEngine::update(int pass, double delta)
 
         renderSkybox(*sky, *sky_program, *_camera);
 
+
         for(auto& model : models)
         {
             render(*texture_program, *phong_program, *_camera, lights, *model);
+        }
+
+        if (grid) {
+            drawGrid(*grid_program, *_camera);
         }
 
         for(auto t : texts)
@@ -404,6 +414,33 @@ void RenderEngine::update(int pass, double delta)
         showFPS();
         glfwSwapBuffers();
     }
+}
+
+glm::vec3 RenderEngine::GetTilePosition(){
+    double width = tileMap->getMapWidth();
+    int height = tileMap->getMapHeight();
+    glm::vec3 mousepos = get3DPositionFromMousePosition();
+
+    mousepos.y = 0;
+    float x = mousepos.x;
+    float z = mousepos.z;
+    int xx = x;
+    int zz = z;
+
+    if(xx != ((int) (x+0.5f))) {
+        xx = x -1.0f;
+    } else {
+        xx = x -0.5f;
+    }
+    if(zz != ((int) (z+0.5f))) {
+        zz = z -1.0f;
+    } else {
+        zz = z -0.5f;
+    }
+    x = xx + 0.5f; //omdat hij in het midden moet
+    z = zz + 0.5f; //omdat hij hier ook in het midden moet
+    std::cout << x << " " << z << " " << xx << " " << zz << std::endl;
+    return glm::vec3(x,0,z);
 }
 
 glm::vec3 RenderEngine::get3DPositionFromMousePosition() {
@@ -423,7 +460,6 @@ glm::vec3 RenderEngine::get3DPositionFromMousePosition() {
 	glm::mat4 tmpProj = _camera->projectionMatrix();
 	glm::vec3 screenPos = glm::vec3(x, y, depth);
 	glm::vec3 worldPos = glm::unProject(screenPos, tmpView, tmpProj, viewport);
-
 	return worldPos;
 }
 
@@ -443,4 +479,100 @@ glm::vec3 RenderEngine::get3DPositionFromCoordinates(int xPos, int yPos) {
 	glm::vec3 worldPos = glm::unProject(screenPos, tmpView, tmpProj, viewport);
 
 	return worldPos;
+}
+
+void RenderEngine::drawGrid(Program& p, Camera& c)
+{
+    int amount = tileMap->getMapAmount();
+    int width = tileMap->getMapWidth();
+    int height = tileMap->getMapHeight();
+
+    int length = sqrt(amount);
+
+    int bufferSize = amount * 4 * 6;
+    GLfloat g_vertex_buffer_data[bufferSize];
+
+    int counter = 0;
+    for (int row = 0; row < length ; row++) {
+        for (int column = 0; column < length; column++) {
+            // top
+            g_vertex_buffer_data[counter++] = -10.0f + (width * column);
+            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = -10.0f + (width * row);
+            g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
+            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = -10.0f + (width * row);
+
+            // right
+            g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
+            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = -10.0f + (height * row);
+            g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
+            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
+
+            // bottem
+            g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
+            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
+            g_vertex_buffer_data[counter++] = -10.0f + (width * column);
+            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
+
+            // left
+            g_vertex_buffer_data[counter++] = -10.0f + (height * column);
+            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
+            g_vertex_buffer_data[counter++] = -10.0f + (height * column);
+            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = -10.0f + (height * row);
+        }
+    }
+
+    GLuint VertexArrayID;
+    glGenVertexArrays(1, &VertexArrayID);
+    glBindVertexArray(VertexArrayID);
+
+    ProgramContext pc {p};
+
+    glm::mat4 projection = c.projectionMatrix();
+    glm::mat4 view = c.viewMatrix();
+    glm::mat4 model = glm::mat4(1.0f);
+    glm::mat4 MVP = projection * view * model;
+
+    GLuint vertexbuffer;
+    glGenBuffers(1, &vertexbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+
+    p.setUniform("MVP", MVP);
+
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+
+    glVertexAttribPointer(
+        0,
+        3,
+        GL_FLOAT,
+        GL_FALSE,
+        0,
+        (void*)0
+    );
+
+    glDrawArrays(GL_LINES, 0, bufferSize);
+
+    glDisableVertexAttribArray(0);
+
+    glDeleteBuffers(1, &vertexbuffer);
+    glDeleteVertexArrays(1, &VertexArrayID);
+}
+
+void RenderEngine::setGrid(bool useGrid)
+{
+    grid = useGrid;
+}
+
+void RenderEngine::setTileMap(TileMap* tilemap)
+{
+    tileMap = tilemap;
 }

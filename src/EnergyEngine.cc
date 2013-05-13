@@ -17,6 +17,9 @@ EnergyEngine::EnergyEngine(RenderEngine& renderer) : energies()
     produced, consumed, total = 0;
     
     renderer.addText(total_text);
+    produced_text = std::make_shared<Text>("0 E produced", glm::vec2{10, 50}, 20);
+    consumed_text = std::make_shared<Text>("0 E used", glm::vec2{10, 30}, 20);
+
     renderer.addText(produced_text);
     renderer.addText(consumed_text);
     renderer.addText(energy_warning_text);
@@ -28,6 +31,15 @@ void EnergyEngine::registerEntity(Entity& entity)
 
 void EnergyEngine::unregisterEntity(Entity& entity)
 {
+    for(EnergyComponent* c : energies)
+    {
+        if(entity.component<EnergyComponent>() == c)
+        {
+            //delete c
+            energies.remove(c);
+            break;
+        }
+    }
 }
 
 void EnergyEngine::update(int pass, double delta)
@@ -52,11 +64,11 @@ void EnergyEngine::update(int pass, double delta)
         //update texts
                 
         std::stringstream produced_text_stream;
-        produced_text_stream << produced << " Energy produced";
+        produced_text_stream << produced << " E produced";
         produced_text->text = produced_text_stream.str();
         
         std::stringstream consumed_text_stream;
-        consumed_text_stream << consumed << " Energy used";
+        consumed_text_stream << consumed << " E used";
         consumed_text->text = consumed_text_stream.str();
         
         std::stringstream total_text_stream;

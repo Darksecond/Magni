@@ -41,9 +41,10 @@ namespace Ymir
             Entity* currentSelectedUnit;
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
-        
-            float infantryTimer, buildingTimer;
 
+            float infantryTimer, buildingTimer;
+            int unitIdentifyCounter;
+            TileMap* tileMap;
 
         public:
             int objectOwner;
@@ -67,6 +68,8 @@ namespace Ymir
 
             void createCamera();
 
+            void drawGrid(bool);
+
             void createWorker(glm::vec3 position);
             void createBasicInfantrie(glm::vec3 position);
             void createAdvancedInfantrie();
@@ -80,6 +83,8 @@ namespace Ymir
             void sellEntity(Entity* aEntity);
             void moveEntity();
 
+            bool centralIntelligenceCoreDestoyed();
+            bool enemyCentralIntelligenceCoreDestroyed();
             void winGame();
             void loseGame();
             void switchOwner(int owner);
@@ -90,5 +95,7 @@ namespace Ymir
             Scene& getScene();
 
             void updateTimer(float delta);
+
+            void setTileMap(TileMap*);
     };
 };

@@ -50,7 +50,8 @@ void Application::buildGame()
     gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE);
     gameplay->createCamera();
 
-    TileMap* tiles = new TileMap(100, 2, 2);
+    TileMap* tiles = new TileMap(400, 1, 1); //400 want 20 * 20
+    gameplay->setTileMap(tiles);
 
     lastTime = glfwGetTime();
 }
@@ -80,15 +81,18 @@ void Application::runGame()
     track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     track.assign<ModelComponent>(track_mesh, track_tex);
 
-//    gameplay->buildCentralIntelligenceCore(glm::vec3{0, 0.00, 0});
+    gameplay->buildCentralIntelligenceCore(glm::vec3{5, 0.00, 1});
+
     // end cleanup -----------------------------------
+
+    Timer* checkDefeatTimer = new Timer(2);
 
     while(glfwGetWindowParam(GLFW_OPENED))
     {
         double thisTime = glfwGetTime();
         double delta = thisTime - lastTime;
         lastTime = thisTime;
-        
+
         gameplay->updateTimer(delta);
 
         engines->update(-1, delta);
@@ -97,22 +101,23 @@ void Application::runGame()
 
         glfwEnable(GLFW_KEY_REPEAT);
 
+        std::cout << renderEngine->get3DPositionFromMousePosition().x << "," << renderEngine->get3DPositionFromMousePosition().y << "," << renderEngine->get3DPositionFromMousePosition().z << std::endl;
+
         // TODO cleanup ----------------------------------
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
             gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
         }
-
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
             gameplay->moveEntity();
         }
         if(glfwGetKey( 'O' ) == GLFW_PRESS) {
-                gameplay->buildOrbitalDropBeacon(renderEngine->get3DPositionFromMousePosition());
+                gameplay->buildOrbitalDropBeacon(renderEngine->GetTilePosition());
         }
         if(glfwGetKey( 'J' ) == GLFW_PRESS) {
-            gameplay->createWorker(renderEngine->get3DPositionFromMousePosition());
+            gameplay->createWorker(renderEngine->GetTilePosition());
         }
         if(glfwGetKey( 'K' ) == GLFW_PRESS) {
-            gameplay->createBasicInfantrie(renderEngine->get3DPositionFromMousePosition());
+            gameplay->createBasicInfantrie(renderEngine->GetTilePosition());
         }
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
             Entity* entity = gameplay->getCurrentSelectedEntity();
@@ -135,16 +140,28 @@ void Application::runGame()
         if(glfwGetKey( 'T' ) == GLFW_PRESS)
         {
             Entity* attacking_unit = gameplay->getCurrentSelectedEntity();
-            Entity* to_be_attacked = gameplay->getEntityAtPosition(renderEngine->get3DPositionFromMousePosition());
+            Entity* to_be_attacked = gameplay->getEntityAtPosition(renderEngine->GetTilePosition());
             if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
             {
                 if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
                 {
-                    attackEngine->attack(*to_be_attacked, *attacking_unit);
                     std::cout << "Unit: " << attacking_unit->name << " is attacking: " << to_be_attacked->name << std::endl;
+                    attackEngine->attack(*to_be_attacked, *attacking_unit);
                 }
             }
         }
+
+        checkDefeatTimer->update(delta);
+        if (checkDefeatTimer->reached()) {
+            checkDefeatTimer->reset();
+            if (gameplay->centralIntelligenceCoreDestoyed()) {
+                gameplay->loseGame();
+            }
+            if (gameplay->enemyCentralIntelligenceCoreDestroyed()) {
+                gameplay->winGame();
+            }
+        }
+
         // end cleanup -----------------------------------
 
         GLenum error = glGetError();
