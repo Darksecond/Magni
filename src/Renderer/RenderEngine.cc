@@ -417,16 +417,29 @@ void RenderEngine::update(int pass, double delta)
 }
 
 glm::vec3 RenderEngine::GetTilePosition(){
+    double width = tileMap->getMapWidth();
+    int height = tileMap->getMapHeight();
     glm::vec3 mousepos = get3DPositionFromMousePosition();
-    //tilemap doorlopen totdat goede tile
+
     mousepos.y = 0;
-    float x = mousepos.x - 0.5;
-    float z = mousepos.z -0.5;
+    float x = mousepos.x;
+    float z = mousepos.z;
     int xx = x;
     int zz = z;
-    x = xx + 0.5;
-    z = zz + 0.5;
-    std::cout << xx << " " << zz << std::endl;
+
+    if(xx != ((int) (x+0.5f))) {
+        xx = x -1.0f;
+    } else {
+        xx = x -0.5f;
+    }
+    if(zz != ((int) (z+0.5f))) {
+        zz = z -1.0f;
+    } else {
+        zz = z -0.5f;
+    }
+    x = xx + 0.5f; //omdat hij in het midden moet
+    z = zz + 0.5f; //omdat hij hier ook in het midden moet
+    std::cout << x << " " << z << " " << xx << " " << zz << std::endl;
     return glm::vec3(x,0,z);
 }
 
