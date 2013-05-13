@@ -41,7 +41,6 @@ void Client::readReal()
         }
 
         if(np.type() == Gameplay::MOVE) {
-            std::cout << "Derp" << std::endl;
             glm::vec3 position = glm::vec3(np.get<float>(0), np.get<float>(1), np.get<float>(2));
             gp->moveEntity(position, ung->flip(np.id()));
         }
