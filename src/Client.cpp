@@ -21,34 +21,6 @@ Client::~Client() {
 
 }
 
-void Client::read() {
-    while ( false )
-    {
-        net::Address sender;
-        unsigned char buffer[BUFFER_SIZE];
-
-        unsigned long bytes_received = socket.Receive( sender, buffer, BUFFER_SIZE);
-
-        if(bytes_received)
-        {
-            NetworkPacket np(buffer);
-            std::cout << "Type: " << np.type() << std::endl;
-
-            if(np.type() == Gameplay::BUILD) {
-                if(np.get<int>(Gameplay::B_INFANTRY)) {
-                    glm::vec3 position = glm::vec3(np.get<float>(1), np.get<float>(2), np.get<float>(3));
-                    gp->createGhostWorker(position, ung->flip(np.id()));
-                }
-            }
-
-            if(np.type() == Gameplay::MOVE) {
-                glm::vec3 position = glm::vec3(np.get<float>(0), np.get<float>(1), np.get<float>(2));
-                gp->moveEntity(position, ung->flip(np.id()));
-            }
-        }
-    }
-}
-
 void Client::readReal()
 {
     net::Address sender;
@@ -64,14 +36,14 @@ void Client::readReal()
         if(np.type() == Gameplay::BUILD) {
             if(np.get<int>(Gameplay::B_INFANTRY)) {
                 glm::vec3 position = glm::vec3(np.get<float>(1), np.get<float>(2), np.get<float>(3));
-                gp->createGhostWorker(position, np.id());
+                gp->createGhostWorker(position, ung->flip(np.id()));
             }
         }
 
         if(np.type() == Gameplay::MOVE) {
             std::cout << "Derp" << std::endl;
             glm::vec3 position = glm::vec3(np.get<float>(0), np.get<float>(1), np.get<float>(2));
-            gp->moveEntity(position, np.id());
+            gp->moveEntity(position, ung->flip(np.id()));
         }
     }
 }
