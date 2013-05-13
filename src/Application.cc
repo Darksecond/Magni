@@ -51,6 +51,7 @@ void Application::buildGame()
     gameplay->createCamera();
 
     TileMap* tiles = new TileMap(100, 2, 2);
+    gameplay->setTileMap(tiles);
 
     lastTime = glfwGetTime();
 }
@@ -120,6 +121,11 @@ void Application::runGame()
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
             Entity* entity = gameplay->getCurrentSelectedEntity();
                 gameplay->sellEntity(entity);
+        }
+        if(glfwGetKey( 'G' ) == GLFW_PRESS) {
+            gameplay->drawGrid(true);
+        } else {
+            gameplay->drawGrid(false);
         }
         if(glfwGetKey( 'R') == GLFW_PRESS) {
             gameplay->winGame();

@@ -43,6 +43,7 @@ namespace Ymir
 
             float infantryTimer, buildingTimer;
             int unitIdentifyCounter;
+            TileMap* tileMap;
 
         public:
             int objectOwner;
@@ -54,6 +55,8 @@ namespace Ymir
             Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize);
 
             void createCamera();
+
+            void drawGrid(bool);
 
             void createWorker(glm::vec3 position);
             void createBasicInfantrie(glm::vec3 position);
@@ -80,5 +83,7 @@ namespace Ymir
             Scene& getScene();
 
             void updateTimer(float delta);
+
+            void setTileMap(TileMap*);
     };
 };
