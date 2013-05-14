@@ -86,6 +86,7 @@ void Application::runGame()
     // end cleanup -----------------------------------
 
     Timer* checkDefeatTimer = new Timer(2);
+    gameplay->drawGrid(true);
 
     while(glfwGetWindowParam(GLFW_OPENED))
     {
@@ -121,11 +122,11 @@ void Application::runGame()
             Entity* entity = gameplay->getCurrentSelectedEntity();
                 gameplay->sellEntity(entity);
         }
-        if(glfwGetKey( 'G' ) == GLFW_PRESS) {
-            gameplay->drawGrid(true);
-        } else {
-            gameplay->drawGrid(false);
-        }
+        //if(glfwGetKey( 'G' ) == GLFW_PRESS) {
+        //    gameplay->drawGrid(true);
+        //} else {
+        //    gameplay->drawGrid(false);
+        //}
         if(glfwGetKey( 'R') == GLFW_PRESS) {
             gameplay->winGame();
         }

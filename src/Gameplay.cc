@@ -1,6 +1,8 @@
 #include "Gameplay.h"
 #include "AttackComponent.h"
 #include "HealthComponent.h"
+#include "AOEComponent.h"
+#include "Tile.h"
 
 #include <iostream>
 
@@ -56,7 +58,6 @@ void Gameplay::createWorker(glm::vec3 position)
         infantryTimer = 0;
     }
 }
-
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
     std::cout << 5-infantryTimer << std::endl;
@@ -73,8 +74,8 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             basicInfantrie.assign<OwnerComponent>(objectOwner);
             basicInfantrie.assign<HealthComponent>(150);
             basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
+            basicInfantrie.assign<AOEComponent>(2);
             currencyEngine.currency -= basicInfanteriePrice;
-
             // TODO add other components
         } else {
             std::cout << "Not enough money for basic infantrie" << std::endl;
@@ -201,6 +202,39 @@ void Gameplay::sellEntity(Entity* aEntity)
     }
 }
 
+void Gameplay::printAOE() {
+    Entity* aEntity = getCurrentSelectedEntity();
+    if(aEntity != nullptr) {
+        auto aoe = aEntity->component<AOEComponent>();
+        auto spatial = aEntity->component<SpatialComponent>();
+        if(aoe != nullptr && spatial != nullptr){
+            int radius   = aoe->radius;
+            float xStart = spatial->position.x - radius;
+            float xEnd   = spatial->position.x + radius;
+            float zStart = spatial->position.z - radius;
+            float zEnd   = spatial->position.z + radius;
+            int xTileLocationStart  = (int) (xStart +5);
+            int xTileLocationEnd    = (int) (xEnd   +5);
+            int zTileLocationStart  = (int) (zStart +5);
+            int zTileLocationEnd    = (int) (zEnd   +5);
+
+
+            std::cout<< "Printing area of influence " << radius << std::endl;
+            std::cout<< "Position: "
+                     << spatial->position.x - radius
+                     << "   " << spatial->position.x + radius
+                     << " : " << spatial->position.z - radius
+                     << " : " << spatial->position.z + radius
+                     << std::endl;
+
+            for(int i = xTileLocationStart; i <= xTileLocationEnd; i++) {
+                for(int y = zTileLocationStart; y <= zTileLocationEnd; y++) {
+                    tileMap->setType(i,y,Tile::Type::AOE);
+                }
+            }
+        }
+    }
+}
 void Gameplay::moveEntity() {
     Entity* aEntity = getCurrentSelectedEntity();
     if(aEntity != nullptr ) {
@@ -219,6 +253,7 @@ void Gameplay::moveEntity() {
 void Gameplay::updateSelectedEntity(glm::vec3 position)
 {
     currentSelectedUnit = getEntityAtPosition(position);
+    printAOE();
 }
 
 Entity* Gameplay::getEntityAtPosition(glm::vec3 position)

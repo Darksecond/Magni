@@ -8,7 +8,8 @@ class Tile
             WATER,
             MOUNTAIN,
             BUILDING,
-            UNIT
+            UNIT,
+            AOE
         };
 
         Type _type;

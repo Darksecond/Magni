@@ -453,8 +453,12 @@ glm::vec3 RenderEngine::GetTilePosition(){
     }
     x= xx + 0.5f; //omdat hij in het midden moet
     z = zz + 0.5f; //omdat hij hier ook in het midden moet
-    std::cout << x << " " << z << " " << xx << " " << zz << std::endl;
+
     return glm::vec3(x,0,z);
+}
+
+glm::vec3 RenderEngine::GetTilePositionFromCoordinates(int xPos, int zPos) {
+//misschien nodig misschien niet
 }
 
 glm::vec3 RenderEngine::get3DPositionFromMousePosition() {
@@ -525,7 +529,7 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
             g_vertex_buffer_data[counter++] = 0.05f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
 
-            // bottem
+            // bottom
             g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
             g_vertex_buffer_data[counter++] = 0.05f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;

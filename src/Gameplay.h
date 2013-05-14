@@ -85,5 +85,7 @@ namespace Ymir
             void updateTimer(float delta);
 
             void setTileMap(TileMap*);
+
+            void printAOE();
     };
 };
