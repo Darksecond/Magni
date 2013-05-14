@@ -50,7 +50,7 @@ namespace Ymir
 
         public:
             Client* client;
-            int objectOwner;
+            int playernumber;
 
             int workerPrice;
             int basicInfanteriePrice;

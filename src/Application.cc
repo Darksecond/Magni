@@ -131,14 +131,6 @@ void Application::runGame()
         if(glfwGetKey( 'E') == GLFW_PRESS) {
             gameplay->loseGame();
         }
-        if(glfwGetKey('Z') == GLFW_PRESS) {
-            std::cout << "Current owner is now: " << gameplay->objectOwner << std::endl;
-            gameplay->switchOwner(1);
-        }
-        if(glfwGetKey('X') == GLFW_PRESS) {
-            std::cout << "Current owner is now: " << gameplay->objectOwner << std::endl;
-            gameplay->switchOwner(2);
-        }
         if(glfwGetKey('T') == GLFW_PRESS)
         {
             Entity* attacking_unit = gameplay->getCurrentSelectedEntity();
@@ -154,12 +146,11 @@ void Application::runGame()
         }
 
         checkDefeatTimer->update(delta);
+
         if (checkDefeatTimer->reached()) {
             checkDefeatTimer->reset();
+
             if (gameplay->centralIntelligenceCoreDestoyed()) {
-                gameplay->loseGame();
-            }
-            if (gameplay->enemyCentralIntelligenceCoreDestroyed()) {
                 gameplay->winGame();
             }
         }

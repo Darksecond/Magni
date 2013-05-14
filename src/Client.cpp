@@ -46,11 +46,8 @@ void Client::readReal()
         }
 
         if(np.type() == Gameplay::WIN_LOSE) {
-            int local = np.get<int>(0);
-            if(local == 0) {
+            if(np.get<int>(0) == 0) {
                 gp->loseGame();
-            } else if(local == 1) {
-                gp->winGame();
             }
         }
     }
