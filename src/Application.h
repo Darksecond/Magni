@@ -61,6 +61,7 @@ namespace Ymir
             void createManagers(std::string resourceDirectory);
             void createEngines();
             void buildGame();
+            void waitNetwork();
             void runGame();
     };
 };

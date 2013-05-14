@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
     application.createManagers(ResourceDirectory());
     application.createEngines();
     application.buildGame();
+    application.waitNetwork();
     application.runGame();
 
     return 0;

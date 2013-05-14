@@ -51,8 +51,45 @@ void Application::buildGame()
 
     TileMap* tiles = new TileMap(400, 1, 1); //400 want 20 * 20
     gameplay->setTileMap(tiles);
+}
 
-    lastTime = glfwGetTime();
+void Application::waitNetwork()
+{
+    //send HELLO message
+    NetworkPacket hello(0, Gameplay::HELLO);
+    gameplay->client->write(hello.char_array(), hello.size());
+    
+    bool done = false;
+    while(!done)
+    {
+        net::Address sender;
+        unsigned char buffer[512];
+
+        unsigned long bytes_received = gameplay->client->socket.Receive( sender, buffer, 512);
+
+        if(bytes_received)
+        {
+            NetworkPacket np(buffer);
+            if(np.type() == Gameplay::HELLO)
+            {
+                gameplay->playernumber = 1;
+                NetworkPacket player (0, Gameplay::PLAYER);
+                gameplay->client->write(player.char_array(), player.size());
+                done = true;
+            }
+            else if(np.type() == Gameplay::PLAYER)
+            {
+                gameplay->playernumber = 2;
+                done = true;
+            }
+        }
+        else if(glfwGetKey('0') == GLFW_PRESS)
+        {
+            done = true;
+        }
+        
+        engines->update(1, 0);
+    }
 }
 
 void Application::runGame()
@@ -86,6 +123,7 @@ void Application::runGame()
 
     Timer* checkDefeatTimer = new Timer(2);
 
+    lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
     {
         double thisTime = glfwGetTime();
