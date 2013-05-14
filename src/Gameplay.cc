@@ -249,10 +249,17 @@ void Gameplay::sellEntity(Entity* aEntity)
                     currencyEngine.currency += currencyComponent->price * healthPercentage;
                     scene.deleteEntity(aEntity);
                     currentSelectedUnit = nullptr;
+
+                    NetworkPacket np(aEntity->id, SELL);
+                    client->write(np.char_array(), np.size());
                 }
             }
         }
     }
+}
+
+void Gameplay::removeEntity(int id) {
+    scene.deleteEntity(scene.getEntity(id));
 }
 
 void Gameplay::moveEntity() {

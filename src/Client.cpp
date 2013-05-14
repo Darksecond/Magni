@@ -54,6 +54,10 @@ void Client::readReal()
                 gp->loseGame();
             }
         }
+
+        if(np.type() == Gameplay::SELL) {
+            gp->removeEntity(ung->flip(np.id()));
+        }
     }
 }
 
