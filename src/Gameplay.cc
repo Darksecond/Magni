@@ -14,7 +14,8 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
 {
     client = new Client();
     client->gp = this;
-    client->setIPAdress(192, 168, 0, 1);
+
+    client->setIPAdress(192, 168, 0, 2);
 
     playernumber = 2;
 }
