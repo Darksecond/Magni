@@ -8,13 +8,13 @@
 using namespace Ymir;
 
 Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
-    RenderEngine& renderEngine, glm::vec2 screenSize)
+    RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine)
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0)
+            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine)
 {
     client = new Client();
     client->gp = this;
-    client->setIPAdress(192, 168, 0, 2);
+    client->setIPAdress(127, 0, 0, 1);
 }
 
 void Gameplay::createCamera()
@@ -47,7 +47,7 @@ void Gameplay::createWorker(glm::vec3 position)
             Entity& worker = scene.assign("worker");
             worker.assign<SpatialComponent>(position);
             worker.assign<ModelComponent>(worker_mesh, worker_tex);
-            worker.assign<HealthComponent>(100);
+            worker.assign<HealthComponent>(1);
             worker.assign<CurrencyComponent>(workerPrice);
             worker.assign<OwnerComponent>(objectOwner);
 
@@ -271,6 +271,37 @@ void Gameplay::moveEntity(glm::vec3 position, int id) {
         glm::vec3 newPos = position;
         newPos.y = 0;
         spatial->set_position(newPos);
+    }
+}
+
+void Gameplay::attackEntity()
+{
+    Entity* attacking_unit = getCurrentSelectedEntity();
+    Entity* to_be_attacked = getEntityAtPosition(renderEngine.GetTilePosition());
+    if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
+    {
+        if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
+        {
+            std::cout << "Unit: " << attacking_unit->name << " is attacking: " << to_be_attacked->name << std::endl;
+            attackEngine.attack(*to_be_attacked, *attacking_unit);
+
+            NetworkPacket np(attacking_unit->id, ATTACK);
+            np.set(0, to_be_attacked->id);
+        }
+    }
+}
+
+void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
+{
+    Entity* attacking_unit = scene.getEntity(id_attacking_unit);
+    Entity* to_be_attacked = scene.getEntity(id_to_be_attacked);
+
+    if (attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
+    {
+        if (attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
+        {
+            attackEngine.attack(*to_be_attacked, *attacking_unit);
+        }
     }
 }
 

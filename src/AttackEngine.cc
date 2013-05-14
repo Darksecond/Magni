@@ -50,12 +50,6 @@ void AttackEngine::attack(Entity& attackee, const Entity& attacker)
 
     health->health -= attack->attack;
 
-    if(health->health <= 0)
-    {
-        //unit is dead, delete?
-        scene->deleteEntity(&attackee);
-    }
-
     if(_attack_animation_entity == nullptr)
     {
         //show attack 'animation'
@@ -66,5 +60,11 @@ void AttackEngine::attack(Entity& attackee, const Entity& attacker)
         spatial.set_position(attackee.component<SpatialComponent>()->get_position());
         //spatial.position = attackee.component<SpatialComponent>()->position;
         _attack_animation_life = attack->duration;
+    }
+
+    if(health->health <= 0)
+    {
+        //unit is dead, delete?
+        scene->deleteEntity(&attackee);
     }
 }

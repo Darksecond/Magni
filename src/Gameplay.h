@@ -16,6 +16,7 @@
 #include "Audio/Buffer.h"
 #include "Entity.h"
 #include "Renderer/RenderEngine.h"
+#include "AttackEngine.h"
 
 #include "SpatialComponent.h"
 #include "ModelComponent.h"
@@ -43,6 +44,7 @@ namespace Ymir
             Entity* currentSelectedUnit;
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
+            AttackEngine& attackEngine;
 
             float infantryTimer, buildingTimer;
             int unitIdentifyCounter;
@@ -56,10 +58,11 @@ namespace Ymir
             int basicInfanteriePrice;
             int orbitalDropBeaconPrice;
 
-            enum {BUILD = 0, MOVE, SELL};
+            enum {BUILD = 0, MOVE, SELL, ATTACK};
             enum {WORKER = 0, B_INFANTRY, A_INFANTRY};
 
-            Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize);
+
+            Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine);
 
             void createCamera();
 
@@ -79,6 +82,9 @@ namespace Ymir
             void sellEntity(Entity* aEntity);
             void moveEntity();
             void moveEntity(glm::vec3 position, int id);
+
+            void attackEntity();
+            void attackEntity(int attacking_unit, int to_be_attacked);
 
             bool centralIntelligenceCoreDestoyed();
             bool enemyCentralIntelligenceCoreDestroyed();

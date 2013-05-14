@@ -46,7 +46,7 @@ void Application::buildGame()
     std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
     // end cleanup -----------------------------------
 
-    gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE);
+    gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine);
     gameplay->createCamera();
 
     TileMap* tiles = new TileMap(400, 1, 1); //400 want 20 * 20
@@ -141,16 +141,7 @@ void Application::runGame()
         }
         if(glfwGetKey('T') == GLFW_PRESS)
         {
-            Entity* attacking_unit = gameplay->getCurrentSelectedEntity();
-            Entity* to_be_attacked = gameplay->getEntityAtPosition(renderEngine->GetTilePosition());
-            if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
-            {
-                if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
-                {
-                    std::cout << "Unit: " << attacking_unit->name << " is attacking: " << to_be_attacked->name << std::endl;
-                    attackEngine->attack(*to_be_attacked, *attacking_unit);
-                }
-            }
+            gameplay->attackEntity();
         }
 
         checkDefeatTimer->update(delta);
