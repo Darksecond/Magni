@@ -14,9 +14,9 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
 {
     client = new Client();
     client->gp = this;
-    client->setIPAdress(127, 0, 0, 1);
+    client->setIPAdress(192, 168, 0, 1);
 
-    playernumber = 1;
+    playernumber = 2;
 }
 
 void Gameplay::createCamera()
@@ -308,6 +308,7 @@ void Gameplay::attackEntity()
 
             NetworkPacket np(attacking_unit->id, ATTACK);
             np.set(0, to_be_attacked->id);
+            client->write(np.char_array(), np.size);
         }
     }
 }
