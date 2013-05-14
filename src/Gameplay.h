@@ -58,7 +58,7 @@ namespace Ymir
             int basicInfanteriePrice;
             int orbitalDropBeaconPrice;
 
-            enum {BUILD = 0, MOVE, WIN_LOSE, SELL, ATTACK};
+            enum {BUILD = 0, MOVE, WIN_LOSE, SELL, ATTACK, HELLO, PLAYER};
             enum {WORKER = 0, B_INFANTRY, A_INFANTRY};
 
             Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine);
