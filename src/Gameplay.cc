@@ -25,7 +25,7 @@ void Gameplay::createCamera()
     auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0.0, 5.0, 0});
     glm::vec3 euler{-60,0,0};
     c_s.setDirection(euler);
-    camera.assignBehavior(std::unique_ptr<Behavior>{new RTSCameraBehavior});
+    camera.assignBehavior(std::unique_ptr<Behavior>{new RTSCameraBehavior(7, 6)});
 }
 
 
@@ -316,16 +316,26 @@ void Gameplay::switchOwner(int owner) {
 bool Gameplay::centralIntelligenceCoreDestoyed()
 {
     if (scene.containsEntity("CiCore4")) {
+        NetworkPacket np(0, WIN_LOSE);
+        np.set(0, 0);
+        client->write(np.char_array(), np.size());
+
         return false;
     }
+
     return true;
 }
 
 bool Gameplay::enemyCentralIntelligenceCoreDestroyed()
 {
     if (scene.containsEntity("ECiCore5")) {
+        NetworkPacket np(0, WIN_LOSE);
+        np.set(0, 1);
+        client->write(np.char_array(), np.size());
+
         return false;
     }
+
     return true;
 }
 

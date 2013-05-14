@@ -44,6 +44,15 @@ void Client::readReal()
             glm::vec3 position = glm::vec3(np.get<float>(0), np.get<float>(1), np.get<float>(2));
             gp->moveEntity(position, ung->flip(np.id()));
         }
+
+        if(np.type() == Gameplay::WIN_LOSE) {
+            int local = np.get<int>(0);
+            if(local == 0) {
+                gp->loseGame();
+            } else if(local == 1) {
+                gp->winGame();
+            }
+        }
     }
 }
 
