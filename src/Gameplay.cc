@@ -255,7 +255,7 @@ void Gameplay::moveEntity() {
         if(owner != nullptr) {
             if(owner->playerNumber == objectOwner) {
                 auto spatial = aEntity->component<SpatialComponent>();
-                glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
+                glm::vec3 newPos = renderEngine.GetTilePosition();
                 newPos.y = 0;
                 spatial->position = newPos;
             }

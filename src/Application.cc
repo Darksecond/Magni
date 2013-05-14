@@ -101,8 +101,6 @@ void Application::runGame()
 
         glfwEnable(GLFW_KEY_REPEAT);
 
-        std::cout << renderEngine->get3DPositionFromMousePosition().x << "," << renderEngine->get3DPositionFromMousePosition().y << "," << renderEngine->get3DPositionFromMousePosition().z << std::endl;
-
         // TODO cleanup ----------------------------------
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
             gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
@@ -123,7 +121,12 @@ void Application::runGame()
             Entity* entity = gameplay->getCurrentSelectedEntity();
                 gameplay->sellEntity(entity);
         }
-        if(glfwGetKey( 'R' ) == GLFW_PRESS) {
+        if(glfwGetKey( 'G' ) == GLFW_PRESS) {
+            gameplay->drawGrid(true);
+        } else {
+            gameplay->drawGrid(false);
+        }
+        if(glfwGetKey( 'R') == GLFW_PRESS) {
             gameplay->winGame();
         }
         if(glfwGetKey( 'E' ) == GLFW_PRESS) {
