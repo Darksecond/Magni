@@ -77,6 +77,7 @@ namespace Ymir
             void buildAcademyOfAdvancedTechnologies();
 
             void sellEntity(Entity* aEntity);
+            void removeEntity(int id);
             void moveEntity();
             void moveEntity(glm::vec3 position, int id);
 
