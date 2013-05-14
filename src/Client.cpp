@@ -48,6 +48,12 @@ void Client::readReal()
         if(np.type() == Gameplay::ATTACK) {
             gp->attackEntity(ung->flip(np.id()), ung->flip(np.get<int>(0)));
         }
+
+        if(np.type() == Gameplay::WIN_LOSE) {
+            if(np.get<int>(0) == 0) {
+                gp->loseGame();
+            }
+        }
     }
 }
 

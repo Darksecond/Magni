@@ -10,11 +10,13 @@ using namespace Ymir;
 Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
     RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine)
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine)
+            renderEngine(renderEngine), screenSize(screenSize) ,playernumber(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine)
 {
     client = new Client();
     client->gp = this;
     client->setIPAdress(127, 0, 0, 1);
+
+    playernumber = 1;
 }
 
 void Gameplay::createCamera()
@@ -25,15 +27,13 @@ void Gameplay::createCamera()
     auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0.0, 5.0, 0});
     glm::vec3 euler{-60,0,0};
     c_s.setDirection(euler);
-    camera.assignBehavior(std::unique_ptr<Behavior>{new RTSCameraBehavior});
+    camera.assignBehavior(std::unique_ptr<Behavior>{new RTSCameraBehavior(7, 6)});
 }
-
 
 void Gameplay::drawGrid(bool draw)
 {
     renderEngine.setGrid(draw);
 }
-
 
 void Gameplay::createWorker(glm::vec3 position)
 {
@@ -49,7 +49,7 @@ void Gameplay::createWorker(glm::vec3 position)
             worker.assign<ModelComponent>(worker_mesh, worker_tex);
             worker.assign<HealthComponent>(1);
             worker.assign<CurrencyComponent>(workerPrice);
-            worker.assign<OwnerComponent>(objectOwner);
+            worker.assign<OwnerComponent>(playernumber);
 
             NetworkPacket np(worker.id, BUILD);
             np.set(0, WORKER);
@@ -96,7 +96,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             basicInfantrie.assign<SpatialComponent>(position);
             basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
             basicInfantrie.assign<AttackComponent>(1, 20);
-            basicInfantrie.assign<OwnerComponent>(objectOwner);
+            basicInfantrie.assign<OwnerComponent>(playernumber);
             basicInfantrie.assign<HealthComponent>(150);
             basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
             currencyEngine.currency -= basicInfanteriePrice;
@@ -146,23 +146,23 @@ void Gameplay::createEngineer()
 
 void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
 {
-        position.y = 0.0;
-        std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
-        std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("house1.bmp");
+    position.y = 0.0;
+    std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
+    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("house1.bmp");
 
-        Entity& ciCore = scene.assign("CiCore");
-        ciCore.assign<SpatialComponent>(position);
-        ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
-        ciCore.assign<EnergyComponent>(150);
-        ciCore.assign<HealthComponent>(1);
-        ciCore.assign<OwnerComponent>(objectOwner);
+    Entity& ciCore = scene.assign("ACiCore");
+    ciCore.assign<SpatialComponent>(glm::vec3{-7,0,7});
+    ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
+    ciCore.assign<EnergyComponent>(150);
+    ciCore.assign<HealthComponent>(1);
+    ciCore.assign<OwnerComponent>(1);
 
-        Entity& cCore = scene.assign("ECiCore");
-        cCore.assign<SpatialComponent>(glm::vec3{3,0,3});
-        cCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
-        cCore.assign<EnergyComponent>(150);
-        cCore.assign<HealthComponent>(1);
-        cCore.assign<OwnerComponent>(2);
+    Entity& cCore = scene.assign("BCiCore");
+    cCore.assign<SpatialComponent>(glm::vec3{7,0,-7});
+    cCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
+    cCore.assign<EnergyComponent>(150);
+    cCore.assign<HealthComponent>(1);
+    cCore.assign<OwnerComponent>(2);
 }
 
 
@@ -179,7 +179,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
             house.assign<SpatialComponent>(position);
             house.assign<ModelComponent>(house_mesh, t);
             house.assign<EnergyComponent>(-100);
-            house.assign<OwnerComponent>(objectOwner);
+            house.assign<OwnerComponent>(playernumber);
             house.assign<HealthComponent>(250);
             house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
 
@@ -207,8 +207,24 @@ void Gameplay::buildAcademyOfAdvancedTechnologies()
     }
 }
 
+bool Gameplay::centralIntelligenceCoreDestoyed()
+{
+    if (playernumber == 1 && scene.containsEntity("ACiCore4")) {
+        return false;
+    }
+    else if(playernumber == 2 && scene.containsEntity("BCiCore5")) {
+        return false;
+    }
+
+    return true;
+}
+
 void Gameplay::winGame()
 {
+    NetworkPacket np(0, WIN_LOSE);
+    np.set(0, 0);
+    client->write(np.char_array(), np.size());
+
     std::shared_ptr<Text> winningText = std::make_shared<Text>("YOU ARE VICTORIOUS", glm::vec2{10, 580}, 20);
     renderEngine.addText(winningText);
 }
@@ -233,8 +249,6 @@ void Gameplay::sellEntity(Entity* aEntity)
                     currencyEngine.currency += currencyComponent->price * healthPercentage;
                     scene.deleteEntity(aEntity);
                     currentSelectedUnit = nullptr;
-
-
                 }
             }
         }
@@ -246,7 +260,7 @@ void Gameplay::moveEntity() {
     if(aEntity != nullptr ) {
         auto owner = aEntity->component<OwnerComponent>();
         if(owner != nullptr) {
-            if(owner->playerNumber == objectOwner) {
+            if(owner->playerNumber == playernumber) {
                 auto spatial = aEntity->component<SpatialComponent>();
                 glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
                 newPos.y = 0;
@@ -341,23 +355,7 @@ Scene& Gameplay::getScene()
 }
 
 void Gameplay::switchOwner(int owner) {
-    objectOwner = owner;
-}
-
-bool Gameplay::centralIntelligenceCoreDestoyed()
-{
-    if (scene.containsEntity("CiCore4")) {
-        return false;
-    }
-    return true;
-}
-
-bool Gameplay::enemyCentralIntelligenceCoreDestroyed()
-{
-    if (scene.containsEntity("ECiCore5")) {
-        return false;
-    }
-    return true;
+    playernumber = owner;
 }
 
 void Gameplay::updateTimer(float delta) {

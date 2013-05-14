@@ -10,8 +10,11 @@ namespace Ymir
         void offsetOrientation(double delta);
     private:
         int lastScrollWheelIndex;
+        int _width, _height;
+
 
     public:
+        RTSCameraBehavior(int width, int height);
         virtual void update(double delta);
     };
 };

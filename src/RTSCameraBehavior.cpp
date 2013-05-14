@@ -17,6 +17,12 @@ using namespace Ymir;
 
 static const float MaxVerticalAngle = 85.0f; //must be less than 90 to avoid gimbal lock
 
+RTSCameraBehavior::RTSCameraBehavior(int width, int height) {
+    _width  = width;
+    _height = height;
+}
+
+
 void RTSCameraBehavior::update(double delta)
 {
     offsetOrientation(delta);
@@ -51,19 +57,27 @@ void RTSCameraBehavior::offsetOrientation(double delta) {
 
     float sensitivityMultiplier = (spatial->get_position().y / 5.0f) * 1.25f;
 
-    if(glfwGetKey('S') || mouseY > 580 ) {
-        spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(0,0,1)));
+    if(spatial->get_position().z < _height + 8) {
+        if(glfwGetKey('S') || mouseY > 580 ) {
+            spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(0,0,1)));
+        }
     }
 
-    if(glfwGetKey('A') || mouseX < 20) {
-        spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(-1,0,0)));
+    if(spatial->get_position().z > -_height ) {
+        if(glfwGetKey('W') || mouseY < 20 ) {
+            spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(0,0,-1)));
+        }
     }
 
-    if(glfwGetKey('D') || mouseX > 780) {
-        spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(1,0,0)));
+    if(spatial->get_position().x > -_width) {
+        if(glfwGetKey('A') || mouseX < 20) {
+            spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(-1,0,0)));
+        }
     }
 
-    if(glfwGetKey('W') || mouseY < 20 ) {
-        spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(0,0,-1)));
+    if(spatial->get_position().x < _width) {
+        if(glfwGetKey('D') || mouseX > 780) {
+            spatial->set_position(spatial->get_position() + (secondsElapsed * sensitivityMultiplier * 2.0f * glm::vec3(1,0,0)));
+        }
     }
 }
