@@ -154,7 +154,7 @@ void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
     ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
     ciCore.assign<EnergyComponent>(150);
     ciCore.assign<HealthComponent>(1);
-    ciCore.assign<OwnerComponent>(playernumber);
+    ciCore.assign<OwnerComponent>(1);
 
     Entity& cCore = scene.assign("BCiCore");
     cCore.assign<SpatialComponent>(glm::vec3{7,0,-7});
