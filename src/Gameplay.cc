@@ -84,16 +84,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
     }
 }
 
-void Gameplay::createAdvancedInfantrie()
-{
-    std::cout << 5-infantryTimer << std::endl;
-    if (infantryTimer > 1) {
-        //TODO: implementation
-        //...
-        infantryTimer = 0;
-    }
-    // TODO
-}
+
 
 void Gameplay::createEngineer()
 {

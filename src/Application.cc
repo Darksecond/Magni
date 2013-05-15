@@ -131,18 +131,18 @@ void Application::runGame()
         if(glfwGetKey( 'R') == GLFW_PRESS) {
             gameplay->winGame();
         }
-        if(glfwGetKey( 'E') == GLFW_PRESS) {
+        if(glfwGetKey( 'E' ) == GLFW_PRESS) {
             gameplay->loseGame();
         }
-        if(glfwGetKey('Z') == GLFW_PRESS) {
+        if(glfwGetKey( 'Z' ) == GLFW_PRESS) {
             std::cout << "Current owner is now: " << gameplay->objectOwner << std::endl;
             gameplay->switchOwner(1);
         }
-        if(glfwGetKey('X') == GLFW_PRESS) {
+        if(glfwGetKey( 'X' ) == GLFW_PRESS) {
             std::cout << "Current owner is now: " << gameplay->objectOwner << std::endl;
             gameplay->switchOwner(2);
         }
-        if(glfwGetKey('T') == GLFW_PRESS)
+        if(glfwGetKey( 'T' ) == GLFW_PRESS)
         {
             Entity* attacking_unit = gameplay->getCurrentSelectedEntity();
             Entity* to_be_attacked = gameplay->getEntityAtPosition(renderEngine->GetTilePosition());

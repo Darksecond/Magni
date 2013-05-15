@@ -26,6 +26,7 @@
 #include "OwnerComponent.h"
 
 #include "RTSCameraBehavior.h"
+#include "EnergyBehaviour.h"
 
 #include "CurrencyEngine.h"
 namespace Ymir
@@ -49,8 +50,19 @@ namespace Ymir
             int objectOwner;
 
             int workerPrice;
+            int workerEnergy;
+        
             int basicInfanteriePrice;
+            int basicInfantryEnergy;
+        
+            int advancedInfantryPrice;
+            int advancedInfantryEnergy;
+        
+            int powerCorePrice;
+            int powerCoreEnergy;
+        
             int orbitalDropBeaconPrice;
+            int orbitalDropBeaconEnergy;
 
             Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize);
 
