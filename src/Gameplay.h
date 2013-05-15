@@ -59,7 +59,7 @@ namespace Ymir
             int orbitalDropBeaconPrice;
 
             enum {BUILD = 0, MOVE, WIN_LOSE, SELL, ATTACK, HELLO, PLAYER};
-            enum {WORKER = 0, B_INFANTRY, A_INFANTRY};
+            enum {WORKER = 0, B_INFANTRY, A_INFANTRY, ENGINEER, ORBITAL, POWERCORE, ACADEMY};
 
             Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine);
 
@@ -70,13 +70,19 @@ namespace Ymir
             void createWorker(glm::vec3 position);
             void createGhostWorker(glm::vec3 position, int id);
             void createBasicInfantrie(glm::vec3 position);
-            void createAdvancedInfantrie();
-            void createEngineer();
+            void createGhostBasicInfantrie(glm::vec3 position, int id);
+            void createAdvancedInfantrie(glm::vec3 position);
+            void createGhostAdvancedInfantrie(glm::vec3 position, int id);
+            void createEngineer(glm::vec3 position);
+            void createGhostEngineer(glm::vec3 position, int id);
 
             void buildCentralIntelligenceCore(glm::vec3 position);
             void buildOrbitalDropBeacon(glm::vec3 position);
-            void buildPowerCore();
-            void buildAcademyOfAdvancedTechnologies();
+            void buildGhostOrbitalDropBeacon(glm::vec3 position, int id);
+            void buildPowerCore(glm::vec3 position);
+            void buildGhostPowerCore(glm::vec3 position, int id);
+            void buildAcademyOfAdvancedTechnologies(glm::vec3 position);
+            void buildGhostAcademyOfAdvancedTechnologies(glm::vec3 position, int id);
 
             void sellEntity(Entity* aEntity);
             void removeEntity(int id);
