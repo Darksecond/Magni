@@ -15,7 +15,8 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
     client = new Client();
     client->gp = this;
 
-    client->setIPAdress(192, 168, 0, 2);
+    //client->setIPAdress(192, 168, 0, 1);
+    client->setIPAdress(127, 0, 0, 1);
 
     playernumber = 2;
 }
@@ -108,6 +109,8 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             np.set(2, position.y);
             np.set(3, position.z);
 
+            client->write(np.char_array(), np.size());
+
             infantryTimer = 0;
             // TODO add other components
         } else {
@@ -116,7 +119,24 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
     }
 }
 
-void Gameplay::createAdvancedInfantrie()
+void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
+{
+    position.y = 0.0;
+    std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
+    std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
+
+    Entity& basicInfantrie = scene.assign("basicInfantrie", id);
+    basicInfantrie.assign<SpatialComponent>(position);
+    basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
+    basicInfantrie.assign<AttackComponent>(1, 20);
+    basicInfantrie.assign<OwnerComponent>(2);
+    basicInfantrie.assign<HealthComponent>(150);
+    basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
+
+    std::cout << "Builded a unit via network with ID: " << id << std::endl;
+}
+
+void Gameplay::createAdvancedInfantrie(glm::vec3 position)
 {
     std::cout << 5-infantryTimer << std::endl;
     if (infantryTimer > 5) {
@@ -134,7 +154,12 @@ void Gameplay::createAdvancedInfantrie()
     // TODO
 }
 
-void Gameplay::createEngineer()
+void Gameplay::createGhostAdvancedInfantrie(glm::vec3 position, int id)
+{
+
+}
+
+void Gameplay::createEngineer(glm::vec3 position)
 {
     std::cout << 5-infantryTimer << std::endl;
     if (infantryTimer > 5) {
@@ -143,6 +168,11 @@ void Gameplay::createEngineer()
         infantryTimer = 0;
     }
     // TODO
+}
+
+void Gameplay::createGhostEngineer(glm::vec3 position, int id)
+{
+
 }
 
 void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
@@ -184,6 +214,14 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
             house.assign<HealthComponent>(250);
             house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
 
+            NetworkPacket np(house.id, BUILD);
+            np.set(0, ORBITAL);
+            np.set(1, position.x);
+            np.set(2, position.y);
+            np.set(3, position.z);
+
+            client->write(np.char_array(), np.size());
+
             currencyEngine.currency -= orbitalDropBeaconPrice;
             buildingTimer = 0;
 
@@ -193,12 +231,34 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
     }
 }
 
-void Gameplay::buildPowerCore()
+void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)
+{
+    position.y = 0.0;
+    std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
+    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
+
+    Entity& house = scene.assign("OrbitalDropBeacon", id);
+    house.assign<SpatialComponent>(position);
+    house.assign<ModelComponent>(house_mesh, t);
+    house.assign<EnergyComponent>(-100);
+    house.assign<OwnerComponent>(2);
+    house.assign<HealthComponent>(250);
+    house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
+
+    std::cout << "Builded a unit via network with ID: " << id << std::endl;
+}
+
+void Gameplay::buildPowerCore(glm::vec3 position)
 {
 
 }
 
-void Gameplay::buildAcademyOfAdvancedTechnologies()
+void Gameplay::buildGhostPowerCore(glm::vec3 position, int id)
+{
+
+}
+
+void Gameplay::buildAcademyOfAdvancedTechnologies(glm::vec3 position)
 {
     std::cout << buildingTimer << std::endl;
     if ( buildingTimer > 5) {
@@ -206,6 +266,11 @@ void Gameplay::buildAcademyOfAdvancedTechnologies()
         //...
         buildingTimer = 0;
     }
+}
+
+void Gameplay::buildGhostAcademyOfAdvancedTechnologies(glm::vec3 position, int id)
+{
+
 }
 
 bool Gameplay::centralIntelligenceCoreDestoyed()
@@ -309,7 +374,8 @@ void Gameplay::attackEntity()
 
             NetworkPacket np(attacking_unit->id, ATTACK);
             np.set(0, to_be_attacked->id);
-            client->write(np.char_array(), np.size);
+
+            client->write(np.char_array(), np.size());
         }
     }
 }

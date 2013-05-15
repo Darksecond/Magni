@@ -34,9 +34,29 @@ void Client::readReal()
         std::cout << "Type: " << np.type() << std::endl;
 
         if(np.type() == Gameplay::BUILD) {
-            if(np.get<int>(Gameplay::B_INFANTRY)) {
-                glm::vec3 position = glm::vec3(np.get<float>(1), np.get<float>(2), np.get<float>(3));
+            glm::vec3 position = glm::vec3(np.get<float>(1), np.get<float>(2), np.get<float>(3));
+            if(np.get<int>(0) == Gameplay::WORKER) {
                 gp->createGhostWorker(position, ung->flip(np.id()));
+            }
+            if (np.get<int>(0) == Gameplay::B_INFANTRY) {
+            //    glm::vec3 position = glm::vec3(np.get<float>(1), np.get<float>(2), np.get<float>(3));
+                gp->createGhostBasicInfantrie(position, ung->flip(np.id()));
+            }
+            if (np.get<int>(0) == Gameplay::A_INFANTRY) {
+                gp->createGhostAdvancedInfantrie(position, ung->flip(np.id()));
+            }
+            if (np.get<int>(0) == Gameplay::ENGINEER) {
+                gp->createGhostEngineer(position, ung->flip(np.id()));
+            }
+            if (np.get<int>(0) == Gameplay::ORBITAL) {
+              //  glm::vec3 position = glm::vec3(np.get<float>(1), np.get<float>(2), np.get<float>(3));
+                gp->buildGhostOrbitalDropBeacon(position, ung->flip(np.id()));
+            }
+            if (np.get<int>(0) == Gameplay::POWERCORE) {
+                gp->buildGhostPowerCore(position, ung->flip(np.id()));
+            }
+            if (np.get<int>(0) == Gameplay::ACADEMY) {
+                gp->buildGhostAcademyOfAdvancedTechnologies(position, ung->flip(np.id()));
             }
         }
 
