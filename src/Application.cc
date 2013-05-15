@@ -81,7 +81,7 @@ void Application::runGame()
     track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
     track.assign<ModelComponent>(track_mesh, track_tex);
 
-    gameplay->buildCentralIntelligenceCore(glm::vec3{5, 0.00, 1});
+    gameplay->buildCentralIntelligenceCore(glm::vec3{5.5, 0.00, 1.5});
 
     // end cleanup -----------------------------------
 
@@ -122,11 +122,12 @@ void Application::runGame()
             Entity* entity = gameplay->getCurrentSelectedEntity();
                 gameplay->sellEntity(entity);
         }
-        //if(glfwGetKey( 'G' ) == GLFW_PRESS) {
-        //    gameplay->drawGrid(true);
-        //} else {
-        //    gameplay->drawGrid(false);
-        //}
+        if(glfwGetKey( 'G' ) == GLFW_PRESS) {
+            gameplay->drawGrid(true);
+        }
+        else {
+            gameplay->drawGrid(false);
+        }
         if(glfwGetKey( 'R') == GLFW_PRESS) {
             gameplay->winGame();
         }

@@ -40,6 +40,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/AOEComponent.cc" />
+		<Unit filename="src/AOEComponent.h" />
 		<Unit filename="src/Application.cc" />
 		<Unit filename="src/Application.h" />
 		<Unit filename="src/AttackComponent.h" />
@@ -79,6 +81,8 @@
 		<Unit filename="src/CurrencyEngine.h" />
 		<Unit filename="src/DirectoryManifest.cc" />
 		<Unit filename="src/DirectoryManifest.h" />
+		<Unit filename="src/EnergyBehaviour.cpp" />
+		<Unit filename="src/EnergyBehaviour.h" />
 		<Unit filename="src/EnergyComponent.h" />
 		<Unit filename="src/EnergyEngine.cc" />
 		<Unit filename="src/EnergyEngine.h" />

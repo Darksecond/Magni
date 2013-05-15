@@ -25,7 +25,6 @@ Tile::Type TileMap::getType(int x, int y) {
 
 void TileMap::setType(int x, int y, Tile::Type type) {
     (_tilemap[x][y])._type = type;
-    std::cout << "Set" << x << "," << y << " as: " << type << std::endl;
 }
 
 int TileMap::getMapWidth()

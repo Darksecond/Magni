@@ -39,7 +39,7 @@ void Gameplay::drawGrid(bool draw)
 void Gameplay::createWorker(glm::vec3 position)
 {
     std::cout << 5-infantryTimer << std::endl;
-    if (infantryTimer > 5) {
+    if (infantryTimer > 1) {
         if(currencyEngine.currency >= workerPrice) {
             position.y = 0.3;
             std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
@@ -61,7 +61,7 @@ void Gameplay::createWorker(glm::vec3 position)
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
     std::cout << 5-infantryTimer << std::endl;
-        if (infantryTimer > 5) {
+        if (infantryTimer > 1) {
         if(currencyEngine.currency >= basicInfanteriePrice) {
             position.y = 0.0;
             std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
@@ -74,7 +74,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             basicInfantrie.assign<OwnerComponent>(objectOwner);
             basicInfantrie.assign<HealthComponent>(150);
             basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
-            basicInfantrie.assign<AOEComponent>(2);
+            basicInfantrie.assign<AOEComponent>(1); //is square
             currencyEngine.currency -= basicInfanteriePrice;
             // TODO add other components
         } else {
@@ -87,7 +87,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
 void Gameplay::createAdvancedInfantrie()
 {
     std::cout << 5-infantryTimer << std::endl;
-    if (infantryTimer > 5) {
+    if (infantryTimer > 1) {
         //TODO: implementation
         //...
         infantryTimer = 0;
@@ -98,7 +98,7 @@ void Gameplay::createAdvancedInfantrie()
 void Gameplay::createEngineer()
 {
     std::cout << 5-infantryTimer << std::endl;
-    if (infantryTimer > 5) {
+    if (infantryTimer > 1) {
         //TODO: implementation
         //...
         infantryTimer = 0;
@@ -111,7 +111,6 @@ void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
         position.y = 0.0;
         std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
         std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("house1.bmp");
-
         Entity& ciCore = scene.assign("CiCore");
         ciCore.assign<SpatialComponent>(position);
         ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
@@ -131,7 +130,7 @@ void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 {
     std::cout << 5-buildingTimer << std::endl;
-    if ( buildingTimer > 5) {
+    if ( buildingTimer > 1) {
          if (currencyEngine.currency >= orbitalDropBeaconPrice) {
                 position.y = 0.0;
                 std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
@@ -161,7 +160,7 @@ void Gameplay::buildPowerCore()
 void Gameplay::buildAcademyOfAdvancedTechnologies()
     {
         std::cout << 5-buildingTimer << std::endl;
-        if ( buildingTimer > 5) {
+        if ( buildingTimer > 1) {
             //TODO: implementation
             //...
             buildingTimer = 0;
@@ -202,7 +201,7 @@ void Gameplay::sellEntity(Entity* aEntity)
     }
 }
 
-void Gameplay::printAOE() {
+void Gameplay::setAOE() {
     Entity* aEntity = getCurrentSelectedEntity();
     if(aEntity != nullptr) {
         auto aoe = aEntity->component<AOEComponent>();
@@ -213,28 +212,21 @@ void Gameplay::printAOE() {
             float xEnd   = spatial->position.x + radius;
             float zStart = spatial->position.z - radius;
             float zEnd   = spatial->position.z + radius;
-            int xTileLocationStart  = (int) (xStart +5);
-            int xTileLocationEnd    = (int) (xEnd   +5);
-            int zTileLocationStart  = (int) (zStart +5);
-            int zTileLocationEnd    = (int) (zEnd   +5);
-
-
-            std::cout<< "Printing area of influence " << radius << std::endl;
-            std::cout<< "Position: "
-                     << spatial->position.x - radius
-                     << "   " << spatial->position.x + radius
-                     << " : " << spatial->position.z - radius
-                     << " : " << spatial->position.z + radius
-                     << std::endl;
+            int xTileLocationStart  = (int) (xStart +10); //Offset to tilemap is 10.
+            int xTileLocationEnd    = (int) (xEnd   +10); //Dit is de helft van het aantal rows/collommen
+            int zTileLocationStart  = (int) (zStart +10); //
+            int zTileLocationEnd    = (int) (zEnd   +10); //
 
             for(int i = xTileLocationStart; i <= xTileLocationEnd; i++) {
                 for(int y = zTileLocationStart; y <= zTileLocationEnd; y++) {
-                    tileMap->setType(i,y,Tile::Type::AOE);
+                    if(i >= 0 && i <= 20 && y >= 0 && y <= 20)
+                        tileMap->setType(i,y,Tile::Type::AOE);
                 }
             }
         }
     }
 }
+
 void Gameplay::moveEntity() {
     Entity* aEntity = getCurrentSelectedEntity();
     if(aEntity != nullptr ) {
@@ -244,6 +236,7 @@ void Gameplay::moveEntity() {
                 auto spatial = aEntity->component<SpatialComponent>();
                 glm::vec3 newPos = renderEngine.GetTilePosition();
                 newPos.y = 0;
+                setAOE();
                 spatial->position = newPos;
             }
         }
@@ -253,7 +246,6 @@ void Gameplay::moveEntity() {
 void Gameplay::updateSelectedEntity(glm::vec3 position)
 {
     currentSelectedUnit = getEntityAtPosition(position);
-    printAOE();
 }
 
 Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
@@ -292,18 +284,12 @@ void Gameplay::switchOwner(int owner) {
 
 bool Gameplay::centralIntelligenceCoreDestoyed()
 {
-    if (scene.containsEntity("CiCore")) {
-        return false;
-    }
-    return true;
+    return !scene.containsEntity("CiCore");
 }
 
 bool Gameplay::enemyCentralIntelligenceCoreDestroyed()
 {
-    if (scene.containsEntity("ECiCore")) {
-        return false;
-    }
-    return true;
+    return !(scene.containsEntity("ECiCore"));
 }
 
 void Gameplay::updateTimer(float delta) {

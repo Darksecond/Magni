@@ -419,39 +419,33 @@ void RenderEngine::update(int pass, double delta)
 glm::vec3 RenderEngine::GetTilePosition(){
     double width = tileMap->getMapWidth();
     glm::vec3 mousepos = get3DPositionFromMousePosition();
-
-    mousepos.y = 0;
     float x = mousepos.x;
     float z = mousepos.z;
     int xx = x;
     int zz = z;
     if(x < 0) {
-        if(xx != ((int) (x+0.5f))) {
+        if(xx != ((int) (x+0.5f)))
             xx = x -1.0f;
-        } else {
+        else
             xx = x -0.5f;
-        }
     } else {
-        if(xx != ((int) (x+0.5f))) {
+        if(xx != ((int) (x+0.5f)))
             xx = x +0.0f;
-        } else {
+        else
             xx = x +0.5f;
-        }
     }
     if(z < 0) {
-        if(zz != ((int) (z+0.5f))) {
+        if(zz != ((int) (z+0.5f)))
             zz = z -1.0f;
-        } else {
+        else
             zz = z -0.5f;
-        }
     } else {
-        if(zz != ((int) (z+0.5f))) {
+        if(zz != ((int) (z+0.5f)))
             zz = z +0.0f;
-        } else {
+        else
             zz = z +0.5f;
-        }
     }
-    x= xx + 0.5f; //omdat hij in het midden moet
+    x = xx + 0.5f; //omdat hij in het midden moet
     z = zz + 0.5f; //omdat hij hier ook in het midden moet
 
     return glm::vec3(x,0,z);
@@ -497,6 +491,9 @@ glm::vec3 RenderEngine::get3DPositionFromCoordinates(int xPos, int yPos) {
 	glm::vec3 worldPos = glm::unProject(screenPos, tmpView, tmpProj, viewport);
 
 	return worldPos;
+}
+void RenderEngine::drawAOE(Program& p, Camera& c) {
+
 }
 
 void RenderEngine::drawGrid(Program& p, Camera& c)

@@ -86,6 +86,6 @@ namespace Ymir
 
             void setTileMap(TileMap*);
 
-            void printAOE();
+            void setAOE();
     };
 };

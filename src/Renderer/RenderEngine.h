@@ -64,6 +64,7 @@ namespace Ymir
 
         // grid implementatie refactor nominatie
         void drawGrid(Program&, Camera&);
+        void drawAOE (Program&, Camera&);
         void setGrid(bool);
         void setTileMap(TileMap*);
         // einde refactor nominatie
