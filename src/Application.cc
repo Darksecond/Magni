@@ -39,13 +39,6 @@ void Application::createEngines()
 
 void Application::buildGame()
 {
-    // TODO cleanup ----------------------------------
-    std::shared_ptr<Texture> track_tex = textureManager.resource("grass.png");
-    std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
-    std::shared_ptr<Mesh> unit_mesh = meshManager.resource("unit.obj");
-    std::shared_ptr<Mesh> track_mesh = meshManager.resource("track.obj");
-    // end cleanup -----------------------------------
-
     gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine);
     gameplay->createCamera();
 
@@ -114,7 +107,7 @@ void Application::runGame()
 
 //    track
     Entity& track = scene.assign("track");
-    track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
+    track.assign<SpatialComponent>(glm::vec3{0, 0, 0});
     track.assign<ModelComponent>(track_mesh, track_tex);
 
     gameplay->buildCentralIntelligenceCore(glm::vec3{5, 0.00, 1});

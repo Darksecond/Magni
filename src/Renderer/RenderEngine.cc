@@ -497,34 +497,34 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
         for (int column = 0; column < length; column++) {
             // top
             g_vertex_buffer_data[counter++] = -10.0f + (width * column);
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.0f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row);
             g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.0f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row);
 
             // right
             g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.0f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row);
             g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.0f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
 
             // bottem
             g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.0f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
             g_vertex_buffer_data[counter++] = -10.0f + (width * column);
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.0f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
 
             // left
             g_vertex_buffer_data[counter++] = -10.0f + (height * column);
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.0f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
             g_vertex_buffer_data[counter++] = -10.0f + (height * column);
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.0f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row);
         }
     }

@@ -61,7 +61,10 @@ void ObjGeometry::load(std::istream& stream)
                 std::getline(face, svt, '/');
                 std::getline(face, svn);
                 std::stringstream(sv) >> v;
-                std::stringstream(svt) >> vt;
+                if(svt != "")
+                    std::stringstream(svt) >> vt;
+                else
+                    vt = 0;
                 std::stringstream(svn) >> vn;
 
                 _f.push_back(std::make_tuple(face_str, v, vt, vn));
@@ -88,7 +91,13 @@ void ObjGeometry::interlace()
             auto v =  _v [std::get<1>(f) - 1];
             std::tuple<float, float> vt;
             if(std::get<2>(f) > 0)
-                _vt[std::get<2>(f) - 1];
+            {
+                vt = _vt[std::get<2>(f) - 1];
+            }
+            else
+            {
+                vt = std::make_tuple(0,0);
+            }
             auto vn = _vn[std::get<3>(f) - 1];
 
             Vertex vert;
@@ -98,16 +107,8 @@ void ObjGeometry::interlace()
             vert.nx = std::get<0>(vn);
             vert.ny = std::get<1>(vn);
             vert.nz = std::get<2>(vn);
-            if(std::get<2>(f) > 0)
-            {
-                vert.u = std::get<0>(vt);
-                vert.v = std::get<1>(vt);
-            }
-            else
-            {
-                vert.u = 0;
-                vert.v = 0;
-            }
+            vert.u = std::get<0>(vt);
+            vert.v = std::get<1>(vt);
             _vertices.push_back(vert);
 
             //voeg toe aan indices

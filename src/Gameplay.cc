@@ -149,7 +149,7 @@ void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
 {
     position.y = 0.0;
     std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
-    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("house1.bmp");
+    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("ci_core_tex.png");
 
     Entity& ciCore = scene.assign("ACiCore");
     ciCore.assign<SpatialComponent>(glm::vec3{-7,0,7});
@@ -164,6 +164,10 @@ void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
     cCore.assign<EnergyComponent>(150);
     cCore.assign<HealthComponent>(1);
     cCore.assign<OwnerComponent>(2);
+    
+    Entity& light_one = scene.assign("ACiCoreLight");
+    light_one.assign<LightComponent>(glm::vec3{1.0, 1.0, 1.0}, glm::vec3{0.0, 0.25, 0.05});
+    light_one.assign<SpatialComponent>(glm::vec3{-7,0,7});
 }
 
 
@@ -309,7 +313,7 @@ void Gameplay::attackEntity()
 
             NetworkPacket np(attacking_unit->id, ATTACK);
             np.set(0, to_be_attacked->id);
-            client->write(np.char_array(), np.size);
+            client->write(np.char_array(), np.size());
         }
     }
 }
