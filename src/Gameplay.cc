@@ -411,7 +411,7 @@ void Gameplay::automaticAttackCheck() {
                     std::unique_ptr<Entity>& secondEntity = secondEntityEntry.second;
 
                     auto secondowner = firstEntity->component<OwnerComponent>();
-                    if(secondowner == 2) {
+                    if(secondowner->playerNumber == 2) {
                         auto firstEntitySpatial = firstEntity->component<SpatialComponent>();
                         auto secondEntitySpatial = secondEntity->component<SpatialComponent>();
                         auto firstEntityRange = firstEntity->component<AttackComponent>();
