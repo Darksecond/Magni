@@ -8,10 +8,34 @@
 
 using namespace Ymir;
 
-Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
-    RenderEngine& renderEngine, glm::vec2 screenSize)
-        : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,objectOwner(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0)
+Gameplay::Gameplay(
+                    EngineManager& engineManager,
+                    CurrencyEngine& currencyEngine,
+                    ResourceManager<Texture>& textureManager,
+                    ResourceManager<Mesh>& meshManager,
+                    RenderEngine& renderEngine,
+                    glm::vec2 screenSize) : scene(engineManager),
+                    currencyEngine(currencyEngine),
+                    textureManager(textureManager),
+                    meshManager(meshManager),
+                    renderEngine(renderEngine),
+                    screenSize(screenSize),
+                    objectOwner(1),
+                    currentSelectedUnit(nullptr),
+
+                    workerPrice(1),
+                    workerEnergy(-10),
+
+                    basicInfanteriePrice(1),
+                    basicInfantryEnergy(10),
+
+                    orbitalDropBeaconPrice(1),
+                    orbitalDropBeaconEnergy(-20),
+
+                    infantryTimer(0),
+                    buildingTimer(0),
+
+                    unitIdentifyCounter(0)
 {
 
 }
@@ -38,8 +62,8 @@ void Gameplay::drawGrid(bool draw)
 
 void Gameplay::createWorker(glm::vec3 position)
 {
-    std::cout << 5-infantryTimer << std::endl;
-    if (infantryTimer > 1) {
+    std::cout << 3-infantryTimer << std::endl;
+    if (infantryTimer > INFTIMER) {
         if(currencyEngine.currency >= workerPrice) {
             position.y = 0.3;
             std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
@@ -60,8 +84,8 @@ void Gameplay::createWorker(glm::vec3 position)
 }
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
-    std::cout << 5-infantryTimer << std::endl;
-        if (infantryTimer > 1) {
+    std::cout << 3-infantryTimer << std::endl;
+        if (infantryTimer > INFTIMER) {
         if(currencyEngine.currency >= basicInfanteriePrice) {
             position.y = 0.0;
             std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
@@ -88,8 +112,8 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
 
 void Gameplay::createEngineer()
 {
-    std::cout << 5-infantryTimer << std::endl;
-    if (infantryTimer > 1) {
+    std::cout << 3-infantryTimer << std::endl;
+    if (infantryTimer > INFTIMER) {
         //TODO: implementation
         //...
         infantryTimer = 0;
@@ -120,8 +144,8 @@ void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 {
-    std::cout << 5-buildingTimer << std::endl;
-    if ( buildingTimer > 1) {
+    std::cout << 3-buildingTimer << std::endl;
+    if ( buildingTimer > BUILDTIMER) {
          if (currencyEngine.currency >= orbitalDropBeaconPrice) {
                 position.y = 0.0;
                 std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
@@ -150,7 +174,7 @@ void Gameplay::buildPowerCore()
 
 void Gameplay::buildAcademyOfAdvancedTechnologies()
     {
-        std::cout << 5-buildingTimer << std::endl;
+        std::cout << 3-buildingTimer << std::endl;
         if ( buildingTimer > 1) {
             //TODO: implementation
             //...

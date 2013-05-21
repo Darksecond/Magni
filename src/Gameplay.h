@@ -42,6 +42,9 @@ namespace Ymir
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
 
+            static const int INFTIMER = 3;
+            static const int BUILDTIMER = 3;
+
             float infantryTimer, buildingTimer;
             int unitIdentifyCounter;
             TileMap* tileMap;
@@ -51,16 +54,16 @@ namespace Ymir
 
             int workerPrice;
             int workerEnergy;
-        
+
             int basicInfanteriePrice;
             int basicInfantryEnergy;
-        
+
             int advancedInfantryPrice;
             int advancedInfantryEnergy;
-        
+
             int powerCorePrice;
             int powerCoreEnergy;
-        
+
             int orbitalDropBeaconPrice;
             int orbitalDropBeaconEnergy;
 
