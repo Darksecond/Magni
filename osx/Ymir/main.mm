@@ -13,7 +13,7 @@ static std::string ResourceDirectory()
 int main(int argc, char* argv[])
 {
     Application application = Application();
-    application.createManagers(ResourceDirectory());
+    application.createManagers(ResourceDirectory() + "/resources");
     application.createEngines();
     application.buildGame();
     application.waitNetwork();
