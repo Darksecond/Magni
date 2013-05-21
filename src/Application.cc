@@ -51,7 +51,7 @@ void Application::waitNetwork()
     //send HELLO message
     NetworkPacket hello(0, Gameplay::HELLO);
     gameplay->client->write(hello.char_array(), hello.size());
-    
+
     bool done = false;
     while(!done)
     {
@@ -80,7 +80,7 @@ void Application::waitNetwork()
         {
             done = true;
         }
-        
+
         engines->update(1, 0);
     }
 }
@@ -139,7 +139,7 @@ void Application::runGame()
             gameplay->moveEntity();
         }
         if(glfwGetKey( 'O' ) == GLFW_PRESS) {
-                gameplay->buildOrbitalDropBeacon(renderEngine->GetTilePosition());
+            gameplay->buildOrbitalDropBeacon(renderEngine->GetTilePosition());
         }
         if(glfwGetKey( 'J' ) == GLFW_PRESS) {
             gameplay->createWorker(renderEngine->GetTilePosition());
@@ -177,6 +177,7 @@ void Application::runGame()
             }
         }
 
+        gameplay->automaticAttackCheck();
         gameplay->client->readReal();
 
         // end cleanup -----------------------------------

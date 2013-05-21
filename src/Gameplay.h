@@ -91,6 +91,7 @@ namespace Ymir
 
             void attackEntity();
             void attackEntity(int attacking_unit, int to_be_attacked);
+            void automaticAttackCheck();
 
             bool centralIntelligenceCoreDestoyed();
             bool enemyCentralIntelligenceCoreDestroyed();

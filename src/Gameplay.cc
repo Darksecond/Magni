@@ -19,7 +19,7 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
 //    client->setIPAdress(127, 0, 0, 1);
 
 
-    playernumber = 2;
+    playernumber = 1;
 }
 
 void Gameplay::createCamera()
@@ -89,7 +89,7 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
     std::cout << 5-infantryTimer << std::endl;
-        if (infantryTimer > 5) {
+    if (infantryTimer > 5) {
         if(currencyEngine.currency >= basicInfanteriePrice) {
             position.y = 0.0;
             std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
@@ -98,7 +98,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             Entity& basicInfantrie = scene.assign("basicInfantrie");
             basicInfantrie.assign<SpatialComponent>(position);
             basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
-            basicInfantrie.assign<AttackComponent>(1, 20);
+            basicInfantrie.assign<AttackComponent>(1, 20, 2);
             basicInfantrie.assign<OwnerComponent>(playernumber);
             basicInfantrie.assign<HealthComponent>(150);
             basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
@@ -129,9 +129,8 @@ void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
     Entity& basicInfantrie = scene.assign("basicInfantrie", id);
     basicInfantrie.assign<SpatialComponent>(position);
     basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
-    basicInfantrie.assign<AttackComponent>(1, 20);
     basicInfantrie.assign<OwnerComponent>(2);
-    basicInfantrie.assign<HealthComponent>(150);
+    basicInfantrie.assign<HealthComponent>(1);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
@@ -370,6 +369,7 @@ void Gameplay::attackEntity()
 {
     Entity* attacking_unit = getCurrentSelectedEntity();
     Entity* to_be_attacked = getEntityAtPosition(renderEngine.GetTilePosition());
+
     if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
     {
         if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
@@ -394,6 +394,35 @@ void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
         if (attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
         {
             attackEngine.attack(*to_be_attacked, *attacking_unit);
+        }
+    }
+}
+
+void Gameplay::automaticAttackCheck() {
+    for(auto& firstEntityEntry : scene.entities) {
+        std::unique_ptr<Entity>& firstEntity = firstEntityEntry.second;
+        auto owner = firstEntity->component<OwnerComponent>();
+
+        if(owner->playerNumber == 1) {
+            auto attackcomponent = firstEntity->component<AttackComponent>();
+
+            if ( attackcomponent != nullptr ) {
+                for (auto& secondEntityEntry : scene.entities) {
+                    std::unique_ptr<Entity>& secondEntity = secondEntityEntry.second;
+
+                    auto secondowner = firstEntity->component<OwnerComponent>();
+                    if(secondowner == 2) {
+                        auto firstEntitySpatial = firstEntity->component<SpatialComponent>();
+                        auto secondEntitySpatial = secondEntity->component<SpatialComponent>();
+                        auto firstEntityRange = firstEntity->component<AttackComponent>();
+
+                        if (glm::distance(firstEntitySpatial->get_position(), secondEntitySpatial->get_position()) < firstEntityRange->range) {
+                            attackEntity(firstEntity->id, secondEntity->id);
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }
