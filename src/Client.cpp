@@ -39,7 +39,6 @@ void Client::readReal()
                 gp->createGhostWorker(position, ung->flip(np.id()));
             }
             if (np.get<int>(0) == Gameplay::B_INFANTRY) {
-            //    glm::vec3 position = glm::vec3(np.get<float>(1), np.get<float>(2), np.get<float>(3));
                 gp->createGhostBasicInfantrie(position, ung->flip(np.id()));
             }
             if (np.get<int>(0) == Gameplay::A_INFANTRY) {
@@ -49,7 +48,6 @@ void Client::readReal()
                 gp->createGhostEngineer(position, ung->flip(np.id()));
             }
             if (np.get<int>(0) == Gameplay::ORBITAL) {
-              //  glm::vec3 position = glm::vec3(np.get<float>(1), np.get<float>(2), np.get<float>(3));
                 gp->buildGhostOrbitalDropBeacon(position, ung->flip(np.id()));
             }
             if (np.get<int>(0) == Gameplay::POWERCORE) {
