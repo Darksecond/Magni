@@ -31,6 +31,7 @@ void AttackEngine::update(int pass, double delta)
     if(_attack_animation_entity != nullptr)
     {
         _attack_animation_life -= delta;
+        _attack_animation_entity->component<SpatialComponent>()->scale *= 0.99;
         if(_attack_animation_life <= 0)
         {
             //delete animation
@@ -55,9 +56,10 @@ void AttackEngine::attack(Entity& attackee, const Entity& attacker)
         //show attack 'animation'
         _attack_animation_entity = &scene->assign("attack_animation");
         //add stuff!
-        _attack_animation_entity->assign<ModelComponent>(mesh_manager.resource("monkey.obj"), texture_manager.resource("track.jpg"));
+        _attack_animation_entity->assign<ModelComponent>(mesh_manager.resource("explosion.obj"), texture_manager.resource("explosion.png"));
         auto& spatial = _attack_animation_entity->assign<SpatialComponent>(glm::vec3(0));
         spatial.set_position(attackee.component<SpatialComponent>()->get_position());
+        spatial.scale = glm::vec3(1);
         //spatial.position = attackee.component<SpatialComponent>()->position;
         _attack_animation_life = attack->duration;
     }

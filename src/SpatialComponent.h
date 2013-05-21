@@ -10,10 +10,10 @@ namespace Ymir
     class SpatialComponent : public Component<SpatialComponent>
     {
         glm::vec3 position;
-        glm::vec3 scale;
         glm::quat direction;
     public:
-
+        glm::vec3 scale;
+        
         SpatialComponent(SpatialComponent&) = delete;
 
         explicit SpatialComponent(glm::vec3 position);
