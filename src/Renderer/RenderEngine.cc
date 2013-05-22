@@ -403,6 +403,7 @@ void RenderEngine::update(int pass, double delta)
         }
 
         if (grid) {
+            drawAOE(*grid_program,*_camera);
             drawGrid(*grid_program, *_camera);
         }
 
@@ -493,8 +494,90 @@ glm::vec3 RenderEngine::get3DPositionFromCoordinates(int xPos, int yPos) {
 	return worldPos;
 }
 void RenderEngine::drawAOE(Program& p, Camera& c) {
+    int amount = tileMap->getMapAmount();
+    int width  = 1;
+    int height = 1;
+    int length = sqrt(amount);
 
-}
+    int bufferSize = 0;
+    for (int row = 0; row < length ; row++) {
+        for (int column = 0; column < length; column++) {
+            if(tileMap->getType(row,column) == Tile::Type::AOE) {
+                bufferSize++;
+            }
+        }
+    }
+    bufferSize = bufferSize * 3 * 6;
+    GLfloat g_vertex_buffer_data[bufferSize];
+
+    int counter = 0;
+    for (int row = 0; row < length ; row++) {
+        for (int column = 0; column < length; column++) {
+            if(tileMap->getType(row,column) == Tile::Type::AOE) {
+                g_vertex_buffer_data[counter++] = -9.0f + row;
+                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = -9.0f + column;
+
+                g_vertex_buffer_data[counter++] = -9.0f + row;
+                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = -10.0f + column;
+
+                g_vertex_buffer_data[counter++] = -10.0f + row;
+                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = -10.0f + column;
+
+                g_vertex_buffer_data[counter++] = -10.0f + row;
+                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = -10.0f + column;
+
+                g_vertex_buffer_data[counter++] = -10.0f + row;
+                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = -9.0f + column;
+
+                g_vertex_buffer_data[counter++] = -9.0f + row;
+                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = -9.0f + column;
+
+            }
+        }
+    }
+    GLuint VertexArrayID;
+    glGenVertexArrays(1, &VertexArrayID);
+    glBindVertexArray(VertexArrayID);
+
+    ProgramContext pc {p};
+
+    glm::mat4 projection = c.projectionMatrix();
+    glm::mat4 view = c.viewMatrix();
+    glm::mat4 model = glm::mat4(1.0f);
+    glm::mat4 MVP = projection * view * model;
+
+    GLuint vertexbuffer;
+    glGenBuffers(1, &vertexbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+
+    p.setUniform("MVP", MVP);
+
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+
+    glVertexAttribPointer(
+        0,
+        3,
+        GL_FLOAT,
+        GL_FALSE,
+        0,
+        (void*)0
+    );
+
+    glDrawArrays(GL_TRIANGLES, 0, counter);
+
+    glDisableVertexAttribArray(0);
+
+    glDeleteBuffers(1, &vertexbuffer);
+    glDeleteVertexArrays(1, &VertexArrayID);
+    }
 
 void RenderEngine::drawGrid(Program& p, Camera& c)
 {
@@ -511,35 +594,36 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
     for (int row = 0; row < length ; row++) {
         for (int column = 0; column < length; column++) {
             // top
+
             g_vertex_buffer_data[counter++] = -10.0f + (width * column);
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.01f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row);
             g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.01f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row);
 
             // right
             g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.01f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row);
             g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.01f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
 
             // bottom
             g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.01f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
             g_vertex_buffer_data[counter++] = -10.0f + (width * column);
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.01f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
 
             // left
             g_vertex_buffer_data[counter++] = -10.0f + (height * column);
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.01f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
             g_vertex_buffer_data[counter++] = -10.0f + (height * column);
-            g_vertex_buffer_data[counter++] = 0.05f;
+            g_vertex_buffer_data[counter++] = 0.01f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row);
         }
     }

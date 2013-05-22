@@ -76,6 +76,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
             basicInfantrie.assign<AOEComponent>(1); //is square
             currencyEngine.currency -= basicInfanteriePrice;
+            updateSelectedEntity(position);
             // TODO add other components
         } else {
             std::cout << "Not enough money for basic infantrie" << std::endl;
@@ -192,7 +193,7 @@ void Gameplay::sellEntity(Entity* aEntity)
     }
 }
 
-void Gameplay::setAOE() {
+void Gameplay::setAOE(bool reset) {
     Entity* aEntity = getCurrentSelectedEntity();
     if(aEntity != nullptr) {
         auto aoe = aEntity->component<AOEComponent>();
@@ -211,6 +212,9 @@ void Gameplay::setAOE() {
             for(int i = xTileLocationStart; i <= xTileLocationEnd; i++) {
                 for(int y = zTileLocationStart; y <= zTileLocationEnd; y++) {
                     if(i >= 0 && i <= 20 && y >= 0 && y <= 20)
+                    if(reset)
+                        tileMap->setType(i,y,Tile::Type::NONE);
+                     else
                         tileMap->setType(i,y,Tile::Type::AOE);
                 }
             }
@@ -224,11 +228,12 @@ void Gameplay::moveEntity() {
         auto owner = aEntity->component<OwnerComponent>();
         if(owner != nullptr) {
             if(owner->playerNumber == objectOwner) {
+                setAOE(true);
                 auto spatial = aEntity->component<SpatialComponent>();
                 glm::vec3 newPos = renderEngine.GetTilePosition();
                 newPos.y = 0;
-                setAOE();
                 spatial->position = newPos;
+                setAOE();
             }
         }
     }
@@ -237,6 +242,7 @@ void Gameplay::moveEntity() {
 void Gameplay::updateSelectedEntity(glm::vec3 position)
 {
     currentSelectedUnit = getEntityAtPosition(position);
+    setAOE();
 }
 
 Entity* Gameplay::getEntityAtPosition(glm::vec3 position)

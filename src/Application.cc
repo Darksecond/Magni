@@ -78,7 +78,7 @@ void Application::runGame()
 
 //    track
     Entity& track = scene.assign("track");
-    track.assign<SpatialComponent>(glm::vec3{0, 0.045, 0});
+    track.assign<SpatialComponent>(glm::vec3{0, 0.0, 0});
     track.assign<ModelComponent>(track_mesh, track_tex);
 
     gameplay->buildCentralIntelligenceCore(glm::vec3{5.5, 0.00, 1.5});

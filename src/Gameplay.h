@@ -51,16 +51,16 @@ namespace Ymir
 
             int workerPrice;
             int workerEnergy;
-        
+
             int basicInfanteriePrice;
             int basicInfantryEnergy;
-        
+
             int advancedInfantryPrice;
             int advancedInfantryEnergy;
-        
+
             int powerCorePrice;
             int powerCoreEnergy;
-        
+
             int orbitalDropBeaconPrice;
             int orbitalDropBeaconEnergy;
 
@@ -98,6 +98,6 @@ namespace Ymir
 
             void setTileMap(TileMap*);
 
-            void setAOE();
+            void setAOE(bool reset = false);
     };
 };
