@@ -68,7 +68,7 @@ RenderEngine::RenderEngine(ResourceManager<Program,
     // grid refactor nomination
     grid_program = programManager.resource("grid");
     // end refactor nomination
-    
+
     _grass = textureManager.resource("grass.png");
     _mountain = textureManager.resource("mountain.png");
     _water = textureManager.resource("water.png");
@@ -406,16 +406,16 @@ void renderTileMap(TileMap& tilemap, Program& pt, Program& pl, const Camera& c,
             SpatialComponent s(glm::vec3(i-9.5, 0, j-9.5));
             s.parent = nullptr;
             s.scale = glm::vec3(1.0/tilemap.getMapHeight());
-            
+
             Tile::Type tile_type = tilemap.getType(i, j);
             std::shared_ptr<Texture> tex = grass;
             if(tile_type == Tile::Type::WATER)
                 tex = water;
             if(tile_type == Tile::Type::MOUNTAIN)
                 tex = mountain;
-            
+
             renderTexture(pt, *tex, c, *square, s);
-            
+
             //ModelComponent mc(square, tex);
             //Model model(mc, s);
             //render(pt, pl, c, lights, model);
@@ -431,7 +431,7 @@ void RenderEngine::update(int pass, double delta)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         renderSkybox(*sky, *sky_program, *_camera);
-        
+
         if(tileMap)
         {
             renderTileMap(*tileMap, *texture_program, *phong_program, *_camera, lights
@@ -525,8 +525,8 @@ glm::vec3 RenderEngine::get3DPositionFromCoordinates(int xPos, int yPos) {
 void RenderEngine::drawGrid(Program& p, Camera& c)
 {
     int amount = tileMap->getMapAmount();
-    int width = tileMap->getMapWidth();
-    int height = tileMap->getMapHeight();
+    int width = 1;
+    int height = 1;
 
     int length = sqrt(amount);
 
