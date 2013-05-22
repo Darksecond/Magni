@@ -65,19 +65,23 @@ void Application::waitNetwork()
             NetworkPacket np(buffer);
             if(np.type() == Gameplay::HELLO)
             {
-                gameplay->playernumber = 1;
+                gameplay->playerNumber = 1;
+                gameplay->otherPlayerNumber = 2;
                 NetworkPacket player (0, Gameplay::PLAYER);
                 gameplay->client->write(player.char_array(), player.size());
                 done = true;
             }
             else if(np.type() == Gameplay::PLAYER)
             {
-                gameplay->playernumber = 2;
+                gameplay->playerNumber = 2;
+                gameplay->otherPlayerNumber = 1;
                 done = true;
             }
         }
         else if(glfwGetKey('0') == GLFW_PRESS)
         {
+            gameplay->playerNumber = 1;
+            gameplay->otherPlayerNumber = 2;
             done = true;
         }
 

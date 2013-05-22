@@ -10,7 +10,7 @@ using namespace Ymir;
 Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
     RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine)
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,playernumber(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine)
+            renderEngine(renderEngine), screenSize(screenSize) ,playerNumber(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine)
 {
     client = new Client();
     client->gp = this;
@@ -18,8 +18,7 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
     client->setIPAdress(192, 168, 0, 1);
 //    client->setIPAdress(127, 0, 0, 1);
 
-
-    playernumber = 1;
+    playerNumber = 1;
 }
 
 void Gameplay::createCamera()
@@ -52,7 +51,7 @@ void Gameplay::createWorker(glm::vec3 position)
             worker.assign<ModelComponent>(worker_mesh, worker_tex);
             worker.assign<HealthComponent>(1);
             worker.assign<CurrencyComponent>(workerPrice);
-            worker.assign<OwnerComponent>(playernumber);
+            worker.assign<OwnerComponent>(playerNumber);
 
             NetworkPacket np(worker.id, BUILD);
             np.set(0, WORKER);
@@ -81,7 +80,7 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
     worker.assign<ModelComponent>(worker_mesh, worker_tex);
     worker.assign<HealthComponent>(100);
     worker.assign<CurrencyComponent>(workerPrice);
-    worker.assign<OwnerComponent>(2);
+    worker.assign<OwnerComponent>(otherPlayerNumber);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
 }
@@ -99,7 +98,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             basicInfantrie.assign<SpatialComponent>(position);
             basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
             basicInfantrie.assign<AttackComponent>(1, 20, 2);
-            basicInfantrie.assign<OwnerComponent>(playernumber);
+            basicInfantrie.assign<OwnerComponent>(playerNumber);
             basicInfantrie.assign<HealthComponent>(150);
             basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
             currencyEngine.currency -= basicInfanteriePrice;
@@ -129,7 +128,7 @@ void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
     Entity& basicInfantrie = scene.assign("basicInfantrie", id);
     basicInfantrie.assign<SpatialComponent>(position);
     basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
-    basicInfantrie.assign<OwnerComponent>(2);
+    basicInfantrie.assign<OwnerComponent>(otherPlayerNumber);
     basicInfantrie.assign<HealthComponent>(1);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
 
@@ -214,8 +213,8 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
             house.assign<SpatialComponent>(position);
             house.assign<ModelComponent>(house_mesh, t);
             house.assign<EnergyComponent>(-100);
-            house.assign<OwnerComponent>(playernumber);
-            house.assign<HealthComponent>(250);
+            house.assign<OwnerComponent>(playerNumber);
+            house.assign<HealthComponent>(5);
             house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
 
             NetworkPacket np(house.id, BUILD);
@@ -245,8 +244,8 @@ void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)
     house.assign<SpatialComponent>(position);
     house.assign<ModelComponent>(house_mesh, t);
     house.assign<EnergyComponent>(-100);
-    house.assign<OwnerComponent>(2);
-    house.assign<HealthComponent>(250);
+    house.assign<OwnerComponent>(otherPlayerNumber);
+    house.assign<HealthComponent>(5);
     house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
@@ -279,10 +278,10 @@ void Gameplay::buildGhostAcademyOfAdvancedTechnologies(glm::vec3 position, int i
 
 bool Gameplay::centralIntelligenceCoreDestoyed()
 {
-    if (playernumber == 1 && scene.containsEntity("ACiCore4")) {
+    if (playerNumber == 1 && scene.containsEntity("ACiCore4")) {
         return false;
     }
-    else if(playernumber == 2 && scene.containsEntity("BCiCore5")) {
+    else if(playerNumber == 2 && scene.containsEntity("BCiCore5")) {
         return false;
     }
 
@@ -337,7 +336,7 @@ void Gameplay::moveEntity() {
     if(aEntity != nullptr ) {
         auto owner = aEntity->component<OwnerComponent>();
         if(owner != nullptr) {
-            if(owner->playerNumber == playernumber) {
+            if(owner->playerNumber == playerNumber) {
                 auto spatial = aEntity->component<SpatialComponent>();
                 glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
                 newPos.y = 0;
@@ -403,22 +402,27 @@ void Gameplay::automaticAttackCheck() {
         std::unique_ptr<Entity>& firstEntity = firstEntityEntry.second;
         auto owner = firstEntity->component<OwnerComponent>();
 
-        if(owner->playerNumber == 1) {
-            auto attackcomponent = firstEntity->component<AttackComponent>();
+        if(owner != nullptr) {
+            if(owner->playerNumber == playerNumber) {
+                auto attackcomponent = firstEntity->component<AttackComponent>();
 
-            if ( attackcomponent != nullptr ) {
-                for (auto& secondEntityEntry : scene.entities) {
-                    std::unique_ptr<Entity>& secondEntity = secondEntityEntry.second;
+                if ( attackcomponent != nullptr ) {
+                    for (auto& secondEntityEntry : scene.entities) {
+                        std::unique_ptr<Entity>& secondEntity = secondEntityEntry.second;
 
-                    auto secondowner = firstEntity->component<OwnerComponent>();
-                    if(secondowner->playerNumber == 2) {
-                        auto firstEntitySpatial = firstEntity->component<SpatialComponent>();
-                        auto secondEntitySpatial = secondEntity->component<SpatialComponent>();
-                        auto firstEntityRange = firstEntity->component<AttackComponent>();
+                        auto secondowner = secondEntity->component<OwnerComponent>();
 
-                        if (glm::distance(firstEntitySpatial->get_position(), secondEntitySpatial->get_position()) < firstEntityRange->range) {
-                            attackEntity(firstEntity->id, secondEntity->id);
-                            break;
+                        if(secondowner != nullptr) {
+                            if(secondowner->playerNumber == otherPlayerNumber) {
+                                auto firstEntitySpatial     = firstEntity->component<SpatialComponent>();
+                                auto secondEntitySpatial    = secondEntity->component<SpatialComponent>();
+                                auto firstEntityRange       = firstEntity->component<AttackComponent>();
+
+                                if (glm::distance(firstEntitySpatial->get_position(), secondEntitySpatial->get_position()) < firstEntityRange->range) {
+                                    attackEntity(firstEntity->id, secondEntity->id);
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
@@ -463,7 +467,7 @@ Scene& Gameplay::getScene()
 }
 
 void Gameplay::switchOwner(int owner) {
-    playernumber = owner;
+    playerNumber = owner;
 }
 
 void Gameplay::updateTimer(float delta) {

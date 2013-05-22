@@ -52,7 +52,7 @@ namespace Ymir
 
         public:
             Client* client;
-            int playernumber;
+            int playerNumber, otherPlayerNumber;
 
             int workerPrice;
             int basicInfanteriePrice;
