@@ -116,7 +116,7 @@ void Application::runGame()
     //track.assign<SpatialComponent>(glm::vec3{0, 0, 0});
     //track.assign<ModelComponent>(track_mesh, track_tex);
 
-    gameplay->buildCentralIntelligenceCore(glm::vec3{5, 0.00, 1});
+    gameplay->buildCentralIntelligenceCore();
 
     // end cleanup -----------------------------------
 
@@ -179,7 +179,7 @@ void Application::runGame()
             checkDefeatTimer->reset();
 
             if (gameplay->centralIntelligenceCoreDestoyed()) {
-                gameplay->winGame();
+                gameplay->loseGame();
             }
         }
 

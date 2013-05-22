@@ -117,9 +117,6 @@
 		<Unit filename="src/NodeCache.h" />
 		<Unit filename="src/ObjGeometry.cc" />
 		<Unit filename="src/ObjGeometry.h" />
-		<Unit filename="src/OwnerComponent.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="src/OwnerComponent.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>

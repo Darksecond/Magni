@@ -47,7 +47,7 @@ namespace Ymir
             AttackEngine& attackEngine;
 
             float infantryTimer, buildingTimer;
-            int unitIdentifyCounter;
+            int unitIdentifyCounter, myCoreID;
             TileMap* tileMap;
 
         public:
@@ -59,7 +59,7 @@ namespace Ymir
             int orbitalDropBeaconPrice;
 
             enum {BUILD = 0, MOVE, WIN_LOSE, SELL, ATTACK, HELLO, PLAYER};
-            enum {WORKER = 0, B_INFANTRY, A_INFANTRY, ENGINEER, ORBITAL, POWERCORE, ACADEMY};
+            enum {WORKER = 0, B_INFANTRY, A_INFANTRY, ENGINEER, ORBITAL, POWERCORE, ACADEMY, CICORE};
 
             Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine);
 
@@ -76,7 +76,8 @@ namespace Ymir
             void createEngineer(glm::vec3 position);
             void createGhostEngineer(glm::vec3 position, int id);
 
-            void buildCentralIntelligenceCore(glm::vec3 position);
+            void buildCentralIntelligenceCore();
+            void buildGhostCentralIntelligenceCore(glm::vec3 position, int id);
             void buildOrbitalDropBeacon(glm::vec3 position);
             void buildGhostOrbitalDropBeacon(glm::vec3 position, int id);
             void buildPowerCore(glm::vec3 position);
@@ -90,6 +91,7 @@ namespace Ymir
             void moveEntity(glm::vec3 position, int id);
 
             void attackEntity();
+            void attackEntityLocal(int id_attacking_unit, int id_to_be_attacked);
             void attackEntity(int attacking_unit, int to_be_attacked);
             void automaticAttackCheck();
 

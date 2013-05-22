@@ -31,7 +31,6 @@ void Client::readReal()
     if(bytes_received)
     {
         NetworkPacket np(buffer);
-        std::cout << "Type: " << np.type() << std::endl;
 
         if(np.type() == Gameplay::BUILD) {
             glm::vec3 position = glm::vec3(np.get<float>(1), np.get<float>(2), np.get<float>(3));
@@ -56,6 +55,9 @@ void Client::readReal()
             if (np.get<int>(0) == Gameplay::ACADEMY) {
                 gp->buildGhostAcademyOfAdvancedTechnologies(position, ung->flip(np.id()));
             }
+            if (np.get<int>(0) == Gameplay::CICORE) {
+                gp->buildGhostCentralIntelligenceCore(position, ung->flip(np.id()));
+            }
         }
 
         if(np.type() == Gameplay::MOVE) {
@@ -68,9 +70,7 @@ void Client::readReal()
         }
 
         if(np.type() == Gameplay::WIN_LOSE) {
-            if(np.get<int>(0) == 0) {
-                gp->loseGame();
-            }
+            gp->winGame();
         }
 
         if(np.type() == Gameplay::SELL) {

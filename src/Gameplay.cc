@@ -15,8 +15,8 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
     client = new Client();
     client->gp = this;
 
-    client->setIPAdress(192, 168, 0, 1);
-//    client->setIPAdress(127, 0, 0, 1);
+    //client->setIPAdress(192, 168, 0, 2);
+    client->setIPAdress(127, 0, 0, 1);
 
     playerNumber = 1;
 }
@@ -174,31 +174,67 @@ void Gameplay::createGhostEngineer(glm::vec3 position, int id)
 
 }
 
-void Gameplay::buildCentralIntelligenceCore(glm::vec3 position)
+void Gameplay::buildCentralIntelligenceCore()
 {
-    position.y = 0.0;
     std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
     std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("ci_core_tex.png");
 
-    Entity& ciCore = scene.assign("ACiCore");
-    ciCore.assign<SpatialComponent>(glm::vec3{-7,0,7});
-    ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
-    ciCore.assign<EnergyComponent>(150);
-    ciCore.assign<HealthComponent>(1);
-    ciCore.assign<OwnerComponent>(1);
+    if(playerNumber == 1) {
+        Entity& ciCore = scene.assign("ACiCore");
+        glm::vec3 position = glm::vec3{-7,0,7};
+        ciCore.assign<SpatialComponent>(position);
+        ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
+        ciCore.assign<EnergyComponent>(150);
+        ciCore.assign<HealthComponent>(5);
+        ciCore.assign<OwnerComponent>(playerNumber);
 
-    Entity& cCore = scene.assign("BCiCore");
-    cCore.assign<SpatialComponent>(glm::vec3{7,0,-7});
-    cCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
-    cCore.assign<EnergyComponent>(150);
-    cCore.assign<HealthComponent>(1);
-    cCore.assign<OwnerComponent>(2);
+        myCoreID = ciCore.id;
 
-    Entity& light_one = scene.assign("ACiCoreLight");
-    light_one.assign<LightComponent>(glm::vec3{1.0, 1.0, 1.0}, glm::vec3{0.0, 0.25, 0.05});
-    light_one.assign<SpatialComponent>(glm::vec3{-7,0,7});
+        NetworkPacket np(ciCore.id, BUILD);
+        np.set(0, CICORE);
+        np.set(1, position.x);
+        np.set(2, position.y);
+        np.set(3, position.z);
+        client->write(np.char_array(), np.size());
+    } else {
+        Entity& ciCore = scene.assign("ACiCore");
+        glm::vec3 position = glm::vec3{7,0,-7};
+        ciCore.assign<SpatialComponent>(position);
+        ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
+        ciCore.assign<EnergyComponent>(150);
+        ciCore.assign<HealthComponent>(5);
+        ciCore.assign<OwnerComponent>(playerNumber);
+
+        myCoreID = ciCore.id;
+
+        NetworkPacket np(ciCore.id, BUILD);
+        np.set(0, CICORE);
+        np.set(1, position.x);
+        np.set(2, position.y);
+        np.set(3, position.z);
+        client->write(np.char_array(), np.size());
+    }
 }
 
+void Gameplay::buildGhostCentralIntelligenceCore(glm::vec3 position, int id)
+{
+    std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
+    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("ci_core_tex.png");
+
+    if (playerNumber == 1) {
+        Entity& cCore = scene.assign("BCiCore", id);
+        cCore.assign<SpatialComponent>(position);
+        cCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
+        cCore.assign<HealthComponent>(100);
+        cCore.assign<OwnerComponent>(otherPlayerNumber);
+    } else {
+        Entity& cCore = scene.assign("BCiCore", id);
+        cCore.assign<SpatialComponent>(position);
+        cCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
+        cCore.assign<HealthComponent>(100);
+        cCore.assign<OwnerComponent>(otherPlayerNumber);
+    }
+}
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 {
@@ -278,10 +314,7 @@ void Gameplay::buildGhostAcademyOfAdvancedTechnologies(glm::vec3 position, int i
 
 bool Gameplay::centralIntelligenceCoreDestoyed()
 {
-    if (playerNumber == 1 && scene.containsEntity("ACiCore4")) {
-        return false;
-    }
-    else if(playerNumber == 2 && scene.containsEntity("BCiCore5")) {
+    if (scene.getEntity(myCoreID)) {
         return false;
     }
 
@@ -290,16 +323,15 @@ bool Gameplay::centralIntelligenceCoreDestoyed()
 
 void Gameplay::winGame()
 {
-    NetworkPacket np(0, WIN_LOSE);
-    np.set(0, 0);
-    client->write(np.char_array(), np.size());
-
     std::shared_ptr<Text> winningText = std::make_shared<Text>("YOU ARE VICTORIOUS", glm::vec2{10, 580}, 20);
     renderEngine.addText(winningText);
 }
 
 void Gameplay::loseGame()
 {
+    NetworkPacket np(0, WIN_LOSE);
+    client->write(np.char_array(), np.size());
+
     std::shared_ptr<Text> losingText = std::make_shared<Text>("YOU ARE DEFEATED", glm::vec2{10, 580}, 20);
     renderEngine.addText(losingText);
 }
@@ -368,6 +400,25 @@ void Gameplay::attackEntity()
 {
     Entity* attacking_unit = getCurrentSelectedEntity();
     Entity* to_be_attacked = getEntityAtPosition(renderEngine.GetTilePosition());
+
+    if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
+    {
+        if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
+        {
+            std::cout << "Unit: " << attacking_unit->name << " is attacking: " << to_be_attacked->name << std::endl;
+            attackEngine.attack(*to_be_attacked, *attacking_unit);
+
+            NetworkPacket np(attacking_unit->id, ATTACK);
+            np.set(0, to_be_attacked->id);
+            client->write(np.char_array(), np.size());
+        }
+    }
+}
+
+void Gameplay::attackEntityLocal(int id_attacking_unit, int id_to_be_attacked)
+{
+    Entity* attacking_unit = scene.getEntity(id_attacking_unit);
+    Entity* to_be_attacked = scene.getEntity(id_to_be_attacked);
 
     if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
     {
