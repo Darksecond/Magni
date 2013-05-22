@@ -10,13 +10,13 @@ using namespace Ymir;
 Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
     RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine)
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,playerNumber(1),currentSelectedUnit(nullptr),workerPrice(100),basicInfanteriePrice(1),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine)
+            renderEngine(renderEngine), screenSize(screenSize) ,playerNumber(1),currentSelectedUnit(nullptr),workerPrice(80),basicInfanteriePrice(150),orbitalDropBeaconPrice(250), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine)
 {
     client = new Client();
     client->gp = this;
 
-    //client->setIPAdress(192, 168, 0, 2);
-    client->setIPAdress(127, 0, 0, 1);
+    client->setIPAdress(192, 168, 0, 2);
+    //client->setIPAdress(127, 0, 0, 1);
 
     playerNumber = 1;
 }
@@ -26,7 +26,12 @@ void Gameplay::createCamera()
     Entity& camera = scene.assign("camera");
     camera.assign<ListenerComponent>();
     camera.assign<CameraComponent>(screenSize.x / screenSize.y);
-    auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0.0, 5.0, 0});
+
+    auto& c_s = camera.assign<SpatialComponent>(glm::vec3{-7,5,10});
+
+    if(playerNumber == 2)
+        c_s.set_position(glm::vec3{7,5,-10});
+
     glm::vec3 euler{-60,0,0};
     c_s.setDirection(euler);
     camera.assignBehavior(std::unique_ptr<Behavior>{new RTSCameraBehavior(7, 6)});
@@ -40,6 +45,7 @@ void Gameplay::drawGrid(bool draw)
 void Gameplay::createWorker(glm::vec3 position)
 {
     std::cout << 5-infantryTimer << std::endl;
+
     if (infantryTimer > 5) {
         if(currencyEngine.currency >= workerPrice) {
             position.y = 0.3;
@@ -49,7 +55,7 @@ void Gameplay::createWorker(glm::vec3 position)
             Entity& worker = scene.assign("worker");
             worker.assign<SpatialComponent>(position);
             worker.assign<ModelComponent>(worker_mesh, worker_tex);
-            worker.assign<HealthComponent>(1);
+            worker.assign<HealthComponent>(5);
             worker.assign<CurrencyComponent>(workerPrice);
             worker.assign<OwnerComponent>(playerNumber);
 
@@ -78,7 +84,7 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
     Entity& worker = scene.assign("worker", id);
     worker.assign<SpatialComponent>(position);
     worker.assign<ModelComponent>(worker_mesh, worker_tex);
-    worker.assign<HealthComponent>(100);
+    worker.assign<HealthComponent>(5);
     worker.assign<CurrencyComponent>(workerPrice);
     worker.assign<OwnerComponent>(otherPlayerNumber);
 
@@ -97,9 +103,9 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             Entity& basicInfantrie = scene.assign("basicInfantrie");
             basicInfantrie.assign<SpatialComponent>(position);
             basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
-            basicInfantrie.assign<AttackComponent>(1, 20, 2);
+            basicInfantrie.assign<AttackComponent>(2, 5, 2);
             basicInfantrie.assign<OwnerComponent>(playerNumber);
-            basicInfantrie.assign<HealthComponent>(150);
+            basicInfantrie.assign<HealthComponent>(15);
             basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
             currencyEngine.currency -= basicInfanteriePrice;
 
@@ -129,7 +135,7 @@ void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
     basicInfantrie.assign<SpatialComponent>(position);
     basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
     basicInfantrie.assign<OwnerComponent>(otherPlayerNumber);
-    basicInfantrie.assign<HealthComponent>(1);
+    basicInfantrie.assign<HealthComponent>(15);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
@@ -185,7 +191,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<SpatialComponent>(position);
         ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
         ciCore.assign<EnergyComponent>(150);
-        ciCore.assign<HealthComponent>(5);
+        ciCore.assign<HealthComponent>(100);
         ciCore.assign<OwnerComponent>(playerNumber);
 
         myCoreID = ciCore.id;
@@ -202,7 +208,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<SpatialComponent>(position);
         ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
         ciCore.assign<EnergyComponent>(150);
-        ciCore.assign<HealthComponent>(5);
+        ciCore.assign<HealthComponent>(100);
         ciCore.assign<OwnerComponent>(playerNumber);
 
         myCoreID = ciCore.id;
@@ -250,7 +256,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
             house.assign<ModelComponent>(house_mesh, t);
             house.assign<EnergyComponent>(-100);
             house.assign<OwnerComponent>(playerNumber);
-            house.assign<HealthComponent>(5);
+            house.assign<HealthComponent>(40);
             house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
 
             NetworkPacket np(house.id, BUILD);
@@ -281,7 +287,7 @@ void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)
     house.assign<ModelComponent>(house_mesh, t);
     house.assign<EnergyComponent>(-100);
     house.assign<OwnerComponent>(otherPlayerNumber);
-    house.assign<HealthComponent>(5);
+    house.assign<HealthComponent>(40);
     house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
