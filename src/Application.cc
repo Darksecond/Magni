@@ -28,7 +28,7 @@ void Application::createEngines()
     engines->assign<BehaviorEngine>();
     engines->assign<CollisionEngine>();
     engines->assign<AudioEngine>();
-    renderEngine = &engines->assign<RenderEngine>(programManager, textureManager, cubemapManager);
+    renderEngine = &engines->assign<RenderEngine>(programManager, textureManager, cubemapManager, meshManager);
 
     engines->assign<EnergyEngine>(*renderEngine);
 
@@ -42,8 +42,10 @@ void Application::buildGame()
     gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine);
     gameplay->createCamera();
 
-    TileMap* tiles = new TileMap(400, 1, 1); //400 want 20 * 20
+    TileMap* tiles = new TileMap(400, 20, 20); //400 want 20 * 20
     gameplay->setTileMap(tiles);
+    tiles->setType(5, 5, Tile::Type::MOUNTAIN);
+    tiles->setType(8, 8, Tile::Type::WATER);
 }
 
 void Application::waitNetwork()
@@ -111,8 +113,8 @@ void Application::runGame()
 
 //    track
     Entity& track = scene.assign("track");
-    track.assign<SpatialComponent>(glm::vec3{0, 0, 0});
-    track.assign<ModelComponent>(track_mesh, track_tex);
+    //track.assign<SpatialComponent>(glm::vec3{0, 0, 0});
+    //track.assign<ModelComponent>(track_mesh, track_tex);
 
     gameplay->buildCentralIntelligenceCore(glm::vec3{5, 0.00, 1});
 

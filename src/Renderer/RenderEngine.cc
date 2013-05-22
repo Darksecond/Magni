@@ -49,7 +49,8 @@ void showFPS() {
 RenderEngine::RenderEngine(ResourceManager<Program,
                            ProgramResourceLoader>& programManager,
                            ResourceManager<Texture>& textureManager,
-                           ResourceManager<Cubemap, CubemapResourceLoader>& cubemapManager
+                           ResourceManager<Cubemap, CubemapResourceLoader>& cubemapManager,
+                           ResourceManager<Mesh>& meshManager
                            ) : lights{}, models{}, texts{}, grid(false)
 {
     initGLFW();
@@ -67,6 +68,11 @@ RenderEngine::RenderEngine(ResourceManager<Program,
     // grid refactor nomination
     grid_program = programManager.resource("grid");
     // end refactor nomination
+    
+    _grass = textureManager.resource("grass.png");
+    _mountain = textureManager.resource("mountain.png");
+    _water = textureManager.resource("water.png");
+    _square = meshManager.resource("track.obj");
 }
 
 void RenderEngine::initGLFW()
@@ -154,7 +160,7 @@ void RenderEngine::addComponent(Entity& entity, const BaseComponent::Type& compo
     }
 }
 
-void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, const Model& model)
+void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, const SpatialComponent& model_spatial)
 {
     //always
     //p is part of material!
@@ -162,7 +168,8 @@ void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m,
 
     //always
     glm::mat4 view = c.viewMatrix();
-    glm::mat4 modelView = view * model.spatial.matrix();
+    //glm::mat4 modelView = view * model.spatial.matrix();
+    glm::mat4 modelView = view * model_spatial.matrix();
 
     //always
     p.setUniform("projection", c.projectionMatrix());
@@ -231,7 +238,7 @@ void render(Program& pt, Program& pl, const Camera& c,
     }
 
     glBlendFunc(GL_ZERO,GL_SRC_COLOR);
-    renderTexture(pt, *model.model.texture, c, *model.model.mesh, model);
+    renderTexture(pt, *model.model.texture, c, *model.model.mesh, model.spatial);
 
     glDisable(GL_BLEND);
 }
@@ -387,6 +394,35 @@ void renderSkybox(Cubemap& sky, Program& p, Camera& c)
 
 }
 
+void renderTileMap(TileMap& tilemap, Program& pt, Program& pl, const Camera& c,
+                   const NodeCache<Light>& lights, std::shared_ptr<Texture>& grass, std::shared_ptr<Texture>& water, std::shared_ptr<Texture>& mountain, std::shared_ptr<Mesh>& square)
+{
+    //needs mesh for square
+    //needs textures for the things
+    for(int i = 0; i < tilemap.getMapHeight(); ++i)
+    {
+        for(int j = 0; j < tilemap.getMapWidth(); ++j)
+        {
+            SpatialComponent s(glm::vec3(i-9.5, 0, j-9.5));
+            s.parent = nullptr;
+            s.scale = glm::vec3(1.0/tilemap.getMapHeight());
+            
+            Tile::Type tile_type = tilemap.getType(i, j);
+            std::shared_ptr<Texture> tex = grass;
+            if(tile_type == Tile::Type::WATER)
+                tex = water;
+            if(tile_type == Tile::Type::MOUNTAIN)
+                tex = mountain;
+            
+            //renderTexture(pt, *tex, c, *square, s);
+            
+            ModelComponent mc(square, tex);
+            Model model(mc, s);
+            render(pt, pl, c, lights, model);
+        }
+    }
+}
+
 void RenderEngine::update(int pass, double delta)
 {
     if(pass == 1)
@@ -395,7 +431,12 @@ void RenderEngine::update(int pass, double delta)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         renderSkybox(*sky, *sky_program, *_camera);
-
+        
+        if(tileMap)
+        {
+            renderTileMap(*tileMap, *texture_program, *phong_program, *_camera, lights
+                          , _grass, _water, _mountain, _square);
+        }
 
         for(auto& model : models)
         {

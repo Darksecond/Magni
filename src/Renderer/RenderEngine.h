@@ -44,12 +44,19 @@ namespace Ymir
         std::shared_ptr<Texture> holstein;
         std::list<std::shared_ptr<Text>> texts;
         std::shared_ptr<Cubemap> sky;
+        
+        std::shared_ptr<Mesh> _square;
+        std::shared_ptr<Texture> _grass;
+        std::shared_ptr<Texture> _mountain;
+        std::shared_ptr<Texture> _water;
 
 
 
         RenderEngine(ResourceManager<Program, ProgramResourceLoader>&,
                      ResourceManager<Texture>&,
-                     ResourceManager<Cubemap, CubemapResourceLoader>&);
+                     ResourceManager<Cubemap, CubemapResourceLoader>&,
+                     ResourceManager<Mesh>& meshManager
+                     );
         ~RenderEngine();
 
         virtual void registerEntity(Entity& entity);

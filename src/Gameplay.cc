@@ -401,7 +401,6 @@ void Gameplay::automaticAttackCheck() {
     for(auto& firstEntityEntry : scene.entities) {
         std::unique_ptr<Entity>& firstEntity = firstEntityEntry.second;
         auto owner = firstEntity->component<OwnerComponent>();
-
         if(owner != nullptr) {
             if(owner->playerNumber == playerNumber) {
                 auto attackcomponent = firstEntity->component<AttackComponent>();
@@ -445,6 +444,7 @@ Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
     {
         std::unique_ptr<Entity>& entity = entitiesEntry.second;
         auto test = entity->component<SpatialComponent>();
+        if(test == nullptr) break;
         double distanceBetween = glm::distance(test->get_position(), position);
 
         if(distanceBetween < 2.5f && distanceBetween < distance) {
