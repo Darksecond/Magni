@@ -414,11 +414,11 @@ void renderTileMap(TileMap& tilemap, Program& pt, Program& pl, const Camera& c,
             if(tile_type == Tile::Type::MOUNTAIN)
                 tex = mountain;
             
-            //renderTexture(pt, *tex, c, *square, s);
+            renderTexture(pt, *tex, c, *square, s);
             
-            ModelComponent mc(square, tex);
-            Model model(mc, s);
-            render(pt, pl, c, lights, model);
+            //ModelComponent mc(square, tex);
+            //Model model(mc, s);
+            //render(pt, pl, c, lights, model);
         }
     }
 }
