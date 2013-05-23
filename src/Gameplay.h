@@ -49,11 +49,12 @@ namespace Ymir
 
             static const int INFTIMER = 3;
             static const int BUILDTIMER = 3;
+            static const int ATTACKTIMER = 1;
 
             //hacky
             Entity* myCamera;
 
-            float infantryTimer, buildingTimer;
+            float infantryTimer, buildingTimer, myAttackTimer;
             int unitIdentifyCounter, myCoreID;
             TileMap* tileMap;
 

@@ -486,11 +486,13 @@ void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
     Entity* attacking_unit = scene.getEntity(id_attacking_unit);
     Entity* to_be_attacked = scene.getEntity(id_to_be_attacked);
 
-    if (attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
-    {
-        if (attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
+    if(myAttackTimer > ATTACKTIMER) {
+        if (attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
         {
-            attackEngine.attack(*to_be_attacked, *attacking_unit);
+            if (attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
+            {
+                attackEngine.attack(*to_be_attacked, *attacking_unit);
+            }
         }
     }
 }
@@ -568,6 +570,7 @@ Scene& Gameplay::getScene()
 void Gameplay::updateTimer(float delta) {
     infantryTimer += delta;
     buildingTimer += delta;
+    myAttackTimer += delta;
 }
 
 void Gameplay::setTileMap(TileMap* tilemap)
