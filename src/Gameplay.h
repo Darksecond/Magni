@@ -28,6 +28,7 @@
 #include "NetworkPacket.h"
 #include "Client.h"
 #include "RTSCameraBehavior.h"
+#include "EnergyBehaviour.h"
 #include "CurrencyEngine.h"
 
 namespace Ymir
@@ -46,6 +47,9 @@ namespace Ymir
             CurrencyEngine& currencyEngine;
             AttackEngine& attackEngine;
 
+            static const int INFTIMER = 3;
+            static const int BUILDTIMER = 3;
+
             float infantryTimer, buildingTimer;
             int unitIdentifyCounter, myCoreID;
             TileMap* tileMap;
@@ -55,8 +59,19 @@ namespace Ymir
             int playerNumber, otherPlayerNumber;
 
             int workerPrice;
+            int workerEnergy;
+
             int basicInfanteriePrice;
+            int basicInfantryEnergy;
+
+            int advancedInfantryPrice;
+            int advancedInfantryEnergy;
+
+            int powerCorePrice;
+            int powerCoreEnergy;
+
             int orbitalDropBeaconPrice;
+            int orbitalDropBeaconEnergy;
 
             enum {BUILD = 0, MOVE, WIN_LOSE, SELL, ATTACK, HELLO, PLAYER};
             enum {WORKER = 0, B_INFANTRY, A_INFANTRY, ENGINEER, ORBITAL, POWERCORE, ACADEMY, CICORE};
@@ -109,5 +124,7 @@ namespace Ymir
             void updateTimer(float delta);
 
             void setTileMap(TileMap*);
+
+            void setAOE(bool reset = false);
     };
 };

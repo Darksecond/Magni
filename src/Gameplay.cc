@@ -1,6 +1,8 @@
 #include "Gameplay.h"
 #include "AttackComponent.h"
 #include "HealthComponent.h"
+#include "AOEComponent.h"
+#include "Tile.h"
 
 #include <iostream>
 #include <sstream>
@@ -44,9 +46,8 @@ void Gameplay::drawGrid(bool draw)
 
 void Gameplay::createWorker(glm::vec3 position)
 {
-    std::cout << 5-infantryTimer << std::endl;
-
-    if (infantryTimer > 5) {
+    std::cout << 3-infantryTimer << std::endl;
+    if (infantryTimer > INFTIMER) {
         if(currencyEngine.currency >= workerPrice) {
             position.y = 0.3;
             std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
@@ -93,8 +94,8 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
 
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
-    std::cout << 5-infantryTimer << std::endl;
-    if (infantryTimer > 5) {
+    std::cout << 3-infantryTimer << std::endl;
+        if (infantryTimer > INFTIMER) {
         if(currencyEngine.currency >= basicInfanteriePrice) {
             position.y = 0.0;
             std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
@@ -107,6 +108,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             basicInfantrie.assign<OwnerComponent>(playerNumber);
             basicInfantrie.assign<HealthComponent>(15);
             basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
+            basicInfantrie.assign<AOEComponent>(1); //is square
             currencyEngine.currency -= basicInfanteriePrice;
 
             NetworkPacket np(basicInfantrie.id, BUILD);
@@ -118,6 +120,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
             client->write(np.char_array(), np.size());
 
             infantryTimer = 0;
+            updateSelectedEntity(position);
             // TODO add other components
         } else {
             std::cout << "Not enough money for basic infantrie" << std::endl;
@@ -166,8 +169,8 @@ void Gameplay::createGhostAdvancedInfantrie(glm::vec3 position, int id)
 
 void Gameplay::createEngineer(glm::vec3 position)
 {
-    std::cout << 5-infantryTimer << std::endl;
-    if (infantryTimer > 5) {
+    std::cout << 3-infantryTimer << std::endl;
+    if (infantryTimer > INFTIMER) {
         //TODO: implementation
         //...
         infantryTimer = 0;
@@ -244,8 +247,8 @@ void Gameplay::buildGhostCentralIntelligenceCore(glm::vec3 position, int id)
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 {
-    std::cout << 5-buildingTimer << std::endl;
-    if ( buildingTimer > 5) {
+    std::cout << 3-buildingTimer << std::endl;
+    if ( buildingTimer > BUILDTIMER) {
          if (currencyEngine.currency >= orbitalDropBeaconPrice) {
             position.y = 0.0;
             std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
@@ -304,18 +307,17 @@ void Gameplay::buildGhostPowerCore(glm::vec3 position, int id)
 }
 
 void Gameplay::buildAcademyOfAdvancedTechnologies(glm::vec3 position)
-{
-    std::cout << buildingTimer << std::endl;
-    if ( buildingTimer > 5) {
-        //TODO: implementation
-        //...
-        buildingTimer = 0;
+    {
+        std::cout << 3-buildingTimer << std::endl;
+        if ( buildingTimer > 1) {
+            //TODO: implementation
+            //...
+            buildingTimer = 0;
+        }
     }
-}
 
 void Gameplay::buildGhostAcademyOfAdvancedTechnologies(glm::vec3 position, int id)
 {
-
 }
 
 bool Gameplay::centralIntelligenceCoreDestoyed()
@@ -369,17 +371,48 @@ void Gameplay::removeEntity(int id) {
     scene.deleteEntity(scene.getEntity(id));
 }
 
+void Gameplay::setAOE(bool reset) {
+    Entity* aEntity = getCurrentSelectedEntity();
+    if(aEntity != nullptr) {
+        auto aoe = aEntity->component<AOEComponent>();
+        auto spatial = aEntity->component<SpatialComponent>();
+        if(aoe != nullptr && spatial != nullptr){
+            int radius   = aoe->radius;
+            float xStart = spatial->position.x - radius;
+            float xEnd   = spatial->position.x + radius;
+            float zStart = spatial->position.z - radius;
+            float zEnd   = spatial->position.z + radius;
+            int xTileLocationStart  = (int) (xStart +10); //Offset to tilemap is 10.
+            int xTileLocationEnd    = (int) (xEnd   +10); //Dit is de helft van het aantal rows/collommen
+            int zTileLocationStart  = (int) (zStart +10); //
+            int zTileLocationEnd    = (int) (zEnd   +10); //
+
+            for(int i = xTileLocationStart; i <= xTileLocationEnd; i++) {
+                for(int y = zTileLocationStart; y <= zTileLocationEnd; y++) {
+                    if(i >= 0 && i <= 20 && y >= 0 && y <= 20)
+                    if(reset)
+                        tileMap->setType(i,y,Tile::Type::NONE);
+                     else
+                        tileMap->setType(i,y,Tile::Type::AOE);
+                }
+            }
+        }
+    }
+}
+
 void Gameplay::moveEntity() {
     Entity* aEntity = getCurrentSelectedEntity();
     if(aEntity != nullptr ) {
         auto owner = aEntity->component<OwnerComponent>();
         if(owner != nullptr) {
             if(owner->playerNumber == playerNumber) {
+                setAOE(true);
                 auto spatial = aEntity->component<SpatialComponent>();
-                glm::vec3 newPos = renderEngine.get3DPositionFromMousePosition();
+                glm::vec3 newPos = renderEngine.GetTilePosition();
                 newPos.y = 0;
                 spatial->set_position(newPos);
-
+                setAOE();
+                
                 NetworkPacket np(aEntity->id, MOVE);
                 np.set(0, newPos.x);
                 np.set(1, newPos.y);
@@ -490,6 +523,7 @@ void Gameplay::automaticAttackCheck() {
 void Gameplay::updateSelectedEntity(glm::vec3 position)
 {
     currentSelectedUnit = getEntityAtPosition(position);
+    setAOE();
 }
 
 Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
@@ -521,10 +555,6 @@ Entity* Gameplay::getCurrentSelectedEntity()
 Scene& Gameplay::getScene()
 {
     return scene;
-}
-
-void Gameplay::switchOwner(int owner) {
-    playerNumber = owner;
 }
 
 void Gameplay::updateTimer(float delta) {

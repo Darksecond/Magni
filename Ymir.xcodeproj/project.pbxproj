@@ -27,6 +27,7 @@
 		F64C777F16CA7C3200371345 /* FPSCameraBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */; };
 		F64EC94716BEA68C00063843 /* Light.cc in Sources */ = {isa = PBXBuildFile; fileRef = F64EC94616BEA68C00063843 /* Light.cc */; };
 		F6542A0E16E49607006B64AB /* SimpleTestTriggerBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6542A0C16E49607006B64AB /* SimpleTestTriggerBehavior.cc */; };
+		F6663895174E15C000276E4D /* AOEComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6663893174E15C000276E4D /* AOEComponent.cc */; };
 		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
 		F67A394B17031820004AAF05 /* AttackEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F67A394917031820004AAF05 /* AttackEngine.cc */; };
 		F68279B016D415AE00BD1BAF /* WSADMoveBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */; };
@@ -177,6 +178,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		42C94DA717424E46009035F4 /* Timer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cc; sourceTree = "<group>"; };
+		42C94DA817424E46009035F4 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
+		42C94DAA17424E7A009035F4 /* EnergyBehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnergyBehaviour.cpp; sourceTree = "<group>"; };
+		42C94DAB17424E7A009035F4 /* EnergyBehaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyBehaviour.h; sourceTree = "<group>"; };
 		F6053FE916C6D54B007F52FE /* Manifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manifest.h; sourceTree = "<group>"; };
 		F6053FEA16C6D5AE007F52FE /* StreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamReader.h; sourceTree = "<group>"; };
 		F6097E5416B84B1A00B240E7 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
@@ -225,6 +230,8 @@
 		F64EC94616BEA68C00063843 /* Light.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cc; sourceTree = "<group>"; };
 		F6542A0C16E49607006B64AB /* SimpleTestTriggerBehavior.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleTestTriggerBehavior.cc; sourceTree = "<group>"; };
 		F6542A0D16E49607006B64AB /* SimpleTestTriggerBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTestTriggerBehavior.h; sourceTree = "<group>"; };
+		F6663893174E15C000276E4D /* AOEComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AOEComponent.cc; sourceTree = "<group>"; };
+		F6663894174E15C000276E4D /* AOEComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AOEComponent.h; sourceTree = "<group>"; };
 		F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramResourceLoader.h; sourceTree = "<group>"; };
 		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
 		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
@@ -708,11 +715,15 @@
 				F61BDCBA16E8988E00768DEE /* Cubemap.h */,
 				F60D929A1701C2F800D0E6F4 /* Gameplay.cc */,
 				F60D92981701C2ED00D0E6F4 /* Gameplay.h */,
+				F6663893174E15C000276E4D /* AOEComponent.cc */,
+				F6663894174E15C000276E4D /* AOEComponent.h */,
 				F61BDCB916E8988E00768DEE /* Cubemap.cc */,
 				F6FB2A1E16B7112C00E6013E /* Bitmap.h */,
 				F6FB2A1F16B7113000E6013E /* Bitmap.cc */,
 				F6D9138216BC0222000C0632 /* Mesh.h */,
 				F6D9138316BC0226000C0632 /* Mesh.cc */,
+				42C94DA717424E46009035F4 /* Timer.cc */,
+				42C94DA817424E46009035F4 /* Timer.h */,
 				F60D929F1701C36900D0E6F4 /* Tile.cpp */,
 				F60D92A01701C36900D0E6F4 /* Tile.h */,
 				F60D92A11701C36900D0E6F4 /* TileMap.cpp */,
@@ -748,6 +759,8 @@
 				F689425116C908550097FB68 /* RotateBehavior.cc */,
 				F64C777D16CA7C2E00371345 /* FPSCameraBehavior.h */,
 				F64C777E16CA7C3200371345 /* FPSCameraBehavior.cc */,
+				42C94DAA17424E7A009035F4 /* EnergyBehaviour.cpp */,
+				42C94DAB17424E7A009035F4 /* EnergyBehaviour.h */,
 				F68279AF16D415AE00BD1BAF /* WSADMoveBehavior.h */,
 				F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */,
 				F6542A0D16E49607006B64AB /* SimpleTestTriggerBehavior.h */,
@@ -1128,6 +1141,7 @@
 				F61D006D1716CE1000B7315F /* Network.cpp in Sources */,
 				F644EE151738FEC200D918FA /* Timer.cc in Sources */,
 				F6268B03173A5238009486C0 /* UniqueNumberGenerator.cpp in Sources */,
+				F6663895174E15C000276E4D /* AOEComponent.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

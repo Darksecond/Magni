@@ -121,6 +121,7 @@ void Application::runGame()
     // end cleanup -----------------------------------
 
     Timer* checkDefeatTimer = new Timer(2);
+    gameplay->drawGrid(true);
 
     lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
@@ -165,7 +166,7 @@ void Application::runGame()
         if(glfwGetKey( 'R') == GLFW_PRESS) {
             gameplay->winGame();
         }
-        if(glfwGetKey( 'E') == GLFW_PRESS) {
+        if(glfwGetKey( 'E' ) == GLFW_PRESS) {
             gameplay->loseGame();
         }
         if(glfwGetKey('T') == GLFW_PRESS)

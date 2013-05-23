@@ -65,11 +65,13 @@ namespace Ymir
         void addComponent(Entity& entity, const BaseComponent::Type& component_type);
 
         glm::vec3 GetTilePosition();
+        glm::vec3 GetTilePositionFromCoordinates(int xPos, int zPos);
         glm::vec3 get3DPositionFromMousePosition();
         glm::vec3 get3DPositionFromCoordinates(int xPos, int yPos);
 
         // grid implementatie refactor nominatie
         void drawGrid(Program&, Camera&);
+        void drawAOE (Program&, Camera&);
         void setGrid(bool);
         void setTileMap(TileMap*);
         // einde refactor nominatie
