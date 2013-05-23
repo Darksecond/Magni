@@ -534,6 +534,7 @@ glm::vec3 RenderEngine::get3DPositionFromCoordinates(int xPos, int yPos) {
 
 	return worldPos;
 }
+
 void RenderEngine::drawAOE(Program& p, Camera& c) {
     int amount = tileMap->getMapAmount();
     int width  = 1;
@@ -619,7 +620,7 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
 
     glDeleteBuffers(1, &vertexbuffer);
     glDeleteVertexArrays(1, &VertexArrayID);
-    }
+}
 
 void RenderEngine::drawGrid(Program& p, Camera& c)
 {
