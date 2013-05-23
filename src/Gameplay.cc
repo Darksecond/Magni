@@ -17,8 +17,8 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
     client = new Client();
     client->gp = this;
 
-    client->setIPAdress(192, 168, 0, 2);
-    //client->setIPAdress(127, 0, 0, 1);
+   client->setIPAdress(192, 168, 0, 1);
+ //   client->setIPAdress(127, 0, 0, 1);
 
     playerNumber = 1;
 }
@@ -43,7 +43,7 @@ void Gameplay::updateCameraStart() {
     if(playerNumber == 1)
         camSpatial->set_position(glm::vec3{-7,5,10});
     else
-         camSpatial->set_position(glm::vec3{7,5,-10});
+         camSpatial->set_position(glm::vec3{7,5,-5});
 }
 
 void Gameplay::drawGrid(bool draw)
@@ -398,10 +398,15 @@ void Gameplay::setAOE(bool reset) {
             for(int i = xTileLocationStart; i <= xTileLocationEnd; i++) {
                 for(int y = zTileLocationStart; y <= zTileLocationEnd; y++) {
                     if(i >= 0 && i <= 20 && y >= 0 && y <= 20)
-                    if(reset)
-                        tileMap->setType(i,y,Tile::Type::NONE);
-                     else
-                        tileMap->setType(i,y,Tile::Type::AOE);
+                    if(reset) {
+                        if(tileMap->getType(i,y) == Tile::Type::AOE) {
+                            tileMap->setType(i,y,Tile::Type::NONE);
+                        }
+                    } else {
+                        if(tileMap->getType(i,y) == Tile::Type::NONE) {
+                            tileMap->setType(i,y,Tile::Type::AOE);
+                        }
+                    }
                 }
             }
         }
