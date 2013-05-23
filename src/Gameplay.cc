@@ -16,10 +16,10 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
 {
     client = new Client();
     client->gp = this;
- //   client->setIPAdress(127, 0, 0, 1);
     client->setIPAdress(192, 168, 0, 1);
     barracksBuild = false;
     workerBuild = false;
+    //client->setIPAdress(127, 0, 0, 1);
     playerNumber = 1;
 }
 
@@ -114,7 +114,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
                 Entity& basicInfantrie = scene.assign("basicInfantrie");
                 basicInfantrie.assign<SpatialComponent>(position);
                 basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
-                basicInfantrie.assign<AttackComponent>(2, 5, 2);
+                basicInfantrie.assign<AttackComponent>(2, 1, 2);
                 basicInfantrie.assign<OwnerComponent>(playerNumber);
                 basicInfantrie.assign<HealthComponent>(15);
                 basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
@@ -481,16 +481,19 @@ void Gameplay::attackEntityLocal(int id_attacking_unit, int id_to_be_attacked)
     Entity* attacking_unit = scene.getEntity(id_attacking_unit);
     Entity* to_be_attacked = scene.getEntity(id_to_be_attacked);
 
-    if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
-    {
-        if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
+    if(myAttackTimer > ATTACKTIMER) {
+        if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
         {
-            std::cout << "Unit: " << attacking_unit->name << " is attacking: " << to_be_attacked->name << std::endl;
-            attackEngine.attack(*to_be_attacked, *attacking_unit);
+            if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
+            {
+                std::cout << "Unit: " << attacking_unit->name << " is attacking: " << to_be_attacked->name << std::endl;
+                attackEngine.attack(*to_be_attacked, *attacking_unit);
 
-            NetworkPacket np(attacking_unit->id, ATTACK);
-            np.set(0, to_be_attacked->id);
-            client->write(np.char_array(), np.size());
+                NetworkPacket np(attacking_unit->id, ATTACK);
+                np.set(0, to_be_attacked->id);
+                client->write(np.char_array(), np.size());
+                myAttackTimer = 0;
+            }
         }
     }
 }
@@ -500,14 +503,11 @@ void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
     Entity* attacking_unit = scene.getEntity(id_attacking_unit);
     Entity* to_be_attacked = scene.getEntity(id_to_be_attacked);
 
-    if(myAttackTimer > ATTACKTIMER) {
-        if (attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
+    if (attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
+    {
+        if (attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
         {
-            if (attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
-            {
-                attackEngine.attack(*to_be_attacked, *attacking_unit);
-                myAttackTimer = 0;
-            }
+            attackEngine.attack(*to_be_attacked, *attacking_unit);
         }
     }
 }
