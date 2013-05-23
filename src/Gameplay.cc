@@ -17,10 +17,10 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
     client = new Client();
     client->gp = this;
 
-    client->setIPAdress(192, 168, 0, 2);
+    //client->setIPAdress(192, 168, 0, 2);
     barracksBuild = false;
     workerBuild = false;
-    //client->setIPAdress(127, 0, 0, 1);
+    client->setIPAdress(127, 0, 0, 1);
 
     playerNumber = 1;
 }
@@ -59,7 +59,7 @@ void Gameplay::createWorker(glm::vec3 position)
     if (infantryTimer > INFTIMER) {
         if(currencyEngine.currency >= workerPrice) {
             position.y = 0.3;
-            std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
+            std::shared_ptr<Texture> worker_tex = textureManager.resource("worker_blue.png");
             std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
             Entity& worker = scene.assign("worker");
@@ -90,7 +90,7 @@ void Gameplay::createWorker(glm::vec3 position)
 void Gameplay::createGhostWorker(glm::vec3 position, int id)
 {
     position.y = 0.3;
-    std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
+    std::shared_ptr<Texture> worker_tex = textureManager.resource("enemy.png");
     std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
     Entity& worker = scene.assign("worker", id);
@@ -110,8 +110,8 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
         if (infantryTimer > INFTIMER) {
             if(currencyEngine.currency >= basicInfanteriePrice) {
                 position.y = 0.0;
-                std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
-                std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
+                std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("ally.png");
+                std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("basicInfantry.obj");
 
                 Entity& basicInfantrie = scene.assign("basicInfantrie");
                 basicInfantrie.assign<SpatialComponent>(position);
@@ -144,8 +144,8 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
 void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
 {
     position.y = 0.0;
-    std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
-    std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
+    std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("enemy.png");
+    std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("basicInfantry.obj");
 
     Entity& basicInfantrie = scene.assign("basicInfantrie", id);
     basicInfantrie.assign<SpatialComponent>(position);
@@ -200,7 +200,7 @@ void Gameplay::createGhostEngineer(glm::vec3 position, int id)
 void Gameplay::buildCentralIntelligenceCore()
 {
     std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
-    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("ci_core_tex.png");
+    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("ally.png");
 
     if(playerNumber == 1) {
         Entity& ciCore = scene.assign("ACiCore");
@@ -242,7 +242,7 @@ void Gameplay::buildCentralIntelligenceCore()
 void Gameplay::buildGhostCentralIntelligenceCore(glm::vec3 position, int id)
 {
     std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
-    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("ci_core_tex.png");
+    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("enemy.png");
 
     if (playerNumber == 1) {
         Entity& cCore = scene.assign("BCiCore", id);
@@ -266,7 +266,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
         if ( buildingTimer > BUILDTIMER) {
              if (currencyEngine.currency >= orbitalDropBeaconPrice) {
                 position.y = 0.0;
-                std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
+                std::shared_ptr<Texture> t = textureManager.resource("ally.png");
                 std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
                 Entity& house = scene.assign("OrbitalDropBeacon");
@@ -300,7 +300,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)
 {
     position.y = 0.0;
-    std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
+    std::shared_ptr<Texture> t = textureManager.resource("enemy.png");
     std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
     Entity& house = scene.assign("OrbitalDropBeacon", id);
