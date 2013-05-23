@@ -548,7 +548,8 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
             }
         }
     }
-    bufferSize = bufferSize * 3 * 6;
+
+    bufferSize = bufferSize * 2 * 9;
     GLfloat g_vertex_buffer_data[bufferSize];
 
     int counter = 0;
@@ -612,7 +613,7 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
         (void*)0
     );
 
-    glDrawArrays(GL_TRIANGLES, 0, counter);
+    glDrawArrays(GL_TRIANGLES, 0, counter / 3);
 
     glDisableVertexAttribArray(0);
 

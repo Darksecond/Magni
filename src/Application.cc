@@ -44,8 +44,37 @@ void Application::buildGame()
 
     TileMap* tiles = new TileMap(400, 20, 20); //400 want 20 * 20
     gameplay->setTileMap(tiles);
-    tiles->setType(5, 5, Tile::Type::MOUNTAIN);
+
+    for(int i = 1; i < 5; i++)
+        for(int j = 1; j < 5; j++)
+            tiles->setType(i, j, Tile::Type::MOUNTAIN);
+
+    for(int i = 1; i < 5; i++)
+        for(int j = 1; j < 5; j++)
+            tiles->setType(i + 14, j + 14, Tile::Type::MOUNTAIN);
+
+    tiles->setType(1, 1, Tile::Type::NONE);
+    tiles->setType(4, 4, Tile::Type::NONE);
+
+    tiles->setType(15, 15, Tile::Type::NONE);
+    tiles->setType(18, 18, Tile::Type::NONE);
+
     tiles->setType(8, 8, Tile::Type::WATER);
+    tiles->setType(9, 8, Tile::Type::WATER);
+    tiles->setType(8, 9, Tile::Type::WATER);
+    tiles->setType(9, 9, Tile::Type::WATER);
+    tiles->setType(10, 9, Tile::Type::WATER);
+    tiles->setType(9, 10, Tile::Type::WATER);
+    tiles->setType(10, 10, Tile::Type::WATER);
+    tiles->setType(10, 11, Tile::Type::WATER);
+    tiles->setType(11, 10, Tile::Type::WATER);
+    tiles->setType(11, 11, Tile::Type::WATER);
+    tiles->setType(11, 12, Tile::Type::WATER);
+    tiles->setType(12, 11, Tile::Type::WATER);
+    tiles->setType(12, 12, Tile::Type::WATER);
+
+    tiles->setType(11, 9, Tile::Type::WATER);
+    tiles->setType(9, 11, Tile::Type::WATER);
 }
 
 void Application::waitNetwork()
@@ -99,6 +128,7 @@ void Application::runGame()
 
     Scene& scene = gameplay->getScene();
     attackEngine->setScene(&scene);
+    gameplay->updateCameraStart();
 
     //light one (spot)
     Entity& light_one = scene.assign("light one");

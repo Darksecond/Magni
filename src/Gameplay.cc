@@ -29,14 +29,21 @@ void Gameplay::createCamera()
     camera.assign<ListenerComponent>();
     camera.assign<CameraComponent>(screenSize.x / screenSize.y);
 
-    auto& c_s = camera.assign<SpatialComponent>(glm::vec3{-7,5,10});
-
-    if(playerNumber == 2)
-        c_s.set_position(glm::vec3{7,5,-10});
+    auto& c_s = camera.assign<SpatialComponent>(glm::vec3{0,5,0});
+    myCamera = &camera;
 
     glm::vec3 euler{-60,0,0};
     c_s.setDirection(euler);
     camera.assignBehavior(std::unique_ptr<Behavior>{new RTSCameraBehavior(7, 6)});
+}
+
+void Gameplay::updateCameraStart() {
+    auto camSpatial = myCamera->component<SpatialComponent>();
+
+    if(playerNumber == 1)
+        camSpatial->set_position(glm::vec3{-7,5,10});
+    else
+         camSpatial->set_position(glm::vec3{7,5,-10});
 }
 
 void Gameplay::drawGrid(bool draw)
@@ -139,6 +146,7 @@ void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
     basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
     basicInfantrie.assign<OwnerComponent>(otherPlayerNumber);
     basicInfantrie.assign<HealthComponent>(15);
+    basicInfantrie.assign<AttackComponent>(2, 5, 2);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
@@ -412,7 +420,7 @@ void Gameplay::moveEntity() {
                 newPos.y = 0;
                 spatial->set_position(newPos);
                 setAOE();
-                
+
                 NetworkPacket np(aEntity->id, MOVE);
                 np.set(0, newPos.x);
                 np.set(1, newPos.y);
@@ -508,7 +516,7 @@ void Gameplay::automaticAttackCheck() {
                                 auto firstEntityRange       = firstEntity->component<AttackComponent>();
 
                                 if (glm::distance(firstEntitySpatial->get_position(), secondEntitySpatial->get_position()) < firstEntityRange->range) {
-                                    attackEntity(firstEntity->id, secondEntity->id);
+                                    attackEntityLocal(firstEntity->id, secondEntity->id);
                                     break;
                                 }
                             }

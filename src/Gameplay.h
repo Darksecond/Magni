@@ -50,6 +50,9 @@ namespace Ymir
             static const int INFTIMER = 3;
             static const int BUILDTIMER = 3;
 
+            //hacky
+            Entity* myCamera;
+
             float infantryTimer, buildingTimer;
             int unitIdentifyCounter, myCoreID;
             TileMap* tileMap;
@@ -79,6 +82,7 @@ namespace Ymir
             Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine);
 
             void createCamera();
+            void updateCameraStart();
 
             void drawGrid(bool);
 

@@ -12,7 +12,6 @@ namespace Ymir
         AttackComponent(uint32_t a, uint32_t d, int thisrange) : attack(a), duration(d), range(thisrange) {}
         uint32_t attack;
         uint32_t duration;
-
         int range;
     };
 };
