@@ -54,6 +54,7 @@ namespace Ymir
             //hacky
             Entity* myCamera;
 
+            bool barracksBuild, workerBuild;
             float infantryTimer, buildingTimer, myAttackTimer;
             int unitIdentifyCounter, myCoreID;
             TileMap* tileMap;
