@@ -58,7 +58,6 @@ void Gameplay::createWorker(glm::vec3 position)
     std::cout << 3-infantryTimer << std::endl;
     if (infantryTimer > INFTIMER) {
         if(currencyEngine.currency >= workerPrice) {
-            position.y = 0.3;
             std::shared_ptr<Texture> worker_tex = textureManager.resource("worker_blue.png");
             std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
@@ -89,8 +88,7 @@ void Gameplay::createWorker(glm::vec3 position)
 
 void Gameplay::createGhostWorker(glm::vec3 position, int id)
 {
-    position.y = 0.3;
-    std::shared_ptr<Texture> worker_tex = textureManager.resource("enemy.png");
+    std::shared_ptr<Texture> worker_tex = textureManager.resource("worker_red.png");
     std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
     Entity& worker = scene.assign("worker", id);
@@ -207,7 +205,7 @@ void Gameplay::buildCentralIntelligenceCore()
         glm::vec3 position = glm::vec3{-7,0,7};
         ciCore.assign<SpatialComponent>(position);
         ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
-        ciCore.assign<EnergyComponent>(150);
+        ciCore.assign<EnergyComponent>(-50);
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
 
@@ -224,7 +222,7 @@ void Gameplay::buildCentralIntelligenceCore()
         glm::vec3 position = glm::vec3{7,0,-7};
         ciCore.assign<SpatialComponent>(position);
         ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
-        ciCore.assign<EnergyComponent>(150);
+        ciCore.assign<EnergyComponent>(-50);
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
 
@@ -429,6 +427,7 @@ void Gameplay::moveEntity() {
     if(aEntity != nullptr ) {
         auto owner = aEntity->component<OwnerComponent>();
         if(owner != nullptr) {
+                std::cout << owner->playerNumber << " " << playerNumber << std::endl;
             if(owner->playerNumber == playerNumber) {
                 setAOE(true);
                 auto spatial = aEntity->component<SpatialComponent>();
