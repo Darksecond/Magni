@@ -412,14 +412,15 @@ void Gameplay::setAOE(bool reset) {
 
             for(int i = xTileLocationStart; i <= xTileLocationEnd; i++) {
                 for(int y = zTileLocationStart; y <= zTileLocationEnd; y++) {
-                    if(i >= 0 && i <= 20 && y >= 0 && y <= 20)
-                    if(reset) {
-                        if(tileMap->getType(i,y) == Tile::Type::AOE) {
-                            tileMap->setType(i,y,Tile::Type::NONE);
-                        }
-                    } else {
-                        if(tileMap->getType(i,y) == Tile::Type::NONE) {
-                            tileMap->setType(i,y,Tile::Type::AOE);
+                    if(i >= 0 && i <= 20 && y >= 0 && y <= 20) {
+                        if(reset) {
+                            if(tileMap->getType(i,y) == Tile::Type::AOE) {
+                                tileMap->setType(i,y,Tile::Type::NONE);
+                            }
+                        } else {
+                            if(tileMap->getType(i,y) == Tile::Type::NONE) {
+                                tileMap->setType(i,y,Tile::Type::AOE);
+                            }
                         }
                     }
                 }
