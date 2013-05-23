@@ -16,17 +16,10 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
 {
     client = new Client();
     client->gp = this;
-
-<<<<<<< HEAD
-   client->setIPAdress(192, 168, 0, 1);
  //   client->setIPAdress(127, 0, 0, 1);
-=======
-    client->setIPAdress(192, 168, 0, 2);
+    client->setIPAdress(192, 168, 0, 1);
     barracksBuild = false;
     workerBuild = false;
-    //client->setIPAdress(127, 0, 0, 1);
->>>>>>> Added some more gameplay
-
     playerNumber = 1;
 }
 
