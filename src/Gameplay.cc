@@ -17,7 +17,6 @@ Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine,
     client = new Client();
     client->gp = this;
 
-
     client->setIPAdress(192, 168, 0, 2);
     barracksBuild = false;
     workerBuild = false;
@@ -119,7 +118,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
                 basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
                 basicInfantrie.assign<AttackComponent>(2, 1, 2);
                 basicInfantrie.assign<OwnerComponent>(playerNumber);
-                basicInfantrie.assign<HealthComponent>(15);
+                basicInfantrie.assign<HealthComponent>(10);
                 basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
                 basicInfantrie.assign<AOEComponent>(1); //is square
                 currencyEngine.currency -= basicInfanteriePrice;
@@ -152,8 +151,8 @@ void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
     basicInfantrie.assign<SpatialComponent>(position);
     basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
     basicInfantrie.assign<OwnerComponent>(otherPlayerNumber);
-    basicInfantrie.assign<HealthComponent>(15);
-    basicInfantrie.assign<AttackComponent>(2, 5, 2);
+    basicInfantrie.assign<HealthComponent>(10);
+    basicInfantrie.assign<AttackComponent>(2, 1, 2);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
@@ -209,7 +208,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<SpatialComponent>(position);
         ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
         ciCore.assign<EnergyComponent>(150);
-        ciCore.assign<HealthComponent>(100);
+        ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
 
         myCoreID = ciCore.id;
@@ -226,7 +225,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<SpatialComponent>(position);
         ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
         ciCore.assign<EnergyComponent>(150);
-        ciCore.assign<HealthComponent>(100);
+        ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
 
         myCoreID = ciCore.id;
@@ -249,13 +248,13 @@ void Gameplay::buildGhostCentralIntelligenceCore(glm::vec3 position, int id)
         Entity& cCore = scene.assign("BCiCore", id);
         cCore.assign<SpatialComponent>(position);
         cCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
-        cCore.assign<HealthComponent>(100);
+        cCore.assign<HealthComponent>(30);
         cCore.assign<OwnerComponent>(otherPlayerNumber);
     } else {
         Entity& cCore = scene.assign("BCiCore", id);
         cCore.assign<SpatialComponent>(position);
         cCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
-        cCore.assign<HealthComponent>(100);
+        cCore.assign<HealthComponent>(30);
         cCore.assign<OwnerComponent>(otherPlayerNumber);
     }
 }
@@ -275,7 +274,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
                 house.assign<ModelComponent>(house_mesh, t);
                 house.assign<EnergyComponent>(-100);
                 house.assign<OwnerComponent>(playerNumber);
-                house.assign<HealthComponent>(40);
+                house.assign<HealthComponent>(20);
                 house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
 
                 barracksBuild = true;
@@ -309,7 +308,7 @@ void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)
     house.assign<ModelComponent>(house_mesh, t);
     house.assign<EnergyComponent>(-100);
     house.assign<OwnerComponent>(otherPlayerNumber);
-    house.assign<HealthComponent>(40);
+    house.assign<HealthComponent>(20);
     house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
@@ -495,6 +494,7 @@ void Gameplay::attackEntityLocal(int id_attacking_unit, int id_to_be_attacked)
                 NetworkPacket np(attacking_unit->id, ATTACK);
                 np.set(0, to_be_attacked->id);
                 client->write(np.char_array(), np.size());
+                myAttackTimer = 0;
             }
         }
     }
@@ -510,7 +510,6 @@ void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
         if (attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
         {
             attackEngine.attack(*to_be_attacked, *attacking_unit);
-            myAttackTimer = 0;
         }
     }
 }
