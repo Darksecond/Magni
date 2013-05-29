@@ -43,6 +43,8 @@ void Application::buildGame()
 {
     gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine);
     gameplay->createCamera();
+    
+    hudEngine->scene = &gameplay->getScene();
 
     TileMap* tiles = new TileMap(400, 20, 20); //400 want 20 * 20
     gameplay->setTileMap(tiles);
@@ -171,12 +173,14 @@ void Application::runGame()
         engines->update(-1, delta);
         engines->update(0, delta);
         engines->update(1, delta);
+        
+        gameplay->updateSelectedEntity(hudEngine->selectedEntity());
 
         glfwEnable(GLFW_KEY_REPEAT);
-
+        
         // TODO cleanup ----------------------------------
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
-            gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
+            //gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
         }
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
             gameplay->moveEntity();

@@ -18,11 +18,11 @@ Scene::~Scene()
     }
 }
 
-Entity& Scene::assign(std::unique_ptr<Entity> entity, Entity* parent)
+Entity& Scene::assign(std::shared_ptr<Entity> entity, Entity* parent)
 {
     Entity& retval = *entity;
     retval.parent = parent;
-    entities.insert(std::pair<std::string, std::unique_ptr<Entity>>(entity->name, std::move(entity)));
+    entities.insert(std::pair<std::string, std::shared_ptr<Entity>>(entity->name, entity));
     engines.registerEntity(retval);
     return retval;
 }
@@ -33,9 +33,9 @@ Entity& Scene::assign(const std::string& name, Entity* parent)
     std::stringstream ss;
     ss << name;
     ss << newnumber;
-    std::cout << ss.str() << std::endl;
-    std::unique_ptr<Entity> entity{new Entity{engines, ss.str(), newnumber}};
-    return assign(std::move(entity), parent);
+    std::cout << "assigning entity: " << ss.str() << std::endl;
+    std::shared_ptr<Entity> entity = std::make_shared<Entity>(engines, ss.str(), newnumber);
+    return assign(entity, parent);
 }
 
 Entity& Scene::assign(const std::string& name, const int id, Entity* parent)
@@ -43,9 +43,9 @@ Entity& Scene::assign(const std::string& name, const int id, Entity* parent)
     std::stringstream ss;
     ss << name;
     ss << id;
-    std::cout << ss.str() << std::endl;
-    std::unique_ptr<Entity> entity{new Entity{engines, ss.str(), id}};
-    return assign(std::move(entity), parent);
+    std::cout << "assigning entity: " << ss.str() << " with id: " << id << std::endl;
+    std::shared_ptr<Entity> entity{new Entity{engines, ss.str(), id}};
+    return assign(entity, parent);
 }
 
 void Scene::deleteEntity(Entity * entity)

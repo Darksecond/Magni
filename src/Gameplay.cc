@@ -515,7 +515,7 @@ void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
 
 void Gameplay::automaticAttackCheck() {
     for(auto& firstEntityEntry : scene.entities) {
-        std::unique_ptr<Entity>& firstEntity = firstEntityEntry.second;
+        std::shared_ptr<Entity>& firstEntity = firstEntityEntry.second;
         auto owner = firstEntity->component<OwnerComponent>();
         if(owner != nullptr) {
             if(owner->playerNumber == playerNumber) {
@@ -523,7 +523,7 @@ void Gameplay::automaticAttackCheck() {
 
                 if ( attackcomponent != nullptr ) {
                     for (auto& secondEntityEntry : scene.entities) {
-                        std::unique_ptr<Entity>& secondEntity = secondEntityEntry.second;
+                        std::shared_ptr<Entity>& secondEntity = secondEntityEntry.second;
 
                         auto secondowner = secondEntity->component<OwnerComponent>();
 
@@ -552,6 +552,15 @@ void Gameplay::updateSelectedEntity(glm::vec3 position)
     setAOE();
 }
 
+void Gameplay::updateSelectedEntity(Entity* entity)
+{
+    if(entity != currentSelectedUnit)
+    {
+        currentSelectedUnit = entity;
+        setAOE();
+    }
+}
+
 Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
 {
     double distance = 2.5f;
@@ -559,9 +568,9 @@ Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
 
     for (auto& entitiesEntry : scene.entities)
     {
-        std::unique_ptr<Entity>& entity = entitiesEntry.second;
+        std::shared_ptr<Entity>& entity = entitiesEntry.second;
         auto test = entity->component<SpatialComponent>();
-        if(test == nullptr) break;
+        if(test == nullptr) continue;
         double distanceBetween = glm::distance(test->get_position(), position);
 
         if(distanceBetween < 2.5f && distanceBetween < distance) {
