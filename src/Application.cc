@@ -75,6 +75,10 @@ void Application::buildGame()
 
     tiles->setType(11, 9, Tile::Type::WATER);
     tiles->setType(9, 11, Tile::Type::WATER);
+    
+    std::shared_ptr<Texture> temp_image_tex = textureManager.resource("wooden-crate.jpg");
+    std::shared_ptr<Image> temp_image_test = std::make_shared<Image>(glm::vec2(20, 20), 100, 100, temp_image_tex);
+    renderEngine->addText(temp_image_test);
 }
 
 void Application::waitNetwork()

@@ -10,8 +10,10 @@
     #include <GL/glfw.h>
 #endif // _WIN32
 #include <vector>
+#include <iostream>
 
 #include "Text.h"
+#include "Image.h"
 #include "Program.h"
 #include "Texture.h"
 
@@ -79,6 +81,73 @@ void HUDElementVisitor::visit(Text& text)
 	glVertexAttribPointer(p.attrib("vertexUV"), 2, GL_FLOAT, GL_FALSE, 0, (void*)0 );
 
     TextureContext h{holstein, GL_TEXTURE0};
+    p.setUniform("myTextureSampler", 0);
+
+    glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glDrawArrays(GL_TRIANGLES, 0, (GLsizei)vertices.size() );
+
+	glDisable(GL_BLEND);
+
+	glDisableVertexAttribArray(p.attrib("vertexPosition_screenspace"));
+	glDisableVertexAttribArray(p.attrib("vertexUV"));
+
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &vertex_VBO);
+    glDeleteBuffers(1, &UV_VBO);
+}
+
+void HUDElementVisitor::visit(Image& image)
+{
+    glm::vec2 top_right = image.top_right;
+    glm::vec2 bottom_left = image.bottom_left;
+    glm::vec2 top_left(bottom_left.x, top_right.y);
+    glm::vec2 bottom_right(top_right.x, bottom_left.y);
+    
+    glm::vec2 uv_up_left(0.0f, 0.0f);
+    glm::vec2 uv_down_right(1.0f, 1.0f);
+    glm::vec2 uv_up_right(1.0f, 0.0f);
+    glm::vec2 uv_down_left(0.0f, 1.0f);
+    
+    std::vector<glm::vec2> vertices;
+	std::vector<glm::vec2> UVs;
+    
+    vertices.push_back(top_left);
+    vertices.push_back(bottom_left);
+    vertices.push_back(top_right);
+    vertices.push_back(bottom_right);
+    vertices.push_back(top_right);
+    vertices.push_back(bottom_left);
+    
+    UVs.push_back(uv_up_left);
+    UVs.push_back(uv_down_left);
+    UVs.push_back(uv_up_right);
+    UVs.push_back(uv_down_right);
+    UVs.push_back(uv_up_right);
+    UVs.push_back(uv_down_left);
+    
+    ProgramContext pc{p};
+
+    //create VBO's, VAO
+    GLuint vertex_VBO, UV_VBO, VAO;
+
+    glGenBuffers(1, &vertex_VBO);
+    glGenBuffers(1, &UV_VBO);
+    glGenVertexArrays(1, &VAO);
+
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec2), &vertices[0], GL_STATIC_DRAW);
+    glEnableVertexAttribArray(p.attrib("vertexPosition_screenspace"));
+    glVertexAttribPointer(p.attrib("vertexPosition_screenspace"), 2, GL_FLOAT, GL_FALSE, 0, (void*)0 );
+
+    glBindBuffer(GL_ARRAY_BUFFER, UV_VBO);
+    glBufferData(GL_ARRAY_BUFFER, UVs.size() * sizeof(glm::vec2), &UVs[0], GL_STATIC_DRAW);
+    glEnableVertexAttribArray(p.attrib("vertexUV"));
+	glVertexAttribPointer(p.attrib("vertexUV"), 2, GL_FLOAT, GL_FALSE, 0, (void*)0 );
+    
+    TextureContext h{*image.image_texture, GL_TEXTURE0};
     p.setUniform("myTextureSampler", 0);
 
     glEnable(GL_BLEND);

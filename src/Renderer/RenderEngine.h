@@ -9,12 +9,14 @@
 #include "Light.h"
 #include "Model.h"
 #include "Text.h"
+#include "Image.h"
 #include "../NodeCache.h"
 #include "../ResourceManager.h"
 #include "../ProgramResourceLoader.h"
 #include "../CubemapResourceLoader.h"
 #include "../Cubemap.h"
 #include "../Tilemap.h"
+#include "HUDElement.h"
 
 #include <vector>
 #include <list>
@@ -42,7 +44,7 @@ namespace Ymir
         NodeCache<Light> lights;
         NodeCache<Model> models;
         std::shared_ptr<Texture> holstein;
-        std::list<std::shared_ptr<Text>> texts;
+        std::list<std::shared_ptr<HUDElement>> texts;
         std::shared_ptr<Cubemap> sky;
         
         std::shared_ptr<Mesh> _square;
@@ -76,7 +78,7 @@ namespace Ymir
         void setTileMap(TileMap*);
         // einde refactor nominatie
 
-        void addText(std::shared_ptr<Text> t)
+        void addText(std::shared_ptr<HUDElement> t)
         {
             texts.push_back(t);
         }

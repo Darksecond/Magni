@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F608BC7E17560C60005057F5 /* HUDElement.cc in Sources */ = {isa = PBXBuildFile; fileRef = F608BC7C17560C60005057F5 /* HUDElement.cc */; };
 		F608BC8117560E29005057F5 /* HUDElementVisitor.cc in Sources */ = {isa = PBXBuildFile; fileRef = F608BC7F17560E29005057F5 /* HUDElementVisitor.cc */; };
+		F608BC8417561C39005057F5 /* Image.cc in Sources */ = {isa = PBXBuildFile; fileRef = F608BC8217561C39005057F5 /* Image.cc */; };
 		F60D929B1701C2F800D0E6F4 /* Gameplay.cc in Sources */ = {isa = PBXBuildFile; fileRef = F60D929A1701C2F800D0E6F4 /* Gameplay.cc */; };
 		F60D929E1701C33700D0E6F4 /* RTSCameraBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F60D929C1701C33700D0E6F4 /* RTSCameraBehavior.cpp */; };
 		F60D92A31701C36A00D0E6F4 /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F60D929F1701C36900D0E6F4 /* Tile.cpp */; };
@@ -190,6 +191,8 @@
 		F608BC7D17560C60005057F5 /* HUDElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDElement.h; sourceTree = "<group>"; };
 		F608BC7F17560E29005057F5 /* HUDElementVisitor.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HUDElementVisitor.cc; sourceTree = "<group>"; };
 		F608BC8017560E29005057F5 /* HUDElementVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDElementVisitor.h; sourceTree = "<group>"; };
+		F608BC8217561C39005057F5 /* Image.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cc; sourceTree = "<group>"; };
+		F608BC8317561C39005057F5 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		F6097E5416B84B1A00B240E7 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		F60D92981701C2ED00D0E6F4 /* Gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gameplay.h; sourceTree = "<group>"; };
 		F60D929A1701C2F800D0E6F4 /* Gameplay.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gameplay.cc; sourceTree = "<group>"; };
@@ -462,6 +465,8 @@
 			children = (
 				F6E6E57D16E741F3008E1F09 /* Text.h */,
 				F6E6E57C16E741F3008E1F09 /* Text.cc */,
+				F608BC8317561C39005057F5 /* Image.h */,
+				F608BC8217561C39005057F5 /* Image.cc */,
 				F608BC7D17560C60005057F5 /* HUDElement.h */,
 				F608BC7C17560C60005057F5 /* HUDElement.cc */,
 				F608BC8017560E29005057F5 /* HUDElementVisitor.h */,
@@ -1162,6 +1167,7 @@
 				F6663895174E15C000276E4D /* AOEComponent.cc in Sources */,
 				F608BC7E17560C60005057F5 /* HUDElement.cc in Sources */,
 				F608BC8117560E29005057F5 /* HUDElementVisitor.cc in Sources */,
+				F608BC8417561C39005057F5 /* Image.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@
 namespace Ymir
 {
     class Text;
+    class Image;
     
     class HUDElementVisitor
     {
@@ -14,5 +15,6 @@ namespace Ymir
     public:
         HUDElementVisitor(Program& p, Texture& holstein);
         void visit(Text& text);
+        void visit(Image& image);
     };
 };
