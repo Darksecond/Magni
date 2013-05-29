@@ -35,6 +35,8 @@ void Application::createEngines()
     currencyEngine = &engines->assign<CurrencyEngine>(*renderEngine);
 
     attackEngine = &engines->assign<AttackEngine>(meshManager, textureManager);
+    
+    hudEngine = &engines->assign<HUDEngine>(*renderEngine, textureManager);
 }
 
 void Application::buildGame()
@@ -76,9 +78,6 @@ void Application::buildGame()
     tiles->setType(11, 9, Tile::Type::WATER);
     tiles->setType(9, 11, Tile::Type::WATER);
     
-    std::shared_ptr<Texture> temp_image_tex = textureManager.resource("wooden-crate.jpg");
-    std::shared_ptr<Image> temp_image_test = std::make_shared<Image>(glm::vec2(20, 20), 100, 100, temp_image_tex);
-    renderEngine->addText(temp_image_test);
 }
 
 void Application::waitNetwork()
@@ -158,9 +157,11 @@ void Application::runGame()
     Timer* checkDefeatTimer = new Timer(2);
     gameplay->drawGrid(true);
 
+    std::shared_ptr<Image> img = hudEngine->addImage("wooden-crate.jpg", glm::vec2(20, 20), 100, 100);
     lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
     {
+        if(img->clicked()) std::cout << "LSKJDFLKJSDLFKJD" << std::endl;
         double thisTime = glfwGetTime();
         double delta = thisTime - lastTime;
         lastTime = thisTime;

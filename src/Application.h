@@ -35,6 +35,7 @@
 
 #include "EnergyEngine.h"
 #include "CurrencyEngine.h"
+#include "HUDEngine.h"
 
 namespace Ymir
 {
@@ -52,6 +53,7 @@ namespace Ymir
             RenderEngine * renderEngine;
             AttackEngine * attackEngine;
             CurrencyEngine * currencyEngine;
+            HUDEngine* hudEngine;
             glm::vec2 SCREEN_SIZE;
             double lastTime;
 
