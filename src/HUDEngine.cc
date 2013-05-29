@@ -57,7 +57,7 @@ void HUDEngine::update(int pass, double delta)
         
         if(!hud_clicked && scene)
         {
-            _selectedEntity = getEntityAtPosition(renderEngine.get3DPositionFromMousePosition());
+            _selectedEntity = scene->getEntityAtPosition(renderEngine.get3DPositionFromMousePosition());
             //TODO track changes in selectedEntity
         }
     }
@@ -91,25 +91,4 @@ std::shared_ptr<Text> HUDEngine::addText(const char* text, glm::vec2 pos, int si
     renderEngine.addText(text_element);
     
     return text_element;
-}
-
-Entity* HUDEngine::getEntityAtPosition(glm::vec3 position)
-{
-    double distance = 2.5f;
-    Entity* theEntity = nullptr;
-
-    for (auto& entitiesEntry : scene->entities)
-    {
-        std::shared_ptr<Entity>& entity = entitiesEntry.second;
-        auto test = entity->component<SpatialComponent>();
-        if(test == nullptr) continue;
-        double distanceBetween = glm::distance(test->get_position(), position);
-
-        if(distanceBetween < 2.5f && distanceBetween < distance) {
-            distance = distanceBetween;
-            theEntity = entity.get();
-        }
-    }
-
-    return theEntity;
 }

@@ -461,7 +461,7 @@ void Gameplay::moveEntity(glm::vec3 position, int id) {
 void Gameplay::attackEntity()
 {
     Entity* attacking_unit = getCurrentSelectedEntity();
-    Entity* to_be_attacked = getEntityAtPosition(renderEngine.GetTilePosition());
+    Entity* to_be_attacked = scene.getEntityAtPosition(renderEngine.GetTilePosition()).get();
 
     if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
     {
@@ -548,7 +548,7 @@ void Gameplay::automaticAttackCheck() {
 
 void Gameplay::updateSelectedEntity(glm::vec3 position)
 {
-    currentSelectedUnit = getEntityAtPosition(position);
+    currentSelectedUnit = scene.getEntityAtPosition(position).get();
     setAOE();
 }
 
@@ -559,27 +559,6 @@ void Gameplay::updateSelectedEntity(Entity* entity)
         currentSelectedUnit = entity;
         setAOE();
     }
-}
-
-Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
-{
-    double distance = 2.5f;
-    Entity* theEntity = nullptr;
-
-    for (auto& entitiesEntry : scene.entities)
-    {
-        std::shared_ptr<Entity>& entity = entitiesEntry.second;
-        auto test = entity->component<SpatialComponent>();
-        if(test == nullptr) continue;
-        double distanceBetween = glm::distance(test->get_position(), position);
-
-        if(distanceBetween < 2.5f && distanceBetween < distance) {
-            distance = distanceBetween;
-            theEntity = entity.get();
-        }
-    }
-
-    return theEntity;
 }
 
 Entity* Gameplay::getCurrentSelectedEntity()

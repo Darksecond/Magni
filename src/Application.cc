@@ -174,7 +174,7 @@ void Application::runGame()
         engines->update(0, delta);
         engines->update(1, delta);
         
-        gameplay->updateSelectedEntity(hudEngine->selectedEntity());
+        gameplay->updateSelectedEntity(hudEngine->selectedEntity().get());
 
         glfwEnable(GLFW_KEY_REPEAT);
         

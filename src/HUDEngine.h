@@ -19,9 +19,7 @@ namespace Ymir
         RenderEngine& renderEngine;
         ResourceManager<Texture>& textureManager;
         std::list<std::shared_ptr<HUDElement>> elements;
-        Entity* _selectedEntity;
-        
-        Entity* getEntityAtPosition(glm::vec3 position);
+        std::shared_ptr<Entity> _selectedEntity;
     public:
         Scene* scene;
         
@@ -36,6 +34,6 @@ namespace Ymir
         std::shared_ptr<Text> addText(const char* text, glm::vec2 pos, int size = 20);
         
         
-        inline Entity* selectedEntity() { return _selectedEntity; }
+        inline std::shared_ptr<Entity> selectedEntity() { return _selectedEntity; }
     };
 };

@@ -122,7 +122,6 @@ namespace Ymir
             void loseGame();
             void switchOwner(int owner);
 
-            Entity* getEntityAtPosition(glm::vec3 pos);
             void updateSelectedEntity(glm::vec3 position);
             void updateSelectedEntity(Entity* entity);
             Entity* getCurrentSelectedEntity();

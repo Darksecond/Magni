@@ -10,6 +10,7 @@
 #include <map>
 #include <memory>
 #include <string>
+#include <GLM/glm.hpp>
 
 namespace Ymir
 {
@@ -33,6 +34,7 @@ namespace Ymir
         void deleteEntity(Entity* entity);
         bool containsEntity(std::string name);
         Entity* getEntity(int id);
+        std::shared_ptr<Entity> getEntityAtPosition(glm::vec3 position);
 
         std::map<std::string, std::shared_ptr<Entity>> entities;
     };

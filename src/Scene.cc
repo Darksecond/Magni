@@ -3,6 +3,8 @@
 #include <typeinfo>
 #include <sstream>
 
+#include "SpatialComponent.h"
+
 using namespace Ymir;
 
 Scene::Scene(EngineManager& manager) : engines(manager)
@@ -73,3 +75,25 @@ Entity* Scene::getEntity(int id) {
 
     return nullptr;
 }
+
+std::shared_ptr<Entity> Scene::getEntityAtPosition(glm::vec3 position)
+{
+    double distance = 2.5f;
+    std::shared_ptr<Entity> theEntity = nullptr;
+
+    for (auto& entitiesEntry : entities)
+    {
+        std::shared_ptr<Entity>& entity = entitiesEntry.second;
+        auto test = entity->component<SpatialComponent>();
+        if(test == nullptr) continue;
+        double distanceBetween = glm::distance(test->get_position(), position);
+
+        if(distanceBetween < 2.5f && distanceBetween < distance) {
+            distance = distanceBetween;
+            theEntity = entity;
+        }
+    }
+
+    return theEntity;
+}
+        
