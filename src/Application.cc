@@ -34,12 +34,15 @@ void Application::createEngines()
 
     currencyEngine = &engines->assign<CurrencyEngine>(*renderEngine);
 
-    attackEngine = &engines->assign<AttackEngine>(meshManager, textureManager);
+    attackEngine   = &engines->assign<AttackEngine>(meshManager, textureManager);
+
+    moveEngine     = &engines->assign<MoveEngine>();
+
 }
 
 void Application::buildGame()
 {
-    gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine);
+    gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine,*moveEngine);
     gameplay->createCamera();
 
     TileMap* tiles = new TileMap(400, 20, 20); //400 want 20 * 20
@@ -83,6 +86,9 @@ void Application::waitNetwork()
     NetworkPacket hello(0, Gameplay::HELLO);
     gameplay->client->write(hello.char_array(), hello.size());
 
+    std::shared_ptr<Text> wait_text = std::make_shared<Text>("WAITING FOR PLAYER", glm::vec2{200, 300}, 20);
+    renderEngine->addText(wait_text);
+
     bool done = false;
     while(!done)
     {
@@ -118,6 +124,9 @@ void Application::waitNetwork()
 
         engines->update(1, 0);
     }
+
+    renderEngine->texts.remove(wait_text);
+
 }
 
 void Application::runGame()
@@ -132,14 +141,9 @@ void Application::runGame()
 
     //light one (spot)
     Entity& light_one = scene.assign("light one");
-    light_one.assign<LightComponent>(glm::vec3{1.0, 1.0, 1.0}, glm::vec3{0.0, 0.25, 0.05});
-    light_one.assign<SpatialComponent>(glm::vec3{7.0, 0.0, 0.0});
+    light_one.assign<LightComponent>(glm::vec3{1.0, 1.0, 1.0}, glm::vec3{1.0, 0.0, 0.00});
+    light_one.assign<SpatialComponent>(glm::vec3{0.0, 5.0, 0.0});
 
-    //light two (directional)
-    Entity& light_two = scene.assign("light two");
-    light_two.assign<SpatialComponent>(glm::vec3{0.0, 1.0, 0.0});
-    auto light_two_lightc = light_two.assign<LightComponent>(glm::vec3{0.8, 0.8, 0.8});
-    light_two_lightc.lightType = LightComponent::LightType::DIRECTIONAL;
 
 //    track
     Entity& track = scene.assign("track");
@@ -167,7 +171,6 @@ void Application::runGame()
         engines->update(1, delta);
 
         glfwEnable(GLFW_KEY_REPEAT);
-
         // TODO cleanup ----------------------------------
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
             gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
@@ -203,7 +206,9 @@ void Application::runGame()
         {
             gameplay->attackEntity();
         }
-
+        if(glfwGetKey('6') == GLFW_PRESS) {
+            gameplay->TestFollowPath();
+        }
         checkDefeatTimer->update(delta);
 
         if (checkDefeatTimer->reached()) {

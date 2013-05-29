@@ -17,6 +17,7 @@
 #include "Entity.h"
 #include "Renderer/RenderEngine.h"
 #include "AttackEngine.h"
+#include "MoveEngine.h"
 
 #include "SpatialComponent.h"
 #include "ModelComponent.h"
@@ -46,6 +47,7 @@ namespace Ymir
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
             AttackEngine& attackEngine;
+            MoveEngine& moveEngine;
 
             static const int INFTIMER = 3;
             static const int BUILDTIMER = 3;
@@ -81,7 +83,7 @@ namespace Ymir
             enum {BUILD = 0, MOVE, WIN_LOSE, SELL, ATTACK, HELLO, PLAYER};
             enum {WORKER = 0, B_INFANTRY, A_INFANTRY, ENGINEER, ORBITAL, POWERCORE, ACADEMY, CICORE};
 
-            Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine);
+            Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine, MoveEngine& moveEngine);
 
             void createCamera();
             void updateCameraStart();
@@ -132,5 +134,7 @@ namespace Ymir
             void setTileMap(TileMap*);
 
             void setAOE(bool reset = false);
+
+            void TestFollowPath(); // remove this when maarten is done with a*
     };
 };

@@ -111,6 +111,10 @@
 		<Unit filename="src/Mesh.h" />
 		<Unit filename="src/Message.h" />
 		<Unit filename="src/ModelComponent.h" />
+		<Unit filename="src/MoveComponent.cc" />
+		<Unit filename="src/MoveComponent.h" />
+		<Unit filename="src/MoveEngine.cc" />
+		<Unit filename="src/MoveEngine.h" />
 		<Unit filename="src/Network.cpp" />
 		<Unit filename="src/Network.h">
 			<Option target="&lt;{~None~}&gt;" />

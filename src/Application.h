@@ -29,12 +29,14 @@
 #include "CollisionEngine.h"
 #include "AudioEngine.h"
 #include "AttackEngine.h"
+#include "MoveEngine.h"
 #include "Client.h"
 #include "Server.h"
 #include "Timer.h"
 
 #include "EnergyEngine.h"
 #include "CurrencyEngine.h"
+#include "MoveEngine.h"
 
 namespace Ymir
 {
@@ -48,10 +50,11 @@ namespace Ymir
             ResourceManager<Cubemap, CubemapResourceLoader> cubemapManager;
 
             Gameplay * gameplay;
-            EngineManager * engines;
-            RenderEngine * renderEngine;
-            AttackEngine * attackEngine;
-            CurrencyEngine * currencyEngine;
+            EngineManager   * engines;
+            RenderEngine    * renderEngine;
+            AttackEngine    * attackEngine;
+            CurrencyEngine  * currencyEngine;
+            MoveEngine      * moveEngine;
             glm::vec2 SCREEN_SIZE;
             double lastTime;
 

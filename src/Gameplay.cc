@@ -2,6 +2,7 @@
 #include "AttackComponent.h"
 #include "HealthComponent.h"
 #include "AOEComponent.h"
+#include "MoveComponent.h"
 #include "Tile.h"
 
 #include <iostream>
@@ -10,15 +11,15 @@
 using namespace Ymir;
 
 Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
-    RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine)
+    RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine, MoveEngine& moveEngine)
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,playerNumber(1),currentSelectedUnit(nullptr),workerPrice(50),basicInfanteriePrice(100),orbitalDropBeaconPrice(100), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine)
+            renderEngine(renderEngine), screenSize(screenSize) ,playerNumber(1),currentSelectedUnit(nullptr),workerPrice(50),basicInfanteriePrice(100),orbitalDropBeaconPrice(100), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine),moveEngine(moveEngine)
 {
     client = new Client();
     client->gp = this;
     client->setIPAdress(192, 168, 0, 1);
-    barracksBuild = false;
-    workerBuild = false;
+    barracksBuild = true;
+    workerBuild = true;
     playerNumber = 1;
 }
 
@@ -55,8 +56,8 @@ void Gameplay::createWorker(glm::vec3 position)
     std::cout << 3-infantryTimer << std::endl;
     if (infantryTimer > INFTIMER) {
         if(currencyEngine.currency >= workerPrice) {
-            position.y = 0.3;
-            std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
+            position.y = 0;
+            std::shared_ptr<Texture> worker_tex = textureManager.resource("worker_blue.png");
             std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
             Entity& worker = scene.assign("worker");
@@ -78,6 +79,7 @@ void Gameplay::createWorker(glm::vec3 position)
 
             currencyEngine.currency -= workerPrice;
             infantryTimer = 0;
+            updateSelectedEntity(position);
         } else {
             std::cout << "Not enough money for a worker unit " << std::endl;
         }
@@ -86,8 +88,8 @@ void Gameplay::createWorker(glm::vec3 position)
 
 void Gameplay::createGhostWorker(glm::vec3 position, int id)
 {
-    position.y = 0.3;
-    std::shared_ptr<Texture> worker_tex = textureManager.resource("workertex.png");
+    position.y = 0.0;
+    std::shared_ptr<Texture> worker_tex = textureManager.resource("enemy.png");
     std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
 
     Entity& worker = scene.assign("worker", id);
@@ -100,6 +102,46 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
 }
 
+void Gameplay::TestFollowPath(){
+    Entity * entity = currentSelectedUnit;
+    if(entity != nullptr) {
+        auto spatC = entity->component<SpatialComponent>();
+        if ( spatC != nullptr) {
+            glm::vec3 spat = spatC->position;
+            std::vector<Tile> * testTileMap = new std::vector<Tile>();
+            Tile * t1 = new Tile(Tile::Type::NONE);
+            t1->centerpoint = spat;
+            spat.x = spat.x +1.0f;
+
+            Tile * t2 = new Tile(Tile::Type::NONE);
+            t2->centerpoint = spat;
+            spat.x = spat.x +1.0f;
+
+            Tile * t3 = new Tile(Tile::Type::NONE);
+            t3->centerpoint = spat;
+            spat.x = spat.x +1.0f;
+
+            Tile * t4 = new Tile(Tile::Type::NONE);
+            t4->centerpoint = spat;
+            spat.z = spat.z +1.0f;
+
+            Tile * t5 = new Tile(Tile::Type::NONE);
+            t5->centerpoint = spat;
+            //spat.x = spat.x +1.0f;
+
+
+            testTileMap->push_back(*t1);
+            testTileMap->push_back(*t2);
+            testTileMap->push_back(*t3);
+            testTileMap->push_back(*t4);
+            testTileMap->push_back(*t5);
+            entity->assign<MoveComponent>(5,1,testTileMap);
+            entity->assign<MoveComponent>(5,1,testTileMap);
+
+        }
+    }
+}
+
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
     std::cout << 3-infantryTimer << std::endl;
@@ -107,8 +149,8 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
         if (infantryTimer > INFTIMER) {
             if(currencyEngine.currency >= basicInfanteriePrice) {
                 position.y = 0.0;
-                std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
-                std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
+                std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("ally.png");
+                std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("basicInfantry.obj");
 
                 Entity& basicInfantrie = scene.assign("basicInfantrie");
                 basicInfantrie.assign<SpatialComponent>(position);
@@ -141,8 +183,8 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
 void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
 {
     position.y = 0.0;
-    std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("truck_color_cleantest.jpg");
-    std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("car.obj");
+    std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("enemy.png");
+    std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("basicInfantry.obj");
 
     Entity& basicInfantrie = scene.assign("basicInfantrie", id);
     basicInfantrie.assign<SpatialComponent>(position);
@@ -197,7 +239,7 @@ void Gameplay::createGhostEngineer(glm::vec3 position, int id)
 void Gameplay::buildCentralIntelligenceCore()
 {
     std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
-    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("ci_core_tex.png");
+    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("ally.png");
 
     if(playerNumber == 1) {
         Entity& ciCore = scene.assign("ACiCore");
@@ -239,7 +281,7 @@ void Gameplay::buildCentralIntelligenceCore()
 void Gameplay::buildGhostCentralIntelligenceCore(glm::vec3 position, int id)
 {
     std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
-    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("ci_core_tex.png");
+    std::shared_ptr<Texture> CentralIntelligenceCore_tex = textureManager.resource("enemy.png");
 
     if (playerNumber == 1) {
         Entity& cCore = scene.assign("BCiCore", id);
@@ -263,7 +305,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
         if ( buildingTimer > BUILDTIMER) {
              if (currencyEngine.currency >= orbitalDropBeaconPrice) {
                 position.y = 0.0;
-                std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
+                std::shared_ptr<Texture> t = textureManager.resource("ally.png");
                 std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
                 Entity& house = scene.assign("OrbitalDropBeacon");
@@ -297,7 +339,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)
 {
     position.y = 0.0;
-    std::shared_ptr<Texture> t = textureManager.resource("wooden-crate.jpg");
+    std::shared_ptr<Texture> t = textureManager.resource("enemy.png");
     std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
 
     Entity& house = scene.assign("OrbitalDropBeacon", id);
@@ -565,6 +607,7 @@ Entity* Gameplay::getEntityAtPosition(glm::vec3 position)
         if(distanceBetween < 2.5f && distanceBetween < distance) {
             distance = distanceBetween;
             theEntity = entity.get();
+               std::cout << theEntity->name << std::endl;
         }
     }
 
