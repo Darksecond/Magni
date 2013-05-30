@@ -11,9 +11,9 @@ namespace Ymir
     class MoveComponent : public Component<MoveComponent>
     {
         public:
-            MoveComponent(int s, int rSpeed, std::vector<Tile> * tiles );
-            int speed;
-            int rotationSpeed;
+            MoveComponent(float s, float rSpeed, std::vector<Tile> * tiles );
+            float speed;
+            float rotationSpeed;
             std::vector<Tile> * tiles;
     };
 };

@@ -13,7 +13,7 @@ namespace Ymir
     public:
         glm::vec3 position;
         glm::vec3 scale;
-        
+
         SpatialComponent(SpatialComponent&) = delete;
 
         explicit SpatialComponent(glm::vec3 position);
@@ -29,7 +29,7 @@ namespace Ymir
         glm::vec3 globalPosition() const;
         glm::quat globalDirection() const;
         glm::vec3 forward() const;
-        glm::vec3 forward(int amount) const;
+        glm::vec3 forward(float amount) const;
         glm::vec3 right() const;
         glm::vec3 up() const;
 

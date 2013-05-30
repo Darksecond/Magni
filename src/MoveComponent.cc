@@ -5,7 +5,7 @@
 
 using namespace Ymir;
 
-MoveComponent::MoveComponent(int s, int rSpeed, std::vector<Tile> *tileMap) :
+MoveComponent::MoveComponent(float s, float rSpeed, std::vector<Tile> *tileMap) :
     speed(s),rotationSpeed(rSpeed),tiles(tileMap){
 
 }

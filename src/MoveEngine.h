@@ -8,6 +8,9 @@
 #include "Texture.h"
 #include "Entity.h"
 #include <vector>
+#include <GLM/glm.hpp>
+#include <GLM/gtc/matrix_transform.hpp>
+#include <GLM/gtx/quaternion.hpp>
 
 namespace Ymir
 {

@@ -2,6 +2,7 @@
 
 #include <GLM/glm.hpp>
 #include <GLM/gtc/matrix_transform.hpp>
+#include <iostream>
 
 using namespace Ymir;
 
@@ -62,7 +63,7 @@ glm::vec3 SpatialComponent::forward() const
     return glm::vec3(forward);
 }
 
-glm::vec3 SpatialComponent::forward(int amount) const
+glm::vec3 SpatialComponent::forward(float amount) const
 {
     glm::vec4 forward = (orientation()) * glm::vec4(0, 0, amount * 0.4f, 0);
     return glm::vec3(forward);
