@@ -94,6 +94,7 @@ namespace Ymir
         void createUnit(const char* mesh, const char* type_name, int price);
         void createWorker();
             void createOrbitalDropBeacon();
+            void createBasicInfantrie();
         
             void processBuildingUnits(bool);
         

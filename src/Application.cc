@@ -170,6 +170,9 @@ void Application::runGame()
     auto worker_group = gameHudEngine->addGroup("worker");
     worker_group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createOrbitalDropBeacon);
     
+    auto odb_group = gameHudEngine->addGroup("odb");
+    odb_group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createBasicInfantrie);
+    
     gameHudEngine->activateGroup("empty");
     //END HUD
     
@@ -193,6 +196,8 @@ void Application::runGame()
             gameHudEngine->activateGroup("ciCore");
         else if(hudEngine->selectedEntity()->name == "worker")
             gameHudEngine->activateGroup("worker");
+        else if(hudEngine->selectedEntity()->name == "OrbitalDropBeacon")
+            gameHudEngine->activateGroup("odb");
         else
             gameHudEngine->activateGroup("empty");
 

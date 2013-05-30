@@ -80,6 +80,11 @@ void Gameplay::createOrbitalDropBeacon()
     createUnit("house.obj", "OrbitalDropBeacon", orbitalDropBeaconPrice);
 }
 
+void Gameplay::createBasicInfantrie()
+{
+    createUnit("basicInfantry.obj", "basicInfantrie", basicInfanteriePrice);
+}
+
 void Gameplay::processBuildingUnits(bool left_pressed)
 {
     if(currentlyBuildingEntity == nullptr) return;
@@ -94,6 +99,8 @@ void Gameplay::processBuildingUnits(bool left_pressed)
             createWorker(renderEngine.GetTilePosition());
         if(type == "OrbitalDropBeacon")
             buildOrbitalDropBeacon(renderEngine.GetTilePosition());
+        if(type == "basicInfantrie")
+            createBasicInfantrie(renderEngine.GetTilePosition());
     }
 }
 
@@ -137,40 +144,27 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
 
 void Gameplay::createBasicInfantrie(glm::vec3 position)
 {
-    std::cout << 3-infantryTimer << std::endl;
-    if(barracksBuild) {
-        if (infantryTimer > INFTIMER) {
-            if(currencyEngine.currency >= basicInfanteriePrice) {
-                position.y = 0.0;
-                std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("ally.png");
-                std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("basicInfantry.obj");
-
-                Entity& basicInfantrie = scene.assign("basicInfantrie");
-                basicInfantrie.assign<SpatialComponent>(position);
-                basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
-                basicInfantrie.assign<AttackComponent>(2, 1, 2);
-                basicInfantrie.assign<OwnerComponent>(playerNumber);
-                basicInfantrie.assign<HealthComponent>(10);
-                basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
-                basicInfantrie.assign<AOEComponent>(1); //is square
-                currencyEngine.currency -= basicInfanteriePrice;
-
-                NetworkPacket np(basicInfantrie.id, BUILD);
-                np.set(0, B_INFANTRY);
-                np.set(1, position.x);
-                np.set(2, position.y);
-                np.set(3, position.z);
-
-                client->write(np.char_array(), np.size());
-
-                infantryTimer = 0;
-                updateSelectedEntity(position);
-                // TODO add other components
-            } else {
-                std::cout << "Not enough money for basic infantrie" << std::endl;
-            }
-        }
-    }
+    position.y = 0.0;
+    std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("ally.png");
+    std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("basicInfantry.obj");
+    
+    Entity& basicInfantrie = scene.assign("basicInfantrie");
+    basicInfantrie.assign<SpatialComponent>(position);
+    basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
+    basicInfantrie.assign<AttackComponent>(2, 1, 2);
+    basicInfantrie.assign<OwnerComponent>(playerNumber);
+    basicInfantrie.assign<HealthComponent>(10);
+    basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
+    basicInfantrie.assign<AOEComponent>(1); //is square
+    currencyEngine.currency -= basicInfanteriePrice;
+    
+    NetworkPacket np(basicInfantrie.id, BUILD);
+    np.set(0, B_INFANTRY);
+    np.set(1, position.x);
+    np.set(2, position.y);
+    np.set(3, position.z);
+    
+    client->write(np.char_array(), np.size());
 }
 
 void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
