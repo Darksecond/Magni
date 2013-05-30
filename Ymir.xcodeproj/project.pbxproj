@@ -17,6 +17,7 @@
 		F60D92A41701C36A00D0E6F4 /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F60D92A11701C36900D0E6F4 /* TileMap.cpp */; };
 		F60D92A71701D86100D0E6F4 /* Application.cc in Sources */ = {isa = PBXBuildFile; fileRef = F60D92A51701D86100D0E6F4 /* Application.cc */; };
 		F617C59C1757425600CDAD79 /* GameHUDEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F617C59A1757425600CDAD79 /* GameHUDEngine.cc */; };
+		F617C5A117574FAB00CDAD79 /* WorkerUnitFactory.cc in Sources */ = {isa = PBXBuildFile; fileRef = F617C59F17574FAB00CDAD79 /* WorkerUnitFactory.cc */; };
 		F61BDCBB16E8988E00768DEE /* Cubemap.cc in Sources */ = {isa = PBXBuildFile; fileRef = F61BDCB916E8988E00768DEE /* Cubemap.cc */; };
 		F61D006A1716CDFD00B7315F /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D00681716CDFC00B7315F /* Server.cpp */; };
 		F61D006D1716CE1000B7315F /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D006B1716CE1000B7315F /* Network.cpp */; };
@@ -210,6 +211,9 @@
 		F60D92A61701D86100D0E6F4 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		F617C59A1757425600CDAD79 /* GameHUDEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameHUDEngine.cc; sourceTree = "<group>"; };
 		F617C59B1757425600CDAD79 /* GameHUDEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHUDEngine.h; sourceTree = "<group>"; };
+		F617C59E17574E4300CDAD79 /* UnitFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnitFactory.h; sourceTree = "<group>"; };
+		F617C59F17574FAB00CDAD79 /* WorkerUnitFactory.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorkerUnitFactory.cc; sourceTree = "<group>"; };
+		F617C5A017574FAB00CDAD79 /* WorkerUnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkerUnitFactory.h; sourceTree = "<group>"; };
 		F61BDCB916E8988E00768DEE /* Cubemap.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cubemap.cc; sourceTree = "<group>"; };
 		F61BDCBA16E8988E00768DEE /* Cubemap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cubemap.h; sourceTree = "<group>"; };
 		F61BDCBC16E8B7E500768DEE /* CubemapResourceLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubemapResourceLoader.h; sourceTree = "<group>"; };
@@ -481,6 +485,16 @@
 			name = HUD;
 			sourceTree = "<group>";
 		};
+		F617C59D17574E3200CDAD79 /* Unit Factory */ = {
+			isa = PBXGroup;
+			children = (
+				F617C59E17574E4300CDAD79 /* UnitFactory.h */,
+				F617C59F17574FAB00CDAD79 /* WorkerUnitFactory.cc */,
+				F617C5A017574FAB00CDAD79 /* WorkerUnitFactory.h */,
+			);
+			name = "Unit Factory";
+			sourceTree = "<group>";
+		};
 		F6746BF616CB8C2B00ACA326 /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
@@ -709,6 +723,7 @@
 		F687A52E16B4BC7700878140 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F617C59D17574E3200CDAD79 /* Unit Factory */,
 				F6882B801737AF170011857F /* Networking */,
 				F6BEF06116E5E9F900ACEDC5 /* Audio */,
 				F69C21E616E385F600511D78 /* Collider */,
@@ -1180,6 +1195,7 @@
 				F608BC8417561C39005057F5 /* Image.cc in Sources */,
 				F608BC8717562C5A005057F5 /* HUDEngine.cc in Sources */,
 				F617C59C1757425600CDAD79 /* GameHUDEngine.cc in Sources */,
+				F617C5A117574FAB00CDAD79 /* WorkerUnitFactory.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

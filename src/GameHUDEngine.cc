@@ -19,7 +19,7 @@ void GameHUDEngine::update(int pass, double delta)
     if(pass != 0) return;
     
     if(active_group)
-        active_group->update();
+        active_group->update(hud_engine);
 }
 
 void GameHUDEngine::addComponent(Entity& ent, const BaseComponent::Type& component_type)
@@ -62,13 +62,17 @@ void HUDGroup::deactivate(HUDEngine& hud_engine)
             hud_engine.removeElement(i->element);
 }
 
-void HUDGroup::update()
+void HUDGroup::update(HUDEngine& hud_engine)
 {
     for(auto i : items)
     {
         if(i->element->mouse_up())
         {
-            //TODO call 'execute' on item
+            //TODO need a proper position
+            glm::vec3 pos(0);
+            if(hud_engine.selectedEntity())
+                pos = hud_engine.selectedEntity()->component<SpatialComponent>()->get_position();
+            i->unit_factory->makeLocal(pos);
         }
     }
 }
