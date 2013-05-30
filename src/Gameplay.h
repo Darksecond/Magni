@@ -30,6 +30,7 @@
 #include "RTSCameraBehavior.h"
 #include "EnergyBehaviour.h"
 #include "CurrencyEngine.h"
+#include "GameHUDEngine.h"
 
 namespace Ymir
 {
@@ -60,7 +61,9 @@ namespace Ymir
             TileMap* tileMap;
 
         public:
-            Client* client;
+            GameHUDEngine* ghe;
+        Client* client;
+            Entity* currentlyBuildingEntity = nullptr;
             int playerNumber, otherPlayerNumber;
 
             int workerPrice;
@@ -88,6 +91,8 @@ namespace Ymir
 
             void drawGrid(bool);
 
+            void createWorker();
+            void processBuildingUnits(bool);
             void createWorker(glm::vec3 position);
             void createGhostWorker(glm::vec3 position, int id);
             void createBasicInfantrie(glm::vec3 position);

@@ -45,6 +45,7 @@ void Application::buildGame()
 {
     gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine);
     gameplay->createCamera();
+    gameplay->ghe = gameHudEngine;
     
     hudEngine->scene = &gameplay->getScene();
 
@@ -162,10 +163,11 @@ void Application::runGame()
     gameplay->drawGrid(true);
 
     auto group = gameHudEngine->addGroup("worker");
+    gameHudEngine->addGroup("empty");
     //items
     auto worker_factory = std::make_shared<WorkerUnitFactory>(*gameplay);
     group->addItem("wooden-crate.jpg", worker_factory);
-    gameHudEngine->activateGroup("worker");
+    gameHudEngine->activateGroup("empty");
     lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
     {
@@ -180,12 +182,21 @@ void Application::runGame()
         engines->update(1, delta);
         
         gameplay->updateSelectedEntity(hudEngine->selectedEntity().get());
+        if(hudEngine->selectedEntity() && hudEngine->selectedEntity()->name == "ACiCore")
+            gameHudEngine->activateGroup("worker");
+        else
+            gameHudEngine->activateGroup("empty");
 
         glfwEnable(GLFW_KEY_REPEAT);
         
         // TODO cleanup ----------------------------------
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
             //gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
+            gameplay->processBuildingUnits(true);
+        }
+        else
+        {
+            gameplay->processBuildingUnits(false);
         }
         if(glfwGetKey( 'M' ) == GLFW_PRESS ) {
             gameplay->moveEntity();

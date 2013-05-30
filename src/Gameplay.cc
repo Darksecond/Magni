@@ -53,37 +53,63 @@ void Gameplay::drawGrid(bool draw)
     renderEngine.setGrid(draw);
 }
 
-void Gameplay::createWorker(glm::vec3 position)
+void Gameplay::createWorker()
 {
     std::cout << 3-infantryTimer << std::endl;
     if (infantryTimer > INFTIMER) {
         if(currencyEngine.currency >= workerPrice) {
-            std::shared_ptr<Texture> worker_tex = textureManager.resource("worker_blue.png");
-            std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
-
-            Entity& worker = scene.assign("worker");
-            worker.assign<SpatialComponent>(position);
-            worker.assign<ModelComponent>(worker_mesh, worker_tex);
-            worker.assign<HealthComponent>(5);
-            worker.assign<CurrencyComponent>(workerPrice);
-            worker.assign<OwnerComponent>(playerNumber);
-
-            workerBuild = true;
-
-            NetworkPacket np(worker.id, BUILD);
-            np.set(0, WORKER);
-            np.set(1, position.x);
-            np.set(2, position.y);
-            np.set(3, position.z);
-
-            client->write(np.char_array(), np.size());
-
+            ghe->activateGroup("empty");
+            if(currentlyBuildingEntity == nullptr)
+            {
+                std::shared_ptr<Texture> worker_tex = textureManager.resource("building.png");
+                std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
+                currentlyBuildingEntity = &scene.assign("worker");
+                currentlyBuildingEntity->assign<SpatialComponent>(renderEngine.GetTilePosition());
+                currentlyBuildingEntity->assign<ModelComponent>(worker_mesh, worker_tex);
+                currentlyBuildingEntity->assign<OwnerComponent>(playerNumber);
+            }
             currencyEngine.currency -= workerPrice;
             infantryTimer = 0;
-        } else {
-            std::cout << "Not enough money for a worker unit " << std::endl;
         }
     }
+}
+
+void Gameplay::processBuildingUnits(bool left_pressed)
+{
+    if(currentlyBuildingEntity == nullptr) return;
+    currentlyBuildingEntity->component<SpatialComponent>()->position = renderEngine.GetTilePosition();
+    if(left_pressed)
+    {
+        std::string type = currentlyBuildingEntity->name;
+        scene.deleteEntity(currentlyBuildingEntity);
+        currentlyBuildingEntity = nullptr;
+        
+        if(type == "worker")
+            createWorker(renderEngine.GetTilePosition());
+    }
+}
+
+void Gameplay::createWorker(glm::vec3 position)
+{
+    std::shared_ptr<Texture> worker_tex = textureManager.resource("worker_blue.png");
+    std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
+    
+    Entity& worker = scene.assign("worker");
+    worker.assign<SpatialComponent>(position);
+    worker.assign<ModelComponent>(worker_mesh, worker_tex);
+    worker.assign<HealthComponent>(5);
+    worker.assign<CurrencyComponent>(workerPrice);
+    worker.assign<OwnerComponent>(playerNumber);
+    
+    workerBuild = true;
+    
+    NetworkPacket np(worker.id, BUILD);
+    np.set(0, WORKER);
+    np.set(1, position.x);
+    np.set(2, position.y);
+    np.set(3, position.z);
+    
+    client->write(np.char_array(), np.size());
 }
 
 void Gameplay::createGhostWorker(glm::vec3 position, int id)

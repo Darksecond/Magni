@@ -38,6 +38,8 @@ void GameHUDEngine::activateGroup(const std::string& name)
 {
     std::shared_ptr<HUDGroup> group = groups.at(name);
     
+    if(active_group == group) return;
+    
     if(active_group)
         active_group->deactivate(hud_engine);
     active_group = group;
@@ -70,8 +72,6 @@ void HUDGroup::update(HUDEngine& hud_engine)
         {
             //TODO need a proper position
             glm::vec3 pos(0);
-            if(hud_engine.selectedEntity())
-                pos = hud_engine.selectedEntity()->component<SpatialComponent>()->get_position();
             i->unit_factory->makeLocal(pos);
         }
     }
