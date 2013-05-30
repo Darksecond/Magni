@@ -159,7 +159,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
     basicInfantrie.assign<HealthComponent>(10);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
     basicInfantrie.assign<AOEComponent>(1); //is square
-    currencyEngine.currency -= basicInfanteriePrice;
+    //currencyEngine.currency -= basicInfanteriePrice;
 
     NetworkPacket np(basicInfantrie.id, BUILD);
     np.set(0, B_INFANTRY);
@@ -273,8 +273,8 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 
     client->write(np.char_array(), np.size());
 
-    currencyEngine.currency -= orbitalDropBeaconPrice;
-    buildingTimer = 0;
+    //currencyEngine.currency -= orbitalDropBeaconPrice;
+    //buildingTimer = 0;
 }
 
 void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)
