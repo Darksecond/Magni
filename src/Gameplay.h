@@ -61,7 +61,7 @@ namespace Ymir
             TileMap* tileMap;
 
         public:
-            GameHUDEngine* ghe;
+            GameHUDEngine* ghe = nullptr;
         Client* client;
             Entity* currentlyBuildingEntity = nullptr;
             int playerNumber, otherPlayerNumber;

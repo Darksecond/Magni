@@ -2,7 +2,6 @@
 
 #include "HUDEngine.h"
 #include "Engine.h"
-#include "UnitFactory.h"
 
 #include <list>
 #include <map>
@@ -11,13 +10,20 @@
 
 namespace Ymir
 {
+    class Gameplay;
+    
     class GameHUDItem
     {
+    public:
+        typedef void (Gameplay::*builder)();
+    private:
         const char* texture;
         std::shared_ptr<HUDElement> element;
-        std::shared_ptr<UnitFactory> unit_factory;
+        Gameplay& gameplay;
+        builder _builder;
     public:
-        GameHUDItem(const char* tex, std::shared_ptr<UnitFactory> fac) : texture(tex), element(nullptr), unit_factory(fac) {}
+        
+        GameHUDItem(const char* tex, Gameplay& g, builder b) : texture(tex), element(nullptr), gameplay(g), _builder(b) {}
         
         friend class HUDGroup;
     };
@@ -28,9 +34,9 @@ namespace Ymir
     public:
         HUDGroup() : items() {}
         
-        inline void addItem(const char* tex, std::shared_ptr<UnitFactory> fac)
+        inline void addItem(const char* tex, Gameplay& g, GameHUDItem::builder b)
         {
-            items.push_back(std::make_shared<GameHUDItem>(tex, fac));
+            items.push_back(std::make_shared<GameHUDItem>(tex, g, b));
         }
         
         void activate(HUDEngine& hud_engine);

@@ -3,7 +3,6 @@
 //TODO TEMP
 #include "HealthComponent.h"
 #include "AttackComponent.h"
-#include "WorkerUnitFactory.h"
 
 using namespace Ymir;
 
@@ -165,8 +164,7 @@ void Application::runGame()
     auto group = gameHudEngine->addGroup("worker");
     gameHudEngine->addGroup("empty");
     //items
-    auto worker_factory = std::make_shared<WorkerUnitFactory>(*gameplay);
-    group->addItem("wooden-crate.jpg", worker_factory);
+    group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createWorker);
     gameHudEngine->activateGroup("empty");
     lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
@@ -182,7 +180,7 @@ void Application::runGame()
         engines->update(1, delta);
         
         gameplay->updateSelectedEntity(hudEngine->selectedEntity().get());
-        if(hudEngine->selectedEntity() && hudEngine->selectedEntity()->name == "ACiCore")
+        if(hudEngine->selectedEntity() && gameplay->currentlyBuildingEntity == nullptr && hudEngine->selectedEntity()->name == "ACiCore")
             gameHudEngine->activateGroup("worker");
         else
             gameHudEngine->activateGroup("empty");

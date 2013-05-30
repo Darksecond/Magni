@@ -1,4 +1,5 @@
 #include "GameHUDEngine.h"
+#include "Gameplay.h"
 
 using namespace Ymir;
 
@@ -72,7 +73,9 @@ void HUDGroup::update(HUDEngine& hud_engine)
         {
             //TODO need a proper position
             glm::vec3 pos(0);
-            i->unit_factory->makeLocal(pos);
+            GameHUDItem::builder b = i->_builder;
+            Gameplay* g = &i->gameplay;
+            (g->*b)();
         }
     }
 }
