@@ -376,6 +376,8 @@ void RenderEngine::update(int pass, double delta)
         }
 
         HUDElementVisitor visitor(*overlay_program, *holstein);
+        drawLaser(*grid_program, *_camera);
+
         for(auto t : texts)
         {
             t->accept(visitor);
@@ -393,6 +395,7 @@ glm::vec3 RenderEngine::GetTilePosition(){
     float z = mousepos.z;
     int xx = x;
     int zz = z;
+
     if(x < 0) {
         if(xx != ((int) (x+0.5f)))
             xx = x -1.0f;
@@ -462,6 +465,7 @@ glm::vec3 RenderEngine::get3DPositionFromCoordinates(int xPos, int yPos) {
 
 	return worldPos;
 }
+
 void RenderEngine::drawAOE(Program& p, Camera& c) {
     int amount = tileMap->getMapAmount();
     int width  = 1;
@@ -547,7 +551,7 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
 
     glDeleteBuffers(1, &vertexbuffer);
     glDeleteVertexArrays(1, &VertexArrayID);
-    }
+}
 
 void RenderEngine::drawGrid(Program& p, Camera& c)
 {
@@ -634,6 +638,73 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
 
     glDeleteBuffers(1, &vertexbuffer);
     glDeleteVertexArrays(1, &VertexArrayID);
+}
+
+void RenderEngine::drawLaser(Program& p, Camera& c)
+{
+    if(laserCount != 0) {
+        GLuint VertexArrayID;
+        glGenVertexArrays(1, &VertexArrayID);
+        glBindVertexArray(VertexArrayID);
+
+        ProgramContext pc {p};
+
+        glm::mat4 projection = c.projectionMatrix();
+        glm::mat4 view = c.viewMatrix();
+        glm::mat4 model = glm::mat4(1.0f);
+        glm::mat4 MVP = projection * view * model;
+
+        GLuint vertexbuffer;
+        glGenBuffers(1, &vertexbuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+        glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), g_vertex_buffer_data, GL_STATIC_DRAW);
+
+        p.setUniform("MVP", MVP);
+
+        glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+
+        glVertexAttribPointer(
+            0,
+            3,
+            GL_FLOAT,
+            GL_FALSE,
+            0,
+            (void*)0
+        );
+
+        glDrawArrays(GL_LINES, 0, bufferSize / 3);
+
+        glDisableVertexAttribArray(0);
+
+        glDeleteBuffers(1, &vertexbuffer);
+        glDeleteVertexArrays(1, &VertexArrayID);
+    }
+}
+
+void RenderEngine::setLaserData(std::vector<Laser*> lasers) {
+    std::vector<Laser*>::iterator iter;
+
+    laserCount = 0;
+    int counter = 0;
+
+    for(int i = 0; i < bufferSize; i++)
+        g_vertex_buffer_data[i] = 0;
+
+    for (iter = lasers.begin(); iter != lasers.end(); ++iter) {
+        if(counter > bufferSize)
+            break;
+
+        laserCount++;
+
+        g_vertex_buffer_data[counter++] = (*iter)->beginPosition.x;
+        g_vertex_buffer_data[counter++] = (*iter)->beginPosition.y;
+        g_vertex_buffer_data[counter++] = (*iter)->beginPosition.z;
+
+        g_vertex_buffer_data[counter++] = (*iter)->endPosition.x;
+        g_vertex_buffer_data[counter++] = (*iter)->endPosition.y;
+        g_vertex_buffer_data[counter++] = (*iter)->endPosition.z;
+    }
 }
 
 void RenderEngine::setGrid(bool useGrid)

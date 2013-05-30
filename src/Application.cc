@@ -239,8 +239,7 @@ void Application::runGame()
         if(glfwGetKey( 'E' ) == GLFW_PRESS) {
             gameplay->loseGame();
         }
-        if(glfwGetKey('T') == GLFW_PRESS)
-        {
+        if(glfwGetKey('T') == GLFW_PRESS) {
             gameplay->attackEntity();
         }
 
@@ -256,6 +255,7 @@ void Application::runGame()
 
         gameplay->automaticAttackCheck();
         gameplay->client->readReal();
+        gameplay->updateLaserDataToRenderEngine();
 
         // end cleanup -----------------------------------
 

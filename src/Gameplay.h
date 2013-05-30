@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <iostream>
+#include <vector>
 #include <string>
 
 #include "Scene.h"
@@ -30,7 +31,9 @@
 #include "RTSCameraBehavior.h"
 #include "EnergyBehaviour.h"
 #include "CurrencyEngine.h"
+
 #include "GameHUDEngine.h"
+#include "Laser.h"
 
 namespace Ymir
 {
@@ -59,11 +62,12 @@ namespace Ymir
             float infantryTimer, buildingTimer, myAttackTimer;
             int unitIdentifyCounter, myCoreID;
             TileMap* tileMap;
+            std::vector<Laser*> lasers;
 
         public:
-            GameHUDEngine* ghe = nullptr;
-        Client* client;
-            Entity* currentlyBuildingEntity = nullptr;
+            GameHUDEngine* ghe;
+            Client* client;
+            Entity* currentlyBuildingEntity;
             int playerNumber, otherPlayerNumber;
 
             int workerPrice;
@@ -138,6 +142,7 @@ namespace Ymir
             Scene& getScene();
 
             void updateTimer(float delta);
+            void updateLaserDataToRenderEngine();
 
             void setTileMap(TileMap*);
 

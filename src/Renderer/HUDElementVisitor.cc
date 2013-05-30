@@ -14,8 +14,8 @@
 
 #include "Text.h"
 #include "Image.h"
-#include "Program.h"
-#include "Texture.h"
+#include "../Program.h"
+#include "../Texture.h"
 
 using namespace Ymir;
 
@@ -104,29 +104,29 @@ void HUDElementVisitor::visit(Image& image)
     glm::vec2 bottom_left = image.bottom_left;
     glm::vec2 top_left(bottom_left.x, top_right.y);
     glm::vec2 bottom_right(top_right.x, bottom_left.y);
-    
+
     glm::vec2 uv_up_left(0.0f, 0.0f);
     glm::vec2 uv_down_right(1.0f, 1.0f);
     glm::vec2 uv_up_right(1.0f, 0.0f);
     glm::vec2 uv_down_left(0.0f, 1.0f);
-    
+
     std::vector<glm::vec2> vertices;
 	std::vector<glm::vec2> UVs;
-    
+
     vertices.push_back(top_left);
     vertices.push_back(bottom_left);
     vertices.push_back(top_right);
     vertices.push_back(bottom_right);
     vertices.push_back(top_right);
     vertices.push_back(bottom_left);
-    
+
     UVs.push_back(uv_up_left);
     UVs.push_back(uv_down_left);
     UVs.push_back(uv_up_right);
     UVs.push_back(uv_down_right);
     UVs.push_back(uv_up_right);
     UVs.push_back(uv_down_left);
-    
+
     ProgramContext pc{p};
 
     //create VBO's, VAO
@@ -146,7 +146,7 @@ void HUDElementVisitor::visit(Image& image)
     glBufferData(GL_ARRAY_BUFFER, UVs.size() * sizeof(glm::vec2), &UVs[0], GL_STATIC_DRAW);
     glEnableVertexAttribArray(p.attrib("vertexUV"));
 	glVertexAttribPointer(p.attrib("vertexUV"), 2, GL_FLOAT, GL_FALSE, 0, (void*)0 );
-    
+
     TextureContext h{*image.image_texture, GL_TEXTURE0};
     p.setUniform("myTextureSampler", 0);
 
