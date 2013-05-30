@@ -91,12 +91,16 @@ namespace Ymir
 
             void drawGrid(bool);
 
-            void createWorker();
+        void createUnit(const char* mesh, const char* type_name, int price);
+        void createWorker();
+            void createOrbitalDropBeacon();
+        
             void processBuildingUnits(bool);
+        
             void createWorker(glm::vec3 position);
             void createGhostWorker(glm::vec3 position, int id);
             void createBasicInfantrie(glm::vec3 position);
-            void createGhostBasicInfantrie(glm::vec3 position, int id);
+        void createGhostBasicInfantrie(glm::vec3 position, int id);
             void createAdvancedInfantrie(glm::vec3 position);
             void createGhostAdvancedInfantrie(glm::vec3 position, int id);
             void createEngineer(glm::vec3 position);

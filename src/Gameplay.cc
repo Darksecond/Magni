@@ -53,25 +53,31 @@ void Gameplay::drawGrid(bool draw)
     renderEngine.setGrid(draw);
 }
 
+void Gameplay::createUnit(const char* mesh, const char* type_name, int price)
+{
+    if(currencyEngine.currency >= price) {
+        ghe->activateGroup("empty");
+        if(currentlyBuildingEntity == nullptr)
+        {
+            std::shared_ptr<Texture> worker_tex = textureManager.resource("building.png");
+            std::shared_ptr<Mesh> worker_mesh = meshManager.resource(mesh);
+            currentlyBuildingEntity = &scene.assign(type_name);
+            currentlyBuildingEntity->assign<SpatialComponent>(renderEngine.GetTilePosition());
+            currentlyBuildingEntity->assign<ModelComponent>(worker_mesh, worker_tex);
+            currentlyBuildingEntity->assign<OwnerComponent>(playerNumber);
+        }
+        currencyEngine.currency -= price;
+    }
+}
+
 void Gameplay::createWorker()
 {
-    std::cout << 3-infantryTimer << std::endl;
-    if (infantryTimer > INFTIMER) {
-        if(currencyEngine.currency >= workerPrice) {
-            ghe->activateGroup("empty");
-            if(currentlyBuildingEntity == nullptr)
-            {
-                std::shared_ptr<Texture> worker_tex = textureManager.resource("building.png");
-                std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
-                currentlyBuildingEntity = &scene.assign("worker");
-                currentlyBuildingEntity->assign<SpatialComponent>(renderEngine.GetTilePosition());
-                currentlyBuildingEntity->assign<ModelComponent>(worker_mesh, worker_tex);
-                currentlyBuildingEntity->assign<OwnerComponent>(playerNumber);
-            }
-            currencyEngine.currency -= workerPrice;
-            infantryTimer = 0;
-        }
-    }
+    createUnit("worker.obj", "worker", workerPrice);
+}
+
+void Gameplay::createOrbitalDropBeacon()
+{
+    createUnit("house.obj", "OrbitalDropBeacon", orbitalDropBeaconPrice);
 }
 
 void Gameplay::processBuildingUnits(bool left_pressed)
@@ -86,6 +92,8 @@ void Gameplay::processBuildingUnits(bool left_pressed)
         
         if(type == "worker")
             createWorker(renderEngine.GetTilePosition());
+        if(type == "OrbitalDropBeacon")
+            buildOrbitalDropBeacon(renderEngine.GetTilePosition());
     }
 }
 
@@ -182,45 +190,6 @@ void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
 }
 
-void Gameplay::createAdvancedInfantrie(glm::vec3 position)
-{
-    std::cout << 5-infantryTimer << std::endl;
-    if (infantryTimer > 5) {
-        //TODO: implementation
-        //...
-
-        //NetworkPacket np(0, mode[BUILD]);
-        //np.set(0, unit[A_INFANTRY]);
-        //np.set(1, position.x);
-        //np.set(2, position.y);
-        //np.set(3, position.z);
-
-        infantryTimer = 0;
-    }
-    // TODO
-}
-
-void Gameplay::createGhostAdvancedInfantrie(glm::vec3 position, int id)
-{
-
-}
-
-void Gameplay::createEngineer(glm::vec3 position)
-{
-    std::cout << 3-infantryTimer << std::endl;
-    if (infantryTimer > INFTIMER) {
-        //TODO: implementation
-        //...
-        infantryTimer = 0;
-    }
-    // TODO
-}
-
-void Gameplay::createGhostEngineer(glm::vec3 position, int id)
-{
-
-}
-
 void Gameplay::buildCentralIntelligenceCore()
 {
     std::shared_ptr<Mesh> CentralIntelligenceCore_mesh = meshManager.resource("ciCore.obj");
@@ -285,40 +254,30 @@ void Gameplay::buildGhostCentralIntelligenceCore(glm::vec3 position, int id)
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
 {
-    std::cout << 3-buildingTimer << std::endl;
-    if(workerBuild) {
-        if ( buildingTimer > BUILDTIMER) {
-             if (currencyEngine.currency >= orbitalDropBeaconPrice) {
-                position.y = 0.0;
-                std::shared_ptr<Texture> t = textureManager.resource("ally.png");
-                std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
-
-                Entity& house = scene.assign("OrbitalDropBeacon");
-                house.assign<SpatialComponent>(position);
-                house.assign<ModelComponent>(house_mesh, t);
-                house.assign<EnergyComponent>(-100);
-                house.assign<OwnerComponent>(playerNumber);
-                house.assign<HealthComponent>(20);
-                house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
-
-                barracksBuild = true;
-
-                NetworkPacket np(house.id, BUILD);
-                np.set(0, ORBITAL);
-                np.set(1, position.x);
-                np.set(2, position.y);
-                np.set(3, position.z);
-
-                client->write(np.char_array(), np.size());
-
-                currencyEngine.currency -= orbitalDropBeaconPrice;
-                buildingTimer = 0;
-
-            } else {
-                std::cout << "Not enough money for Orbital drop beacon" << std::endl;
-            }
-        }
-    }
+    position.y = 0.0;
+    std::shared_ptr<Texture> t = textureManager.resource("ally.png");
+    std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
+    
+    Entity& house = scene.assign("OrbitalDropBeacon");
+    house.assign<SpatialComponent>(position);
+    house.assign<ModelComponent>(house_mesh, t);
+    house.assign<EnergyComponent>(-100);
+    house.assign<OwnerComponent>(playerNumber);
+    house.assign<HealthComponent>(20);
+    house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
+    
+    barracksBuild = true;
+    
+    NetworkPacket np(house.id, BUILD);
+    np.set(0, ORBITAL);
+    np.set(1, position.x);
+    np.set(2, position.y);
+    np.set(3, position.z);
+    
+    client->write(np.char_array(), np.size());
+    
+    currencyEngine.currency -= orbitalDropBeaconPrice;
+    buildingTimer = 0;
 }
 
 void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)
@@ -336,30 +295,6 @@ void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)
     house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
-}
-
-void Gameplay::buildPowerCore(glm::vec3 position)
-{
-
-}
-
-void Gameplay::buildGhostPowerCore(glm::vec3 position, int id)
-{
-
-}
-
-void Gameplay::buildAcademyOfAdvancedTechnologies(glm::vec3 position)
-    {
-        std::cout << 3-buildingTimer << std::endl;
-        if ( buildingTimer > 1) {
-            //TODO: implementation
-            //...
-            buildingTimer = 0;
-        }
-    }
-
-void Gameplay::buildGhostAcademyOfAdvancedTechnologies(glm::vec3 position, int id)
-{
 }
 
 bool Gameplay::centralIntelligenceCoreDestoyed()

@@ -161,11 +161,18 @@ void Application::runGame()
     Timer* checkDefeatTimer = new Timer(2);
     gameplay->drawGrid(true);
 
-    auto group = gameHudEngine->addGroup("worker");
+    //HUD
     gameHudEngine->addGroup("empty");
-    //items
-    group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createWorker);
+    
+    auto cicore_group = gameHudEngine->addGroup("ciCore");
+    cicore_group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createWorker);
+    
+    auto worker_group = gameHudEngine->addGroup("worker");
+    worker_group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createOrbitalDropBeacon);
+    
     gameHudEngine->activateGroup("empty");
+    //END HUD
+    
     lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
     {
@@ -180,7 +187,11 @@ void Application::runGame()
         engines->update(1, delta);
         
         gameplay->updateSelectedEntity(hudEngine->selectedEntity().get());
-        if(hudEngine->selectedEntity() && gameplay->currentlyBuildingEntity == nullptr && hudEngine->selectedEntity()->name == "ACiCore")
+        if(!hudEngine->selectedEntity() || gameplay->currentlyBuildingEntity != nullptr)
+            gameHudEngine->activateGroup("empty");
+        else if(hudEngine->selectedEntity()->name == "ACiCore")
+            gameHudEngine->activateGroup("ciCore");
+        else if(hudEngine->selectedEntity()->name == "worker")
             gameHudEngine->activateGroup("worker");
         else
             gameHudEngine->activateGroup("empty");
