@@ -32,10 +32,9 @@ namespace Ymir
         Entity& assign(const std::string& name, Entity* parent = nullptr);
         Entity& assign(const std::string& name, const int id, Entity* parent = nullptr);
         void deleteEntity(Entity* entity);
-        bool containsEntity(std::string name);
         Entity* getEntity(int id);
         std::shared_ptr<Entity> getEntityAtPosition(glm::vec3 position);
 
-        std::map<std::string, std::shared_ptr<Entity>> entities;
+        std::map<int, std::shared_ptr<Entity>> entities;
     };
 };

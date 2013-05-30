@@ -33,6 +33,8 @@ namespace Ymir
         std::shared_ptr<Image> addImage(const char* texture, glm::vec2 pos, float w, float h);
         std::shared_ptr<Text> addText(const char* text, glm::vec2 pos, int size = 20);
         
+        void removeElement(std::shared_ptr<HUDElement> element);
+        
         
         inline std::shared_ptr<Entity> selectedEntity() { return _selectedEntity; }
     };

@@ -24,7 +24,7 @@ Entity& Scene::assign(std::shared_ptr<Entity> entity, Entity* parent)
 {
     Entity& retval = *entity;
     retval.parent = parent;
-    entities.insert(std::pair<std::string, std::shared_ptr<Entity>>(entity->name, entity));
+    entities.insert(std::pair<int, std::shared_ptr<Entity>>(entity->id, entity));
     engines.registerEntity(retval);
     return retval;
 }
@@ -32,37 +32,22 @@ Entity& Scene::assign(std::shared_ptr<Entity> entity, Entity* parent)
 Entity& Scene::assign(const std::string& name, Entity* parent)
 {
     int newnumber = ung->getNewUniqueNumber();
-    std::stringstream ss;
-    ss << name;
-    ss << newnumber;
-    std::cout << "assigning entity: " << ss.str() << std::endl;
-    std::shared_ptr<Entity> entity = std::make_shared<Entity>(engines, ss.str(), newnumber);
+    std::cout << "assigning entity: " << name << std::endl;
+    std::shared_ptr<Entity> entity = std::make_shared<Entity>(engines, name, newnumber);
     return assign(entity, parent);
 }
 
 Entity& Scene::assign(const std::string& name, const int id, Entity* parent)
 {
-    std::stringstream ss;
-    ss << name;
-    ss << id;
-    std::cout << "assigning entity: " << ss.str() << " with id: " << id << std::endl;
-    std::shared_ptr<Entity> entity{new Entity{engines, ss.str(), id}};
+    std::cout << "assigning entity: " << name << " with id: " << id << std::endl;
+    std::shared_ptr<Entity> entity{new Entity{engines, name, id}};
     return assign(entity, parent);
 }
 
 void Scene::deleteEntity(Entity * entity)
 {
     engines.unregisterEntity(*entity);
-    entities.erase(entity->name);
-}
-
-bool Scene::containsEntity(std::string name)
-{
-    auto it = entities.find(name);
-    if (it == entities.end()) {
-        return false;
-    }
-    return true;
+    entities.erase(entity->id);
 }
 
 Entity* Scene::getEntity(int id) {

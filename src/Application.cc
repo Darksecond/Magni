@@ -37,6 +37,7 @@ void Application::createEngines()
     attackEngine = &engines->assign<AttackEngine>(meshManager, textureManager);
     
     hudEngine = &engines->assign<HUDEngine>(*renderEngine, textureManager);
+    gameHudEngine = &engines->assign<GameHUDEngine>(*hudEngine);
 }
 
 void Application::buildGame()
@@ -159,11 +160,15 @@ void Application::runGame()
     Timer* checkDefeatTimer = new Timer(2);
     gameplay->drawGrid(true);
 
-    std::shared_ptr<Image> img = hudEngine->addImage("wooden-crate.jpg", glm::vec2(20, 20), 100, 100);
+    auto group = gameHudEngine->addGroup("worker");
+    std::shared_ptr<GameHUDItem> item = std::make_shared<GameHUDItem>("wooden-crate.jpg");
+    std::shared_ptr<GameHUDItem> item2 = std::make_shared<GameHUDItem>("wooden-crate.jpg");
+    group->addItem(item);
+    group->addItem(item2);
+    gameHudEngine->activateGroup("worker");
     lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
     {
-        if(img->clicked()) std::cout << "LSKJDFLKJSDLFKJD" << std::endl;
         double thisTime = glfwGetTime();
         double delta = thisTime - lastTime;
         lastTime = thisTime;

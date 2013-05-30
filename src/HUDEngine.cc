@@ -92,3 +92,9 @@ std::shared_ptr<Text> HUDEngine::addText(const char* text, glm::vec2 pos, int si
     
     return text_element;
 }
+
+void HUDEngine::removeElement(std::shared_ptr<HUDElement> element)
+{
+    elements.remove(element);
+    renderEngine.texts.remove(element);
+}
