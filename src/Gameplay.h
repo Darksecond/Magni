@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <iostream>
+#include <vector>
 #include <string>
 
 #include "Scene.h"
@@ -32,6 +33,9 @@
 #include "EnergyBehaviour.h"
 #include "CurrencyEngine.h"
 
+#include "GameHUDEngine.h"
+#include "Laser.h"
+
 namespace Ymir
 {
     class Client;
@@ -60,9 +64,12 @@ namespace Ymir
             float infantryTimer, buildingTimer, myAttackTimer;
             int unitIdentifyCounter, myCoreID;
             TileMap* tileMap;
+            std::vector<Laser*> lasers;
 
         public:
+            GameHUDEngine* ghe;
             Client* client;
+            Entity* currentlyBuildingEntity;
             int playerNumber, otherPlayerNumber;
 
             int workerPrice;
@@ -90,10 +97,17 @@ namespace Ymir
 
             void drawGrid(bool);
 
+        void createUnit(const char* mesh, const char* type_name, int price);
+        void createWorker();
+            void createOrbitalDropBeacon();
+            void createBasicInfantrie();
+        
+            void processBuildingUnits(bool);
+        
             void createWorker(glm::vec3 position);
             void createGhostWorker(glm::vec3 position, int id);
             void createBasicInfantrie(glm::vec3 position);
-            void createGhostBasicInfantrie(glm::vec3 position, int id);
+        void createGhostBasicInfantrie(glm::vec3 position, int id);
             void createAdvancedInfantrie(glm::vec3 position);
             void createGhostAdvancedInfantrie(glm::vec3 position, int id);
             void createEngineer(glm::vec3 position);
@@ -124,12 +138,13 @@ namespace Ymir
             void loseGame();
             void switchOwner(int owner);
 
-            Entity* getEntityAtPosition(glm::vec3 pos);
             void updateSelectedEntity(glm::vec3 position);
+            void updateSelectedEntity(Entity* entity);
             Entity* getCurrentSelectedEntity();
             Scene& getScene();
 
             void updateTimer(float delta);
+            void updateLaserDataToRenderEngine();
 
             void setTileMap(TileMap*);
 

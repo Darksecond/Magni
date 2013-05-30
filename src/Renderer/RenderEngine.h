@@ -9,12 +9,16 @@
 #include "Light.h"
 #include "Model.h"
 #include "Text.h"
+#include "Image.h"
 #include "../NodeCache.h"
 #include "../ResourceManager.h"
 #include "../ProgramResourceLoader.h"
 #include "../CubemapResourceLoader.h"
 #include "../Cubemap.h"
 #include "../Tilemap.h"
+
+#include "HUDElement.h"
+#include "../Laser.h"
 
 #include <vector>
 #include <list>
@@ -28,7 +32,13 @@ namespace Ymir
         void initOpenGL();
         bool grid;
         TileMap* tileMap;
+    private:
+        const static int bufferSize = 10 * 6; // amount of lasers we want to render * the 6 floats it takes to create a line
+        GLfloat g_vertex_buffer_data[bufferSize];
+        int laserCount;
     public:
+        glm::vec3 laserBegin, laserEnd;
+
         std::unique_ptr<Camera> _camera;
         std::shared_ptr<Program> texture_program; //texture
         std::shared_ptr<Program> phong_program; //lights
@@ -42,9 +52,9 @@ namespace Ymir
         NodeCache<Light> lights;
         NodeCache<Model> models;
         std::shared_ptr<Texture> holstein;
-        std::list<std::shared_ptr<Text>> texts;
+        std::list<std::shared_ptr<HUDElement>> texts;
         std::shared_ptr<Cubemap> sky;
-        
+
         std::shared_ptr<Mesh> _square;
         std::shared_ptr<Texture> _grass;
         std::shared_ptr<Texture> _mountain;
@@ -72,11 +82,13 @@ namespace Ymir
         // grid implementatie refactor nominatie
         void drawGrid(Program&, Camera&);
         void drawAOE (Program&, Camera&);
+        void drawLaser(Program& p, Camera& c);
         void setGrid(bool);
         void setTileMap(TileMap*);
+        void setLaserData(std::vector<Laser*> lasers);
         // einde refactor nominatie
 
-        void addText(std::shared_ptr<Text> t)
+        void addText(std::shared_ptr<HUDElement> t)
         {
             texts.push_back(t);
         }

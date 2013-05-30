@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F608BC7E17560C60005057F5 /* HUDElement.cc in Sources */ = {isa = PBXBuildFile; fileRef = F608BC7C17560C60005057F5 /* HUDElement.cc */; };
+		F608BC8117560E29005057F5 /* HUDElementVisitor.cc in Sources */ = {isa = PBXBuildFile; fileRef = F608BC7F17560E29005057F5 /* HUDElementVisitor.cc */; };
+		F608BC8417561C39005057F5 /* Image.cc in Sources */ = {isa = PBXBuildFile; fileRef = F608BC8217561C39005057F5 /* Image.cc */; };
+		F608BC8717562C5A005057F5 /* HUDEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F608BC8517562C5A005057F5 /* HUDEngine.cc */; };
 		F60D929B1701C2F800D0E6F4 /* Gameplay.cc in Sources */ = {isa = PBXBuildFile; fileRef = F60D929A1701C2F800D0E6F4 /* Gameplay.cc */; };
 		F60D929E1701C33700D0E6F4 /* RTSCameraBehavior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F60D929C1701C33700D0E6F4 /* RTSCameraBehavior.cpp */; };
 		F60D92A31701C36A00D0E6F4 /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F60D929F1701C36900D0E6F4 /* Tile.cpp */; };
 		F60D92A41701C36A00D0E6F4 /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F60D92A11701C36900D0E6F4 /* TileMap.cpp */; };
 		F60D92A71701D86100D0E6F4 /* Application.cc in Sources */ = {isa = PBXBuildFile; fileRef = F60D92A51701D86100D0E6F4 /* Application.cc */; };
+		F617C59C1757425600CDAD79 /* GameHUDEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F617C59A1757425600CDAD79 /* GameHUDEngine.cc */; };
 		F61BDCBB16E8988E00768DEE /* Cubemap.cc in Sources */ = {isa = PBXBuildFile; fileRef = F61BDCB916E8988E00768DEE /* Cubemap.cc */; };
 		F61D006A1716CDFD00B7315F /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D00681716CDFC00B7315F /* Server.cpp */; };
 		F61D006D1716CE1000B7315F /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D006B1716CE1000B7315F /* Network.cpp */; };
@@ -184,6 +189,14 @@
 		42C94DAB17424E7A009035F4 /* EnergyBehaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyBehaviour.h; sourceTree = "<group>"; };
 		F6053FE916C6D54B007F52FE /* Manifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manifest.h; sourceTree = "<group>"; };
 		F6053FEA16C6D5AE007F52FE /* StreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamReader.h; sourceTree = "<group>"; };
+		F608BC7C17560C60005057F5 /* HUDElement.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HUDElement.cc; sourceTree = "<group>"; };
+		F608BC7D17560C60005057F5 /* HUDElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDElement.h; sourceTree = "<group>"; };
+		F608BC7F17560E29005057F5 /* HUDElementVisitor.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HUDElementVisitor.cc; sourceTree = "<group>"; };
+		F608BC8017560E29005057F5 /* HUDElementVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDElementVisitor.h; sourceTree = "<group>"; };
+		F608BC8217561C39005057F5 /* Image.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cc; sourceTree = "<group>"; };
+		F608BC8317561C39005057F5 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		F608BC8517562C5A005057F5 /* HUDEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HUDEngine.cc; sourceTree = "<group>"; };
+		F608BC8617562C5A005057F5 /* HUDEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDEngine.h; sourceTree = "<group>"; };
 		F6097E5416B84B1A00B240E7 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		F60D92981701C2ED00D0E6F4 /* Gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gameplay.h; sourceTree = "<group>"; };
 		F60D929A1701C2F800D0E6F4 /* Gameplay.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gameplay.cc; sourceTree = "<group>"; };
@@ -195,6 +208,8 @@
 		F60D92A21701C36900D0E6F4 /* TileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileMap.h; sourceTree = "<group>"; };
 		F60D92A51701D86100D0E6F4 /* Application.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cc; sourceTree = "<group>"; };
 		F60D92A61701D86100D0E6F4 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		F617C59A1757425600CDAD79 /* GameHUDEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameHUDEngine.cc; sourceTree = "<group>"; };
+		F617C59B1757425600CDAD79 /* GameHUDEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHUDEngine.h; sourceTree = "<group>"; };
 		F61BDCB916E8988E00768DEE /* Cubemap.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cubemap.cc; sourceTree = "<group>"; };
 		F61BDCBA16E8988E00768DEE /* Cubemap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cubemap.h; sourceTree = "<group>"; };
 		F61BDCBC16E8B7E500768DEE /* CubemapResourceLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubemapResourceLoader.h; sourceTree = "<group>"; };
@@ -451,17 +466,31 @@
 			name = "Resource Management";
 			sourceTree = "<group>";
 		};
+		F608BC7B17560C46005057F5 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				F6E6E57D16E741F3008E1F09 /* Text.h */,
+				F6E6E57C16E741F3008E1F09 /* Text.cc */,
+				F608BC8317561C39005057F5 /* Image.h */,
+				F608BC8217561C39005057F5 /* Image.cc */,
+				F608BC7D17560C60005057F5 /* HUDElement.h */,
+				F608BC7C17560C60005057F5 /* HUDElement.cc */,
+				F608BC8017560E29005057F5 /* HUDElementVisitor.h */,
+				F608BC7F17560E29005057F5 /* HUDElementVisitor.cc */,
+			);
+			name = HUD;
+			sourceTree = "<group>";
+		};
 		F6746BF616CB8C2B00ACA326 /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				F608BC7B17560C46005057F5 /* HUD */,
 				F64EC94516BEA68600063843 /* Light.h */,
 				F64EC94616BEA68C00063843 /* Light.cc */,
 				F6AF410B16BB1A1F00F85BC0 /* Camera.h */,
 				F6AF410C16BB1B8D00F85BC0 /* Camera.cc */,
 				F644CED616C28AB0007B35C5 /* Model.h */,
 				F644CED716C28ABF007B35C5 /* Model.cc */,
-				F6E6E57D16E741F3008E1F09 /* Text.h */,
-				F6E6E57C16E741F3008E1F09 /* Text.cc */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -824,6 +853,10 @@
 				F6D1EA3E1713FFF200906822 /* CurrencyEngine.cc */,
 				F6D1EA3F1713FFF200906822 /* CurrencyEngine.h */,
 				F67A394A17031820004AAF05 /* AttackEngine.h */,
+				F608BC8617562C5A005057F5 /* HUDEngine.h */,
+				F608BC8517562C5A005057F5 /* HUDEngine.cc */,
+				F617C59A1757425600CDAD79 /* GameHUDEngine.cc */,
+				F617C59B1757425600CDAD79 /* GameHUDEngine.h */,
 			);
 			name = Engines;
 			sourceTree = "<group>";
@@ -1142,6 +1175,11 @@
 				F644EE151738FEC200D918FA /* Timer.cc in Sources */,
 				F6268B03173A5238009486C0 /* UniqueNumberGenerator.cpp in Sources */,
 				F6663895174E15C000276E4D /* AOEComponent.cc in Sources */,
+				F608BC7E17560C60005057F5 /* HUDElement.cc in Sources */,
+				F608BC8117560E29005057F5 /* HUDElementVisitor.cc in Sources */,
+				F608BC8417561C39005057F5 /* Image.cc in Sources */,
+				F608BC8717562C5A005057F5 /* HUDEngine.cc in Sources */,
+				F617C59C1757425600CDAD79 /* GameHUDEngine.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

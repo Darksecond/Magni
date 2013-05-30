@@ -40,20 +40,8 @@ void Client::readReal()
             if (np.get<int>(0) == Gameplay::B_INFANTRY) {
                 gp->createGhostBasicInfantrie(position, ung->flip(np.id()));
             }
-            if (np.get<int>(0) == Gameplay::A_INFANTRY) {
-                gp->createGhostAdvancedInfantrie(position, ung->flip(np.id()));
-            }
-            if (np.get<int>(0) == Gameplay::ENGINEER) {
-                gp->createGhostEngineer(position, ung->flip(np.id()));
-            }
             if (np.get<int>(0) == Gameplay::ORBITAL) {
                 gp->buildGhostOrbitalDropBeacon(position, ung->flip(np.id()));
-            }
-            if (np.get<int>(0) == Gameplay::POWERCORE) {
-                gp->buildGhostPowerCore(position, ung->flip(np.id()));
-            }
-            if (np.get<int>(0) == Gameplay::ACADEMY) {
-                gp->buildGhostAcademyOfAdvancedTechnologies(position, ung->flip(np.id()));
             }
             if (np.get<int>(0) == Gameplay::CICORE) {
                 gp->buildGhostCentralIntelligenceCore(position, ung->flip(np.id()));
