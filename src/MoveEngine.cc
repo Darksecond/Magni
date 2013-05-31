@@ -37,6 +37,7 @@ void MoveEngine::update(int pass, double delta)
                     float speed = moveC->speed;
                     int rspeed= moveC->rotationSpeed;
                     std::vector<Tile> *route = moveC->tiles;
+                    std::cout << route->size() << " " << (*iter)->name << std::endl;
                     if(route->size() >= 1){
                         glm::vec3 nextPoint = route->at(0).centerpoint;
                         glm::mat4 direction = glm::inverse(glm::lookAt(nextPoint, spatial->position, glm::vec3(0.0f,1.0f,0.0f)));

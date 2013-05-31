@@ -119,7 +119,6 @@ void Gameplay::createWorker(glm::vec3 position)
     worker.assign<HealthComponent>(5);
     worker.assign<CurrencyComponent>(workerPrice);
     worker.assign<OwnerComponent>(playerNumber);
-
     workerBuild = true;
 
     NetworkPacket np(worker.id, BUILD);
@@ -153,14 +152,16 @@ void Gameplay::TestFollowPath(){
         if ( spatC != nullptr) {
             glm::vec3 spat = spatC->position;
             std::vector<Tile> * testTileMap = new std::vector<Tile>();
+
             Tile * t1 = new Tile(Tile::Type::NONE);
             spat.x= spat.x + 1.0f;
+
             t1->centerpoint = spat;
-            spat.x = spat.x +1.0f;
+            spat.z = spat.z -1.0f;
 
             Tile * t2 = new Tile(Tile::Type::NONE);
             t2->centerpoint = spat;
-            spat.x = spat.x +1.0f;
+            spat.z = spat.z -1.0f;
 
             Tile * t3 = new Tile(Tile::Type::NONE);
             t3->centerpoint = spat;
@@ -170,7 +171,7 @@ void Gameplay::TestFollowPath(){
             t4->centerpoint = spat;
 
             spat.z = spat.z + 1.0f;
-            spat.x = spat.x +1.0f;
+            spat.x = spat.x -1.0f;
 
             Tile * t5 = new Tile(Tile::Type::NONE);
             t5->centerpoint = spat;
@@ -182,8 +183,11 @@ void Gameplay::TestFollowPath(){
             testTileMap->push_back(*t3);
             testTileMap->push_back(*t4);
             testTileMap->push_back(*t5);
-            entity->assign<MoveComponent>(0.01f,1,testTileMap);
-
+            auto moveComponent = entity->component<MoveComponent>();
+            if (moveComponent != nullptr) {
+                moveComponent->tiles = testTileMap;
+            }
+            entity->assign<MoveComponent>(0.01f, 1, testTileMap);
         }
     }
 }
