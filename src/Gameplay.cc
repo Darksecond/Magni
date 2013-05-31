@@ -119,6 +119,7 @@ void Gameplay::createWorker(glm::vec3 position)
     worker.assign<HealthComponent>(5);
     worker.assign<CurrencyComponent>(workerPrice);
     worker.assign<OwnerComponent>(playerNumber);
+    worker.assign<MoveComponent>(0.01f,1.0f,nullptr);
     workerBuild = true;
 
     NetworkPacket np(worker.id, BUILD);
@@ -138,9 +139,10 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
     Entity& worker = scene.assign("worker", id);
     worker.assign<SpatialComponent>(position);
     worker.assign<ModelComponent>(worker_mesh, worker_tex);
-    worker.assign<HealthComponent>(5);
+    worker.assign<HealthComponent>(500);
     worker.assign<CurrencyComponent>(workerPrice);
     worker.assign<OwnerComponent>(otherPlayerNumber);
+    worker.assign<MoveComponent>(0.01f,1.0f,nullptr);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
 }
@@ -157,11 +159,11 @@ void Gameplay::TestFollowPath(){
             spat.x= spat.x + 1.0f;
 
             t1->centerpoint = spat;
-            spat.z = spat.z -1.0f;
+            spat.x = spat.x +1.0f;
 
             Tile * t2 = new Tile(Tile::Type::NONE);
             t2->centerpoint = spat;
-            spat.z = spat.z -1.0f;
+            spat.x = spat.x +1.0f;
 
             Tile * t3 = new Tile(Tile::Type::NONE);
             t3->centerpoint = spat;
@@ -170,8 +172,8 @@ void Gameplay::TestFollowPath(){
             Tile * t4 = new Tile(Tile::Type::NONE);
             t4->centerpoint = spat;
 
-            spat.z = spat.z + 1.0f;
-            spat.x = spat.x -1.0f;
+           // spat.z = spat.z + 1.0f;
+            spat.x = spat.x +1.0f;
 
             Tile * t5 = new Tile(Tile::Type::NONE);
             t5->centerpoint = spat;
@@ -187,7 +189,7 @@ void Gameplay::TestFollowPath(){
             if (moveComponent != nullptr) {
                 moveComponent->tiles = testTileMap;
             }
-            entity->assign<MoveComponent>(0.01f, 1, testTileMap);
+            //entity->assign<MoveComponent>(0.01f, 1, testTileMap);
         }
     }
 }
@@ -206,6 +208,8 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
     basicInfantrie.assign<HealthComponent>(10);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
     basicInfantrie.assign<AOEComponent>(1); //is square
+    basicInfantrie.assign<MoveComponent>(0.01f,1.0f,nullptr);
+
     //currencyEngine.currency -= basicInfanteriePrice;
 
     NetworkPacket np(basicInfantrie.id, BUILD);
@@ -230,6 +234,8 @@ void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
     basicInfantrie.assign<HealthComponent>(10);
     basicInfantrie.assign<AttackComponent>(2, 1, 0.5f, 2);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
+    basicInfantrie.assign<MoveComponent>(0.01f,1.0f,nullptr);
+
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
 }
