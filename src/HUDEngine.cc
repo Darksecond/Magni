@@ -84,7 +84,9 @@ void HUDEngine::update(int pass, double delta)
             if(glm::distance(_selection_start, _selection_end) < 0.01f)
             {
                 _selection_entities = std::list<std::shared_ptr<Entity>>();
-                _selection_entities.push_back(scene->getEntityAtPosition(_selection_start));
+                std::shared_ptr<Entity> e = scene->getEntityAtPosition(_selection_start);
+                if(e)
+                    _selection_entities.push_back(e);
             }
             else
             {
