@@ -34,8 +34,11 @@ namespace Ymir
         TileMap* tileMap;
     private:
         const static int bufferSize = 10 * 6; // amount of lasers we want to render * the 6 floats it takes to create a line
+        const static int bufferSizeSelected = 10 * 4 * 6;// 6 points per line 4 lines per entity max 10 entities.
         GLfloat g_vertex_buffer_data[bufferSize];
+        GLfloat g_vertex_buffer_dataSelected[bufferSizeSelected];
         int laserCount;
+        int selectedCount;
     public:
         glm::vec3 laserBegin, laserEnd;
 
@@ -83,9 +86,11 @@ namespace Ymir
         void drawGrid(Program&, Camera&);
         void drawAOE (Program&, Camera&);
         void drawLaser(Program& p, Camera& c);
+        void drawSelected(Program& p, Camera& c);
         void setGrid(bool);
         void setTileMap(TileMap*);
         void setLaserData(std::vector<Laser*> lasers);
+        void setSelectedData(std::list<Entity*> entities);
         // einde refactor nominatie
 
         void addText(std::shared_ptr<HUDElement> t)

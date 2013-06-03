@@ -145,6 +145,7 @@ namespace Ymir
 
             void updateTimer(float delta);
             void updateLaserDataToRenderEngine();
+            void updateSelectedDataToRenderEngine();
 
             void setTileMap(TileMap*);
 

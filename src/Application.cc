@@ -256,6 +256,7 @@ void Application::runGame()
         gameplay->automaticAttackCheck();
         gameplay->client->readReal();
         gameplay->updateLaserDataToRenderEngine();
+        gameplay->updateSelectedDataToRenderEngine();
 
         // end cleanup -----------------------------------
 

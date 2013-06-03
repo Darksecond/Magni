@@ -377,6 +377,7 @@ void RenderEngine::update(int pass, double delta)
 
         HUDElementVisitor visitor(*overlay_program, *holstein);
         drawLaser(*grid_program, *_camera);
+        drawSelected(*grid_program, *_camera);
 
         for(auto t : texts)
         {
@@ -704,6 +705,111 @@ void RenderEngine::setLaserData(std::vector<Laser*> lasers) {
         g_vertex_buffer_data[counter++] = (*iter)->endPosition.x;
         g_vertex_buffer_data[counter++] = (*iter)->endPosition.y;
         g_vertex_buffer_data[counter++] = (*iter)->endPosition.z;
+    }
+}
+
+void RenderEngine::drawSelected(Program& p, Camera& c)
+{
+    if(selectedCount != 0) {
+        GLuint VertexArrayID;
+        glGenVertexArrays(1, &VertexArrayID);
+        glBindVertexArray(VertexArrayID);
+
+        ProgramContext pc {p};
+
+        glm::mat4 projection = c.projectionMatrix();
+        glm::mat4 view = c.viewMatrix();
+        glm::mat4 model = glm::mat4(1.0f);
+        glm::mat4 MVP = projection * view * model;
+
+        GLuint vertexbuffer;
+        glGenBuffers(1, &vertexbuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+        glBufferData(GL_ARRAY_BUFFER, bufferSizeSelected * sizeof(GLfloat), g_vertex_buffer_dataSelected, GL_STATIC_DRAW);
+
+        p.setUniform("MVP", MVP);
+
+        glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+
+        glVertexAttribPointer(
+            0,
+            3,
+            GL_FLOAT,
+            GL_FALSE,
+            0,
+            (void*)0
+        );
+
+        glDrawArrays(GL_LINES, 0, bufferSizeSelected / 3);
+
+        glDisableVertexAttribArray(0);
+
+        glDeleteBuffers(1, &vertexbuffer);
+        glDeleteVertexArrays(1, &VertexArrayID);
+    }
+}
+
+void RenderEngine::setSelectedData(std::list<Entity*> entities) {
+    std::list<Entity*>::iterator iter;
+    float y = 0.01f;
+    selectedCount = 0;
+    int counter = 0;
+
+    for(int i = 0; i < bufferSizeSelected; i++)
+        g_vertex_buffer_dataSelected[i] = 0;
+
+    for (iter = entities.begin(); iter != entities.end(); ++iter) {
+        if(counter > bufferSizeSelected)
+            break;
+
+        auto spatial = (*iter)->component<SpatialComponent>();
+        auto sizeC   = (*iter)->component<SizeComponent>();
+        if(spatial != nullptr && sizeC != nullptr) { //deze check kan stiekem wel weg omdat Tim hier al het goed is op checkt.
+            float x = spatial->position.x;
+            float z = spatial->position.z;
+            float offSet = sizeC->offSetSelected;
+            selectedCount++;
+
+            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+
+            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+
+
+
+            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+
+            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+
+
+
+            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+
+            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+
+
+
+            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+
+            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+
+        }
     }
 }
 

@@ -629,6 +629,15 @@ void Gameplay::updateTimer(float delta) {
     }
 }
 
+void Gameplay::updateSelectedDataToRenderEngine(){
+    std::list<Entity*> entities;
+    Entity * entity = getCurrentSelectedEntity();
+    if(entity != nullptr) {
+        entities.push_back(entity);
+        renderEngine.setSelectedData(entities);//with selected list from hud.;
+    }
+}
+
 void Gameplay::updateLaserDataToRenderEngine() {
     renderEngine.setLaserData(lasers);
 }

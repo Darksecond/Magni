@@ -20,7 +20,7 @@ namespace Ymir
         ResourceManager<Texture>& textureManager;
         std::list<std::shared_ptr<HUDElement>> elements;
         std::shared_ptr<Entity> _selectedEntity;
-    public:
+        public:
         Scene* scene;
 
         HUDEngine(RenderEngine& renderer, ResourceManager<Texture>& texMan);
