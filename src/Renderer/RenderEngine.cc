@@ -598,6 +598,7 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
     p.setUniform("MVP", MVP);
+    p.setUniform("inputColor", glm::vec3(1, 1, 0));
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -636,34 +637,34 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
             // top
 
             g_vertex_buffer_data[counter++] = -10.0f + (width * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row);
             g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row);
 
             // right
             g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row);
             g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
 
             // bottom
             g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
             g_vertex_buffer_data[counter++] = -10.0f + (width * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
 
             // left
             g_vertex_buffer_data[counter++] = -10.0f + (height * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
             g_vertex_buffer_data[counter++] = -10.0f + (height * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row);
         }
     }
@@ -685,6 +686,7 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
     glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), g_vertex_buffer_data, GL_STATIC_DRAW);
 
     p.setUniform("MVP", MVP);
+    p.setUniform("inputColor", glm::vec3(1,0,0));
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -726,6 +728,7 @@ void RenderEngine::drawLaser(Program& p, Camera& c)
         glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), g_vertex_buffer_data, GL_STATIC_DRAW);
 
         p.setUniform("MVP", MVP);
+        p.setUniform("inputColor", glm::vec3(1,0,0));
 
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);

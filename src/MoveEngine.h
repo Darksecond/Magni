@@ -11,6 +11,7 @@
 #include <GLM/glm.hpp>
 #include <GLM/gtc/matrix_transform.hpp>
 #include <GLM/gtx/quaternion.hpp>
+#include <GLM/gtc/quaternion.hpp>
 
 namespace Ymir
 {
@@ -19,7 +20,6 @@ namespace Ymir
         Scene* scene;
     public:
         std::vector<Entity*> entities;
-
 
         MoveEngine();
 
