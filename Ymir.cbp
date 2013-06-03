@@ -164,6 +164,8 @@
 		<Unit filename="src/Shader.h" />
 		<Unit filename="src/SimpleTestTriggerBehavior.cc" />
 		<Unit filename="src/SimpleTestTriggerBehavior.h" />
+		<Unit filename="src/SizeComponent.cc" />
+		<Unit filename="src/SizeComponent.h" />
 		<Unit filename="src/SourceComponent.h" />
 		<Unit filename="src/SpatialComponent.cc" />
 		<Unit filename="src/SpatialComponent.h" />
