@@ -76,6 +76,9 @@ RenderEngine::RenderEngine(ResourceManager<Program,
     _mountain = textureManager.resource("mountain.png");
     _water = textureManager.resource("water.png");
     _square = meshManager.resource("track.obj");
+    
+    _selection_selecting = false;
+    _selection_end = _selection_start = glm::vec3(0);
 }
 
 void RenderEngine::initGLFW()
@@ -351,6 +354,62 @@ void renderTileMap(TileMap& tilemap, Program& pt, Program& pl, const Camera& c,
     }
 }
 
+void drawSelection(glm::vec3 start, glm::vec3 end, const Camera& camera, Program& program)
+{
+    //TODO color (white) instead of red
+    
+    GLuint VertexArrayID;
+    glGenVertexArrays(1, &VertexArrayID);
+    glBindVertexArray(VertexArrayID);
+    
+    ProgramContext pc {program};
+    
+    glm::mat4 projection = camera.projectionMatrix();
+    glm::mat4 view = camera.viewMatrix();
+    glm::mat4 model = glm::mat4(1.0f);
+    glm::mat4 MVP = projection * view * model;
+    
+    int bufferSize = 8*3;
+    glm::vec3 buffer[8];
+    buffer[0] = glm::vec3(start.x, start.y, start.z);
+    buffer[1] = glm::vec3(start.x, end.y, end.z);
+    
+    buffer[2] = glm::vec3(end.x, end.y, start.z);
+    buffer[3] = glm::vec3(start.x, start.y, start.z);
+    
+    buffer[4] = glm::vec3(end.x, end.y, start.z);
+    buffer[5] = glm::vec3(end.x, end.y, end.z);
+    
+    buffer[6] = glm::vec3(start.x, end.y, end.z);
+    buffer[7] = glm::vec3(end.x, end.y, end.z);
+    
+    GLuint vertexbuffer;
+    glGenBuffers(1, &vertexbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+    glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), &buffer, GL_STATIC_DRAW);
+    
+    program.setUniform("MVP", MVP);
+    
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+    
+    glVertexAttribPointer(
+                          0,
+                          3,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          0,
+                          (void*)0
+                          );
+    
+    glDrawArrays(GL_LINES, 0, bufferSize / 3);
+    
+    glDisableVertexAttribArray(0);
+    
+    glDeleteBuffers(1, &vertexbuffer);
+    glDeleteVertexArrays(1, &VertexArrayID);
+}
+
 void RenderEngine::update(int pass, double delta)
 {
     if(pass == 1)
@@ -375,11 +434,16 @@ void RenderEngine::update(int pass, double delta)
             drawAOE(*grid_program,*_camera);
             drawGrid(*grid_program, *_camera);
         }
-
-        HUDElementVisitor visitor(*overlay_program, *holstein);
+        
         drawLaser(*grid_program, *_camera);
         drawSelected(*grid_program, *_camera);
 
+        if(_selection_selecting)
+        {
+            drawSelection(_selection_start, _selection_end, *_camera, *grid_program);
+        }
+        
+        HUDElementVisitor visitor(*overlay_program, *holstein);
         for(auto t : texts)
         {
             t->accept(visitor);
@@ -822,4 +886,11 @@ void RenderEngine::setGrid(bool useGrid)
 void RenderEngine::setTileMap(TileMap* tilemap)
 {
     tileMap = tilemap;
+}
+
+void RenderEngine::setSelection(bool selecting, glm::vec3 start, glm::vec3 end)
+{
+    _selection_selecting = selecting;
+    _selection_start = start;
+    _selection_end = end;
 }

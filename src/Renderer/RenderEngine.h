@@ -39,6 +39,10 @@ namespace Ymir
         GLfloat g_vertex_buffer_dataSelected[bufferSizeSelected];
         int laserCount;
         int selectedCount;
+        
+        bool _selection_selecting;
+        glm::vec3 _selection_start;
+        glm::vec3 _selection_end;
     public:
         glm::vec3 laserBegin, laserEnd;
 
@@ -97,5 +101,7 @@ namespace Ymir
         {
             texts.push_back(t);
         }
+        
+        void setSelection(bool selecting, glm::vec3 start, glm::vec3 end);
     };
 };

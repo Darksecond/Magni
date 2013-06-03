@@ -26,6 +26,7 @@
 		F63EA141175CA4A60095D11C /* MoveEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F63EA13F175CA4A60095D11C /* MoveEngine.cc */; };
 		F63EA144175CA4AE0095D11C /* MoveComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F63EA142175CA4AE0095D11C /* MoveComponent.cc */; };
 		F63EA147175CA4C20095D11C /* Laser.cc in Sources */ = {isa = PBXBuildFile; fileRef = F63EA145175CA4C10095D11C /* Laser.cc */; };
+		F63EA14A175CBB6A0095D11C /* SizeComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F63EA148175CBB690095D11C /* SizeComponent.cc */; };
 		F642BDA616DF9063009EB1DB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F642BDA516DF9063009EB1DB /* OpenAL.framework */; };
 		F644CED816C28ABF007B35C5 /* Model.cc in Sources */ = {isa = PBXBuildFile; fileRef = F644CED716C28ABF007B35C5 /* Model.cc */; };
 		F644EE151738FEC200D918FA /* Timer.cc in Sources */ = {isa = PBXBuildFile; fileRef = F644EE131738FEC200D918FA /* Timer.cc */; };
@@ -235,6 +236,8 @@
 		F63EA143175CA4AE0095D11C /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveComponent.h; sourceTree = "<group>"; };
 		F63EA145175CA4C10095D11C /* Laser.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Laser.cc; sourceTree = "<group>"; };
 		F63EA146175CA4C10095D11C /* Laser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Laser.h; sourceTree = "<group>"; };
+		F63EA148175CBB690095D11C /* SizeComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SizeComponent.cc; sourceTree = "<group>"; };
+		F63EA149175CBB6A0095D11C /* SizeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeComponent.h; sourceTree = "<group>"; };
 		F642BD8F16DF6239009EB1DB /* CarComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarComponent.h; sourceTree = "<group>"; };
 		F642BDA516DF9063009EB1DB /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F644CED616C28AB0007B35C5 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
@@ -733,6 +736,8 @@
 				F6268B02173A5238009486C0 /* UniqueNumberGenerator.h */,
 				F60D92A51701D86100D0E6F4 /* Application.cc */,
 				F60D92A61701D86100D0E6F4 /* Application.h */,
+				F63EA148175CBB690095D11C /* SizeComponent.cc */,
+				F63EA149175CBB6A0095D11C /* SizeComponent.h */,
 				F645948B16B6A8F100B118C2 /* Shader.h */,
 				F677EE5F16E3CC6600BDAC73 /* Message.h */,
 				F63EA145175CA4C10095D11C /* Laser.cc */,
@@ -1198,6 +1203,7 @@
 				F63EA141175CA4A60095D11C /* MoveEngine.cc in Sources */,
 				F63EA144175CA4AE0095D11C /* MoveComponent.cc in Sources */,
 				F63EA147175CA4C20095D11C /* Laser.cc in Sources */,
+				F63EA14A175CBB6A0095D11C /* SizeComponent.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

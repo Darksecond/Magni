@@ -70,6 +70,7 @@ void HUDEngine::update(int pass, double delta)
                 _selection_end = _selection_start = renderEngine.get3DPositionFromMousePosition();
                 _selection_selecting = true;
             }
+            
         }
     }
     else
@@ -91,6 +92,8 @@ void HUDEngine::update(int pass, double delta)
             }
         }
     }
+    
+    renderEngine.setSelection(_selection_selecting, _selection_start, _selection_end);
 }
 
 void HUDEngine::addComponent(Entity& ent, const BaseComponent::Type& component_type)
