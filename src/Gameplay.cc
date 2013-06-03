@@ -3,6 +3,7 @@
 #include "HealthComponent.h"
 #include "AOEComponent.h"
 #include "MoveComponent.h"
+#include "SizeComponent.h"
 #include "Tile.h"
 
 #include <iostream>
@@ -11,9 +12,9 @@
 using namespace Ymir;
 
 Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
-    RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine, MoveEngine& moveEngine)
+    RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine, MoveEngine& moveEngine, HUDEngine& hudEngine)
         : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,playerNumber(1),currentSelectedUnit(nullptr),workerPrice(50),basicInfanteriePrice(10),orbitalDropBeaconPrice(100), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine),moveEngine(moveEngine)
+            renderEngine(renderEngine), screenSize(screenSize) ,playerNumber(1),currentSelectedUnit(nullptr),workerPrice(50),basicInfanteriePrice(10),orbitalDropBeaconPrice(100), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine),moveEngine(moveEngine),hudEngine(hudEngine)
 {
     client = new Client();
     client->gp = this;
@@ -208,6 +209,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
     basicInfantrie.assign<AOEComponent>(1); //is square
     basicInfantrie.assign<MoveComponent>(0.01f,1.0f,nullptr);
+    basicInfantrie.assign<SizeComponent>(0.25f);
 
     //currencyEngine.currency -= basicInfanteriePrice;
 
@@ -630,12 +632,7 @@ void Gameplay::updateTimer(float delta) {
 }
 
 void Gameplay::updateSelectedDataToRenderEngine(){
-    std::list<Entity*> entities;
-    Entity * entity = getCurrentSelectedEntity();
-    if(entity != nullptr) {
-        entities.push_back(entity);
-        renderEngine.setSelectedData(entities);//with selected list from hud.;
-    }
+        renderEngine.setSelectedData(hudEngine.selectedEntities());//with selected list from hud.;
 }
 
 void Gameplay::updateLaserDataToRenderEngine() {

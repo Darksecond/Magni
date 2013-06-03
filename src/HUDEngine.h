@@ -19,8 +19,11 @@ namespace Ymir
         RenderEngine& renderEngine;
         ResourceManager<Texture>& textureManager;
         std::list<std::shared_ptr<HUDElement>> elements;
-        std::shared_ptr<Entity> _selectedEntity;
-        public:
+        bool _selection_selecting;
+        glm::vec3 _selection_start;
+        glm::vec3 _selection_end;
+        std::list<std::shared_ptr<Entity>> _selection_entities;
+    public:
         Scene* scene;
 
         HUDEngine(RenderEngine& renderer, ResourceManager<Texture>& texMan);
@@ -36,6 +39,7 @@ namespace Ymir
         void removeElement(std::shared_ptr<HUDElement> element);
 
 
-        inline std::shared_ptr<Entity> selectedEntity() { return _selectedEntity; }
+        std::shared_ptr<Entity> selectedEntity();
+        std::list<std::shared_ptr<Entity>> selectedEntities();
     };
 };

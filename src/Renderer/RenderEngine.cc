@@ -3,6 +3,7 @@
 #include "Light.h"
 #include "../LightComponent.h"
 #include "../SpatialComponent.h"
+#include "../SizeComponent.h"
 #include "Text.h"
 #include "HUDElementVisitor.h"
 #include "HUDElement.h"
@@ -750,8 +751,8 @@ void RenderEngine::drawSelected(Program& p, Camera& c)
     }
 }
 
-void RenderEngine::setSelectedData(std::list<Entity*> entities) {
-    std::list<Entity*>::iterator iter;
+void RenderEngine::setSelectedData(std::list<std::shared_ptr<Entity>> entities) {
+    std::list<std::shared_ptr<Entity>>::iterator iter;
     float y = 0.01f;
     selectedCount = 0;
     int counter = 0;

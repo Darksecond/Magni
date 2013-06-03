@@ -42,7 +42,7 @@ void Application::createEngines()
 
 void Application::buildGame()
 {
-    gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine,*moveEngine);
+    gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine,*moveEngine,*hudEngine);
     gameplay->createCamera();
     gameplay->ghe = gameHudEngine;
 

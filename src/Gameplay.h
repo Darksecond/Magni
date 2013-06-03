@@ -32,7 +32,7 @@
 #include "RTSCameraBehavior.h"
 #include "EnergyBehaviour.h"
 #include "CurrencyEngine.h"
-
+#include "HudEngine.h"
 #include "GameHUDEngine.h"
 #include "Laser.h"
 
@@ -52,6 +52,7 @@ namespace Ymir
             CurrencyEngine& currencyEngine;
             AttackEngine& attackEngine;
             MoveEngine& moveEngine;
+            HUDEngine& hudEngine;
 
             static const int INFTIMER = 3;
             static const int BUILDTIMER = 3;
@@ -90,7 +91,7 @@ namespace Ymir
             enum {BUILD = 0, MOVE, WIN_LOSE, SELL, ATTACK, HELLO, PLAYER};
             enum {WORKER = 0, B_INFANTRY, A_INFANTRY, ENGINEER, ORBITAL, POWERCORE, ACADEMY, CICORE};
 
-            Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine, MoveEngine& moveEngine);
+            Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine, MoveEngine& moveEngine, HUDEngine& hudEngine);
 
             void createCamera();
             void updateCameraStart();

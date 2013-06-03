@@ -90,7 +90,7 @@ namespace Ymir
         void setGrid(bool);
         void setTileMap(TileMap*);
         void setLaserData(std::vector<Laser*> lasers);
-        void setSelectedData(std::list<Entity*> entities);
+        void setSelectedData(std::list<std::shared_ptr<Entity>> entities);
         // einde refactor nominatie
 
         void addText(std::shared_ptr<HUDElement> t)

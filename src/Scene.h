@@ -34,6 +34,7 @@ namespace Ymir
         void deleteEntity(Entity* entity);
         Entity* getEntity(int id);
         std::shared_ptr<Entity> getEntityAtPosition(glm::vec3 position);
+        std::list<std::shared_ptr<Entity>> getEntitiesBetweenPoints(glm::vec3 posA, glm::vec3 posB);
 
         std::map<int, std::shared_ptr<Entity>> entities;
     };
