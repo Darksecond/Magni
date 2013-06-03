@@ -5,7 +5,9 @@
 
 using namespace Ymir;
 
-SizeComponent::SizeComponent(float offset)
+SizeComponent::SizeComponent(float offset, int x, int z)
 {
     offSetSelected = offset;
+    x = x;
+    z = z;
 }

@@ -209,7 +209,7 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
     basicInfantrie.assign<AOEComponent>(1); //is square
     basicInfantrie.assign<MoveComponent>(0.01f,1.0f,nullptr);
-    basicInfantrie.assign<SizeComponent>(0.25f);
+    basicInfantrie.assign<SizeComponent>(0.25f,1,1);
 
     //currencyEngine.currency -= basicInfanteriePrice;
 

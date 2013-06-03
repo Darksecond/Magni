@@ -52,7 +52,6 @@ void MoveEngine::update(int pass, double delta)
                                 spatial->setDirection(q);
                                 spatial->set_position(spatial->get_position() + spatial->forward(speed));
                                 if(glm::distance(spatial->position,nextPoint) < 0.05f){
-                                    spatial->set_position(nextPoint);
                                     route->erase(route->begin(),route->begin()+1);
                                 }
                             }
