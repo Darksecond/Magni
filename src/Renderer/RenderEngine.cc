@@ -761,7 +761,7 @@ void RenderEngine::setLaserData(std::vector<Laser*> lasers) {
         g_vertex_buffer_data[i] = 0;
 
     for (iter = lasers.begin(); iter != lasers.end(); ++iter) {
-        if(counter > bufferSize)
+        if(counter + 1 > bufferSize)
             break;
 
         laserCount++;
@@ -828,7 +828,7 @@ void RenderEngine::setSelectedData(std::list<std::shared_ptr<Entity>> entities) 
         g_vertex_buffer_dataSelected[i] = 0;
 
     for (iter = entities.begin(); iter != entities.end(); ++iter) {
-        if(counter > bufferSizeSelected)
+        if(counter + 1 > bufferSizeSelected)
             break;
 
         auto spatial = (*iter)->component<SpatialComponent>();
