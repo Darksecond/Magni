@@ -101,9 +101,9 @@ namespace Ymir
         void createWorker();
             void createOrbitalDropBeacon();
             void createBasicInfantrie();
-        
+
             void processBuildingUnits(bool);
-        
+
             void createWorker(glm::vec3 position);
             void createGhostWorker(glm::vec3 position, int id);
             void createBasicInfantrie(glm::vec3 position);
@@ -122,7 +122,7 @@ namespace Ymir
             void buildAcademyOfAdvancedTechnologies(glm::vec3 position);
             void buildGhostAcademyOfAdvancedTechnologies(glm::vec3 position, int id);
 
-            void sellEntity(Entity* aEntity);
+            void sellEntity();
             void removeEntity(int id);
             void moveEntity();
             void moveEntity(glm::vec3 position, int id);

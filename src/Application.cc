@@ -224,8 +224,7 @@ void Application::runGame()
             gameplay->createBasicInfantrie(renderEngine->GetTilePosition());
         }
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
-            Entity* entity = gameplay->getCurrentSelectedEntity();
-            gameplay->sellEntity(entity);
+            gameplay->sellEntity();
         }
         if(glfwGetKey( 'G' ) == GLFW_PRESS) {
             gameplay->drawGrid(true);

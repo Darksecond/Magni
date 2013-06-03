@@ -167,7 +167,7 @@ void Gameplay::TestFollowPath(){
 
             Tile * t3 = new Tile(Tile::Type::NONE);
             t3->centerpoint = spat;
-            spat.x = spat.x +1.0f;
+            spat.z = spat.z +1.0f;
 
             Tile * t4 = new Tile(Tile::Type::NONE);
             t4->centerpoint = spat;
@@ -189,7 +189,6 @@ void Gameplay::TestFollowPath(){
             if (moveComponent != nullptr) {
                 moveComponent->tiles = testTileMap;
             }
-            //entity->assign<MoveComponent>(0.01f, 1, testTileMap);
         }
     }
 }
@@ -371,8 +370,9 @@ void Gameplay::loseGame()
     renderEngine.addText(losingText);
 }
 
-void Gameplay::sellEntity(Entity* aEntity)
+void Gameplay::sellEntity()
 {
+    Entity * aEntity = getCurrentSelectedEntity();
     if(aEntity != nullptr) {
         auto light = aEntity->component<LightComponent>();
         if ( light == nullptr ) {
@@ -385,7 +385,7 @@ void Gameplay::sellEntity(Entity* aEntity)
                     currencyEngine.currency += currencyComponent->price * healthPercentage;
                     scene.deleteEntity(aEntity);
                     currentSelectedUnit = nullptr;
-
+                    std::cout << " Selling "<< std::endl;
                     NetworkPacket np(aEntity->id, SELL);
                     client->write(np.char_array(), np.size());
                 }

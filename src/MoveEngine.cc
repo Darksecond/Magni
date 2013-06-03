@@ -35,13 +35,13 @@ void MoveEngine::addComponent(Entity& entity, const BaseComponent::Type& compone
 void MoveEngine::update(int pass, double delta)
 {
     if (pass = -1) {
-        std::cout << " temp " << std::endl;
         for(std::vector<Entity*>::const_iterator iter = this->entities.begin(), end= this->entities.end(); iter != end; ++iter){
             if((*iter) != nullptr) {
                 auto spatial = (*iter)->component<SpatialComponent>();
                 if(spatial != nullptr) {
                     auto moveC = (*iter)->component<MoveComponent>();
                     if(moveC != nullptr) {
+                        std::cout << "id: " << (*iter)->id  << " " << (*iter)->name << std::endl;
                         if(moveC->tiles != nullptr) {
                             float speed = moveC->speed;
                             int rspeed= moveC->rotationSpeed;
@@ -53,7 +53,7 @@ void MoveEngine::update(int pass, double delta)
                                 glm::quat q = glm::toQuat(direction);
                                 spatial->setDirection(q);
                                 spatial->set_position(spatial->get_position() + spatial->forward(speed));
-                                if(glm::distance(spatial->position,nextPoint) < 0.1f){
+                                if(glm::distance(spatial->position,nextPoint) < 0.05f){
                                     spatial->set_position(nextPoint);
                                     route->erase(route->begin(),route->begin()+1);
                                 }
@@ -64,4 +64,5 @@ void MoveEngine::update(int pass, double delta)
             }
         }
     }
+    std::cout << "------" << std::endl;
 }
