@@ -392,6 +392,7 @@ void drawSelection(glm::vec3 start, glm::vec3 end, const Camera& camera, Program
     glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), &buffer, GL_STATIC_DRAW);
 
     program.setUniform("MVP", MVP);
+    program.setUniform("inputColor", glm::vec3(1, 1, 1));
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -558,27 +559,27 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
         for (int column = 0; column < length; column++) {
             if(tileMap->getType(row,column) == Tile::Type::AOE) {
                 g_vertex_buffer_data[counter++] = -9.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -9.0f + column;
 
                 g_vertex_buffer_data[counter++] = -9.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -10.0f + column;
 
                 g_vertex_buffer_data[counter++] = -10.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -10.0f + column;
 
                 g_vertex_buffer_data[counter++] = -10.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -10.0f + column;
 
                 g_vertex_buffer_data[counter++] = -10.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -9.0f + column;
 
                 g_vertex_buffer_data[counter++] = -9.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -9.0f + column;
 
             }
@@ -799,6 +800,7 @@ void RenderEngine::drawSelected(Program& p, Camera& c)
         glBufferData(GL_ARRAY_BUFFER, bufferSizeSelected * sizeof(GLfloat), g_vertex_buffer_dataSelected, GL_STATIC_DRAW);
 
         p.setUniform("MVP", MVP);
+        p.setUniform("inputColor", glm::vec3(1,1,1));
 
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
