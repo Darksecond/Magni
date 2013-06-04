@@ -10,8 +10,7 @@ namespace Ymir
     class SizeComponent : public Component<SizeComponent>
     {
         public:
-            SizeComponent(float offset, int xSize, int zSize );
-            float offSetSelected;
+            SizeComponent(int xSize, int zSize );
             int x;
             int z;
     };

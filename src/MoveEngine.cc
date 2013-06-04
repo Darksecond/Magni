@@ -11,6 +11,7 @@ using namespace Ymir;
 
 MoveEngine::MoveEngine()
 {
+
 }
 
 void MoveEngine::registerEntity(Entity& entity)
@@ -43,14 +44,19 @@ void MoveEngine::update(int pass, double delta)
                     if(moveC != nullptr) {
                         if(moveC->tiles != nullptr) {
                             float speed = moveC->speed;
-                            int rspeed= moveC->rotationSpeed;
+                            float rspeed = moveC->rotationSpeed;
                             std::vector<Tile> *route = moveC->tiles;
+
                             if(route->size() >= 1){
                                 glm::vec3 nextPoint = route->at(0).centerpoint;
                                 glm::mat4 direction = glm::inverse(glm::lookAt(nextPoint, spatial->position, glm::vec3(0.0f,1.0f,0.0f)));
                                 glm::quat q = glm::toQuat(direction);
-                                spatial->setDirection(q);
+
+                                glm::quat newquat = glm::lerp(spatial->direction, q, rspeed);
+
+                                spatial->setDirection(newquat);
                                 spatial->set_position(spatial->get_position() + spatial->forward(speed));
+
                                 if(glm::distance(spatial->position,nextPoint) < 0.05f){
                                     route->erase(route->begin(),route->begin()+1);
                                 }
@@ -62,3 +68,4 @@ void MoveEngine::update(int pass, double delta)
         }
     }
 }
+

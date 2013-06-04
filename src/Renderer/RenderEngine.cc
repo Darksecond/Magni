@@ -392,6 +392,7 @@ void drawSelection(glm::vec3 start, glm::vec3 end, const Camera& camera, Program
     glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), &buffer, GL_STATIC_DRAW);
 
     program.setUniform("MVP", MVP);
+    program.setUniform("inputColor", glm::vec3(1, 1, 1));
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -558,27 +559,27 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
         for (int column = 0; column < length; column++) {
             if(tileMap->getType(row,column) == Tile::Type::AOE) {
                 g_vertex_buffer_data[counter++] = -9.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -9.0f + column;
 
                 g_vertex_buffer_data[counter++] = -9.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -10.0f + column;
 
                 g_vertex_buffer_data[counter++] = -10.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -10.0f + column;
 
                 g_vertex_buffer_data[counter++] = -10.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -10.0f + column;
 
                 g_vertex_buffer_data[counter++] = -10.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -9.0f + column;
 
                 g_vertex_buffer_data[counter++] = -9.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -9.0f + column;
 
             }
@@ -601,6 +602,7 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
     p.setUniform("MVP", MVP);
+    p.setUniform("inputColor", glm::vec3(1, 1, 0));
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -639,34 +641,34 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
             // top
 
             g_vertex_buffer_data[counter++] = -10.0f + (width * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row);
             g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row);
 
             // right
             g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row);
             g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
 
             // bottom
             g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
             g_vertex_buffer_data[counter++] = -10.0f + (width * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
 
             // left
             g_vertex_buffer_data[counter++] = -10.0f + (height * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
             g_vertex_buffer_data[counter++] = -10.0f + (height * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row);
         }
     }
@@ -688,6 +690,7 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
     glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), g_vertex_buffer_data, GL_STATIC_DRAW);
 
     p.setUniform("MVP", MVP);
+    p.setUniform("inputColor", glm::vec3(1,0,0));
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -729,6 +732,7 @@ void RenderEngine::drawLaser(Program& p, Camera& c)
         glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), g_vertex_buffer_data, GL_STATIC_DRAW);
 
         p.setUniform("MVP", MVP);
+        p.setUniform("inputColor", glm::vec3(1,0,0));
 
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -761,7 +765,7 @@ void RenderEngine::setLaserData(std::vector<Laser*> lasers) {
         g_vertex_buffer_data[i] = 0;
 
     for (iter = lasers.begin(); iter != lasers.end(); ++iter) {
-        if(counter > bufferSize)
+        if(counter + 1 > bufferSize)
             break;
 
         laserCount++;
@@ -796,6 +800,7 @@ void RenderEngine::drawSelected(Program& p, Camera& c)
         glBufferData(GL_ARRAY_BUFFER, bufferSizeSelected * sizeof(GLfloat), g_vertex_buffer_dataSelected, GL_STATIC_DRAW);
 
         p.setUniform("MVP", MVP);
+        p.setUniform("inputColor", glm::vec3(1,1,1));
 
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -828,7 +833,7 @@ void RenderEngine::setSelectedData(std::list<std::shared_ptr<Entity>> entities) 
         g_vertex_buffer_dataSelected[i] = 0;
 
     for (iter = entities.begin(); iter != entities.end(); ++iter) {
-        if(counter > bufferSizeSelected)
+        if(counter + 1 > bufferSizeSelected)
             break;
 
         auto spatial = (*iter)->component<SpatialComponent>();
@@ -836,46 +841,50 @@ void RenderEngine::setSelectedData(std::list<std::shared_ptr<Entity>> entities) 
         if(spatial != nullptr && sizeC != nullptr) { //deze check kan stiekem wel weg omdat Tim hier al het goed is op checkt.
             float x = spatial->position.x;
             float z = spatial->position.z;
-            float offSet = sizeC->offSetSelected;
+            float xx = sizeC->x;
+            float zz = sizeC->z;
+            float offSetX = xx * 0.25f;
+            float offSetZ = zz * 0.25f;
+            std::cout << offSetX << " " << sizeC->x << " " << xx << std::endl;
             selectedCount++;
 
-            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
 
-            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
 
 
 
-            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
 
-            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
 
 
 
-            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
 
-            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
 
 
 
-            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
 
-            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
 
         }
     }

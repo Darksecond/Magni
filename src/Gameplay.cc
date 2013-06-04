@@ -120,7 +120,8 @@ void Gameplay::createWorker(glm::vec3 position)
     worker.assign<HealthComponent>(5);
     worker.assign<CurrencyComponent>(workerPrice);
     worker.assign<OwnerComponent>(playerNumber);
-    worker.assign<MoveComponent>(0.01f,1.0f,nullptr);
+    worker.assign<MoveComponent>(0.01f, 0.075f, nullptr);
+    worker.assign<SizeComponent>(1,1);
     workerBuild = true;
 
     NetworkPacket np(worker.id, BUILD);
@@ -143,7 +144,7 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
     worker.assign<HealthComponent>(500);
     worker.assign<CurrencyComponent>(workerPrice);
     worker.assign<OwnerComponent>(otherPlayerNumber);
-    worker.assign<MoveComponent>(0.01f,1.0f,nullptr);
+    worker.assign<MoveComponent>(0.01f, 0.075f, nullptr);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
 }
@@ -208,9 +209,8 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
     basicInfantrie.assign<HealthComponent>(10);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
     basicInfantrie.assign<AOEComponent>(1); //is square
-    basicInfantrie.assign<MoveComponent>(0.01f,1.0f,nullptr);
-    basicInfantrie.assign<SizeComponent>(0.25f,1,1);
-
+    basicInfantrie.assign<MoveComponent>(0.01f,0.075f,nullptr);
+    basicInfantrie.assign<SizeComponent>(1,1);
     //currencyEngine.currency -= basicInfanteriePrice;
 
     NetworkPacket np(basicInfantrie.id, BUILD);
@@ -254,6 +254,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<EnergyComponent>(-50);
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
+        ciCore.assign<AOEComponent>(4);
 
         myCoreID = ciCore.id;
 
@@ -271,7 +272,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<EnergyComponent>(-50);
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
-
+        ciCore.assign<SizeComponent>(3,3);
         myCoreID = ciCore.id;
 
         NetworkPacket np(ciCore.id, BUILD);
