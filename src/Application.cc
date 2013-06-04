@@ -4,6 +4,8 @@
 #include "HealthComponent.h"
 #include "AttackComponent.h"
 
+#include <iostream>
+
 using namespace Ymir;
 
 Application::Application() : SCREEN_SIZE(800, 600)
@@ -42,7 +44,7 @@ void Application::createEngines()
 
 void Application::buildGame()
 {
-    gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine,*moveEngine,*hudEngine);
+    gameplay = new Gameplay(*engines, textureManager, meshManager, SCREEN_SIZE);
     gameplay->createCamera();
     gameplay->ghe = gameHudEngine;
 

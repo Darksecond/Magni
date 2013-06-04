@@ -4,6 +4,8 @@
 
 #include <vector>
 #include <memory>
+#include <map>
+#include <typeinfo>
 
 namespace Ymir
 {
@@ -17,7 +19,7 @@ namespace Ymir
     class EngineManager
     {
     public:
-        std::vector<std::unique_ptr<Engine>> engines;
+        std::map<size_t, std::unique_ptr<Engine>> engines;
         void registerEntity(Entity& entity);
         void unregisterEntity(Entity& entity);
         void addComponent(Entity& entity, const BaseComponent::Type& component_type);
@@ -28,6 +30,9 @@ namespace Ymir
 
         template<typename T, typename ... Args>
         T& assign(Args && ... args);
+        
+        template<typename T>
+        T& get();
     };
 
     //INLINE & TEMPLATE METHODS
@@ -42,7 +47,13 @@ namespace Ymir
     T& EngineManager::assign(std::unique_ptr<T> engine)
     {
         T& ret = *engine;
-        engines.push_back(std::move(engine));
+        engines[typeid(T).hash_code()] = std::move(engine);
         return ret;
+    }
+
+    template<typename T>
+    T& EngineManager::get()
+    {
+        return *static_cast<T*>(engines.at(typeid(T).hash_code()).get());
     }
 };
