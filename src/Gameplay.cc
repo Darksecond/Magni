@@ -118,7 +118,7 @@ glm::vec3 Gameplay::getFreePosition(Entity* currentBuilding) {
 
             int xTileLocationStart  = (int) (xStart +10); //Offset to tilemap is 10.
             int xTileLocationEnd    = (int) (xEnd   +10); //Dit is de helft van het aantal rows/collommen
-            int zTileLocationStart  = (int) (zStart +10); //
+            int zTileLocationStart  = (int) (zStart +10); // vies hardcoded moet even mooi smoothcoded
             int zTileLocationEnd    = (int) (zEnd   +10); //
 
             std::vector<Tile> * freeTiles = new std::vector<Tile>();
@@ -318,7 +318,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
         ciCore.assign<AOEComponent>(4);
-        ciCore.assign<SizeComponent>(2,2);
+        ciCore.assign<SizeComponent>(1,1);
         setBuilding(ciCore);
         myCoreID = ciCore.id;
 
@@ -336,7 +336,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<EnergyComponent>(-50);
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
-        ciCore.assign<SizeComponent>(2,2);
+        ciCore.assign<SizeComponent>(1,1);
         setBuilding(ciCore);
 
         myCoreID = ciCore.id;
@@ -470,10 +470,12 @@ void Gameplay::setBuilding(Entity& aEntity) {
     auto size = aEntity.component<SizeComponent>();
     auto spatial = aEntity.component<SpatialComponent>();
     if(size != nullptr && spatial != nullptr){
-        float xStart = spatial->position.x - size->x/2;
-        float xEnd   = spatial->position.x + size->x/2;
-        float zStart = spatial->position.z - size->z/2;
-        float zEnd   = spatial->position.z + size->z/2;
+        float x = size->x;
+        float z = size->z;
+        float xStart = spatial->position.x - x/2 + 0.5;
+        float xEnd   = spatial->position.x + x/2 - 0.5;
+        float zStart = spatial->position.z - z/2 + 0.5;
+        float zEnd   = spatial->position.z + z/2 - 0.5;
         int xTileLocationStart  = (int) (xStart +10); //Offset to tilemap is 10.
         int xTileLocationEnd    = (int) (xEnd   +10); //Dit is de helft van het aantal rows/collommen
         int zTileLocationStart  = (int) (zStart +10); //
