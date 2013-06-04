@@ -247,15 +247,15 @@ void Gameplay::buildCentralIntelligenceCore()
 
     if(playerNumber == 1) {
         Entity& ciCore = scene.assign("ACiCore");
-        glm::vec3 position = glm::vec3{-7,0,7};
+        glm::vec3 position = glm::vec3{-7.5,0,7.5};
         ciCore.assign<SpatialComponent>(position);
         ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
         ciCore.assign<EnergyComponent>(-50);
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
         ciCore.assign<AOEComponent>(4);
-        ciCore.assign<SizeComponent>(3,3);
-
+        ciCore.assign<SizeComponent>(2,2);
+        setBuilding(ciCore);
         myCoreID = ciCore.id;
 
         NetworkPacket np(ciCore.id, BUILD);
@@ -266,12 +266,14 @@ void Gameplay::buildCentralIntelligenceCore()
         client->write(np.char_array(), np.size());
     } else {
         Entity& ciCore = scene.assign("ACiCore");
-        glm::vec3 position = glm::vec3{7,0,-7};
+        glm::vec3 position = glm::vec3{7.5,0,-7.5};
         ciCore.assign<SpatialComponent>(position);
         ciCore.assign<ModelComponent>(CentralIntelligenceCore_mesh, CentralIntelligenceCore_tex);
         ciCore.assign<EnergyComponent>(-50);
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
+        ciCore.assign<SizeComponent>(2,2);
+        setBuilding(ciCore);
 
         myCoreID = ciCore.id;
 
@@ -400,6 +402,31 @@ void Gameplay::sellEntity()
 void Gameplay::removeEntity(int id) {
     scene.deleteEntity(scene.getEntity(id));
 }
+
+void Gameplay::setBuilding(Entity& aEntity) {
+   // Entity* aEntity = getCurrentSelectedEntity();
+    auto size = aEntity.component<SizeComponent>();
+    auto spatial = aEntity.component<SpatialComponent>();
+    if(size != nullptr && spatial != nullptr){
+        float xStart = spatial->position.x - size->x/2;
+        float xEnd   = spatial->position.x + size->x/2;
+        float zStart = spatial->position.z - size->z/2;
+        float zEnd   = spatial->position.z + size->z/2;
+        int xTileLocationStart  = (int) (xStart +10); //Offset to tilemap is 10.
+        int xTileLocationEnd    = (int) (xEnd   +10); //Dit is de helft van het aantal rows/collommen
+        int zTileLocationStart  = (int) (zStart +10); //
+        int zTileLocationEnd    = (int) (zEnd   +10); //
+
+        for(int i = xTileLocationStart; i <= xTileLocationEnd; i++) {
+            for(int y = zTileLocationStart; y <= zTileLocationEnd; y++) {
+                if(i >= 0 && i <= 20 && y >= 0 && y <= 20) {
+                    tileMap->setType(i,y,Tile::Type::BUILDING);
+                }
+            }
+        }
+     }
+}
+
 
 void Gameplay::setAOE(bool reset) {
     Entity* aEntity = getCurrentSelectedEntity();

@@ -151,7 +151,7 @@ namespace Ymir
             void setTileMap(TileMap*);
 
             void setAOE(bool reset = false);
-
+            void setBuilding(Entity& aEntity);
             void TestFollowPath(); // remove this when maarten is done with a*
     };
 };
