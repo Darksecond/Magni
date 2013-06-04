@@ -12,7 +12,7 @@ TileMap::TileMap(int amount, int width, int height)
 		for(int j = 0; j < amount; j++) {
 			temp.emplace_back(Tile::Type::NONE);
         }
-        _tilemap.push_back(temp);
+        tilemap.push_back(temp);
 	}
 }
 
@@ -22,11 +22,11 @@ TileMap::~TileMap()
 }
 
 Tile::Type TileMap::getType(int x, int y) {
-    return (_tilemap[x][y])._type;
+    return (tilemap[x][y])._type;
 }
 
 void TileMap::setType(int x, int y, Tile::Type type) {
-    (_tilemap[x][y])._type = type;
+    (tilemap[x][y])._type = type;
 }
 
 int TileMap::getMapWidth()

@@ -849,8 +849,8 @@ void RenderEngine::setSelectedData(std::list<std::shared_ptr<Entity>> entities) 
             float offSetZ = 0.25;
             float offSetX = 0.25;
             if( sizeC != nullptr ) {
-                offSetZ = sizeC->x*0.25;
-                offSetX = sizeC->z*0.25;
+                offSetZ = sizeC->x/2 + 0.25;
+                offSetX = sizeC->z/2 + 0.25;
             }
             selectedCount++;
 

@@ -17,11 +17,13 @@ class TileMap
         int getMapWidth();
         int getMapHeight();
         int getMapAmount();
+
+        std::vector<std::vector<Tile>> tilemap;
     protected:
 
     private:
         int mapWidth;
         int mapHeight;
         int mapAmount;
-        std::vector<std::vector<Tile>> _tilemap;
+
 };

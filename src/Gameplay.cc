@@ -89,10 +89,59 @@ void Gameplay::createUnit(const char* mesh, const char* type_name, int price)
         currencyEngine.currency -= price;
     }
 }
+void Gameplay::createUnitAtBuilding( Entity* currentBuilding, std::string name, int price ) {
+    if(currentBuilding != nullptr) {
+        try{
+            if(currencyEngine.currency >= price) {
+                if(name == "worker")
+                    createWorker(getFreePosition( currentBuilding ));
+                if(name == "basicInfantrie")
+                    createBasicInfantrie(getFreePosition( currentBuilding ));
+                currencyEngine.currency -= price;
+            }
+        } catch(std::runtime_error) {
+            std::cout<< "no free position" << std::endl;
+        }
+    }
+}
+
+glm::vec3 Gameplay::getFreePosition(Entity* currentBuilding) {
+    auto spatial = currentBuilding->component<SpatialComponent>();
+    auto size    = currentBuilding->component<SizeComponent>();
+    if( spatial != nullptr && size != nullptr ) {
+        if(size != nullptr && spatial != nullptr){
+            std::cout << size->x << std::endl;
+            float xStart = spatial->position.x - size->x/2 -1;
+            float xEnd   = spatial->position.x + size->x/2 +1;
+            float zStart = spatial->position.z - size->z/2 -1;
+            float zEnd   = spatial->position.z + size->z/2 +1;
+
+            int xTileLocationStart  = (int) (xStart +10); //Offset to tilemap is 10.
+            int xTileLocationEnd    = (int) (xEnd   +10); //Dit is de helft van het aantal rows/collommen
+            int zTileLocationStart  = (int) (zStart +10); //
+            int zTileLocationEnd    = (int) (zEnd   +10); //
+
+            std::vector<Tile> * freeTiles = new std::vector<Tile>();
+
+            for(int i = xTileLocationStart; i <= xTileLocationEnd; i++) {
+                for(int y = zTileLocationStart; y <= zTileLocationEnd; y++) {
+                    if(i >= 0 && i <= 20 && y >= 0 && y <= 20) {
+                        if(( tileMap->getType(i, y) == Tile::Type::NONE ) || (tileMap->getType(i, y) == Tile::Type::AOE ) ) {
+                            freeTiles->push_back(tileMap->tilemap[i][y]);
+                        }
+                    }
+                }
+            }
+            if(freeTiles->size() >= 1)
+                return freeTiles->at(0).centerpoint;
+        }
+    }
+    throw std::runtime_error("No free position");
+}
 
 void Gameplay::createWorker()
 {
-    createUnit("worker.obj", "worker", workerPrice);
+    createUnitAtBuilding( getCurrentSelectedEntity() , "worker", workerPrice );
 }
 
 void Gameplay::createOrbitalDropBeacon()
@@ -102,7 +151,7 @@ void Gameplay::createOrbitalDropBeacon()
 
 void Gameplay::createBasicInfantrie()
 {
-    createUnit("basicInfantry.obj", "basicInfantrie", basicInfanteriePrice);
+    createUnitAtBuilding(getCurrentSelectedEntity(), "basicInfantrie", basicInfanteriePrice);
 }
 
 void Gameplay::processBuildingUnits(bool left_pressed)
@@ -334,7 +383,8 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
     house.assign<OwnerComponent>(playerNumber);
     house.assign<HealthComponent>(20);
     house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
-
+    house.assign<SizeComponent>(2,3);
+    setBuilding(house); //this needs to be done better :)
     barracksBuild = true;
 
     NetworkPacket np(house.id, BUILD);
@@ -344,9 +394,6 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
     np.set(3, position.z);
 
     client->write(np.char_array(), np.size());
-
-    //currencyEngine.currency -= orbitalDropBeaconPrice;
-    //buildingTimer = 0;
 }
 
 void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)

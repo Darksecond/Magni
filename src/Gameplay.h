@@ -153,5 +153,11 @@ namespace Ymir
             void setAOE(bool reset = false);
             void setBuilding(Entity& aEntity);
             void TestFollowPath(); // remove this when maarten is done with a*
+
+
+
+            void createUnitAtBuilding(Entity* currentBuilding, std::string name, int price);
+
+            glm::vec3 getFreePosition(Entity* currentBuilding);
     };
 };
