@@ -17,5 +17,6 @@ namespace Ymir
         int startHealth;
         uint32_t getHealth();
         void setDebuff(uint32_t);
+        void setHealth(uint32_t);
     };
 };

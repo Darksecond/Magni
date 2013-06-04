@@ -1,5 +1,6 @@
 #include "EnergyEngine.h"
 #include "EnergyComponent.h"
+#include "HealthComponent.h"
 
 #include <GLM/glm.hpp>
 
@@ -79,6 +80,7 @@ void EnergyEngine::update(int pass, double delta)
             std::stringstream warning;
             warning << "Warning, low on energy. Debuff is applied.";
             energy_warning_text->text = warning.str();
+            //gameplay.setDebuff();
         } else {
             std::stringstream clear;
             clear << "";
@@ -98,4 +100,8 @@ void EnergyEngine::addComponent(Entity& entity, const BaseComponent::Type& compo
 
 int EnergyEngine::getTotal() {
     return total;
+}
+
+void EnergyEngine::setDebuff() {
+    
 }

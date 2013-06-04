@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42C8EDB1175CABDD00F76D6E /* HealthComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 42C8EDB0175CABDD00F76D6E /* HealthComponent.cpp */; };
 		F608BC7E17560C60005057F5 /* HUDElement.cc in Sources */ = {isa = PBXBuildFile; fileRef = F608BC7C17560C60005057F5 /* HUDElement.cc */; };
 		F608BC8117560E29005057F5 /* HUDElementVisitor.cc in Sources */ = {isa = PBXBuildFile; fileRef = F608BC7F17560E29005057F5 /* HUDElementVisitor.cc */; };
 		F608BC8417561C39005057F5 /* Image.cc in Sources */ = {isa = PBXBuildFile; fileRef = F608BC8217561C39005057F5 /* Image.cc */; };
@@ -183,6 +184,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		42C8EDB0175CABDD00F76D6E /* HealthComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HealthComponent.cpp; sourceTree = "<group>"; };
 		42C94DA717424E46009035F4 /* Timer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cc; sourceTree = "<group>"; };
 		42C94DA817424E46009035F4 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
 		42C94DAA17424E7A009035F4 /* EnergyBehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnergyBehaviour.cpp; sourceTree = "<group>"; };
@@ -829,6 +831,7 @@
 				F62F58A916E62FAF008B379E /* SourceComponent.h */,
 				F6C1976D16FB11CF00148326 /* EnergyComponent.h */,
 				F67A3947170316B8004AAF05 /* HealthComponent.h */,
+				42C8EDB0175CABDD00F76D6E /* HealthComponent.cpp */,
 				F67A394817031771004AAF05 /* AttackComponent.h */,
 				F6D1EA411714000200906822 /* CurrencyComponent.h */,
 			);
@@ -1180,6 +1183,7 @@
 				F608BC8417561C39005057F5 /* Image.cc in Sources */,
 				F608BC8717562C5A005057F5 /* HUDEngine.cc in Sources */,
 				F617C59C1757425600CDAD79 /* GameHUDEngine.cc in Sources */,
+				42C8EDB1175CABDD00F76D6E /* HealthComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

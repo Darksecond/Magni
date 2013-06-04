@@ -11,6 +11,8 @@ class Tile
             UNIT,
             AOE
         };
+    
+        Type retType();
 
         Type _type;
 
