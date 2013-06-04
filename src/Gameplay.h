@@ -87,9 +87,12 @@ namespace Ymir
 
             int orbitalDropBeaconPrice;
             int orbitalDropBeaconEnergy;
+        
+            int towerOfInfluencePrice;
+            int towerOfInfluenceEnergy;
 
             enum {BUILD = 0, MOVE, WIN_LOSE, SELL, ATTACK, HELLO, PLAYER};
-            enum {WORKER = 0, B_INFANTRY, A_INFANTRY, ENGINEER, ORBITAL, POWERCORE, ACADEMY, CICORE};
+            enum {WORKER = 0, B_INFANTRY, A_INFANTRY, ENGINEER, ORBITAL, POWERCORE, ACADEMY, CICORE, TOWER};
 
             Gameplay(EngineManager& engineManager, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, glm::vec2 screenSize);
 
@@ -108,7 +111,7 @@ namespace Ymir
             void createWorker(glm::vec3 position);
             void createGhostWorker(glm::vec3 position, int id);
             void createBasicInfantrie(glm::vec3 position);
-        void createGhostBasicInfantrie(glm::vec3 position, int id);
+            void createGhostBasicInfantrie(glm::vec3 position, int id);
             void createAdvancedInfantrie(glm::vec3 position);
             void createGhostAdvancedInfantrie(glm::vec3 position, int id);
             void createEngineer(glm::vec3 position);
@@ -122,6 +125,8 @@ namespace Ymir
             void buildGhostPowerCore(glm::vec3 position, int id);
             void buildAcademyOfAdvancedTechnologies(glm::vec3 position);
             void buildGhostAcademyOfAdvancedTechnologies(glm::vec3 position, int id);
+            void buildTower(glm::vec3 position);
+            void buildGhostTower(glm::vec3 position, int id);
 
             void sellEntity();
             void removeEntity(int id);
@@ -150,6 +155,9 @@ namespace Ymir
 
             void setTileMap(TileMap*);
 
+            void setAOE(Entity& aEntity);
+            void setDebuff();
+        bool isInAOE(glm::vec3 position, int id_attacking_unit);
             void setAOE(bool reset = false);
 
             void TestFollowPath(); // remove this when maarten is done with a*

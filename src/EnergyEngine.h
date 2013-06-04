@@ -3,6 +3,7 @@
 #include "Engine.h"
 #include "Renderer/RenderEngine.h"
 #include "EnergyComponent.h"
+#include "Application.h"
 
 #include <list>
 #include <memory>
@@ -22,6 +23,7 @@ namespace Ymir
         
     private:
         int total, produced, consumed;
+        //Gameplay& gameplay;
         
     public:
         EnergyEngine(RenderEngine& renderer);
@@ -30,6 +32,7 @@ namespace Ymir
         virtual void unregisterEntity(Entity& entity);
         virtual void update(int pass, double delta);
         virtual void addComponent(Entity& entity, const BaseComponent::Type& component_type);
+        virtual void setDebuff();
         
         int getTotal();
     };

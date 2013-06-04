@@ -227,6 +227,9 @@ void Application::runGame()
         if(glfwGetKey( 'K' ) == GLFW_PRESS) {
             gameplay->createBasicInfantrie(renderEngine->GetTilePosition());
         }
+        if(glfwGetKey( 'L' ) == GLFW_PRESS) {
+            gameplay->buildTower(renderEngine->GetTilePosition());
+        }
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
             gameplay->sellEntity();
         }

@@ -846,46 +846,50 @@ void RenderEngine::setSelectedData(std::list<std::shared_ptr<Entity>> entities) 
         if(spatial != nullptr && sizeC != nullptr) { //deze check kan stiekem wel weg omdat Tim hier al het goed is op checkt.
             float x = spatial->position.x;
             float z = spatial->position.z;
-            float offSet = sizeC->offSetSelected;
+            float xx = sizeC->x;
+            float zz = sizeC->z;
+            float offSetX = xx * 0.25f;
+            float offSetZ = zz * 0.25f;
+            std::cout << offSetX << " " << sizeC->x << " " << xx << std::endl;
             selectedCount++;
 
-            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
 
-            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
 
 
 
-            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
 
-            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
 
 
 
-            g_vertex_buffer_dataSelected[counter++] = x+offSet;
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
 
-            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
 
 
 
-            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z+offSet;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
 
-            g_vertex_buffer_dataSelected[counter++] = x-offSet;
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
             g_vertex_buffer_dataSelected[counter++] = y;
-            g_vertex_buffer_dataSelected[counter++] = z-offSet;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
 
         }
     }
