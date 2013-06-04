@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <iostream>
+#include <vector>
 #include <string>
 
 #include "Scene.h"
@@ -17,6 +18,7 @@
 #include "Entity.h"
 #include "Renderer/RenderEngine.h"
 #include "AttackEngine.h"
+#include "MoveEngine.h"
 
 #include "SpatialComponent.h"
 #include "ModelComponent.h"
@@ -30,7 +32,9 @@
 #include "RTSCameraBehavior.h"
 #include "EnergyBehaviour.h"
 #include "CurrencyEngine.h"
+#include "HudEngine.h"
 #include "GameHUDEngine.h"
+#include "Laser.h"
 
 namespace Ymir
 {
@@ -47,6 +51,8 @@ namespace Ymir
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
             AttackEngine& attackEngine;
+            MoveEngine& moveEngine;
+            HUDEngine& hudEngine;
 
             static const int INFTIMER = 3;
             static const int BUILDTIMER = 3;
@@ -59,11 +65,12 @@ namespace Ymir
             float infantryTimer, buildingTimer, myAttackTimer;
             int unitIdentifyCounter, myCoreID;
             TileMap* tileMap;
+            std::vector<Laser*> lasers;
 
         public:
-            GameHUDEngine* ghe = nullptr;
-        Client* client;
-            Entity* currentlyBuildingEntity = nullptr;
+            GameHUDEngine* ghe;
+            Client* client;
+            Entity* currentlyBuildingEntity;
             int playerNumber, otherPlayerNumber;
 
             int workerPrice;
@@ -87,7 +94,7 @@ namespace Ymir
             enum {BUILD = 0, MOVE, WIN_LOSE, SELL, ATTACK, HELLO, PLAYER};
             enum {WORKER = 0, B_INFANTRY, A_INFANTRY, ENGINEER, ORBITAL, POWERCORE, ACADEMY, CICORE, TOWER};
 
-            Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine);
+            Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine, MoveEngine& moveEngine, HUDEngine& hudEngine);
 
             void createCamera();
             void updateCameraStart();
@@ -98,9 +105,9 @@ namespace Ymir
         void createWorker();
             void createOrbitalDropBeacon();
             void createBasicInfantrie();
-        
+
             void processBuildingUnits(bool);
-        
+
             void createWorker(glm::vec3 position);
             void createGhostWorker(glm::vec3 position, int id);
             void createBasicInfantrie(glm::vec3 position);
@@ -121,7 +128,7 @@ namespace Ymir
             void buildTower(glm::vec3 position);
             void buildGhostTower(glm::vec3 position, int id);
 
-            void sellEntity(Entity* aEntity);
+            void sellEntity();
             void removeEntity(int id);
             void moveEntity();
             void moveEntity(glm::vec3 position, int id);
@@ -143,11 +150,16 @@ namespace Ymir
             Scene& getScene();
 
             void updateTimer(float delta);
+            void updateLaserDataToRenderEngine();
+            void updateSelectedDataToRenderEngine();
 
             void setTileMap(TileMap*);
 
             void setAOE(Entity& aEntity);
             void setDebuff();
         bool isInAOE(glm::vec3 position, int id_attacking_unit);
+            void setAOE(bool reset = false);
+
+            void TestFollowPath(); // remove this when maarten is done with a*
     };
 };

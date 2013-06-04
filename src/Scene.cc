@@ -81,4 +81,66 @@ std::shared_ptr<Entity> Scene::getEntityAtPosition(glm::vec3 position)
 
     return theEntity;
 }
+
+std::list<std::shared_ptr<Entity>> Scene::getEntitiesBetweenPoints(glm::vec3 posA, glm::vec3 posB)
+{
+    glm::vec3 smallest;
+    glm::vec3 biggest;
+    
+    if(posA.x > posB.x)
+    {
+        smallest.x = posB.x;
+        biggest.x = posA.x;
+    }
+    else
+    {
+        smallest.x = posA.x;
+        biggest.x = posB.x;
+    }
+    if(posA.y > posB.y)
+    {
+        smallest.y = posB.y;
+        biggest.y = posA.y;
+    }
+    else
+    {
+        smallest.y = posA.y;
+        biggest.y = posB.y;
+    }
+    if(posA.z > posB.z)
+    {
+        smallest.z = posB.z;
+        biggest.z = posA.z;
+    }
+    else
+    {
+        smallest.z = posA.z;
+        biggest.z = posB.z;
+    }
+    
+    std::list<std::shared_ptr<Entity>> within;
+    
+    for (auto& entitiesEntry : entities)
+    {
+        std::shared_ptr<Entity>& entity = entitiesEntry.second;
+        auto spatial = entity->component<SpatialComponent>();
+        if(spatial == nullptr) continue;
         
+        //x's are not 'equal'
+        if(glm::abs(posA.x - posB.x) > 0.01f)
+            if(spatial->get_position().x < smallest.x || spatial->get_position().x > biggest.x) continue;
+        
+        //y's are not 'equal'
+        if(glm::abs(posA.y - posB.y) > 0.01f)
+            if(spatial->get_position().y < smallest.y || spatial->get_position().y > biggest.y) continue;
+        
+        //z's are not 'equal'
+        if(glm::abs(posA.z - posB.z) > 0.01f)
+            if(spatial->get_position().z < smallest.z || spatial->get_position().z > biggest.z) continue;
+        
+        within.push_back(entity);
+    }
+    
+    return within;
+}
+

@@ -15,7 +15,11 @@ using namespace Ymir;
 HUDEngine::HUDEngine(RenderEngine& renderer, ResourceManager<Texture>& texMan) : renderEngine(renderer), textureManager(texMan), elements()
 {
     scene = nullptr;
-    _selectedEntity = nullptr;
+    
+    _selection_selecting = false;
+    _selection_start = glm::vec3(0);
+    _selection_end = glm::vec3(0);
+    _selection_entities = std::list<std::shared_ptr<Entity>>();
 }
 
 void HUDEngine::registerEntity(Entity& ent)
@@ -57,15 +61,41 @@ void HUDEngine::update(int pass, double delta)
         
         if(!hud_clicked && scene)
         {
-            _selectedEntity = scene->getEntityAtPosition(renderEngine.get3DPositionFromMousePosition());
-            //TODO track changes in selectedEntity
+            if(_selection_selecting)
+            {
+                _selection_end = renderEngine.get3DPositionFromMousePosition();
+            }
+            else
+            {
+                _selection_end = _selection_start = renderEngine.get3DPositionFromMousePosition();
+                _selection_selecting = true;
+            }
+            
         }
     }
     else
     {
         for(auto e : elements)
             e->set_clicked(false);
+        
+        if(_selection_selecting)
+        {
+            _selection_selecting = false;
+            if(glm::distance(_selection_start, _selection_end) < 0.01f)
+            {
+                _selection_entities = std::list<std::shared_ptr<Entity>>();
+                std::shared_ptr<Entity> e = scene->getEntityAtPosition(_selection_start);
+                if(e)
+                    _selection_entities.push_back(e);
+            }
+            else
+            {
+                _selection_entities = scene->getEntitiesBetweenPoints(_selection_start, _selection_end);
+            }
+        }
     }
+    
+    renderEngine.setSelection(_selection_selecting, _selection_start, _selection_end);
 }
 
 void HUDEngine::addComponent(Entity& ent, const BaseComponent::Type& component_type)
@@ -97,4 +127,17 @@ void HUDEngine::removeElement(std::shared_ptr<HUDElement> element)
 {
     elements.remove(element);
     renderEngine.texts.remove(element);
+}
+
+std::list<std::shared_ptr<Entity>> HUDEngine::selectedEntities()
+{
+    return _selection_entities;
+}
+
+std::shared_ptr<Entity> HUDEngine::selectedEntity()
+{
+    if(_selection_entities.empty())
+        return nullptr;
+    else
+        return _selection_entities.front();
 }

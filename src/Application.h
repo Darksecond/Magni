@@ -29,12 +29,14 @@
 #include "CollisionEngine.h"
 #include "AudioEngine.h"
 #include "AttackEngine.h"
+#include "MoveEngine.h"
 #include "Client.h"
 #include "Server.h"
 #include "Timer.h"
 
 #include "EnergyEngine.h"
 #include "CurrencyEngine.h"
+#include "MoveEngine.h"
 #include "HUDEngine.h"
 #include "GameHUDEngine.h"
 
@@ -56,6 +58,7 @@ namespace Ymir
             CurrencyEngine * currencyEngine;
             HUDEngine* hudEngine;
             GameHUDEngine* gameHudEngine;
+            MoveEngine      * moveEngine;
             glm::vec2 SCREEN_SIZE;
             double lastTime;
 

@@ -2,6 +2,8 @@
 #include "AttackComponent.h"
 #include "HealthComponent.h"
 #include "AOEComponent.h"
+#include "MoveComponent.h"
+#include "SizeComponent.h"
 #include "Tile.h"
 
 #include <iostream>
@@ -34,13 +36,22 @@ Gameplay::Gameplay(
                     buildingTimer(0),
                     unitIdentifyCounter(0),
                     attackEngine(attackEngine)
+=======
+Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
+    RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine, MoveEngine& moveEngine, HUDEngine& hudEngine)
+        : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
+            renderEngine(renderEngine), screenSize(screenSize) ,playerNumber(1),currentSelectedUnit(nullptr),workerPrice(50),basicInfanteriePrice(10),orbitalDropBeaconPrice(100), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine),moveEngine(moveEngine),hudEngine(hudEngine)
+>>>>>>> 241410685a0920ec3c2761eb6a5475ab972c1501
 {
     client = new Client();
     client->gp = this;
 
+    ghe = nullptr;
+    currentlyBuildingEntity = nullptr;
+
     //client->setIPAdress(192, 168, 0, 2);
-    barracksBuild = false;
-    workerBuild = false;
+    barracksBuild = true;
+    workerBuild = true;
     client->setIPAdress(127, 0, 0, 1);
 
     playerNumber = 1;
@@ -115,7 +126,7 @@ void Gameplay::processBuildingUnits(bool left_pressed)
         std::string type = currentlyBuildingEntity->name;
         scene.deleteEntity(currentlyBuildingEntity);
         currentlyBuildingEntity = nullptr;
-        
+
         if(type == "worker")
             createWorker(renderEngine.GetTilePosition());
         if(type == "OrbitalDropBeacon")
@@ -129,22 +140,23 @@ void Gameplay::createWorker(glm::vec3 position)
 {
     std::shared_ptr<Texture> worker_tex = textureManager.resource("worker_blue.png");
     std::shared_ptr<Mesh> worker_mesh = meshManager.resource("worker.obj");
-    
+
     Entity& worker = scene.assign("worker");
     worker.assign<SpatialComponent>(position);
     worker.assign<ModelComponent>(worker_mesh, worker_tex);
     worker.assign<HealthComponent>(5);
     worker.assign<CurrencyComponent>(workerPrice);
     worker.assign<OwnerComponent>(playerNumber);
-    
+    worker.assign<MoveComponent>(0.01f, 0.075f, nullptr);
+    worker.assign<SizeComponent>(1,1);
     workerBuild = true;
-    
+
     NetworkPacket np(worker.id, BUILD);
     np.set(0, WORKER);
     np.set(1, position.x);
     np.set(2, position.y);
     np.set(3, position.z);
-    
+
     client->write(np.char_array(), np.size());
 }
 
@@ -156,11 +168,58 @@ void Gameplay::createGhostWorker(glm::vec3 position, int id)
     Entity& worker = scene.assign("worker", id);
     worker.assign<SpatialComponent>(position);
     worker.assign<ModelComponent>(worker_mesh, worker_tex);
-    worker.assign<HealthComponent>(5);
+    worker.assign<HealthComponent>(500);
     worker.assign<CurrencyComponent>(workerPrice);
     worker.assign<OwnerComponent>(otherPlayerNumber);
+    worker.assign<MoveComponent>(0.01f, 0.075f, nullptr);
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
+}
+
+void Gameplay::TestFollowPath(){
+    Entity * entity = currentSelectedUnit;
+    if(entity != nullptr) {
+        auto spatC = entity->component<SpatialComponent>();
+        if ( spatC != nullptr) {
+            glm::vec3 spat = spatC->position;
+            std::vector<Tile> * testTileMap = new std::vector<Tile>();
+
+            Tile * t1 = new Tile(Tile::Type::NONE);
+            spat.x= spat.x + 1.0f;
+
+            t1->centerpoint = spat;
+            spat.x = spat.x +1.0f;
+
+            Tile * t2 = new Tile(Tile::Type::NONE);
+            t2->centerpoint = spat;
+            spat.x = spat.x +1.0f;
+
+            Tile * t3 = new Tile(Tile::Type::NONE);
+            t3->centerpoint = spat;
+            spat.z = spat.z +1.0f;
+
+            Tile * t4 = new Tile(Tile::Type::NONE);
+            t4->centerpoint = spat;
+
+           // spat.z = spat.z + 1.0f;
+            spat.x = spat.x +1.0f;
+
+            Tile * t5 = new Tile(Tile::Type::NONE);
+            t5->centerpoint = spat;
+            //spat.x = spat.x +1.0f;
+
+
+            testTileMap->push_back(*t1);
+            testTileMap->push_back(*t2);
+            testTileMap->push_back(*t3);
+            testTileMap->push_back(*t4);
+            testTileMap->push_back(*t5);
+            auto moveComponent = entity->component<MoveComponent>();
+            if (moveComponent != nullptr) {
+                moveComponent->tiles = testTileMap;
+            }
+        }
+    }
 }
 
 void Gameplay::createBasicInfantrie(glm::vec3 position)
@@ -168,23 +227,25 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
     position.y = 0.0;
     std::shared_ptr<Texture> basicInfantrie_tex = textureManager.resource("ally.png");
     std::shared_ptr<Mesh> basicInfantrie_mesh = meshManager.resource("basicInfantry.obj");
-    
+
     Entity& basicInfantrie = scene.assign("basicInfantrie");
     basicInfantrie.assign<SpatialComponent>(position);
     basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
-    basicInfantrie.assign<AttackComponent>(2, 1, 2);
+    basicInfantrie.assign<AttackComponent>(2, 5, 0.5f, 2);
     basicInfantrie.assign<OwnerComponent>(playerNumber);
     basicInfantrie.assign<HealthComponent>(10);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
     basicInfantrie.assign<AOEComponent>(1); //is square
-    currencyEngine.currency -= basicInfanteriePrice;
-    
+    basicInfantrie.assign<MoveComponent>(0.01f,0.075f,nullptr);
+    basicInfantrie.assign<SizeComponent>(1,1);
+    //currencyEngine.currency -= basicInfanteriePrice;
+
     NetworkPacket np(basicInfantrie.id, BUILD);
     np.set(0, B_INFANTRY);
     np.set(1, position.x);
     np.set(2, position.y);
     np.set(3, position.z);
-    
+
     client->write(np.char_array(), np.size());
 }
 
@@ -199,8 +260,10 @@ void Gameplay::createGhostBasicInfantrie(glm::vec3 position, int id)
     basicInfantrie.assign<ModelComponent>(basicInfantrie_mesh, basicInfantrie_tex);
     basicInfantrie.assign<OwnerComponent>(otherPlayerNumber);
     basicInfantrie.assign<HealthComponent>(10);
-    basicInfantrie.assign<AttackComponent>(2, 1, 2);
+    basicInfantrie.assign<AttackComponent>(2, 1, 0.5f, 2);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
+    basicInfantrie.assign<MoveComponent>(0.01f,1.0f,nullptr);
+
 
     std::cout << "Builded a unit via network with ID: " << id << std::endl;
 }
@@ -218,6 +281,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<EnergyComponent>(-50);
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
+        ciCore.assign<AOEComponent>(4);
 
         myCoreID = ciCore.id;
 
@@ -235,7 +299,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<EnergyComponent>(-50);
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
-
+        ciCore.assign<SizeComponent>(3,3);
         myCoreID = ciCore.id;
 
         NetworkPacket np(ciCore.id, BUILD);
@@ -318,7 +382,7 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
     position.y = 0.0;
     std::shared_ptr<Texture> t = textureManager.resource("ally.png");
     std::shared_ptr<Mesh> house_mesh = meshManager.resource("house.obj");
-    
+
     Entity& house = scene.assign("OrbitalDropBeacon");
     house.assign<SpatialComponent>(position);
     house.assign<ModelComponent>(house_mesh, t);
@@ -326,19 +390,19 @@ void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
     house.assign<OwnerComponent>(playerNumber);
     house.assign<HealthComponent>(20);
     house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
-    
+
     barracksBuild = true;
-    
+
     NetworkPacket np(house.id, BUILD);
     np.set(0, ORBITAL);
     np.set(1, position.x);
     np.set(2, position.y);
     np.set(3, position.z);
-    
+
     client->write(np.char_array(), np.size());
-    
-    currencyEngine.currency -= orbitalDropBeaconPrice;
-    buildingTimer = 0;
+
+    //currencyEngine.currency -= orbitalDropBeaconPrice;
+    //buildingTimer = 0;
 }
 
 void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)
@@ -382,8 +446,9 @@ void Gameplay::loseGame()
     renderEngine.addText(losingText);
 }
 
-void Gameplay::sellEntity(Entity* aEntity)
+void Gameplay::sellEntity()
 {
+    Entity * aEntity = getCurrentSelectedEntity();
     if(aEntity != nullptr) {
         auto light = aEntity->component<LightComponent>();
         if ( light == nullptr ) {
@@ -396,7 +461,7 @@ void Gameplay::sellEntity(Entity* aEntity)
                     currencyEngine.currency += currencyComponent->price * healthPercentage;
                     scene.deleteEntity(aEntity);
                     currentSelectedUnit = nullptr;
-
+                    std::cout << " Selling "<< std::endl;
                     NetworkPacket np(aEntity->id, SELL);
                     client->write(np.char_array(), np.size());
                 }
@@ -485,12 +550,19 @@ void Gameplay::attackEntity() {
     {
         if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
         {
-            std::cout << "Unit: " << attacking_unit->name << " is attacking: " << to_be_attacked->name << std::endl;
-            attackEngine.attack(*to_be_attacked, *attacking_unit);
+            auto spatialAttacker = attacking_unit->component<SpatialComponent>();
+            auto spatialAttackee = to_be_attacked->component<SpatialComponent>();
 
-            NetworkPacket np(attacking_unit->id, ATTACK);
-            np.set(0, to_be_attacked->id);
-            client->write(np.char_array(), np.size());
+            if(spatialAttacker != nullptr || spatialAttackee != nullptr) {
+                Laser* laser = new Laser(spatialAttacker->get_position(), spatialAttackee->get_position(), 0.3f);
+                lasers.push_back(laser);
+
+                attackEngine.attack(*to_be_attacked, *attacking_unit);
+
+                NetworkPacket np(attacking_unit->id, ATTACK);
+                np.set(0, to_be_attacked->id);
+                client->write(np.char_array(), np.size());
+            }
         }
     }
     }
@@ -520,9 +592,30 @@ void Gameplay::attackEntityLocal(int id_attacking_unit, int id_to_be_attacked)
                     client->write(np.char_array(), np.size());
                     myAttackTimer = 0;
                 }
+=======
+
+    if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
+    {
+        if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
+        {
+            auto spatialAttacker = attacking_unit->component<SpatialComponent>();
+            auto spatialAttackee = to_be_attacked->component<SpatialComponent>();
+
+            if(spatialAttacker != nullptr || spatialAttackee != nullptr) {
+                attackEngine.attack(*to_be_attacked, *attacking_unit);
+
+                Laser* laser = new Laser(spatialAttacker->get_position(), spatialAttackee->get_position(), 0.3f);
+                lasers.push_back(laser);
+
+                NetworkPacket np(attacking_unit->id, ATTACK);
+                np.set(0, to_be_attacked->id);
+                client->write(np.char_array(), np.size());
+                myAttackTimer = 0;
+>>>>>>> 241410685a0920ec3c2761eb6a5475ab972c1501
             }
         }
     }
+
 }
 
 void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
@@ -541,6 +634,13 @@ void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
         {
             if (attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
             {
+            auto spatialAttacker = attacking_unit->component<SpatialComponent>();
+            auto spatialAttackee = to_be_attacked->component<SpatialComponent>();
+
+            if(spatialAttacker != nullptr || spatialAttackee != nullptr) {
+                Laser* laser = new Laser(spatialAttacker->get_position(), spatialAttackee->get_position(), 0.3f);
+                lasers.push_back(laser);
+
                 attackEngine.attack(*to_be_attacked, *attacking_unit);
             }
         }
@@ -555,7 +655,7 @@ void Gameplay::automaticAttackCheck() {
             if(owner->playerNumber == playerNumber) {
                 auto attackcomponent = firstEntity->component<AttackComponent>();
 
-                if ( attackcomponent != nullptr ) {
+                if ( attackcomponent != nullptr && attackcomponent->attackTimer <= 0) {
                     for (auto& secondEntityEntry : scene.entities) {
                         std::shared_ptr<Entity>& secondEntity = secondEntityEntry.second;
 
@@ -569,6 +669,7 @@ void Gameplay::automaticAttackCheck() {
 
                                 if (glm::distance(firstEntitySpatial->get_position(), secondEntitySpatial->get_position()) < firstEntityRange->range) {
                                     attackEntityLocal(firstEntity->id, secondEntity->id);
+                                    attackcomponent->attackTimer = attackcomponent->attackSpeed;
                                     break;
                                 }
                             }
@@ -607,6 +708,33 @@ void Gameplay::updateTimer(float delta) {
     infantryTimer += delta;
     buildingTimer += delta;
     myAttackTimer += delta;
+
+    std::vector<Laser*>::iterator iter = lasers.begin();
+
+    while (iter != lasers.end())
+    {
+        (*iter)->duration -= delta;
+
+        if ((*iter)->duration <= 0)
+            iter = lasers.erase(iter);
+        else
+           ++iter;
+    }
+
+    for(auto& entity : scene.entities) {
+        auto attackcomponent = entity.second->component<AttackComponent>();
+
+        if(attackcomponent != nullptr)
+            attackcomponent->attackTimer -= delta;
+    }
+}
+
+void Gameplay::updateSelectedDataToRenderEngine(){
+        renderEngine.setSelectedData(hudEngine.selectedEntities());//with selected list from hud.;
+}
+
+void Gameplay::updateLaserDataToRenderEngine() {
+    renderEngine.setLaserData(lasers);
 }
 
 void Gameplay::setTileMap(TileMap* tilemap)

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Program.h"
-#include "Texture.h"
+#include "../Program.h"
+#include "../Texture.h"
 
 namespace Ymir
 {
     class Text;
     class Image;
-    
+
     class HUDElementVisitor
     {
         Program& p;

@@ -16,7 +16,9 @@
 #include "../CubemapResourceLoader.h"
 #include "../Cubemap.h"
 #include "../Tilemap.h"
+
 #include "HUDElement.h"
+#include "../Laser.h"
 
 #include <vector>
 #include <list>
@@ -30,7 +32,20 @@ namespace Ymir
         void initOpenGL();
         bool grid;
         TileMap* tileMap;
+    private:
+        const static int bufferSize = 10 * 6; // amount of lasers we want to render * the 6 floats it takes to create a line
+        const static int bufferSizeSelected = 10 * 4 * 6;// 6 points per line 4 lines per entity max 10 entities.
+        GLfloat g_vertex_buffer_data[bufferSize];
+        GLfloat g_vertex_buffer_dataSelected[bufferSizeSelected];
+        int laserCount;
+        int selectedCount;
+        
+        bool _selection_selecting;
+        glm::vec3 _selection_start;
+        glm::vec3 _selection_end;
     public:
+        glm::vec3 laserBegin, laserEnd;
+
         std::unique_ptr<Camera> _camera;
         std::shared_ptr<Program> texture_program; //texture
         std::shared_ptr<Program> phong_program; //lights
@@ -46,7 +61,7 @@ namespace Ymir
         std::shared_ptr<Texture> holstein;
         std::list<std::shared_ptr<HUDElement>> texts;
         std::shared_ptr<Cubemap> sky;
-        
+
         std::shared_ptr<Mesh> _square;
         std::shared_ptr<Texture> _grass;
         std::shared_ptr<Texture> _mountain;
@@ -74,13 +89,19 @@ namespace Ymir
         // grid implementatie refactor nominatie
         void drawGrid(Program&, Camera&);
         void drawAOE (Program&, Camera&);
+        void drawLaser(Program& p, Camera& c);
+        void drawSelected(Program& p, Camera& c);
         void setGrid(bool);
         void setTileMap(TileMap*);
+        void setLaserData(std::vector<Laser*> lasers);
+        void setSelectedData(std::list<std::shared_ptr<Entity>> entities);
         // einde refactor nominatie
 
         void addText(std::shared_ptr<HUDElement> t)
         {
             texts.push_back(t);
         }
+        
+        void setSelection(bool selecting, glm::vec3 start, glm::vec3 end);
     };
 };

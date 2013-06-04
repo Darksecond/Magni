@@ -34,18 +34,18 @@ void Application::createEngines()
 
     currencyEngine = &engines->assign<CurrencyEngine>(*renderEngine);
 
+    moveEngine     = &engines->assign<MoveEngine>();
     attackEngine = &engines->assign<AttackEngine>(meshManager, textureManager);
-    
     hudEngine = &engines->assign<HUDEngine>(*renderEngine, textureManager);
     gameHudEngine = &engines->assign<GameHUDEngine>(*hudEngine);
 }
 
 void Application::buildGame()
 {
-    gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine);
+    gameplay = new Gameplay(*engines,*currencyEngine, textureManager, meshManager, *renderEngine, SCREEN_SIZE, *attackEngine,*moveEngine,*hudEngine);
     gameplay->createCamera();
     gameplay->ghe = gameHudEngine;
-    
+
     hudEngine->scene = &gameplay->getScene();
 
     TileMap* tiles = new TileMap(400, 20, 20); //400 want 20 * 20
@@ -81,7 +81,7 @@ void Application::buildGame()
 
     tiles->setType(11, 9, Tile::Type::WATER);
     tiles->setType(9, 11, Tile::Type::WATER);
-    
+
 }
 
 void Application::waitNetwork()
@@ -163,19 +163,19 @@ void Application::runGame()
 
     //HUD
     gameHudEngine->addGroup("empty");
-    
+
     auto cicore_group = gameHudEngine->addGroup("ciCore");
     cicore_group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createWorker);
-    
+
     auto worker_group = gameHudEngine->addGroup("worker");
     worker_group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createOrbitalDropBeacon);
-    
+
     auto odb_group = gameHudEngine->addGroup("odb");
     odb_group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createBasicInfantrie);
-    
+
     gameHudEngine->activateGroup("empty");
     //END HUD
-    
+
     lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED))
     {
@@ -188,7 +188,7 @@ void Application::runGame()
         engines->update(-1, delta);
         engines->update(0, delta);
         engines->update(1, delta);
-        
+
         gameplay->updateSelectedEntity(hudEngine->selectedEntity().get());
         if(!hudEngine->selectedEntity() || gameplay->currentlyBuildingEntity != nullptr)
             gameHudEngine->activateGroup("empty");
@@ -202,7 +202,6 @@ void Application::runGame()
             gameHudEngine->activateGroup("empty");
 
         glfwEnable(GLFW_KEY_REPEAT);
-        
         // TODO cleanup ----------------------------------
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
             //gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
@@ -228,8 +227,7 @@ void Application::runGame()
             gameplay->buildTower(renderEngine->GetTilePosition());
         }
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
-            Entity* entity = gameplay->getCurrentSelectedEntity();
-            gameplay->sellEntity(entity);
+            gameplay->sellEntity();
         }
         if(glfwGetKey( 'G' ) == GLFW_PRESS) {
             gameplay->drawGrid(true);
@@ -242,11 +240,12 @@ void Application::runGame()
         if(glfwGetKey( 'E' ) == GLFW_PRESS) {
             gameplay->loseGame();
         }
-        if(glfwGetKey('T') == GLFW_PRESS)
-        {
+        if(glfwGetKey('T') == GLFW_PRESS) {
             gameplay->attackEntity();
         }
-
+        if(glfwGetKey('6') == GLFW_PRESS) {
+            gameplay->TestFollowPath();
+        }
         checkDefeatTimer->update(delta);
 
         if (checkDefeatTimer->reached()) {
@@ -259,6 +258,8 @@ void Application::runGame()
 
         gameplay->automaticAttackCheck();
         gameplay->client->readReal();
+        gameplay->updateLaserDataToRenderEngine();
+        gameplay->updateSelectedDataToRenderEngine();
 
         // end cleanup -----------------------------------
 
