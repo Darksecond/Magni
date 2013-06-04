@@ -435,7 +435,8 @@ void RenderEngine::update(int pass, double delta)
         }
 
         if (grid) {
-            drawAOE(*grid_program,*_camera);
+            drawTileType(*grid_program,*_camera, Tile::Type::AOE);
+            drawTileType(*grid_program,*_camera, Tile::Type::BUILDING);
             drawGrid(*grid_program, *_camera);
         }
 
@@ -536,7 +537,7 @@ glm::vec3 RenderEngine::get3DPositionFromCoordinates(int xPos, int yPos) {
 	return worldPos;
 }
 
-void RenderEngine::drawAOE(Program& p, Camera& c) {
+void RenderEngine::drawTileType(Program& p, Camera& c, Tile::Type type) {
     int amount = tileMap->getMapAmount();
     int width  = 1;
     int height = 1;
@@ -545,7 +546,7 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
     int bufferSize = 0;
     for (int row = 0; row < length ; row++) {
         for (int column = 0; column < length; column++) {
-            if(tileMap->getType(row,column) == Tile::Type::AOE) {
+            if(tileMap->getType(row,column) == type) {
                 bufferSize++;
             }
         }
@@ -557,7 +558,7 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
     int counter = 0;
     for (int row = 0; row < length ; row++) {
         for (int column = 0; column < length; column++) {
-            if(tileMap->getType(row,column) == Tile::Type::AOE) {
+            if(tileMap->getType(row,column) == type) {
                 g_vertex_buffer_data[counter++] = -9.0f + row;
                 g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -9.0f + column;
@@ -585,6 +586,7 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
             }
         }
     }
+
     GLuint VertexArrayID;
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
@@ -602,7 +604,10 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
     p.setUniform("MVP", MVP);
-    p.setUniform("inputColor", glm::vec3(1, 1, 0));
+    if (Tile::Type::AOE == type)
+        p.setUniform("inputColor", glm::vec3(1, 1, 0));
+    else if (Tile::Type::BUILDING == type)
+        p.setUniform("inputColor", glm::vec3(1, 0, 1));
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);

@@ -39,7 +39,7 @@ namespace Ymir
         GLfloat g_vertex_buffer_dataSelected[bufferSizeSelected];
         int laserCount;
         int selectedCount;
-        
+
         bool _selection_selecting;
         glm::vec3 _selection_start;
         glm::vec3 _selection_end;
@@ -88,7 +88,7 @@ namespace Ymir
 
         // grid implementatie refactor nominatie
         void drawGrid(Program&, Camera&);
-        void drawAOE (Program&, Camera&);
+        void drawTileType (Program&, Camera&, Tile::Type type);
         void drawLaser(Program& p, Camera& c);
         void drawSelected(Program& p, Camera& c);
         void setGrid(bool);
@@ -101,7 +101,7 @@ namespace Ymir
         {
             texts.push_back(t);
         }
-        
+
         void setSelection(bool selecting, glm::vec3 start, glm::vec3 end);
     };
 };

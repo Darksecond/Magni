@@ -82,6 +82,8 @@ void Application::buildGame()
     tiles->setType(11, 9, Tile::Type::WATER);
     tiles->setType(9, 11, Tile::Type::WATER);
 
+    // needs to go when nick fixes his building stuff
+    tiles->setType(0, 0, Tile::Type::BUILDING);
 }
 
 void Application::waitNetwork()
