@@ -89,17 +89,17 @@ void WSADMoveBehavior::update(double delta)
 
     if(glfwGetKey('Z'))
     {
-        spatial->position += (secondsElapsed * moveSpeed * -glm::vec3(0,1,0));
+        spatial->set_position(spatial->get_position() + (secondsElapsed * moveSpeed * -glm::vec3(0,1,0)));
     }
     else if(glfwGetKey('X'))
     {
-        spatial->position += (secondsElapsed * moveSpeed * glm::vec3(0,1,0));
+        spatial->set_position(spatial->get_position() + (secondsElapsed * moveSpeed * glm::vec3(0,1,0)));
     }
 
-    spatial->position += car->gas * secondsElapsed * spatial->forward();
+    spatial->set_position(spatial->get_position() + car->gas * secondsElapsed * spatial->forward());
     if(car->gas != 0)
     {
-        spatial->direction = glm::rotate(spatial->direction, -car->steering * glm::abs(car->gas)/10, glm::vec3{0,1,0});
+        spatial->setDirection(glm::rotate(spatial->get_direction(), -car->steering * glm::abs(car->gas)/10, glm::vec3{0,1,0}));
     }
 
     //update text

@@ -1,5 +1,5 @@
 #pragma once
-
+#include <glm/glm.hpp>
 class Tile
 {
     public:
@@ -13,6 +13,6 @@ class Tile
         };
 
         Type _type;
-
+        glm::vec3 centerpoint;
         Tile(Type type);
 };

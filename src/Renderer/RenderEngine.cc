@@ -3,7 +3,10 @@
 #include "Light.h"
 #include "../LightComponent.h"
 #include "../SpatialComponent.h"
+#include "../SizeComponent.h"
 #include "Text.h"
+#include "HUDElementVisitor.h"
+#include "HUDElement.h"
 
 #ifdef __APPLE__
     #include <GLEW/glew.h>
@@ -49,7 +52,8 @@ void showFPS() {
 RenderEngine::RenderEngine(ResourceManager<Program,
                            ProgramResourceLoader>& programManager,
                            ResourceManager<Texture>& textureManager,
-                           ResourceManager<Cubemap, CubemapResourceLoader>& cubemapManager
+                           ResourceManager<Cubemap, CubemapResourceLoader>& cubemapManager,
+                           ResourceManager<Mesh>& meshManager
                            ) : lights{}, models{}, texts{}, grid(false)
 {
     initGLFW();
@@ -67,6 +71,14 @@ RenderEngine::RenderEngine(ResourceManager<Program,
     // grid refactor nomination
     grid_program = programManager.resource("grid");
     // end refactor nomination
+
+    _grass = textureManager.resource("grass.png");
+    _mountain = textureManager.resource("mountain.png");
+    _water = textureManager.resource("water.png");
+    _square = meshManager.resource("track.obj");
+
+    _selection_selecting = false;
+    _selection_end = _selection_start = glm::vec3(0);
 }
 
 void RenderEngine::initGLFW()
@@ -154,7 +166,7 @@ void RenderEngine::addComponent(Entity& entity, const BaseComponent::Type& compo
     }
 }
 
-void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, const Model& model)
+void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m, const SpatialComponent& model_spatial)
 {
     //always
     //p is part of material!
@@ -162,7 +174,8 @@ void renderTexture(Program& p, const Texture& t, const Camera& c, const Mesh& m,
 
     //always
     glm::mat4 view = c.viewMatrix();
-    glm::mat4 modelView = view * model.spatial.matrix();
+    //glm::mat4 modelView = view * model.spatial.matrix();
+    glm::mat4 modelView = view * model_spatial.matrix();
 
     //always
     p.setUniform("projection", c.projectionMatrix());
@@ -231,84 +244,9 @@ void render(Program& pt, Program& pl, const Camera& c,
     }
 
     glBlendFunc(GL_ZERO,GL_SRC_COLOR);
-    renderTexture(pt, *model.model.texture, c, *model.model.mesh, model);
+    renderTexture(pt, *model.model.texture, c, *model.model.mesh, model.spatial);
 
     glDisable(GL_BLEND);
-}
-
-void renderOverlay(Program& p, Texture& holstein, Text& text)
-{
-    std::vector<glm::vec2> vertices;
-	std::vector<glm::vec2> UVs;
-
-    for ( unsigned int i=0 ; i < text.text.size(); i++ )
-    {
-        glm::vec2 vertex_up_left    = glm::vec2( text.position.x+i*text.size            , text.position.y+text.size );
-		glm::vec2 vertex_up_right   = glm::vec2( text.position.x+i*text.size + text.size, text.position.y+text.size );
-		glm::vec2 vertex_down_right = glm::vec2( text.position.x+i*text.size + text.size, text.position.y           );
-		glm::vec2 vertex_down_left  = glm::vec2( text.position.x+i*text.size            , text.position.y           );
-
-		vertices.push_back(vertex_up_left   );
-		vertices.push_back(vertex_down_left );
-		vertices.push_back(vertex_up_right  );
-
-		vertices.push_back(vertex_down_right);
-		vertices.push_back(vertex_up_right);
-		vertices.push_back(vertex_down_left);
-
-		char character = text.text[i];
-		float uv_x = (character%16)/16.0f;
-		float uv_y = (character/16)/16.0f;
-
-		glm::vec2 uv_up_left    = glm::vec2( uv_x           , uv_y );
-		glm::vec2 uv_up_right   = glm::vec2( uv_x+1.0f/16.0f, uv_y );
-		glm::vec2 uv_down_right = glm::vec2( uv_x+1.0f/16.0f, (uv_y + 1.0f/16.0f) );
-		glm::vec2 uv_down_left  = glm::vec2( uv_x           , (uv_y + 1.0f/16.0f) );
-		UVs.push_back(uv_up_left   );
-		UVs.push_back(uv_down_left );
-		UVs.push_back(uv_up_right  );
-
-		UVs.push_back(uv_down_right);
-		UVs.push_back(uv_up_right);
-		UVs.push_back(uv_down_left);
-    }
-
-    ProgramContext pc{p};
-
-    //create VBO's, VAO
-    GLuint vertex_VBO, UV_VBO, VAO;
-
-    glGenBuffers(1, &vertex_VBO);
-    glGenBuffers(1, &UV_VBO);
-    glGenVertexArrays(1, &VAO);
-
-    glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, vertex_VBO);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec2), &vertices[0], GL_STATIC_DRAW);
-    glEnableVertexAttribArray(p.attrib("vertexPosition_screenspace"));
-    glVertexAttribPointer(p.attrib("vertexPosition_screenspace"), 2, GL_FLOAT, GL_FALSE, 0, (void*)0 );
-
-    glBindBuffer(GL_ARRAY_BUFFER, UV_VBO);
-    glBufferData(GL_ARRAY_BUFFER, UVs.size() * sizeof(glm::vec2), &UVs[0], GL_STATIC_DRAW);
-    glEnableVertexAttribArray(p.attrib("vertexUV"));
-	glVertexAttribPointer(p.attrib("vertexUV"), 2, GL_FLOAT, GL_FALSE, 0, (void*)0 );
-
-    TextureContext h{holstein, GL_TEXTURE0};
-    p.setUniform("myTextureSampler", 0);
-
-    glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	glDrawArrays(GL_TRIANGLES, 0, (GLsizei)vertices.size() );
-
-	glDisable(GL_BLEND);
-
-	glDisableVertexAttribArray(p.attrib("vertexPosition_screenspace"));
-	glDisableVertexAttribArray(p.attrib("vertexUV"));
-
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &vertex_VBO);
-    glDeleteBuffers(1, &UV_VBO);
 }
 
 void renderSkybox(Cubemap& sky, Program& p, Camera& c)
@@ -387,6 +325,95 @@ void renderSkybox(Cubemap& sky, Program& p, Camera& c)
 
 }
 
+void renderTileMap(TileMap& tilemap, Program& pt, Program& pl, const Camera& c,
+                   const NodeCache<Light>& lights, std::shared_ptr<Texture>& grass, std::shared_ptr<Texture>& water, std::shared_ptr<Texture>& mountain, std::shared_ptr<Mesh>& square)
+{
+    //needs mesh for square
+    //needs textures for the things
+    for(int i = 0; i < tilemap.getMapHeight(); ++i)
+    {
+        for(int j = 0; j < tilemap.getMapWidth(); ++j)
+        {
+            SpatialComponent s(glm::vec3(i-9.5, 0, j-9.5));
+            s.parent = nullptr;
+            s.scale = glm::vec3(1.0/tilemap.getMapHeight());
+
+            Tile::Type tile_type = tilemap.getType(i, j);
+            std::shared_ptr<Texture> tex = grass;
+            if(tile_type == Tile::Type::WATER)
+                tex = water;
+            if(tile_type == Tile::Type::MOUNTAIN)
+                tex = mountain;
+
+            renderTexture(pt, *tex, c, *square, s);
+
+            //ModelComponent mc(square, tex);
+            //Model model(mc, s);
+            //render(pt, pl, c, lights, model);
+        }
+    }
+}
+
+void drawSelection(glm::vec3 start, glm::vec3 end, const Camera& camera, Program& program)
+{
+    //TODO color (white) instead of red
+
+    GLuint VertexArrayID;
+    glGenVertexArrays(1, &VertexArrayID);
+    glBindVertexArray(VertexArrayID);
+
+    ProgramContext pc {program};
+
+    glm::mat4 projection = camera.projectionMatrix();
+    glm::mat4 view = camera.viewMatrix();
+    glm::mat4 model = glm::mat4(1.0f);
+    glm::mat4 MVP = projection * view * model;
+
+    start.y = start.y + 0.01f;
+    end.y   = end.y + 0.01f;
+
+    int bufferSize = 8*3;
+    glm::vec3 buffer[8];
+    buffer[0] = glm::vec3(start.x, start.y, start.z);
+    buffer[1] = glm::vec3(start.x, end.y, end.z);
+
+    buffer[2] = glm::vec3(end.x, end.y, start.z);
+    buffer[3] = glm::vec3(start.x, start.y, start.z);
+
+    buffer[4] = glm::vec3(end.x, end.y, start.z);
+    buffer[5] = glm::vec3(end.x, end.y, end.z);
+
+    buffer[6] = glm::vec3(start.x, end.y, end.z);
+    buffer[7] = glm::vec3(end.x, end.y, end.z);
+
+    GLuint vertexbuffer;
+    glGenBuffers(1, &vertexbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+    glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), &buffer, GL_STATIC_DRAW);
+
+    program.setUniform("MVP", MVP);
+    program.setUniform("inputColor", glm::vec3(1, 1, 1));
+
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+
+    glVertexAttribPointer(
+                          0,
+                          3,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          0,
+                          (void*)0
+                          );
+
+    glDrawArrays(GL_LINES, 0, bufferSize / 3);
+
+    glDisableVertexAttribArray(0);
+
+    glDeleteBuffers(1, &vertexbuffer);
+    glDeleteVertexArrays(1, &VertexArrayID);
+}
+
 void RenderEngine::update(int pass, double delta)
 {
     if(pass == 1)
@@ -396,6 +423,11 @@ void RenderEngine::update(int pass, double delta)
 
         renderSkybox(*sky, *sky_program, *_camera);
 
+        if(tileMap)
+        {
+            renderTileMap(*tileMap, *texture_program, *phong_program, *_camera, lights
+                          , _grass, _water, _mountain, _square);
+        }
 
         for(auto& model : models)
         {
@@ -407,9 +439,18 @@ void RenderEngine::update(int pass, double delta)
             drawGrid(*grid_program, *_camera);
         }
 
+        drawLaser(*grid_program, *_camera);
+        drawSelected(*grid_program, *_camera);
+
+        if(_selection_selecting)
+        {
+            drawSelection(_selection_start, _selection_end, *_camera, *grid_program);
+        }
+
+        HUDElementVisitor visitor(*overlay_program, *holstein);
         for(auto t : texts)
         {
-            renderOverlay(*overlay_program, *holstein, *t);
+            t->accept(visitor);
         }
 
         showFPS();
@@ -424,6 +465,7 @@ glm::vec3 RenderEngine::GetTilePosition(){
     float z = mousepos.z;
     int xx = x;
     int zz = z;
+
     if(x < 0) {
         if(xx != ((int) (x+0.5f)))
             xx = x -1.0f;
@@ -493,6 +535,7 @@ glm::vec3 RenderEngine::get3DPositionFromCoordinates(int xPos, int yPos) {
 
 	return worldPos;
 }
+
 void RenderEngine::drawAOE(Program& p, Camera& c) {
     int amount = tileMap->getMapAmount();
     int width  = 1;
@@ -507,7 +550,8 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
             }
         }
     }
-    bufferSize = bufferSize * 3 * 6;
+
+    bufferSize = bufferSize * 2 * 9;
     GLfloat g_vertex_buffer_data[bufferSize];
 
     int counter = 0;
@@ -515,27 +559,27 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
         for (int column = 0; column < length; column++) {
             if(tileMap->getType(row,column) == Tile::Type::AOE) {
                 g_vertex_buffer_data[counter++] = -9.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -9.0f + column;
 
                 g_vertex_buffer_data[counter++] = -9.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -10.0f + column;
 
                 g_vertex_buffer_data[counter++] = -10.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -10.0f + column;
 
                 g_vertex_buffer_data[counter++] = -10.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -10.0f + column;
 
                 g_vertex_buffer_data[counter++] = -10.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -9.0f + column;
 
                 g_vertex_buffer_data[counter++] = -9.0f + row;
-                g_vertex_buffer_data[counter++] = 0.01f;
+                g_vertex_buffer_data[counter++] = 0.005f;
                 g_vertex_buffer_data[counter++] = -9.0f + column;
 
             }
@@ -558,6 +602,7 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
     p.setUniform("MVP", MVP);
+    p.setUniform("inputColor", glm::vec3(1, 1, 0));
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -571,19 +616,19 @@ void RenderEngine::drawAOE(Program& p, Camera& c) {
         (void*)0
     );
 
-    glDrawArrays(GL_TRIANGLES, 0, counter);
+    glDrawArrays(GL_TRIANGLES, 0, counter / 3);
 
     glDisableVertexAttribArray(0);
 
     glDeleteBuffers(1, &vertexbuffer);
     glDeleteVertexArrays(1, &VertexArrayID);
-    }
+}
 
 void RenderEngine::drawGrid(Program& p, Camera& c)
 {
     int amount = tileMap->getMapAmount();
-    int width = tileMap->getMapWidth();
-    int height = tileMap->getMapHeight();
+    int width = 1;
+    int height = 1;
 
     int length = sqrt(amount);
 
@@ -596,34 +641,34 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
             // top
 
             g_vertex_buffer_data[counter++] = -10.0f + (width * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row);
             g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row);
 
             // right
             g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row);
             g_vertex_buffer_data[counter++] = -10.0f + (height * column) + height;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
 
             // bottom
             g_vertex_buffer_data[counter++] = -10.0f + (width * column) + width;
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
             g_vertex_buffer_data[counter++] = -10.0f + (width * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (width * row) + width;
 
             // left
             g_vertex_buffer_data[counter++] = -10.0f + (height * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row) + height;
             g_vertex_buffer_data[counter++] = -10.0f + (height * column);
-            g_vertex_buffer_data[counter++] = 0.01f;
+            g_vertex_buffer_data[counter++] = 0.03f;
             g_vertex_buffer_data[counter++] = -10.0f + (height * row);
         }
     }
@@ -642,9 +687,10 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
     GLuint vertexbuffer;
     glGenBuffers(1, &vertexbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), g_vertex_buffer_data, GL_STATIC_DRAW);
 
     p.setUniform("MVP", MVP);
+    p.setUniform("inputColor", glm::vec3(1,0,0));
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -658,12 +704,191 @@ void RenderEngine::drawGrid(Program& p, Camera& c)
         (void*)0
     );
 
-    glDrawArrays(GL_LINES, 0, bufferSize);
+    glDrawArrays(GL_LINES, 0, bufferSize / 3);
 
     glDisableVertexAttribArray(0);
 
     glDeleteBuffers(1, &vertexbuffer);
     glDeleteVertexArrays(1, &VertexArrayID);
+}
+
+void RenderEngine::drawLaser(Program& p, Camera& c)
+{
+    if(laserCount != 0) {
+        GLuint VertexArrayID;
+        glGenVertexArrays(1, &VertexArrayID);
+        glBindVertexArray(VertexArrayID);
+
+        ProgramContext pc {p};
+
+        glm::mat4 projection = c.projectionMatrix();
+        glm::mat4 view = c.viewMatrix();
+        glm::mat4 model = glm::mat4(1.0f);
+        glm::mat4 MVP = projection * view * model;
+
+        GLuint vertexbuffer;
+        glGenBuffers(1, &vertexbuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+        glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), g_vertex_buffer_data, GL_STATIC_DRAW);
+
+        p.setUniform("MVP", MVP);
+        p.setUniform("inputColor", glm::vec3(1,0,0));
+
+        glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+
+        glVertexAttribPointer(
+            0,
+            3,
+            GL_FLOAT,
+            GL_FALSE,
+            0,
+            (void*)0
+        );
+
+        glDrawArrays(GL_LINES, 0, bufferSize / 3);
+
+        glDisableVertexAttribArray(0);
+
+        glDeleteBuffers(1, &vertexbuffer);
+        glDeleteVertexArrays(1, &VertexArrayID);
+    }
+}
+
+void RenderEngine::setLaserData(std::vector<Laser*> lasers) {
+    std::vector<Laser*>::iterator iter;
+
+    laserCount = 0;
+    int counter = 0;
+
+    for(int i = 0; i < bufferSize; i++)
+        g_vertex_buffer_data[i] = 0;
+
+    for (iter = lasers.begin(); iter != lasers.end(); ++iter) {
+        if(counter + 1 > bufferSize)
+            break;
+
+        laserCount++;
+
+        g_vertex_buffer_data[counter++] = (*iter)->beginPosition.x;
+        g_vertex_buffer_data[counter++] = (*iter)->beginPosition.y;
+        g_vertex_buffer_data[counter++] = (*iter)->beginPosition.z;
+
+        g_vertex_buffer_data[counter++] = (*iter)->endPosition.x;
+        g_vertex_buffer_data[counter++] = (*iter)->endPosition.y;
+        g_vertex_buffer_data[counter++] = (*iter)->endPosition.z;
+    }
+}
+
+void RenderEngine::drawSelected(Program& p, Camera& c)
+{
+    if(selectedCount != 0) {
+        GLuint VertexArrayID;
+        glGenVertexArrays(1, &VertexArrayID);
+        glBindVertexArray(VertexArrayID);
+
+        ProgramContext pc {p};
+
+        glm::mat4 projection = c.projectionMatrix();
+        glm::mat4 view = c.viewMatrix();
+        glm::mat4 model = glm::mat4(1.0f);
+        glm::mat4 MVP = projection * view * model;
+
+        GLuint vertexbuffer;
+        glGenBuffers(1, &vertexbuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+        glBufferData(GL_ARRAY_BUFFER, bufferSizeSelected * sizeof(GLfloat), g_vertex_buffer_dataSelected, GL_STATIC_DRAW);
+
+        p.setUniform("MVP", MVP);
+        p.setUniform("inputColor", glm::vec3(1,1,1));
+
+        glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+
+        glVertexAttribPointer(
+            0,
+            3,
+            GL_FLOAT,
+            GL_FALSE,
+            0,
+            (void*)0
+        );
+
+        glDrawArrays(GL_LINES, 0, bufferSizeSelected / 3);
+
+        glDisableVertexAttribArray(0);
+
+        glDeleteBuffers(1, &vertexbuffer);
+        glDeleteVertexArrays(1, &VertexArrayID);
+    }
+}
+
+void RenderEngine::setSelectedData(std::list<std::shared_ptr<Entity>> entities) {
+    std::list<std::shared_ptr<Entity>>::iterator iter;
+    float y = 0.01f;
+    selectedCount = 0;
+    int counter = 0;
+
+    for(int i = 0; i < bufferSizeSelected; i++)
+        g_vertex_buffer_dataSelected[i] = 0;
+
+    for (iter = entities.begin(); iter != entities.end(); ++iter) {
+        if(counter + 1 > bufferSizeSelected)
+            break;
+
+        auto spatial = (*iter)->component<SpatialComponent>();
+        auto sizeC   = (*iter)->component<SizeComponent>();
+        if(spatial != nullptr) { //deze check kan stiekem wel weg omdat Tim hier al het goed is op checkt.
+            float x = spatial->position.x;
+            float z = spatial->position.z;
+            float offSetZ = 0.25;
+            float offSetX = 0.25;
+            if( sizeC != nullptr ) {
+                offSetZ = sizeC->x*0.25;
+                offSetX = sizeC->z*0.25;
+            }
+            selectedCount++;
+
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
+
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
+
+
+
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
+
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
+
+
+
+            g_vertex_buffer_dataSelected[counter++] = x+offSetX;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
+
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
+
+
+
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z+offSetZ;
+
+            g_vertex_buffer_dataSelected[counter++] = x-offSetX;
+            g_vertex_buffer_dataSelected[counter++] = y;
+            g_vertex_buffer_dataSelected[counter++] = z-offSetZ;
+
+        }
+    }
 }
 
 void RenderEngine::setGrid(bool useGrid)
@@ -674,4 +899,11 @@ void RenderEngine::setGrid(bool useGrid)
 void RenderEngine::setTileMap(TileMap* tilemap)
 {
     tileMap = tilemap;
+}
+
+void RenderEngine::setSelection(bool selecting, glm::vec3 start, glm::vec3 end)
+{
+    _selection_selecting = selecting;
+    _selection_start = start;
+    _selection_end = end;
 }

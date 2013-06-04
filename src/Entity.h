@@ -26,19 +26,20 @@ namespace Ymir
     public:
         Entity* parent;
         std::string name;
+        int id;
 
-        Entity(EngineManager& manager, const std::string& name);
-        
+        Entity(EngineManager& manager, const std::string& name, const int thisid);
+
         template<typename T, typename ... Args>
         T& assign(Args && ... args);
-        
+
         template<typename T>
         T& assign(std::shared_ptr<T> component);
 
         //be sure that T has Component as an interface
         template<typename T>
         T* component() const;
-        
+
         //TODO move to CC file
         void update(double delta)
         {
@@ -47,7 +48,7 @@ namespace Ymir
                 behavior->update(delta);
             }
         }
-        
+
         //TODO move to CC file
         void receive(message_type_t type, const Entity& trigger) const
         {
@@ -56,7 +57,7 @@ namespace Ymir
                 behavior->receive(type, trigger);
             }
         }
-        
+
         //TODO move to CC file
         void assignBehavior(std::unique_ptr<Behavior> behavior)
         {
@@ -64,17 +65,17 @@ namespace Ymir
             behaviors.push_back(std::move(behavior));
             //behavior->init() (or create, or start)
         }
-      
+
         //POSSIBLE OPTION:
-        
+
         //TODO behavior gets a reference to this entity, in order to get to attributes and components
         //template<typename T>
         //std::shared_ptr<T> assignBehavior(std::shared_ptr<T> behavior);
-        
+
         //TODO
         //template<typename T, typename ... Args>
         //std::shared_ptr<T> assignBehavior(Args && ... args);
-        
+
         //TODO at the very least components should have some option of letting behaviors know that they were updated
     };
 
@@ -96,6 +97,8 @@ namespace Ymir
             component->parent = parent->component<T>();
         else
             component->parent = nullptr;
+
+        component->entity = this;
         components.insert({component->type(), component});
         engines.addComponent(*this, component->type());
         return *component;
@@ -107,5 +110,10 @@ namespace Ymir
 
         std::shared_ptr<T> component = std::make_shared<T>(args ...);
         return assign(component);
+    }
+
+    inline void component_update_block(BaseComponent::Type component_type, void* data, size_t data_size)
+    {
+        //TODO prepare block for sending to Scene
     }
 };

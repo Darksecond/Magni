@@ -2,6 +2,7 @@
 
 #include <GLM/glm.hpp>
 #include <GLM/gtc/matrix_transform.hpp>
+#include <iostream>
 
 using namespace Ymir;
 
@@ -14,12 +15,12 @@ const glm::vec3 SpatialComponent::directionEuler() const
     return glm::eulerAngles(direction);
 }
 
-void SpatialComponent::setDirection(glm::quat& quat)
+void SpatialComponent::setDirection(const glm::quat& quat)
 {
     direction = quat;
 }
 
-void SpatialComponent::setDirection(glm::vec3& euler)
+void SpatialComponent::setDirection(const glm::vec3& euler)
 {
     direction = glm::quat{glm::radians(euler)};
 }
@@ -59,6 +60,12 @@ glm::quat SpatialComponent::globalDirection() const
 glm::vec3 SpatialComponent::forward() const
 {
     glm::vec4 forward = (orientation()) * glm::vec4(0, 0, -1, 0);
+    return glm::vec3(forward);
+}
+
+glm::vec3 SpatialComponent::forward(float amount) const
+{
+    glm::vec4 forward = (orientation()) * glm::vec4(0, 0, amount * 0.4f, 0);
     return glm::vec3(forward);
 }
 

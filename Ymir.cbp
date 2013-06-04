@@ -8,7 +8,7 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/Ymir" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="windows/Ymir" />
+				<Option working_dir="resources" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -30,6 +30,7 @@
 					<Add library="glu32" />
 					<Add library="OpenAL32" />
 					<Add library="alut" />
+					<Add library="wsock32" />
 					<Add directory="windows/GLEW/lib" />
 					<Add directory="windows/GLFW/lib-mingw" />
 					<Add directory="windows/OpenAL/libs" />
@@ -46,7 +47,6 @@
 		<Unit filename="src/Application.h" />
 		<Unit filename="src/AttackComponent.h" />
 		<Unit filename="src/AttackEngine.cc" />
-		<Unit filename="src/AttackEngine.h" />
 		<Unit filename="src/AudioEngine.cc" />
 		<Unit filename="src/AudioEngine.h" />
 		<Unit filename="src/Audio/Buffer.cc" />
@@ -65,6 +65,8 @@
 		<Unit filename="src/CarCollisionBehavior.cc" />
 		<Unit filename="src/CarCollisionBehavior.h" />
 		<Unit filename="src/CarComponent.h" />
+		<Unit filename="src/Client.cpp" />
+		<Unit filename="src/Client.h" />
 		<Unit filename="src/Collider.cc" />
 		<Unit filename="src/Collider.h" />
 		<Unit filename="src/CollisionEngine.cc" />
@@ -85,7 +87,6 @@
 		<Unit filename="src/EnergyBehaviour.h" />
 		<Unit filename="src/EnergyComponent.h" />
 		<Unit filename="src/EnergyEngine.cc" />
-		<Unit filename="src/EnergyEngine.h" />
 		<Unit filename="src/Engine.h" />
 		<Unit filename="src/EngineManager.cc" />
 		<Unit filename="src/EngineManager.h" />
@@ -97,10 +98,17 @@
 		<Unit filename="src/FileStreamReader.h" />
 		<Unit filename="src/Font.cc" />
 		<Unit filename="src/Font.h" />
+		<Unit filename="src/GameHUDEngine.cc" />
+		<Unit filename="src/GameHUDEngine.h" />
 		<Unit filename="src/Gameplay.cc" />
 		<Unit filename="src/Gameplay.h" />
 		<Unit filename="src/Geometry.h" />
-		<Unit filename="src/HealthComponent.h" />
+		<Unit filename="src/HUDEngine.cc" />
+		<Unit filename="src/HUDEngine.h" />
+		<Unit filename="src/IDComponent.cpp" />
+		<Unit filename="src/IDComponent.h" />
+		<Unit filename="src/Laser.cc" />
+		<Unit filename="src/Laser.h" />
 		<Unit filename="src/LightComponent.cc" />
 		<Unit filename="src/LightComponent.h" />
 		<Unit filename="src/ListenerComponent.h" />
@@ -109,12 +117,20 @@
 		<Unit filename="src/Mesh.h" />
 		<Unit filename="src/Message.h" />
 		<Unit filename="src/ModelComponent.h" />
+		<Unit filename="src/MoveComponent.cc" />
+		<Unit filename="src/MoveComponent.h" />
+		<Unit filename="src/MoveEngine.cc" />
+		<Unit filename="src/MoveEngine.h" />
+		<Unit filename="src/Network.cpp" />
+		<Unit filename="src/Network.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="src/NetworkHeader.h" />
+		<Unit filename="src/NetworkPacket.h" />
+		<Unit filename="src/NetworkValue.h" />
 		<Unit filename="src/NodeCache.h" />
 		<Unit filename="src/ObjGeometry.cc" />
 		<Unit filename="src/ObjGeometry.h" />
-		<Unit filename="src/OwnerComponent.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="src/OwnerComponent.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -125,6 +141,12 @@
 		<Unit filename="src/RTSCameraBehavior.h" />
 		<Unit filename="src/Renderer/Camera.cc" />
 		<Unit filename="src/Renderer/Camera.h" />
+		<Unit filename="src/Renderer/HUDElement.cc" />
+		<Unit filename="src/Renderer/HUDElement.h" />
+		<Unit filename="src/Renderer/HUDElementVisitor.cc" />
+		<Unit filename="src/Renderer/HUDElementVisitor.h" />
+		<Unit filename="src/Renderer/Image.cc" />
+		<Unit filename="src/Renderer/Image.h" />
 		<Unit filename="src/Renderer/Light.cc" />
 		<Unit filename="src/Renderer/Light.h" />
 		<Unit filename="src/Renderer/Model.cc" />
@@ -142,6 +164,8 @@
 		<Unit filename="src/Shader.h" />
 		<Unit filename="src/SimpleTestTriggerBehavior.cc" />
 		<Unit filename="src/SimpleTestTriggerBehavior.h" />
+		<Unit filename="src/SizeComponent.cc" />
+		<Unit filename="src/SizeComponent.h" />
 		<Unit filename="src/SourceComponent.h" />
 		<Unit filename="src/SpatialComponent.cc" />
 		<Unit filename="src/SpatialComponent.h" />
@@ -156,6 +180,8 @@
 		<Unit filename="src/TileMap.h" />
 		<Unit filename="src/Timer.cc" />
 		<Unit filename="src/Timer.h" />
+		<Unit filename="src/UniqueNumberGenerator.cpp" />
+		<Unit filename="src/UniqueNumberGenerator.h" />
 		<Unit filename="src/WSADMoveBehavior.cc" />
 		<Unit filename="src/WSADMoveBehavior.h" />
 		<Unit filename="src/fontstash.h" />

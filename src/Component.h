@@ -2,6 +2,8 @@
 
 namespace Ymir
 {
+    class Entity;
+    
     /**
      * a basecomponent, you can use this to make maps which contain multiple different components
      */
@@ -27,6 +29,8 @@ namespace Ymir
          * This is set automatically by entity the component is contained in.
          */
         Derived* parent;
+        
+        Entity* entity;
 
         /**
          * This components' type. you can use this to build lists or maps of components.

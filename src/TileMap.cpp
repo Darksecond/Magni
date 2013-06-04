@@ -5,6 +5,8 @@ TileMap::TileMap(int amount, int width, int height)
     mapAmount = amount;
     mapWidth = width;
     mapHeight = height;
+
+
     for(int i = 0; i < amount; i++){
         std::vector<Tile> temp; // create an array, don't work directly on buff yet.
 		for(int j = 0; j < amount; j++) {

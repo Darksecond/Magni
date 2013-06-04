@@ -29,10 +29,16 @@
 #include "CollisionEngine.h"
 #include "AudioEngine.h"
 #include "AttackEngine.h"
+#include "MoveEngine.h"
+#include "Client.h"
+#include "Server.h"
 #include "Timer.h"
 
 #include "EnergyEngine.h"
 #include "CurrencyEngine.h"
+#include "MoveEngine.h"
+#include "HUDEngine.h"
+#include "GameHUDEngine.h"
 
 namespace Ymir
 {
@@ -50,6 +56,9 @@ namespace Ymir
             RenderEngine * renderEngine;
             AttackEngine * attackEngine;
             CurrencyEngine * currencyEngine;
+            HUDEngine* hudEngine;
+            GameHUDEngine* gameHudEngine;
+            MoveEngine      * moveEngine;
             glm::vec2 SCREEN_SIZE;
             double lastTime;
 
@@ -59,6 +68,7 @@ namespace Ymir
             void createManagers(std::string resourceDirectory);
             void createEngines();
             void buildGame();
+            void waitNetwork();
             void runGame();
     };
 };

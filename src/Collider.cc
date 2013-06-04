@@ -33,10 +33,10 @@ bool Collider::operator==(const Collider& other) const
 
 bool Collider::collides(Collider& other)
 {
-    glm::vec3 this_loc = entity.component<SpatialComponent>()->position;
+    glm::vec3 this_loc = entity.component<SpatialComponent>()->get_position();
     float rad = entity.component<SphereColliderComponent>()->radius;
 
-    glm::vec3 other_loc = other.entity.component<SpatialComponent>()->position;
+    glm::vec3 other_loc = other.entity.component<SpatialComponent>()->get_position();
     float other_rad = other.entity.component<SphereColliderComponent>()->radius;
 
     float distance = glm::distance(this_loc, other_loc);

@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <iostream>
+#include <vector>
 #include <string>
 
 #include "Scene.h"
@@ -16,6 +17,8 @@
 #include "Audio/Buffer.h"
 #include "Entity.h"
 #include "Renderer/RenderEngine.h"
+#include "AttackEngine.h"
+#include "MoveEngine.h"
 
 #include "SpatialComponent.h"
 #include "ModelComponent.h"
@@ -24,13 +27,19 @@
 #include "LightComponent.h"
 #include "EnergyComponent.h"
 #include "OwnerComponent.h"
-
+#include "NetworkPacket.h"
+#include "Client.h"
 #include "RTSCameraBehavior.h"
 #include "EnergyBehaviour.h"
-
 #include "CurrencyEngine.h"
+#include "HudEngine.h"
+#include "GameHUDEngine.h"
+#include "Laser.h"
+
 namespace Ymir
 {
+    class Client;
+
     class Gameplay
     {
         private:
@@ -41,16 +50,28 @@ namespace Ymir
             Entity* currentSelectedUnit;
             RenderEngine& renderEngine;
             CurrencyEngine& currencyEngine;
+            AttackEngine& attackEngine;
+            MoveEngine& moveEngine;
+            HUDEngine& hudEngine;
 
             static const int INFTIMER = 3;
             static const int BUILDTIMER = 3;
+            static const int ATTACKTIMER = 1;
 
-            float infantryTimer, buildingTimer;
-            int unitIdentifyCounter;
+            //hacky
+            Entity* myCamera;
+
+            bool barracksBuild, workerBuild;
+            float infantryTimer, buildingTimer, myAttackTimer;
+            int unitIdentifyCounter, myCoreID;
             TileMap* tileMap;
+            std::vector<Laser*> lasers;
 
         public:
-            int objectOwner;
+            GameHUDEngine* ghe;
+            Client* client;
+            Entity* currentlyBuildingEntity;
+            int playerNumber, otherPlayerNumber;
 
             int workerPrice;
             int workerEnergy;
@@ -67,24 +88,50 @@ namespace Ymir
             int orbitalDropBeaconPrice;
             int orbitalDropBeaconEnergy;
 
-            Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize);
+            enum {BUILD = 0, MOVE, WIN_LOSE, SELL, ATTACK, HELLO, PLAYER};
+            enum {WORKER = 0, B_INFANTRY, A_INFANTRY, ENGINEER, ORBITAL, POWERCORE, ACADEMY, CICORE};
+
+            Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager, RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine, MoveEngine& moveEngine, HUDEngine& hudEngine);
 
             void createCamera();
+            void updateCameraStart();
 
             void drawGrid(bool);
 
+        void createUnit(const char* mesh, const char* type_name, int price);
+        void createWorker();
+            void createOrbitalDropBeacon();
+            void createBasicInfantrie();
+
+            void processBuildingUnits(bool);
+
             void createWorker(glm::vec3 position);
+            void createGhostWorker(glm::vec3 position, int id);
             void createBasicInfantrie(glm::vec3 position);
-            void createAdvancedInfantrie();
-            void createEngineer();
+        void createGhostBasicInfantrie(glm::vec3 position, int id);
+            void createAdvancedInfantrie(glm::vec3 position);
+            void createGhostAdvancedInfantrie(glm::vec3 position, int id);
+            void createEngineer(glm::vec3 position);
+            void createGhostEngineer(glm::vec3 position, int id);
 
-            void buildCentralIntelligenceCore(glm::vec3 position);
+            void buildCentralIntelligenceCore();
+            void buildGhostCentralIntelligenceCore(glm::vec3 position, int id);
             void buildOrbitalDropBeacon(glm::vec3 position);
-            void buildPowerCore();
-            void buildAcademyOfAdvancedTechnologies();
+            void buildGhostOrbitalDropBeacon(glm::vec3 position, int id);
+            void buildPowerCore(glm::vec3 position);
+            void buildGhostPowerCore(glm::vec3 position, int id);
+            void buildAcademyOfAdvancedTechnologies(glm::vec3 position);
+            void buildGhostAcademyOfAdvancedTechnologies(glm::vec3 position, int id);
 
-            void sellEntity(Entity* aEntity);
+            void sellEntity();
+            void removeEntity(int id);
             void moveEntity();
+            void moveEntity(glm::vec3 position, int id);
+
+            void attackEntity();
+            void attackEntityLocal(int id_attacking_unit, int id_to_be_attacked);
+            void attackEntity(int attacking_unit, int to_be_attacked);
+            void automaticAttackCheck();
 
             bool centralIntelligenceCoreDestoyed();
             bool enemyCentralIntelligenceCoreDestroyed();
@@ -92,15 +139,19 @@ namespace Ymir
             void loseGame();
             void switchOwner(int owner);
 
-            Entity* getEntityAtPosition(glm::vec3 pos);
             void updateSelectedEntity(glm::vec3 position);
+            void updateSelectedEntity(Entity* entity);
             Entity* getCurrentSelectedEntity();
             Scene& getScene();
 
             void updateTimer(float delta);
+            void updateLaserDataToRenderEngine();
+            void updateSelectedDataToRenderEngine();
 
             void setTileMap(TileMap*);
 
             void setAOE(bool reset = false);
+
+            void TestFollowPath(); // remove this when maarten is done with a*
     };
 };

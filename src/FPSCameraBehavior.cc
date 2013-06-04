@@ -32,18 +32,18 @@ void FPSCameraBehavior::offsetOrientation(float upAngle, float rightAngle) {
     CameraComponent& _camera = *camera;
     SpatialComponent& _spatial = *spatial;
 
-    _camera._horizontalAngle += rightAngle;
-    while(_camera._horizontalAngle > 360.0f) _camera._horizontalAngle -= 360.0;
-    while(_camera._horizontalAngle < 0.0f) _camera._horizontalAngle += 360.0;
+    _camera.set_horizontal_angle(_camera.get_horizontal_angle() + rightAngle);
+    while(_camera.get_horizontal_angle() > 360.0f) _camera.set_horizontal_angle(_camera.get_horizontal_angle() - 360.0);
+    while(_camera.get_horizontal_angle() < 0.0f) _camera.set_horizontal_angle(_camera.get_horizontal_angle() + 360.0);
 
-    _camera._verticalAngle += upAngle;
-    if(_camera._verticalAngle > MaxVerticalAngle) _camera._verticalAngle = MaxVerticalAngle;
-    if(_camera._verticalAngle < -MaxVerticalAngle) _camera._verticalAngle = -MaxVerticalAngle;
+    _camera.set_vertical_angle(_camera.get_vertical_angle() + upAngle);
+    if(_camera.get_vertical_angle() > MaxVerticalAngle) _camera.set_vertical_angle(MaxVerticalAngle);
+    if(_camera.get_vertical_angle() < -MaxVerticalAngle) _camera.set_vertical_angle(-MaxVerticalAngle);
 
     //we can't only use the quaternion, because it would be too difficult to check the maximum pitch right now
-    glm::quat up = glm::angleAxis(_camera._verticalAngle, glm::vec3(1,0,0));
-    glm::quat right = glm::angleAxis(_camera._horizontalAngle, glm::vec3(0,1,0));
-    _spatial.direction = glm::inverse(up * right);
+    glm::quat up = glm::angleAxis(_camera.get_vertical_angle(), glm::vec3(1,0,0));
+    glm::quat right = glm::angleAxis(_camera.get_horizontal_angle(), glm::vec3(0,1,0));
+    _spatial.setDirection(glm::inverse(up * right));
 }
 
 /*
