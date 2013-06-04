@@ -11,10 +11,25 @@
 
 using namespace Ymir;
 
-Gameplay::Gameplay(EngineManager& engineManager, CurrencyEngine& currencyEngine, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
-    RenderEngine& renderEngine, glm::vec2 screenSize, AttackEngine& attackEngine, MoveEngine& moveEngine, HUDEngine& hudEngine)
-        : scene(engineManager), currencyEngine(currencyEngine) ,textureManager(textureManager), meshManager(meshManager),
-            renderEngine(renderEngine), screenSize(screenSize) ,playerNumber(1),currentSelectedUnit(nullptr),workerPrice(50),basicInfanteriePrice(10),orbitalDropBeaconPrice(100), infantryTimer(0), buildingTimer(0), unitIdentifyCounter(0), attackEngine(attackEngine),moveEngine(moveEngine),hudEngine(hudEngine)
+Gameplay::Gameplay(EngineManager& engineManager, ResourceManager<Texture>& textureManager, ResourceManager<Mesh>& meshManager,
+    glm::vec2 screenSize) :
+scene(engineManager),
+currencyEngine(engineManager.get<CurrencyEngine>()),
+textureManager(textureManager),
+meshManager(meshManager),
+renderEngine(engineManager.get<RenderEngine>()),
+screenSize(screenSize),
+playerNumber(1),
+currentSelectedUnit(nullptr),
+workerPrice(50),
+basicInfanteriePrice(10),
+orbitalDropBeaconPrice(100),
+infantryTimer(0),
+buildingTimer(0),
+unitIdentifyCounter(0),
+attackEngine(engineManager.get<AttackEngine>()),
+moveEngine(engineManager.get<MoveEngine>()),
+hudEngine(engineManager.get<HUDEngine>())
 {
     client = new Client();
     client->gp = this;
