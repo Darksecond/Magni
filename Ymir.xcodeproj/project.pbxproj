@@ -22,6 +22,10 @@
 		F61D006A1716CDFD00B7315F /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D00681716CDFC00B7315F /* Server.cpp */; };
 		F61D006D1716CE1000B7315F /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61D006B1716CE1000B7315F /* Network.cpp */; };
 		F6268B03173A5238009486C0 /* UniqueNumberGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6268B01173A5238009486C0 /* UniqueNumberGenerator.cpp */; };
+		F6277F90175E1CD80035B716 /* Laser.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6277F8E175E1CD80035B716 /* Laser.cc */; };
+		F6277F93175E1CE20035B716 /* MoveComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6277F91175E1CE20035B716 /* MoveComponent.cc */; };
+		F6277F96175E1CF30035B716 /* MoveEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6277F94175E1CF30035B716 /* MoveEngine.cc */; };
+		F6277F99175E1CFD0035B716 /* SizeComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6277F97175E1CFD0035B716 /* SizeComponent.cc */; };
 		F62F58A416E61B38008B379E /* Listener.cc in Sources */ = {isa = PBXBuildFile; fileRef = F62F58A216E61B38008B379E /* Listener.cc */; };
 		F63C7D9F1716C5B90024CA50 /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F63C7D9D1716C5B90024CA50 /* Client.cpp */; };
 		F642BDA616DF9063009EB1DB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F642BDA516DF9063009EB1DB /* OpenAL.framework */; };
@@ -222,6 +226,14 @@
 		F61D006C1716CE1000B7315F /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		F6268B01173A5238009486C0 /* UniqueNumberGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UniqueNumberGenerator.cpp; sourceTree = "<group>"; };
 		F6268B02173A5238009486C0 /* UniqueNumberGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniqueNumberGenerator.h; sourceTree = "<group>"; };
+		F6277F8E175E1CD80035B716 /* Laser.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Laser.cc; sourceTree = "<group>"; };
+		F6277F8F175E1CD80035B716 /* Laser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Laser.h; sourceTree = "<group>"; };
+		F6277F91175E1CE20035B716 /* MoveComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveComponent.cc; sourceTree = "<group>"; };
+		F6277F92175E1CE20035B716 /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveComponent.h; sourceTree = "<group>"; };
+		F6277F94175E1CF30035B716 /* MoveEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveEngine.cc; sourceTree = "<group>"; };
+		F6277F95175E1CF30035B716 /* MoveEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveEngine.h; sourceTree = "<group>"; };
+		F6277F97175E1CFD0035B716 /* SizeComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SizeComponent.cc; sourceTree = "<group>"; };
+		F6277F98175E1CFD0035B716 /* SizeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeComponent.h; sourceTree = "<group>"; };
 		F62F58A216E61B38008B379E /* Listener.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Listener.cc; sourceTree = "<group>"; };
 		F62F58A316E61B38008B379E /* Listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listener.h; sourceTree = "<group>"; };
 		F62F58A816E62C79008B379E /* ListenerComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListenerComponent.h; sourceTree = "<group>"; };
@@ -741,6 +753,14 @@
 				F61D00671716CD4100B7315F /* Net.h */,
 				F61D006B1716CE1000B7315F /* Network.cpp */,
 				F61D006C1716CE1000B7315F /* Network.h */,
+				F6277F8E175E1CD80035B716 /* Laser.cc */,
+				F6277F8F175E1CD80035B716 /* Laser.h */,
+				F6277F97175E1CFD0035B716 /* SizeComponent.cc */,
+				F6277F98175E1CFD0035B716 /* SizeComponent.h */,
+				F6277F91175E1CE20035B716 /* MoveComponent.cc */,
+				F6277F92175E1CE20035B716 /* MoveComponent.h */,
+				F6277F94175E1CF30035B716 /* MoveEngine.cc */,
+				F6277F95175E1CF30035B716 /* MoveEngine.h */,
 				F61D00681716CDFC00B7315F /* Server.cpp */,
 				F61D00691716CDFC00B7315F /* Server.h */,
 				F61BDCBA16E8988E00768DEE /* Cubemap.h */,
@@ -1184,6 +1204,10 @@
 				F608BC8717562C5A005057F5 /* HUDEngine.cc in Sources */,
 				F617C59C1757425600CDAD79 /* GameHUDEngine.cc in Sources */,
 				42C8EDB1175CABDD00F76D6E /* HealthComponent.cpp in Sources */,
+				F6277F90175E1CD80035B716 /* Laser.cc in Sources */,
+				F6277F93175E1CE20035B716 /* MoveComponent.cc in Sources */,
+				F6277F96175E1CF30035B716 /* MoveEngine.cc in Sources */,
+				F6277F99175E1CFD0035B716 /* SizeComponent.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
