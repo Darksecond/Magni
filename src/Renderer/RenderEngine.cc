@@ -846,11 +846,13 @@ void RenderEngine::setSelectedData(std::list<std::shared_ptr<Entity>> entities) 
         if(spatial != nullptr) { //deze check kan stiekem wel weg omdat Tim hier al het goed is op checkt.
             float x = spatial->position.x;
             float z = spatial->position.z;
-            float offSetZ = 0.25;
-            float offSetX = 0.25;
+            float offSetZ = -0.25;
+            float offSetX = -0.25;
             if( sizeC != nullptr ) {
-                offSetZ = sizeC->x/2 + 0.25;
-                offSetX = sizeC->z/2 + 0.25;
+                float zz = sizeC->z;
+                float xx = sizeC->x;
+                offSetZ = zz/2 - 0.25; //fix this shit
+                offSetX = xx/2 - 0.25;
             }
             selectedCount++;
 

@@ -318,7 +318,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
         ciCore.assign<AOEComponent>(4);
-        ciCore.assign<SizeComponent>(1,1);
+        ciCore.assign<SizeComponent>(3,3);
         setBuilding(ciCore);
         myCoreID = ciCore.id;
 
@@ -336,7 +336,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<EnergyComponent>(-50);
         ciCore.assign<HealthComponent>(30);
         ciCore.assign<OwnerComponent>(playerNumber);
-        ciCore.assign<SizeComponent>(1,1);
+        ciCore.assign<SizeComponent>(3,3);
         setBuilding(ciCore);
 
         myCoreID = ciCore.id;
@@ -466,7 +466,6 @@ void Gameplay::removeEntity(int id) {
 }
 
 void Gameplay::setBuilding(Entity& aEntity) {
-   // Entity* aEntity = getCurrentSelectedEntity();
     auto size = aEntity.component<SizeComponent>();
     auto spatial = aEntity.component<SpatialComponent>();
     if(size != nullptr && spatial != nullptr){

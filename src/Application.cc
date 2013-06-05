@@ -84,9 +84,7 @@ void Application::buildGame()
     tiles->setType(11, 9, Tile::Type::WATER);
     tiles->setType(9, 11, Tile::Type::WATER);
 
-    // needs to go when nick fixes his building stuff
-    tiles->setType(0, 0, Tile::Type::BUILDING);
-}
+    }
 
 void Application::waitNetwork()
 {
@@ -207,6 +205,10 @@ void Application::runGame()
 
         glfwEnable(GLFW_KEY_REPEAT);
         // TODO cleanup ----------------------------------
+
+        std::cout << "TilePos: "  << renderEngine->GetTilePosition().x << "," << renderEngine->GetTilePosition().z << std::endl;
+        std::cout << "MousePos: " << renderEngine->get3DPositionFromMousePosition().x << "," << renderEngine->get3DPositionFromMousePosition().z << std::endl;
+
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
             //gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
             gameplay->processBuildingUnits(true);
