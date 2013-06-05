@@ -590,6 +590,9 @@ void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
 {
     Entity* attacking_unit = scene.getEntity(id_attacking_unit);
     Entity* to_be_attacked = scene.getEntity(id_to_be_attacked);
+    
+    if(attacking_unit == nullptr) return;
+    if(to_be_attacked == nullptr) return;
 
     auto spatial = attacking_unit->component<SpatialComponent>();
     glm::vec3 pos = spatial->get_position();
@@ -718,11 +721,20 @@ void Gameplay::setDebuff() {
 }
 
 bool Gameplay::isInAOE(glm::vec3 position, int id_attacking_unit) {
+    
+    Entity* attacking_unit = scene.getEntity(id_attacking_unit);
+    std::cout << attacking_unit->name << std::endl;
+    
+    
+    /*
     Entity* attacking_unit = scene.getEntity(id_attacking_unit);
 
     auto spatial = attacking_unit->component<SpatialComponent>();
     glm::vec3 pos = spatial->get_position();
     Tile::Type t = tileMap->getType((int)pos.x+10, (int)pos.z+10); //TODO: fixxen voor grotere maps, hekkie krekkie oplossing
+=======
+    Tile::Type t = tileMap->getType(pos.x+10, pos.z+10);
+>>>>>>> 83fbfa587c556261e0b5e0e95467cd208a01c015
     if (t != Tile::Type::AOE) {
         return false;
     }
@@ -730,4 +742,7 @@ bool Gameplay::isInAOE(glm::vec3 position, int id_attacking_unit) {
         std::cout << &t << "allah hakbar" << std::endl;
         return false;
     }
+    */
+    
+    return true;
 }
