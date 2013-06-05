@@ -171,6 +171,7 @@ void Application::runGame()
 
     auto worker_group = gameHudEngine->addGroup("worker");
     worker_group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createOrbitalDropBeacon);
+    worker_group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createTower);
 
     auto odb_group = gameHudEngine->addGroup("odb");
     odb_group->addItem("wooden-crate.jpg", *gameplay, &Gameplay::createBasicInfantrie);

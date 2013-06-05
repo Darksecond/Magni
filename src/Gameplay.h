@@ -127,6 +127,7 @@ namespace Ymir
             void buildGhostAcademyOfAdvancedTechnologies(glm::vec3 position, int id);
             void buildTower(glm::vec3 position);
             void buildGhostTower(glm::vec3 position, int id);
+        void createTower();
 
             void sellEntity();
             void removeEntity(int id);

@@ -154,6 +154,10 @@ void Gameplay::createBasicInfantrie()
     createUnitAtBuilding(getCurrentSelectedEntity(), "basicInfantrie", basicInfanteriePrice);
 }
 
+void Gameplay::createTower() {
+    createUnit("tower_toren1.obj", "tower", towerOfInfluencePrice);
+}
+
 void Gameplay::processBuildingUnits(bool left_pressed)
 {
     if(currentlyBuildingEntity == nullptr) return;
@@ -170,6 +174,8 @@ void Gameplay::processBuildingUnits(bool left_pressed)
             buildOrbitalDropBeacon(renderEngine.GetTilePosition());
         if(type == "basicInfantrie")
             createBasicInfantrie(renderEngine.GetTilePosition());
+        if(type == "tower")
+            buildTower(renderEngine.GetTilePosition());
     }
 }
 
@@ -402,7 +408,7 @@ void Gameplay::buildTower(glm::vec3 position) {
 void Gameplay::buildGhostTower(glm::vec3 position, int id) {
     position.y = 0.0;
     std::shared_ptr<Texture> t = textureManager.resource("enemy.png");
-    std::shared_ptr<Mesh> tower_mesh = meshManager.resource("tower_toren1.obj"); //todo: tower_clean4.obj
+    std::shared_ptr<Mesh> tower_mesh = meshManager.resource("tower_toren1.obj");
 
     Entity& tower = scene.assign("TowerOfInfluence", id);
     tower.assign<SpatialComponent>(position);
@@ -605,8 +611,9 @@ void Gameplay::attackEntity() {
     auto spatial = attacking_unit->component<SpatialComponent>();
     glm::vec3 pos = spatial->get_position();
     if (!isInAOE(pos, attacking_unit->id)) {
-        std::cout << "Unit is not within reach of tower, so it can't attack" << std::endl;
+        std::cout << "Unit is not within reach of tower, so it can't attack, attackEntity1" << std::endl;
     } else if (attacking_unit && to_be_attacked && attacking_unit != to_be_attacked) {
+        std::cout << "Unit is within reach of towerl" << std::endl;
         if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
         {
             auto spatialAttacker = attacking_unit->component<SpatialComponent>();
@@ -635,8 +642,9 @@ void Gameplay::attackEntityLocal(int id_attacking_unit, int id_to_be_attacked)
     glm::vec3 pos = spatial->get_position();
 
     if (!isInAOE(pos, attacking_unit->id)) {
-        std::cout << "Unit is not within reach of tower, so it can't attack" << std::endl;
+        std::cout << "Unit is not within reach of tower, so it can't attack, attackEntityLocal" << std::endl;
     } else {
+        std::cout << "Unit is within reach of towerl" << std::endl;
         if(myAttackTimer > ATTACKTIMER) {
             if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
             {
@@ -668,8 +676,9 @@ void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
     glm::vec3 pos = spatial->get_position();
 
     if (!isInAOE(pos, attacking_unit->id)) {
-        std::cout << "Unit is not within reach of tower, so it can't attack" << std::endl;
+        std::cout << "Unit is not within reach of tower, so it can't attack, attackEntity" << std::endl;
     } else if (attacking_unit && to_be_attacked && attacking_unit != to_be_attacked){
+        std::cout << "Unit is within reach of towerl" << std::endl;
         if (attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
         {
             auto spatialAttacker = attacking_unit->component<SpatialComponent>();
@@ -789,25 +798,15 @@ void Gameplay::setDebuff() {
 
 }
 
-
-/**
- * @author Marvin
- * Geeft weer of een Entity in een AOE tile staat.
- **/
 bool Gameplay::isInAOE(glm::vec3 position, int id_attacking_unit) {
-    /*
+
     Entity* attacking_unit = scene.getEntity(id_attacking_unit);
 
     auto spatial = attacking_unit->component<SpatialComponent>();
     glm::vec3 pos = spatial->get_position();
-    Tile::Type t = tileMap->getType(pos.x+10, pos.z+10);
+    Tile::Type t = tileMap->getType((int)pos.x+10, (int)pos.z+10); //TODO: fixxen voor grotere maps, hekkie krekkie oplossing
     if (t != Tile::Type::AOE) {
         return false;
     }
-    else {
-        return false;
-    }
-    */
-
     return true;
 }
