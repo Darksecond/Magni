@@ -415,7 +415,7 @@ void Gameplay::buildGhostTower(glm::vec3 position, int id) {
     tower.assign<ModelComponent>(tower_mesh,t);
     tower.assign<EnergyComponent>(20);
     tower.assign<OwnerComponent>(otherPlayerNumber);
-    tower.assign<HealthComponent>(towerOfInfluencePrice);
+    tower.assign<HealthComponent>(20);
     tower.assign<AOEComponent>(1);
 
     std::cout << "Build a building via network with ID: " << id << std::endl;
