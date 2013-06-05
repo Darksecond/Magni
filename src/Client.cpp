@@ -46,6 +46,9 @@ void Client::readReal()
             if (np.get<int>(0) == Gameplay::CICORE) {
                 gp->buildGhostCentralIntelligenceCore(position, ung->flip(np.id()));
             }
+            if (np.get<int>(0) == Gameplay::TOWER) {
+                gp->buildGhostTower(position, ung->flip(np.id()));
+            }
         }
 
         if(np.type() == Gameplay::MOVE) {

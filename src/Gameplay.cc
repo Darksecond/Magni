@@ -24,6 +24,7 @@ currentSelectedUnit(nullptr),
 workerPrice(50),
 basicInfanteriePrice(10),
 orbitalDropBeaconPrice(100),
+towerOfInfluencePrice(125),
 infantryTimer(0),
 buildingTimer(0),
 unitIdentifyCounter(0),
@@ -110,7 +111,6 @@ glm::vec3 Gameplay::getFreePosition(Entity* currentBuilding) {
     auto size    = currentBuilding->component<SizeComponent>();
     if( spatial != nullptr && size != nullptr ) {
         if(size != nullptr && spatial != nullptr){
-            std::cout << size->x << std::endl;
             float xStart = spatial->position.x - size->x/2 -1;
             float xEnd   = spatial->position.x + size->x/2 +1;
             float zStart = spatial->position.z - size->z/2 -1;
@@ -185,6 +185,7 @@ void Gameplay::createWorker(glm::vec3 position)
     worker.assign<CurrencyComponent>(workerPrice);
     worker.assign<OwnerComponent>(playerNumber);
     worker.assign<MoveComponent>(0.01f, 0.075f, nullptr);
+    worker.assign<SizeComponent>(1,1);
     workerBuild = true;
 
     NetworkPacket np(worker.id, BUILD);
@@ -272,8 +273,8 @@ void Gameplay::createBasicInfantrie(glm::vec3 position)
     basicInfantrie.assign<HealthComponent>(10);
     basicInfantrie.assign<CurrencyComponent>(basicInfanteriePrice);
     basicInfantrie.assign<AOEComponent>(1); //is square
-    basicInfantrie.assign<MoveComponent>(0.01f, 0.075f, nullptr);
-
+    basicInfantrie.assign<MoveComponent>(0.01f,0.075f,nullptr);
+    basicInfantrie.assign<SizeComponent>(1,1);
     //currencyEngine.currency -= basicInfanteriePrice;
 
     NetworkPacket np(basicInfantrie.id, BUILD);
@@ -338,9 +339,7 @@ void Gameplay::buildCentralIntelligenceCore()
         ciCore.assign<OwnerComponent>(playerNumber);
         ciCore.assign<SizeComponent>(3,3);
         setBuilding(ciCore);
-
         myCoreID = ciCore.id;
-
         NetworkPacket np(ciCore.id, BUILD);
         np.set(0, CICORE);
         np.set(1, position.x);
@@ -368,6 +367,52 @@ void Gameplay::buildGhostCentralIntelligenceCore(glm::vec3 position, int id)
         cCore.assign<HealthComponent>(30);
         cCore.assign<OwnerComponent>(otherPlayerNumber);
     }
+}
+
+void Gameplay::buildTower(glm::vec3 position) {
+    position.y = 0.0;
+    std::shared_ptr<Texture> t = textureManager.resource("ally.png");
+    std::shared_ptr<Mesh> tower_mesh = meshManager.resource("tower_toren1.obj"); //todo: tower_clean4.obj
+
+    Entity& tower = scene.assign("TowerOfInfluence");
+    tower.assign<SpatialComponent>(position);
+    tower.assign<ModelComponent>(tower_mesh, t);
+    tower.assign<EnergyComponent>(20);
+    tower.assign<OwnerComponent>(playerNumber);
+    tower.assign<HealthComponent>(30);
+    tower.assign<CurrencyComponent>(towerOfInfluencePrice);
+    tower.assign<AOEComponent>(1);
+
+    barracksBuild = true;
+
+    NetworkPacket np(tower.id, BUILD);
+    np.set(0, TOWER);
+    np.set(1, position.x);
+    np.set(2, position.y);
+    np.set(3, position.z);
+
+    client->write(np.char_array(), np.size());
+
+    currencyEngine.currency -= towerOfInfluencePrice;
+    buildingTimer = 0;
+
+    setAOE(tower);
+}
+
+void Gameplay::buildGhostTower(glm::vec3 position, int id) {
+    position.y = 0.0;
+    std::shared_ptr<Texture> t = textureManager.resource("enemy.png");
+    std::shared_ptr<Mesh> tower_mesh = meshManager.resource("tower_toren1.obj"); //todo: tower_clean4.obj
+
+    Entity& tower = scene.assign("TowerOfInfluence", id);
+    tower.assign<SpatialComponent>(position);
+    tower.assign<ModelComponent>(tower_mesh,t);
+    tower.assign<EnergyComponent>(20);
+    tower.assign<OwnerComponent>(otherPlayerNumber);
+    tower.assign<HealthComponent>(towerOfInfluencePrice);
+    tower.assign<AOEComponent>(1);
+
+    std::cout << "Build a building via network with ID: " << id << std::endl;
 }
 
 void Gameplay::buildOrbitalDropBeacon(glm::vec3 position)
@@ -410,7 +455,7 @@ void Gameplay::buildGhostOrbitalDropBeacon(glm::vec3 position, int id)
     house.assign<HealthComponent>(20);
     house.assign<CurrencyComponent>(orbitalDropBeaconPrice);
 
-    std::cout << "Builded a unit via network with ID: " << id << std::endl;
+    std::cout << "Build a unit via network with ID: " << id << std::endl;
 }
 
 bool Gameplay::centralIntelligenceCoreDestoyed()
@@ -491,40 +536,33 @@ void Gameplay::setBuilding(Entity& aEntity) {
 }
 
 
-void Gameplay::setAOE(bool reset) {
-    Entity* aEntity = getCurrentSelectedEntity();
-    if(aEntity != nullptr) {
-        auto aoe = aEntity->component<AOEComponent>();
-        auto spatial = aEntity->component<SpatialComponent>();
-        if(aoe != nullptr && spatial != nullptr){
-            int radius   = aoe->radius;
-            float xStart = spatial->position.x - radius;
-            float xEnd   = spatial->position.x + radius;
-            float zStart = spatial->position.z - radius;
-            float zEnd   = spatial->position.z + radius;
-            int xTileLocationStart  = (int) (xStart +10); //Offset to tilemap is 10.
-            int xTileLocationEnd    = (int) (xEnd   +10); //Dit is de helft van het aantal rows/collommen
-            int zTileLocationStart  = (int) (zStart +10); //
-            int zTileLocationEnd    = (int) (zEnd   +10); //
+//TODO: boolean toevoegen destroy als bool true aoe terugzetten naar type::none, maar moet wel kijken of er andere units in de buurt zitten met overlappende aoe
+void Gameplay::setAOE(Entity& aEntity) {
+    auto aoe = aEntity.component<AOEComponent>();
+    auto spatial = aEntity.component<SpatialComponent>();
+    if(aoe != nullptr && spatial != nullptr){
+        int radius   = aoe->radius;
+        float xStart = spatial->position.x - radius;
+        float xEnd   = spatial->position.x + radius;
+        float zStart = spatial->position.z - radius;
+        float zEnd   = spatial->position.z + radius;
+        int xTileLocationStart  = (int) (xStart +10); //Offset to tilemap is 10.
+        int xTileLocationEnd    = (int) (xEnd   +10); //Dit is de helft van het aantal rows/collommen
+        int zTileLocationStart  = (int) (zStart +10); //
+        int zTileLocationEnd    = (int) (zEnd   +10); //
 
-            for(int i = xTileLocationStart; i <= xTileLocationEnd; i++) {
-                for(int y = zTileLocationStart; y <= zTileLocationEnd; y++) {
-                    if(i >= 0 && i <= 20 && y >= 0 && y <= 20) {
-                        if(reset) {
-                            if(tileMap->getType(i,y) == Tile::Type::AOE) {
-                                tileMap->setType(i,y,Tile::Type::NONE);
-                            }
-                        } else {
-                            if(tileMap->getType(i,y) == Tile::Type::NONE) {
-                                tileMap->setType(i,y,Tile::Type::AOE);
-                            }
-                        }
+        for(int i = xTileLocationStart; i <= xTileLocationEnd; i++) {
+            for(int y = zTileLocationStart; y <= zTileLocationEnd; y++) {
+                if(i >= 0 && i <= 20 && y >= 0 && y <= 20) {
+                    if(tileMap->getType(i,y) == Tile::Type::NONE) {
+                        tileMap->setType(i,y,Tile::Type::AOE);
                     }
                 }
             }
         }
     }
 }
+
 
 void Gameplay::moveEntity() {
     Entity* aEntity = getCurrentSelectedEntity();
@@ -533,12 +571,10 @@ void Gameplay::moveEntity() {
         if(owner != nullptr) {
                 std::cout << owner->playerNumber << " " << playerNumber << std::endl;
             if(owner->playerNumber == playerNumber) {
-                setAOE(true);
                 auto spatial = aEntity->component<SpatialComponent>();
                 glm::vec3 newPos = renderEngine.GetTilePosition();
                 newPos.y = 0;
                 spatial->set_position(newPos);
-                setAOE();
 
                 NetworkPacket np(aEntity->id, MOVE);
                 np.set(0, newPos.x);
@@ -562,13 +598,15 @@ void Gameplay::moveEntity(glm::vec3 position, int id) {
     }
 }
 
-void Gameplay::attackEntity()
-{
+void Gameplay::attackEntity() {
     Entity* attacking_unit = getCurrentSelectedEntity();
     Entity* to_be_attacked = scene.getEntityAtPosition(renderEngine.GetTilePosition()).get();
 
-    if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
-    {
+    auto spatial = attacking_unit->component<SpatialComponent>();
+    glm::vec3 pos = spatial->get_position();
+    if (!isInAOE(pos, attacking_unit->id)) {
+        std::cout << "Unit is not within reach of tower, so it can't attack" << std::endl;
+    } else if (attacking_unit && to_be_attacked && attacking_unit != to_be_attacked) {
         if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
         {
             auto spatialAttacker = attacking_unit->component<SpatialComponent>();
@@ -593,23 +631,25 @@ void Gameplay::attackEntityLocal(int id_attacking_unit, int id_to_be_attacked)
     Entity* attacking_unit = scene.getEntity(id_attacking_unit);
     Entity* to_be_attacked = scene.getEntity(id_to_be_attacked);
 
-    if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
-    {
-        if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
-        {
-            auto spatialAttacker = attacking_unit->component<SpatialComponent>();
-            auto spatialAttackee = to_be_attacked->component<SpatialComponent>();
+    auto spatial = attacking_unit->component<SpatialComponent>();
+    glm::vec3 pos = spatial->get_position();
 
-            if(spatialAttacker != nullptr || spatialAttackee != nullptr) {
-                attackEngine.attack(*to_be_attacked, *attacking_unit);
+    if (!isInAOE(pos, attacking_unit->id)) {
+        std::cout << "Unit is not within reach of tower, so it can't attack" << std::endl;
+    } else {
+        if(myAttackTimer > ATTACKTIMER) {
+            if(attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
+            {
+                if(attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
+                {
+                    std::cout << "Unit: " << attacking_unit->name << " is attacking: " << to_be_attacked->name << std::endl;
+                    attackEngine.attack(*to_be_attacked, *attacking_unit);
 
-                Laser* laser = new Laser(spatialAttacker->get_position(), spatialAttackee->get_position(), 0.3f);
-                lasers.push_back(laser);
-
-                NetworkPacket np(attacking_unit->id, ATTACK);
-                np.set(0, to_be_attacked->id);
-                client->write(np.char_array(), np.size());
-                myAttackTimer = 0;
+                    NetworkPacket np(attacking_unit->id, ATTACK);
+                    np.set(0, to_be_attacked->id);
+                    client->write(np.char_array(), np.size());
+                    myAttackTimer = 0;
+                }
             }
         }
     }
@@ -621,8 +661,15 @@ void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
     Entity* attacking_unit = scene.getEntity(id_attacking_unit);
     Entity* to_be_attacked = scene.getEntity(id_to_be_attacked);
 
-    if (attacking_unit && to_be_attacked && attacking_unit != to_be_attacked)
-    {
+    if(attacking_unit == nullptr) return;
+    if(to_be_attacked == nullptr) return;
+
+    auto spatial = attacking_unit->component<SpatialComponent>();
+    glm::vec3 pos = spatial->get_position();
+
+    if (!isInAOE(pos, attacking_unit->id)) {
+        std::cout << "Unit is not within reach of tower, so it can't attack" << std::endl;
+    } else if (attacking_unit && to_be_attacked && attacking_unit != to_be_attacked){
         if (attacking_unit->component<AttackComponent>() && to_be_attacked->component<HealthComponent>())
         {
             auto spatialAttacker = attacking_unit->component<SpatialComponent>();
@@ -637,6 +684,7 @@ void Gameplay::attackEntity(int id_attacking_unit, int id_to_be_attacked)
         }
     }
 }
+
 
 void Gameplay::automaticAttackCheck() {
     for(auto& firstEntityEntry : scene.entities) {
@@ -675,7 +723,6 @@ void Gameplay::automaticAttackCheck() {
 void Gameplay::updateSelectedEntity(glm::vec3 position)
 {
     currentSelectedUnit = scene.getEntityAtPosition(position).get();
-    setAOE();
 }
 
 void Gameplay::updateSelectedEntity(Entity* entity)
@@ -683,7 +730,6 @@ void Gameplay::updateSelectedEntity(Entity* entity)
     if(entity != currentSelectedUnit)
     {
         currentSelectedUnit = entity;
-        setAOE();
     }
 }
 
@@ -736,4 +782,32 @@ void Gameplay::setTileMap(TileMap* tilemap)
         tileMap = tilemap;
         renderEngine.setTileMap(tileMap);
     }
+}
+
+//TODO: nog doen
+void Gameplay::setDebuff() {
+
+}
+
+
+/**
+ * @author Marvin
+ * Geeft weer of een Entity in een AOE tile staat.
+ **/
+bool Gameplay::isInAOE(glm::vec3 position, int id_attacking_unit) {
+    /*
+    Entity* attacking_unit = scene.getEntity(id_attacking_unit);
+
+    auto spatial = attacking_unit->component<SpatialComponent>();
+    glm::vec3 pos = spatial->get_position();
+    Tile::Type t = tileMap->getType(pos.x+10, pos.z+10);
+    if (t != Tile::Type::AOE) {
+        return false;
+    }
+    else {
+        return false;
+    }
+    */
+
+    return true;
 }

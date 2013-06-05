@@ -8,13 +8,22 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/Gameplay.cc"
-         timestampString = "387369694.108366"
+         timestampString = "391942387.054182"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
-         landmarkName = "Gameplay::createBasicInfantrie(glm::vec3 position)"
-         landmarkType = "5">
+         startingLineNumber = "76"
+         endingLineNumber = "76">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/HealthComponent.cpp"
+         timestampString = "391955643.275123"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "18"
+         endingLineNumber = "18">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

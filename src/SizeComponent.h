@@ -13,6 +13,5 @@ namespace Ymir
             SizeComponent(int x, int z );
             int x;
             int z;
-
     };
 };

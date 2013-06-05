@@ -205,10 +205,6 @@ void Application::runGame()
 
         glfwEnable(GLFW_KEY_REPEAT);
         // TODO cleanup ----------------------------------
-
-        std::cout << "TilePos: "  << renderEngine->GetTilePosition().x << "," << renderEngine->GetTilePosition().z << std::endl;
-        std::cout << "MousePos: " << renderEngine->get3DPositionFromMousePosition().x << "," << renderEngine->get3DPositionFromMousePosition().z << std::endl;
-
         if(glfwGetMouseButton( GLFW_MOUSE_BUTTON_LEFT ) == GLFW_PRESS ) {
             //gameplay->updateSelectedEntity(renderEngine->get3DPositionFromMousePosition());
             gameplay->processBuildingUnits(true);
@@ -228,6 +224,9 @@ void Application::runGame()
         }
         if(glfwGetKey( 'K' ) == GLFW_PRESS) {
             gameplay->createBasicInfantrie(renderEngine->GetTilePosition());
+        }
+        if(glfwGetKey( 'L' ) == GLFW_PRESS) {
+            gameplay->buildTower(renderEngine->GetTilePosition());
         }
         if(glfwGetKey(GLFW_KEY_DEL) == GLFW_PRESS) {
             gameplay->sellEntity();
