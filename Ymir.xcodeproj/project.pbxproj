@@ -35,6 +35,10 @@
 		F6542A0E16E49607006B64AB /* SimpleTestTriggerBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6542A0C16E49607006B64AB /* SimpleTestTriggerBehavior.cc */; };
 		F6663895174E15C000276E4D /* AOEComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6663893174E15C000276E4D /* AOEComponent.cc */; };
 		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
+		F672915B175F6C500054EBE4 /* Laser.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6729155175F6C500054EBE4 /* Laser.cc */; };
+		F672915C175F6C500054EBE4 /* MoveComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6729157175F6C500054EBE4 /* MoveComponent.cc */; };
+		F672915D175F6C500054EBE4 /* MoveEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6729159175F6C500054EBE4 /* MoveEngine.cc */; };
+		F6729160175F6C610054EBE4 /* SizeComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = F672915E175F6C610054EBE4 /* SizeComponent.cc */; };
 		F67A394B17031820004AAF05 /* AttackEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = F67A394917031820004AAF05 /* AttackEngine.cc */; };
 		F68279B016D415AE00BD1BAF /* WSADMoveBehavior.cc in Sources */ = {isa = PBXBuildFile; fileRef = F68279AE16D415AE00BD1BAF /* WSADMoveBehavior.cc */; };
 		F6864B6416F0A1CF00713B67 /* CubemapResourceLoader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6864B6316F0A1CF00713B67 /* CubemapResourceLoader.cc */; };
@@ -252,6 +256,14 @@
 		F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramResourceLoader.h; sourceTree = "<group>"; };
 		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
 		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
+		F6729155175F6C500054EBE4 /* Laser.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Laser.cc; sourceTree = "<group>"; };
+		F6729156175F6C500054EBE4 /* Laser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Laser.h; sourceTree = "<group>"; };
+		F6729157175F6C500054EBE4 /* MoveComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveComponent.cc; sourceTree = "<group>"; };
+		F6729158175F6C500054EBE4 /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveComponent.h; sourceTree = "<group>"; };
+		F6729159175F6C500054EBE4 /* MoveEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveEngine.cc; sourceTree = "<group>"; };
+		F672915A175F6C500054EBE4 /* MoveEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveEngine.h; sourceTree = "<group>"; };
+		F672915E175F6C610054EBE4 /* SizeComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SizeComponent.cc; sourceTree = "<group>"; };
+		F672915F175F6C610054EBE4 /* SizeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeComponent.h; sourceTree = "<group>"; };
 		F677EE5F16E3CC6600BDAC73 /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		F67A3947170316B8004AAF05 /* HealthComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HealthComponent.h; sourceTree = "<group>"; };
 		F67A394817031771004AAF05 /* AttackComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttackComponent.h; sourceTree = "<group>"; };
@@ -739,11 +751,19 @@
 				F6FB2A1B16B7104F00E6013E /* Texture.h */,
 				F6FB2A1C16B7105D00E6013E /* Texture.cc */,
 				F61D00671716CD4100B7315F /* Net.h */,
+				F6729155175F6C500054EBE4 /* Laser.cc */,
+				F6729156175F6C500054EBE4 /* Laser.h */,
+				F6729157175F6C500054EBE4 /* MoveComponent.cc */,
+				F6729158175F6C500054EBE4 /* MoveComponent.h */,
+				F6729159175F6C500054EBE4 /* MoveEngine.cc */,
+				F672915A175F6C500054EBE4 /* MoveEngine.h */,
 				F61D006B1716CE1000B7315F /* Network.cpp */,
 				F61D006C1716CE1000B7315F /* Network.h */,
 				F61D00681716CDFC00B7315F /* Server.cpp */,
 				F61D00691716CDFC00B7315F /* Server.h */,
 				F61BDCBA16E8988E00768DEE /* Cubemap.h */,
+				F672915E175F6C610054EBE4 /* SizeComponent.cc */,
+				F672915F175F6C610054EBE4 /* SizeComponent.h */,
 				F60D929A1701C2F800D0E6F4 /* Gameplay.cc */,
 				F60D92981701C2ED00D0E6F4 /* Gameplay.h */,
 				F6663893174E15C000276E4D /* AOEComponent.cc */,
@@ -1184,6 +1204,10 @@
 				F608BC8717562C5A005057F5 /* HUDEngine.cc in Sources */,
 				F617C59C1757425600CDAD79 /* GameHUDEngine.cc in Sources */,
 				42C8EDB1175CABDD00F76D6E /* HealthComponent.cpp in Sources */,
+				F672915B175F6C500054EBE4 /* Laser.cc in Sources */,
+				F672915C175F6C500054EBE4 /* MoveComponent.cc in Sources */,
+				F672915D175F6C500054EBE4 /* MoveEngine.cc in Sources */,
+				F6729160175F6C610054EBE4 /* SizeComponent.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
