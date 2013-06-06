@@ -152,7 +152,7 @@
 		F645948D16B6A96D00B118C2 /* Shader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cc; sourceTree = "<group>"; };
 		F645949216B6AE1700B118C2 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
 		F645949316B6AE8700B118C2 /* Program.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cc; sourceTree = "<group>"; };
-		F64B866217607E8900B2460B /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = osx/main.mm; sourceTree = "<group>"; };
+		F64B866217607E8900B2460B /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../osx/main.mm; sourceTree = "<group>"; };
 		F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramResourceLoader.h; sourceTree = "<group>"; };
 		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
 		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
@@ -316,6 +316,29 @@
 			name = "Resource Management";
 			sourceTree = "<group>";
 		};
+		F64B866417607F4300B2460B /* Render */ = {
+			isa = PBXGroup;
+			children = (
+				F645948B16B6A8F100B118C2 /* Shader.h */,
+				F645948D16B6A96D00B118C2 /* Shader.cc */,
+				F645949216B6AE1700B118C2 /* Program.h */,
+				F645949316B6AE8700B118C2 /* Program.cc */,
+				F6FB2A1B16B7104F00E6013E /* Texture.h */,
+				F6FB2A1C16B7105D00E6013E /* Texture.cc */,
+				F61BDCBA16E8988E00768DEE /* Cubemap.h */,
+				F61BDCB916E8988E00768DEE /* Cubemap.cc */,
+				F6FB2A1E16B7112C00E6013E /* Bitmap.h */,
+				F6FB2A1F16B7113000E6013E /* Bitmap.cc */,
+				F6D9138216BC0222000C0632 /* Mesh.h */,
+				F6D9138316BC0226000C0632 /* Mesh.cc */,
+				F68279B116D41D7400BD1BAF /* Geometry.h */,
+				F68279B216D41E2A00BD1BAF /* CubeGeometry.h */,
+				F6CC523A16D6915600C58612 /* ObjGeometry.h */,
+				F6CC523916D6915500C58612 /* ObjGeometry.cc */,
+			);
+			name = Render;
+			sourceTree = "<group>";
+		};
 		F6846D8816C58DB400071311 /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,7 +352,6 @@
 			isa = PBXGroup;
 			children = (
 				F687A41516B4B63300878140 /* Magni */,
-				F64B866217607E8900B2460B /* main.mm */,
 				F687A43516B4B73B00878140 /* GLFW */,
 				F687A4D616B4B89900878140 /* GLEW */,
 				F687A50316B4BA1100878140 /* GLM */,
@@ -524,25 +546,11 @@
 		F687A52E16B4BC7700878140 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F64B866417607F4300B2460B /* Render */,
 				F6BEF06116E5E9F900ACEDC5 /* Audio */,
 				F6846D8816C58DB400071311 /* 3rd Party */,
 				F6053FE816C6D532007F52FE /* Resource Management */,
-				F645948B16B6A8F100B118C2 /* Shader.h */,
-				F645948D16B6A96D00B118C2 /* Shader.cc */,
-				F645949216B6AE1700B118C2 /* Program.h */,
-				F645949316B6AE8700B118C2 /* Program.cc */,
-				F6FB2A1B16B7104F00E6013E /* Texture.h */,
-				F6FB2A1C16B7105D00E6013E /* Texture.cc */,
-				F61BDCBA16E8988E00768DEE /* Cubemap.h */,
-				F61BDCB916E8988E00768DEE /* Cubemap.cc */,
-				F6FB2A1E16B7112C00E6013E /* Bitmap.h */,
-				F6FB2A1F16B7113000E6013E /* Bitmap.cc */,
-				F6D9138216BC0222000C0632 /* Mesh.h */,
-				F6D9138316BC0226000C0632 /* Mesh.cc */,
-				F68279B116D41D7400BD1BAF /* Geometry.h */,
-				F68279B216D41E2A00BD1BAF /* CubeGeometry.h */,
-				F6CC523A16D6915600C58612 /* ObjGeometry.h */,
-				F6CC523916D6915500C58612 /* ObjGeometry.cc */,
+				F64B866217607E8900B2460B /* main.mm */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
