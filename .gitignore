@@ -1,7 +1,10 @@
 Ymir.xcodeproj/xcuserdata/darksecond.xcuserdatad
 Ymir.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata
+*.xcodeproj/project.xcworkspace/xcuserdata/
 bin/
 obj/
 Ymir.depend
 Ymir.layout
 Ymir.cscope_file_list
+build

@@ -1,280 +1,0 @@
-TGLM
-v7
-r0
-t384772670.473481
-cCheck dependencies
-cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/Current A
-cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Resources Versions/Current/Resources
-cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/GLM Versions/Current/GLM
-cSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Headers Versions/Current/Headers
-cProcessInfoPlistFile /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Resources/Info.plist osx/GLM/GLM-Info.plist
-cCompileC build/Ymir.build/Debug/GLM.build/Objects-normal/x86_64/main.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/main.c normal x86_64 c com.apple.compilers.gcc.4_2
-cLd /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/GLM normal x86_64
-cCpHeader build/Debug/GLM.framework/Versions/A/Headers/core osx/GLM/glm/core
-cCpHeader build/Debug/GLM.framework/Versions/A/Headers/ext.hpp osx/GLM/glm/ext.hpp
-cCpHeader build/Debug/GLM.framework/Versions/A/Headers/glm.hpp osx/GLM/glm/glm.hpp
-cCpHeader build/Debug/GLM.framework/Versions/A/Headers/gtc osx/GLM/glm/gtc
-cCpHeader build/Debug/GLM.framework/Versions/A/Headers/gtx osx/GLM/glm/gtx
-cCpHeader build/Debug/GLM.framework/Versions/A/Headers/virtrev osx/GLM/glm/virtrev
-cCpResource build/Debug/GLM.framework/Versions/A/Resources/copying.txt osx/GLM/copying.txt
-cTouch /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework
-
-N/Developer/SDKs/MacOSX10.6.sdk
-c000000004CAA740B00000000000000EE
-t1286239243
-s238
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework
-t1363079870
-s204
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/GLM
-t3
-s20
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Headers
-t3
-s24
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Resources
-t3
-s26
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/GLM
-t1363079870
-s4168
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers/core
-t1363079870
-s2652
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers/ext.hpp
-t1363079870
-s5620
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers/glm.hpp
-t1363079870
-s5802
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers/gtc
-t1363079870
-s1054
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers/gtx
-t1363079870
-s4012
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers/virtrev
-t1363079870
-s102
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Resources/Info.plist
-t1363079870
-s803
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Resources/copying.txt
-t1363079870
-s1104
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/Current
-t3
-s1
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLM.build/Objects-normal/x86_64/GLM.LinkFileList
-c00000000513EF2BE000000000000006B
-t1363079870
-s107
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLM.build/Objects-normal/x86_64/main.o
-t1363079870
-s1532
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/copying.txt
-c00000000513EEFDF0000000000000450
-t1363079135
-s1104
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/core
-c00000000513EEFDF0000000000000A5C
-t1363079135
-s2652
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/ext.hpp
-c00000000513EEFDF00000000000015F4
-t1363079135
-s5620
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/glm.hpp
-c00000000513EEFDF00000000000016AA
-t1363079135
-s5802
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/gtc
-c00000000513EEFDF000000000000041E
-t1363079135
-s1054
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/gtx
-c00000000513EEFDF0000000000000FAC
-t1363079135
-s4012
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/virtrev
-c00000000513EEFDF0000000000000066
-t1363079135
-s102
-
-N/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/main.c
-c00000000513EEFDF0000000000000000
-t1363079135
-s0
-
-Nosx/GLM/GLM-Info.plist
-c00000000513EEFDF00000000000003BC
-t1363079135
-s956
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies384772670#384772670#0(155"[WARN]Mac OS X deployment target '10.8' for architecture 'x86_64' and variant 'normal' is greater than the maximum value '10.6' for the Mac OS X 10.6 SDK.1(22@148"Mac OS X deployment target '10.8' for architecture 'x86_64' and variant 'normal' is greater than the maximum value '10.6' for the Mac OS X 10.6 SDK.384772670#18446744073709551615#0#0(1@0"0(0#1#0"4320133120#0"0#
-
-CCompileC build/Ymir.build/Debug/GLM.build/Objects-normal/x86_64/main.o /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/main.c normal x86_64 c com.apple.compilers.gcc.4_2
-s384772670.055862
-e384772670.087447
-r1
-xCompileC
-xbuild/Ymir.build/Debug/GLM.build/Objects-normal/x86_64/main.o
-x/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/main.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-occ1: warning: -Wuninitialized is not supported without -O
-lSLF07#2@67"Compile /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/main.c384772670#384772670#0(58"cc1: warning: -Wuninitialized is not supported without -O1(22@43"-Wuninitialized is not supported without -O384772670#0#58#0(6@0"384772670#0#0#0#0#0"0(0#0#59"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/main.c4320133120#1305"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.8 -gdwarf-2 -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLM.build/GLM-generated-files.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLM.build/GLM-own-target-headers.hmap -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLM.build/GLM-all-target-headers.hmap -iquote /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLM.build/GLM-project-headers.hmap -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/include -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLM.build/DerivedSources/x86_64 -I/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLM.build/DerivedSources -c /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/main.c -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLM.build/Objects-normal/x86_64/main.o0#
-
-CCpHeader build/Debug/GLM.framework/Versions/A/Headers/core osx/GLM/glm/core
-s384772670.104119
-e384772670.214061
-r1
-xCpHeader
-xbuild/Debug/GLM.framework/Versions/A/Headers/core
-xosx/GLM/glm/core
-lSLF07#2@21"Copy osx/GLM/glm/core384772670#384772670#0(0"0(0#0#61"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/core4320133120#366"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/core /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers0#
-
-CCpHeader build/Debug/GLM.framework/Versions/A/Headers/ext.hpp osx/GLM/glm/ext.hpp
-s384772670.104895
-e384772670.136429
-r1
-xCpHeader
-xbuild/Debug/GLM.framework/Versions/A/Headers/ext.hpp
-xosx/GLM/glm/ext.hpp
-lSLF07#2@24"Copy osx/GLM/glm/ext.hpp384772670#384772670#0(0"0(0#0#64"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/ext.hpp4320133120#369"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/ext.hpp /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers0#
-
-CCpHeader build/Debug/GLM.framework/Versions/A/Headers/glm.hpp osx/GLM/glm/glm.hpp
-s384772670.105402
-e384772670.133120
-r1
-xCpHeader
-xbuild/Debug/GLM.framework/Versions/A/Headers/glm.hpp
-xosx/GLM/glm/glm.hpp
-lSLF07#2@24"Copy osx/GLM/glm/glm.hpp384772670#384772670#0(0"0(0#0#64"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/glm.hpp4320133120#369"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/glm.hpp /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers0#
-
-CCpHeader build/Debug/GLM.framework/Versions/A/Headers/gtc osx/GLM/glm/gtc
-s384772670.105991
-e384772670.286984
-r1
-xCpHeader
-xbuild/Debug/GLM.framework/Versions/A/Headers/gtc
-xosx/GLM/glm/gtc
-lSLF07#2@20"Copy osx/GLM/glm/gtc384772670#384772670#0(0"0(0#0#60"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/gtc4320133120#365"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/gtc /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers0#
-
-CCpHeader build/Debug/GLM.framework/Versions/A/Headers/gtx osx/GLM/glm/gtx
-s384772670.106580
-e384772670.460398
-r1
-xCpHeader
-xbuild/Debug/GLM.framework/Versions/A/Headers/gtx
-xosx/GLM/glm/gtx
-lSLF07#2@20"Copy osx/GLM/glm/gtx384772670#384772670#0(0"0(0#0#60"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/gtx4320133120#365"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/gtx /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers0#
-
-CCpHeader build/Debug/GLM.framework/Versions/A/Headers/virtrev osx/GLM/glm/virtrev
-s384772670.107131
-e384772670.134643
-r1
-xCpHeader
-xbuild/Debug/GLM.framework/Versions/A/Headers/virtrev
-xosx/GLM/glm/virtrev
-lSLF07#2@24"Copy osx/GLM/glm/virtrev384772670#384772670#0(0"0(0#0#64"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/virtrev4320133120#369"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/glm/virtrev /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Headers0#
-
-CCpResource build/Debug/GLM.framework/Versions/A/Resources/copying.txt osx/GLM/copying.txt
-s384772670.460523
-e384772670.469034
-r1
-xCpResource
-xbuild/Debug/GLM.framework/Versions/A/Resources/copying.txt
-xosx/GLM/copying.txt
-lSLF07#2@24"Copy osx/GLM/copying.txt384772670#384772670#0(0"0(0#0#64"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/copying.txt4320133120#371"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/copying.txt /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Resources0#
-
-CLd /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/GLM normal x86_64
-s384772670.087554
-e384772670.104013
-r1
-xLd
-x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/GLM
-xnormal
-xx86_64
-lSLF07#2@90"Link /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/GLM384772670#384772670#0(0"0(0#0#0"4320133120#692"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Developer/usr/bin/gcc-4.2 -arch x86_64 -dynamiclib -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -F/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug -filelist /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Ymir.build/Debug/GLM.build/Objects-normal/x86_64/GLM.LinkFileList -install_name @executable_path/../Frameworks/GLM.framework/Versions/A/GLM -mmacosx-version-min=10.8 -prebind -single_module -compatibility_version 1 -current_version 1 -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/GLM0#
-
-CProcessInfoPlistFile /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Resources/Info.plist osx/GLM/GLM-Info.plist
-s384772670.053135
-e384772670.055787
-r1
-xProcessInfoPlistFile
-x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Resources/Info.plist
-xosx/GLM/GLM-Info.plist
-lSLF07#2@30"Process osx/GLM/GLM-Info.plist384772670#384772670#0(0"0(0#0#67"/Users/marvineffing/Dropbox/projects/EIN3GPc/osx/GLM/GLM-Info.plist4320133120#248"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    builtin-infoPlistUtility osx/GLM/GLM-Info.plist -expandbuildsettings -platform macosx -o /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/A/Resources/Info.plist0#
-
-CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/GLM Versions/Current/GLM
-s384772670.044982
-e384772670.050145
-r1
-xSymLink
-x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/GLM
-xVersions/Current/GLM
-lSLF07#2@82"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/GLM384772670#384772670#0(0"0(0#0#0"4320133120#164"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/GLM /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/GLM0#
-
-CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Headers Versions/Current/Headers
-s384772670.049497
-e384772670.053043
-r1
-xSymLink
-x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Headers
-xVersions/Current/Headers
-lSLF07#2@86"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Headers384772670#384772670#0(0"0(0#0#0"4320133120#172"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/Headers /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Headers0#
-
-CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Resources Versions/Current/Resources
-s384772670.044446
-e384772670.049141
-r1
-xSymLink
-x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Resources
-xVersions/Current/Resources
-lSLF07#2@88"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Resources384772670#384772670#0(0"0(0#0#0"4320133120#176"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf Versions/Current/Resources /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Resources0#
-
-CSymLink /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/Current A
-s384772670.043676
-e384772670.049336
-r1
-xSymLink
-x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/Current
-xA
-lSLF07#2@95"Process /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/Current384772670#384772670#0(0"0(0#0#0"4320133120#158"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /bin/ln -sf A /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework/Versions/Current0#
-
-CTouch /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework
-s384772670.469221
-e384772670.473434
-r1
-xTouch
-x/Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework
-lSLF07#2@76"Touch /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework384772670#384772670#0(0"0(0#0#0"4320133120#145"    cd /Users/marvineffing/Dropbox/projects/EIN3GPc    /usr/bin/touch -c /Users/marvineffing/Dropbox/projects/EIN3GPc/build/Debug/GLM.framework0#
-
