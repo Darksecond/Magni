@@ -13,6 +13,9 @@
 		F645948E16B6A96D00B118C2 /* Shader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645948D16B6A96D00B118C2 /* Shader.cc */; };
 		F645949416B6AE8700B118C2 /* Program.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645949316B6AE8700B118C2 /* Program.cc */; };
 		F64B866317607E8900B2460B /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = F64B866217607E8900B2460B /* main.mm */; };
+		F656FF191760B7DF0023EC24 /* game_object.cc in Sources */ = {isa = PBXBuildFile; fileRef = F656FF171760B7DF0023EC24 /* game_object.cc */; };
+		F656FF1C1760BAB60023EC24 /* spatial.cc in Sources */ = {isa = PBXBuildFile; fileRef = F656FF1A1760BAB50023EC24 /* spatial.cc */; };
+		F656FF1F1760BF2A0023EC24 /* game_object_visitor.cc in Sources */ = {isa = PBXBuildFile; fileRef = F656FF1D1760BF2A0023EC24 /* game_object_visitor.cc */; };
 		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
 		F6864B6416F0A1CF00713B67 /* CubemapResourceLoader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6864B6316F0A1CF00713B67 /* CubemapResourceLoader.cc */; };
 		F687A41016B4B63300878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
@@ -153,6 +156,13 @@
 		F645949216B6AE1700B118C2 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
 		F645949316B6AE8700B118C2 /* Program.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cc; sourceTree = "<group>"; };
 		F64B866217607E8900B2460B /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../osx/main.mm; sourceTree = "<group>"; };
+		F656FF171760B7DF0023EC24 /* game_object.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game_object.cc; sourceTree = "<group>"; };
+		F656FF181760B7DF0023EC24 /* game_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game_object.h; sourceTree = "<group>"; };
+		F656FF1A1760BAB50023EC24 /* spatial.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spatial.cc; sourceTree = "<group>"; };
+		F656FF1B1760BAB50023EC24 /* spatial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spatial.h; sourceTree = "<group>"; };
+		F656FF1D1760BF2A0023EC24 /* game_object_visitor.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game_object_visitor.cc; sourceTree = "<group>"; };
+		F656FF1E1760BF2A0023EC24 /* game_object_visitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game_object_visitor.h; sourceTree = "<group>"; };
+		F656FF201760C0CF0023EC24 /* light.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = light.h; sourceTree = "<group>"; };
 		F66E76D416C995EE006BF544 /* ProgramResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramResourceLoader.h; sourceTree = "<group>"; };
 		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
 		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
@@ -551,6 +561,13 @@
 				F6846D8816C58DB400071311 /* 3rd Party */,
 				F6053FE816C6D532007F52FE /* Resource Management */,
 				F64B866217607E8900B2460B /* main.mm */,
+				F656FF171760B7DF0023EC24 /* game_object.cc */,
+				F656FF181760B7DF0023EC24 /* game_object.h */,
+				F656FF1A1760BAB50023EC24 /* spatial.cc */,
+				F656FF1B1760BAB50023EC24 /* spatial.h */,
+				F656FF1D1760BF2A0023EC24 /* game_object_visitor.cc */,
+				F656FF1E1760BF2A0023EC24 /* game_object_visitor.h */,
+				F656FF201760C0CF0023EC24 /* light.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -830,6 +847,9 @@
 				F61BDCBB16E8988E00768DEE /* Cubemap.cc in Sources */,
 				F6864B6416F0A1CF00713B67 /* CubemapResourceLoader.cc in Sources */,
 				F64B866317607E8900B2460B /* main.mm in Sources */,
+				F656FF191760B7DF0023EC24 /* game_object.cc in Sources */,
+				F656FF1C1760BAB60023EC24 /* spatial.cc in Sources */,
+				F656FF1F1760BF2A0023EC24 /* game_object_visitor.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
