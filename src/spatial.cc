@@ -24,6 +24,12 @@ glm::mat4 spatial::matrix() const
 {
     return _matrix;
 }
+
+glm::vec3 spatial::translation() const
+{
+    return glm::vec3(_matrix[3]);
+}
+
 spatial& spatial::operator*=(const spatial& b)
 {
     _matrix * b.matrix();

@@ -18,9 +18,13 @@ public:
     virtual void accept(game_object_visitor& visitor);
     
     const std::string& name() const;
+    
+    spatial& local();
+    spatial& global();
 protected:
     std::vector<std::shared_ptr<game_object>> _children;
 private:
     const std::string _name;
-    spatial _spatial;
+    spatial _local_spatial;
+    spatial _global_spatial;
 };

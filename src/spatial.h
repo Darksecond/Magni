@@ -13,6 +13,8 @@ public:
     
     glm::mat4 matrix() const;
     
+    glm::vec3 translation() const;
+    
     spatial& operator*=(const spatial& b);
 private:
     glm::mat4 _matrix;
