@@ -20,6 +20,11 @@ void spatial::rotate(float angle, const glm::vec3& axis)
     _matrix = glm::rotate(_matrix, angle, axis);
 }
 
+void spatial::look_at(const glm::vec3& at, const glm::vec3& up)
+{
+    _matrix = glm::inverse(glm::lookAt(translation(), at, up));
+}
+
 glm::mat4 spatial::matrix() const
 {
     return _matrix;

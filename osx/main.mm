@@ -13,9 +13,10 @@ static std::string ResourceDirectory()
 int main(int argc, char* argv[])
 {
     game g;
-    g.boot(ResourceDirectory());
+    g.boot(ResourceDirectory() + "/resources");
     g.build();
     g.run();
+    g.shutdown();
     
     return 0;
 }

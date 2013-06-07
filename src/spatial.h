@@ -10,6 +10,7 @@ public:
     
     void translate(const glm::vec3& translation);
     void rotate(float angle, const glm::vec3& axis);
+    void look_at(const glm::vec3& at, const glm::vec3& up);
     
     glm::mat4 matrix() const;
     

@@ -66,6 +66,8 @@
 		F687A52A16B4BBB200878140 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A4CB16B4B81B00878140 /* OpenGL.framework */; };
 		F69007B116C7FE3900AC83CF /* StreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F69007B016C7FE3900AC83CF /* StreamReader.cc */; };
 		F6935ECC174B789500776F1E /* resources in Resources */ = {isa = PBXBuildFile; fileRef = F6935ECB174B789500776F1E /* resources */; };
+		F69F2C8F17621D3F00F76B40 /* camera.cc in Sources */ = {isa = PBXBuildFile; fileRef = F69F2C8D17621D3F00F76B40 /* camera.cc */; };
+		F69F2C921762213600F76B40 /* model.cc in Sources */ = {isa = PBXBuildFile; fileRef = F69F2C901762213600F76B40 /* model.cc */; };
 		F6BEF06416E5EA3100ACEDC5 /* Buffer.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6BEF06216E5EA3100ACEDC5 /* Buffer.cc */; };
 		F6BEF07B16E5EE5800ACEDC5 /* ALUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F6BEF06A16E5EDEF00ACEDC5 /* ALUT.framework */; };
 		F6BEF08716E5EE7300ACEDC5 /* alutBufferData.c in Sources */ = {isa = PBXBuildFile; fileRef = F6BEF07C16E5EE7300ACEDC5 /* alutBufferData.c */; };
@@ -224,6 +226,10 @@
 		F687A51E16B4BABD00878140 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F69007B016C7FE3900AC83CF /* StreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StreamReader.cc; sourceTree = "<group>"; };
 		F6935ECB174B789500776F1E /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = SOURCE_ROOT; };
+		F69F2C8D17621D3F00F76B40 /* camera.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cc; sourceTree = "<group>"; };
+		F69F2C8E17621D3F00F76B40 /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
+		F69F2C901762213600F76B40 /* model.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = model.cc; sourceTree = "<group>"; };
+		F69F2C911762213600F76B40 /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
 		F6BEF06216E5EA3100ACEDC5 /* Buffer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Buffer.cc; sourceTree = "<group>"; };
 		F6BEF06316E5EA3100ACEDC5 /* Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Buffer.h; sourceTree = "<group>"; };
 		F6BEF06A16E5EDEF00ACEDC5 /* ALUT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ALUT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -628,6 +634,10 @@
 				F656FF181760B7DF0023EC24 /* game_object.h */,
 				F6C5230D1760D893006C2327 /* light.cc */,
 				F656FF201760C0CF0023EC24 /* light.h */,
+				F69F2C8D17621D3F00F76B40 /* camera.cc */,
+				F69F2C8E17621D3F00F76B40 /* camera.h */,
+				F69F2C901762213600F76B40 /* model.cc */,
+				F69F2C911762213600F76B40 /* model.h */,
 			);
 			name = "Game Objects";
 			sourceTree = "<group>";
@@ -870,6 +880,8 @@
 				F6C5230E1760D893006C2327 /* light.cc in Sources */,
 				F6C523121760E06E006C2327 /* spatial_updater_visitor.cc in Sources */,
 				F67268DF1761EE27001561D8 /* game.cc in Sources */,
+				F69F2C8F17621D3F00F76B40 /* camera.cc in Sources */,
+				F69F2C921762213600F76B40 /* model.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
