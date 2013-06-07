@@ -6,10 +6,10 @@
 #include <stack>
 #include <deque>
 
-class spatial_updater_game_object_visitor : public game_object_visitor
+class spatial_updater_visitor : public game_object_visitor
 {
 public:
-    spatial_updater_game_object_visitor();
+    spatial_updater_visitor();
     virtual void start_visit(game_object&);
     virtual void start_visit(light&);
     virtual void end_visit(game_object&);
