@@ -37,12 +37,13 @@ void game::build()
     
     _world->add(std::make_shared<camera>("camera", SCREEN_SIZE.x/SCREEN_SIZE.y));
     
-    std::shared_ptr<Ymir::Texture> tex = textureManager.resource("Holstein.tga"); //replace with better texture
+    std::shared_ptr<Ymir::Texture> tex = textureManager.resource("wooden-crate.jpg"); //replace with better texture
     std::shared_ptr<material> mat = std::make_shared<material>(tex);
     
     Ymir::Mesh mesh = std::move(Ymir::Mesh::cube());
     std::shared_ptr<Ymir::Mesh> cube_mesh = std::make_shared<Ymir::Mesh>(std::move(mesh));
-    _world->add(std::make_shared<model>("cube", cube_mesh, mat, glm::vec3(0.0f, 1.0f, 0.0f)));
+    auto cube_model = std::make_shared<model>("cube", cube_mesh, mat, glm::vec3(5.0f, 0.0f, 0.0f));
+    _world->add(cube_model);
     
     _world->add(std::make_shared<light>("light", glm::vec3(0.0f, 1.0f, 0.0f)));
 }

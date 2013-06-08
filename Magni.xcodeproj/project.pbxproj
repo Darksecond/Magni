@@ -271,6 +271,7 @@
 		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
 		F6E3E49816B550B300BFAC05 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F6E3E49A16B550DE00BFAC05 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
+		F6FA04AB1763DBBB003B9ACA /* commands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commands.h; sourceTree = "<group>"; };
 		F6FB2A1916B70C7600E6013E /* stb_image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_image.c; sourceTree = "<group>"; };
 		F6FB2A1B16B7104F00E6013E /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		F6FB2A1C16B7105D00E6013E /* Texture.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cc; sourceTree = "<group>"; };
@@ -366,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				F610E0261763988800822CEF /* render_command.h */,
+				F6FA04AB1763DBBB003B9ACA /* commands.h */,
 			);
 			name = Commands;
 			sourceTree = "<group>";

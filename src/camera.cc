@@ -6,7 +6,7 @@ camera::camera(const std::string& name, const float aspect_ratio, const glm::vec
 {
     _projection = glm::perspective(60.0f, aspect_ratio, 0.1f, 100.0f);
     
-    glm::vec3 at(0.0f, 1.0f, 0.0f);
+    glm::vec3 at(1.0f, 0.0f, 0.0f);
     glm::vec3 up(0.0f, 1.0f, 0.0f);
     local().look_at(at, up);
 }
