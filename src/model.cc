@@ -1,6 +1,9 @@
 #include "model.h"
 
-model::model(const std::string& name, std::shared_ptr<Ymir::Mesh> mesh, const glm::vec3& position) : game_object(name, position), _mesh(mesh)
+model::model(const std::string& name,
+             std::shared_ptr<Ymir::Mesh> mesh,
+             std::shared_ptr<class material> m,
+             const glm::vec3& position) : game_object(name, position), _mesh(mesh), _material(m)
 {
 }
 
@@ -15,4 +18,10 @@ void model::accept(game_object_visitor& v)
 std::shared_ptr<Ymir::Mesh> model::mesh()
 {
     return _mesh;
+}
+
+
+std::shared_ptr<material> model::material()
+{
+    return _material;
 }

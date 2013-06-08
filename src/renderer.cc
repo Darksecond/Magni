@@ -65,6 +65,10 @@ void renderer::shutdown()
 
 bool renderer::step(std::shared_ptr<game_object> world)
 {
+    //TODO gbuffers
+    //TODO deferred_render_visitor
+    //TODO commands
+    
     glfwSwapBuffers();
     
     GLenum error = glGetError();

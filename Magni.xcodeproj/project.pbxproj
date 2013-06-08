@@ -18,6 +18,7 @@
 		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
 		F67268DF1761EE27001561D8 /* game.cc in Sources */ = {isa = PBXBuildFile; fileRef = F67268DD1761EE27001561D8 /* game.cc */; };
 		F675F26617633CA600BC9F88 /* renderer.cc in Sources */ = {isa = PBXBuildFile; fileRef = F675F26417633CA600BC9F88 /* renderer.cc */; };
+		F675F2691763510200BC9F88 /* material.cc in Sources */ = {isa = PBXBuildFile; fileRef = F675F2671763510200BC9F88 /* material.cc */; };
 		F6864B6416F0A1CF00713B67 /* CubemapResourceLoader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6864B6316F0A1CF00713B67 /* CubemapResourceLoader.cc */; };
 		F687A41016B4B63300878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
 		F687A43416B4B73B00878140 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F687A40F16B4B63300878140 /* Cocoa.framework */; };
@@ -174,6 +175,8 @@
 		F67268DE1761EE27001561D8 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 		F675F26417633CA600BC9F88 /* renderer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cc; sourceTree = "<group>"; };
 		F675F26517633CA600BC9F88 /* renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = renderer.h; sourceTree = "<group>"; };
+		F675F2671763510200BC9F88 /* material.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = material.cc; sourceTree = "<group>"; };
+		F675F2681763510200BC9F88 /* material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
 		F68279B116D41D7400BD1BAF /* Geometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
 		F68279B216D41E2A00BD1BAF /* CubeGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeGeometry.h; sourceTree = "<group>"; };
 		F6846D8716C56C4700071311 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceManager.h; sourceTree = "<group>"; };
@@ -586,6 +589,8 @@
 				F67268DE1761EE27001561D8 /* game.h */,
 				F675F26417633CA600BC9F88 /* renderer.cc */,
 				F675F26517633CA600BC9F88 /* renderer.h */,
+				F675F2671763510200BC9F88 /* material.cc */,
+				F675F2681763510200BC9F88 /* material.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -888,6 +893,7 @@
 				F69F2C8F17621D3F00F76B40 /* camera.cc in Sources */,
 				F69F2C921762213600F76B40 /* model.cc in Sources */,
 				F675F26617633CA600BC9F88 /* renderer.cc in Sources */,
+				F675F2691763510200BC9F88 /* material.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
