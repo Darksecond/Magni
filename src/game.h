@@ -9,6 +9,7 @@
 #include "Program.h"
 #include "ProgramResourceLoader.h"
 #include "Mesh.h"
+#include "renderer.h"
 
 #include <string>
 #include <memory>
@@ -28,8 +29,10 @@ private:
     std::shared_ptr<game_object> _world;
     
     //TEMP RESOURCE MANAGEMENT
-    std::shared_ptr<Ymir::DirectoryManifest> manifest;
+    std::shared_ptr<Ymir::DirectoryManifest> _manifest;
     Ymir::ResourceManager<Ymir::Texture> textureManager;
     Ymir::ResourceManager<Ymir::Program, Ymir::ProgramResourceLoader> programManager;
     Ymir::ResourceManager<Ymir::Mesh> meshManager;
+    
+    renderer _renderer;
 };
