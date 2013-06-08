@@ -4,8 +4,9 @@
 #include "Program.h"
 #include "ProgramResourceLoader.h"
 #include "Mesh.h"
-
+#include "render_frame.h"
 #include "game_object.h"
+#include "deferred_render_visitor.h"
 
 #include <GLM/glm.hpp>
 #include <memory>
@@ -22,4 +23,5 @@ private:
     const glm::vec2 SCREEN_SIZE;
     Ymir::ResourceManager<Ymir::Program, Ymir::ProgramResourceLoader>& _programManager;
     Ymir::ResourceManager<Ymir::Mesh>& _meshManager;
+    std::unique_ptr<deferred_render_visitor> _deferred_renderer;
 };

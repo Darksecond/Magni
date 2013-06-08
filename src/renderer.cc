@@ -1,5 +1,6 @@
 #include "renderer.h"
 
+
 #ifdef __APPLE__
     #include <GLFW/GLFW.h>
     #include <GLEW/glew.h>
@@ -55,10 +56,14 @@ void renderer::boot()
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     glEnable(GL_CULL_FACE);
+    
+    _deferred_renderer = std::unique_ptr<deferred_render_visitor>(new deferred_render_visitor);
 }
 
 void renderer::shutdown()
 {
+    _deferred_renderer = nullptr;
+    
     glfwCloseWindow();
     glfwTerminate();
 }
@@ -66,8 +71,13 @@ void renderer::shutdown()
 bool renderer::step(std::shared_ptr<game_object> world)
 {
     //TODO gbuffers
-    //TODO deferred_render_visitor
     //TODO commands
+    
+    render_frame frame;
+    
+    //deferred_renderer should be a (private) class member
+    _deferred_renderer->set_frame(&frame);
+    world->accept(*_deferred_renderer);
     
     glfwSwapBuffers();
     
