@@ -21,6 +21,8 @@ private:
 class render_frame
 {
 public:
+    template <int Q, typename T, typename... Args>
+    inline void add(Args... args);
     inline void add(int queue, std::shared_ptr<render_command> command);
     inline void execute();
     
@@ -40,6 +42,13 @@ private:
 };
 
 //INLINE & TEMPLATE METHODS
+
+
+template <int Q, typename T, typename... Args>
+inline void render_frame::add(Args... args)
+{
+    add(Q, std::make_shared<T>(args...));
+}
 
 inline void render_queue::add(std::shared_ptr<render_command> command)
 {

@@ -6,6 +6,14 @@
 #include "Mesh.h"
 #include "material.h"
 
+#ifdef __APPLE__
+    #include <GLFW/GLFW.h>
+    #include <GLEW/glew.h>
+#endif // __APPLE__
+#ifdef _WIN32
+    #include <GL/glfw.h>
+    #include <GL/glew.h>
+#endif // _WIN32
 #include <memory>
 #include <GLM/glm.hpp>
 #include <iostream>
@@ -55,5 +63,29 @@ namespace render_commands
         std::shared_ptr<Ymir::Mesh> _mesh;
         std::shared_ptr<material> _material;
         glm::mat4 _matrix;
+    };
+    
+    class clear : public render_command
+    {
+    public:
+        clear(GLbitfield mask) : _mask(mask) {}
+        inline virtual void execute()
+        {
+            glClear(_mask);
+        }
+    private:
+        GLbitfield _mask;
+    };
+    
+    class clear_color : public render_command
+    {
+    public:
+        clear_color(GLfloat r, GLfloat g, GLfloat b, GLfloat a) : _r(r), _g(g), _b(b), _a(a) {}
+        inline virtual void execute()
+        {
+            glClearColor(_r, _g, _b, _a);
+        }
+    private:
+        GLfloat _r, _g, _b, _a;
     };
 };

@@ -71,7 +71,6 @@ void renderer::shutdown()
 bool renderer::step(std::shared_ptr<game_object> world)
 {
     //TODO gbuffers
-    //TODO commands
     
     render_frame frame;
     
@@ -80,12 +79,6 @@ bool renderer::step(std::shared_ptr<game_object> world)
     _deferred_renderer->start_frame();
     world->accept(*_deferred_renderer);
     _deferred_renderer->end_frame();
-    
-    
-    //TODO TEMP
-    glClearColor(0.0, 0.0, 0.0, 1); // black
-    //TODO TEMP
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     frame.execute();
     
