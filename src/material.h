@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Texture.h"
+#include "Program.h"
 
 #include <memory>
 
@@ -11,7 +12,7 @@ public:
     
     //TODO render OR bind OR draw OR diffuse() or begin
     
-    void bind();
+    void bind(Ymir::Program&);
 private:
     std::shared_ptr<Ymir::Texture> _diffuse;
 };

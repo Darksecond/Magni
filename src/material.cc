@@ -4,7 +4,11 @@ material::material(std::shared_ptr<Ymir::Texture> diffuse) : _diffuse(diffuse)
 {
 }
 
-void material::bind()
+void material::bind(Ymir::Program& program)
 {
-    _diffuse->bind();
+    try
+    {
+        program.setUniform("diffuse", 0);
+        _diffuse->bind(0);
+    } catch(std::runtime_error e) {}
 }

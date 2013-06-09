@@ -1,6 +1,6 @@
 #version 150
 
-uniform sampler2D tex;
+uniform sampler2D diffuse;
 
 in vec2 fragTexCoord;
 
@@ -8,5 +8,5 @@ out vec4 finalColor;
 
 void main()
 {
-    finalColor = texture(tex, fragTexCoord);
+    finalColor = texture(diffuse, fragTexCoord);
 }
