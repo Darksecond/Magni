@@ -5,6 +5,8 @@
 #include "camera.h"
 #include "light.h"
 #include "spatial_updater_visitor.h"
+#include "time.h"
+#include "fps.h"
 
 
 #include <iostream>
@@ -52,6 +54,8 @@ void game::run()
 {
     while(_running)
     {
+        time::instance().step();
+        fps::instance().update();
         //TODO moar!
         
         spatial_updater_visitor spatial_updater;

@@ -10,6 +10,8 @@
 		F610E0201763931800822CEF /* deferred_render_visitor.cc in Sources */ = {isa = PBXBuildFile; fileRef = F610E01E1763931800822CEF /* deferred_render_visitor.cc */; };
 		F61BDCBB16E8988E00768DEE /* Cubemap.cc in Sources */ = {isa = PBXBuildFile; fileRef = F61BDCB916E8988E00768DEE /* Cubemap.cc */; };
 		F62F58A416E61B38008B379E /* Listener.cc in Sources */ = {isa = PBXBuildFile; fileRef = F62F58A216E61B38008B379E /* Listener.cc */; };
+		F639AAC117647A7300E1D79A /* time.cc in Sources */ = {isa = PBXBuildFile; fileRef = F639AABF17647A7300E1D79A /* time.cc */; };
+		F639AAC417647C6A00E1D79A /* fps.cc in Sources */ = {isa = PBXBuildFile; fileRef = F639AAC217647C6A00E1D79A /* fps.cc */; };
 		F642BDA616DF9063009EB1DB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F642BDA516DF9063009EB1DB /* OpenAL.framework */; };
 		F645948E16B6A96D00B118C2 /* Shader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645948D16B6A96D00B118C2 /* Shader.cc */; };
 		F645949416B6AE8700B118C2 /* Program.cc in Sources */ = {isa = PBXBuildFile; fileRef = F645949316B6AE8700B118C2 /* Program.cc */; };
@@ -161,6 +163,10 @@
 		F61BDCBC16E8B7E500768DEE /* CubemapResourceLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubemapResourceLoader.h; sourceTree = "<group>"; };
 		F62F58A216E61B38008B379E /* Listener.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Listener.cc; sourceTree = "<group>"; };
 		F62F58A316E61B38008B379E /* Listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listener.h; sourceTree = "<group>"; };
+		F639AABF17647A7300E1D79A /* time.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cc; sourceTree = "<group>"; };
+		F639AAC017647A7300E1D79A /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		F639AAC217647C6A00E1D79A /* fps.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fps.cc; sourceTree = "<group>"; };
+		F639AAC317647C6A00E1D79A /* fps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fps.h; sourceTree = "<group>"; };
 		F642BDA516DF9063009EB1DB /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F645948B16B6A8F100B118C2 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
 		F645948D16B6A96D00B118C2 /* Shader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cc; sourceTree = "<group>"; };
@@ -618,6 +624,10 @@
 				F67268DE1761EE27001561D8 /* game.h */,
 				F675F2671763510200BC9F88 /* material.cc */,
 				F675F2681763510200BC9F88 /* material.h */,
+				F639AABF17647A7300E1D79A /* time.cc */,
+				F639AAC017647A7300E1D79A /* time.h */,
+				F639AAC217647C6A00E1D79A /* fps.cc */,
+				F639AAC317647C6A00E1D79A /* fps.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -922,6 +932,8 @@
 				F675F26617633CA600BC9F88 /* renderer.cc in Sources */,
 				F675F2691763510200BC9F88 /* material.cc in Sources */,
 				F610E0201763931800822CEF /* deferred_render_visitor.cc in Sources */,
+				F639AAC117647A7300E1D79A /* time.cc in Sources */,
+				F639AAC417647C6A00E1D79A /* fps.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
