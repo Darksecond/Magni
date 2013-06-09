@@ -25,7 +25,9 @@ public:
     ~gbuffer();
     
     gbuffer(const gbuffer&) = delete;
+    gbuffer(gbuffer&&) = delete;
     gbuffer& operator=(const gbuffer&) = delete;
+    gbuffer& operator=(gbuffer&&) = delete;
 private:
     GLuint _fbo;
     GLuint _textures[GBUFFER_NUM_TEXTURES];
