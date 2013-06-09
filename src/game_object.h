@@ -2,6 +2,7 @@
 
 #include "spatial.h"
 #include "game_object_visitor.h"
+#include "behaviour.h"
 
 #include <string>
 #include <vector>
@@ -21,10 +22,14 @@ public:
     
     spatial& local();
     spatial& global();
+    
+    void set_behaviour(std::unique_ptr<behaviour> b);
+    void update();
 protected:
     std::vector<std::shared_ptr<game_object>> _children;
 private:
     const std::string _name;
     spatial _local_spatial;
     spatial _global_spatial;
+    std::unique_ptr<behaviour> _behaviour;
 };

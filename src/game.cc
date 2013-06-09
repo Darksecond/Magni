@@ -7,7 +7,7 @@
 #include "spatial_updater_visitor.h"
 #include "time.h"
 #include "fps.h"
-
+#include "fpscam_behaviour.h"
 
 #include <iostream>
 
@@ -37,7 +37,9 @@ void game::build()
 {
     _world = std::make_shared<game_object>("world");
     
-    _world->add(std::make_shared<camera>("camera", SCREEN_SIZE.x/SCREEN_SIZE.y));
+    auto cam = std::make_shared<camera>("camera", SCREEN_SIZE.x/SCREEN_SIZE.y);
+    cam->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour(*cam))));
+    _world->add(cam);
     
     std::shared_ptr<Ymir::Texture> tex = textureManager.resource("wooden-crate.jpg"); //replace with better texture
     std::shared_ptr<material> mat = std::make_shared<material>(tex);
@@ -57,6 +59,8 @@ void game::run()
         time::instance().step();
         fps::instance().update();
         //TODO moar!
+        
+        _world->update();
         
         spatial_updater_visitor spatial_updater;
         _world->accept(spatial_updater);

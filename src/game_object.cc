@@ -1,6 +1,6 @@
 #include "game_object.h"
 
-game_object::game_object(const std::string& name, const glm::vec3& position) : _name(name), _children(), _local_spatial(position), _global_spatial()
+game_object::game_object(const std::string& name, const glm::vec3& position) : _name(name), _children(), _local_spatial(position), _global_spatial(), _behaviour(nullptr)
 {
 }
 
@@ -30,4 +30,18 @@ spatial& game_object::local()
 spatial& game_object::global()
 {
     return _global_spatial;
+}
+
+void game_object::set_behaviour(std::unique_ptr<behaviour> b)
+{
+    _behaviour = std::move(b);
+}
+
+void game_object::update()
+{
+    if(_behaviour)
+        _behaviour->update();
+    
+    for(auto child : _children)
+        child->update();
 }

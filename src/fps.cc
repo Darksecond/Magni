@@ -3,10 +3,12 @@
 #include "time.h"
 
 #ifdef __APPLE__
+    #include <GLEW/glew.h>
     #include <GLFW/GLFW.h>
 #endif // __APPLE__
 #ifdef _WIN32
     #include <GL/glfw.h>
+    #include <GL/glew.h>
 #endif // _WIN32
 #include <sstream>
 

@@ -1,9 +1,8 @@
 #include "renderer.h"
 
-
 #ifdef __APPLE__
-    #include <GLFW/GLFW.h>
     #include <GLEW/glew.h>
+    #include <GLFW/GLFW.h>
 #endif // __APPLE__
 #ifdef _WIN32
     #include <GL/glfw.h>
