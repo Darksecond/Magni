@@ -2,6 +2,7 @@
 
 #include "game_object_visitor.h"
 #include "render_frame.h"
+#include "gbuffer.h"
 
 #include "Program.h"
 
@@ -10,7 +11,7 @@
 class deferred_render_visitor : public game_object_visitor
 {
 public:
-    deferred_render_visitor(std::shared_ptr<Ymir::Program> _texture_program);
+    deferred_render_visitor(std::shared_ptr<Ymir::Program> _texture_program, glm::ivec2 SCREEN_SIZE);
     virtual ~deferred_render_visitor();
     
     virtual void start_visit(light&);
@@ -24,6 +25,7 @@ public:
 private:
     render_frame* _frame;
     std::shared_ptr<Ymir::Program> _texture_program;
+    gbuffer _gbuffer;
 };
 
 //INLINE & TEMPLATE METHODS

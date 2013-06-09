@@ -11,7 +11,7 @@
 
 #include <iostream>
 
-const glm::vec2 SCREEN_SIZE(800, 600);
+const glm::ivec2 SCREEN_SIZE(800, 600);
 
 game::game() : _running(true), _world(), _renderer(SCREEN_SIZE, programManager, meshManager)
 {
@@ -37,7 +37,7 @@ void game::build()
 {
     _world = std::make_shared<game_object>("world");
     
-    auto cam = std::make_shared<camera>("camera", SCREEN_SIZE.x/SCREEN_SIZE.y);
+    auto cam = std::make_shared<camera>("camera", (float)SCREEN_SIZE.x/SCREEN_SIZE.y);
     cam->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour(*cam))));
     _world->add(cam);
     

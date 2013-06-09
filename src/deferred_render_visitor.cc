@@ -5,8 +5,8 @@
 #include "model.h"
 #include "light.h"
 
-deferred_render_visitor::deferred_render_visitor(std::shared_ptr<Ymir::Program> texture_program) :
-    _texture_program(texture_program)
+deferred_render_visitor::deferred_render_visitor(std::shared_ptr<Ymir::Program> texture_program, glm::ivec2 SCREEN_SIZE) :
+    _texture_program(texture_program), _gbuffer(SCREEN_SIZE)
 {
     //g-buffer
 }

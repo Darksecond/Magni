@@ -10,7 +10,7 @@
 #endif // _WIN32
 #include <iostream>
 
-renderer::renderer(const glm::vec2& screen_size,
+renderer::renderer(const glm::ivec2& screen_size,
                    Ymir::ResourceManager<Ymir::Program, Ymir::ProgramResourceLoader>& programManager,
                    Ymir::ResourceManager<Ymir::Mesh>& meshManager)
 : _programManager(programManager), _meshManager(meshManager), SCREEN_SIZE(screen_size)
@@ -56,7 +56,7 @@ void renderer::boot()
     glDepthFunc(GL_LESS);
     glEnable(GL_CULL_FACE);
     
-    _deferred_renderer = std::unique_ptr<deferred_render_visitor>(new deferred_render_visitor(_programManager.resource("texture")));
+    _deferred_renderer = std::unique_ptr<deferred_render_visitor>(new deferred_render_visitor(_programManager.resource("texture"), SCREEN_SIZE));
 }
 
 void renderer::shutdown()
