@@ -42,6 +42,10 @@ void renderer::boot()
     std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
     std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
     
+    int max_color_attachments;
+    glGetIntegerv(GL_MAX_COLOR_ATTACHMENTS, &max_color_attachments);
+    std::cout << "Max Color Attachments: " << max_color_attachments << std::endl;
+    
     if(!GLEW_VERSION_3_2)
         throw std::runtime_error("OpenGL 3.2 API is not available.");
     
@@ -56,7 +60,7 @@ void renderer::boot()
     glDepthFunc(GL_LESS);
     glEnable(GL_CULL_FACE);
     
-    _deferred_renderer = std::unique_ptr<deferred_render_visitor>(new deferred_render_visitor(_programManager.resource("texture"), SCREEN_SIZE));
+    _deferred_renderer = std::unique_ptr<deferred_render_visitor>(new deferred_render_visitor(_programManager.resource("geometry"), SCREEN_SIZE));
 }
 
 void renderer::shutdown()

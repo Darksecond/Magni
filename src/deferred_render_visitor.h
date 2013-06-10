@@ -26,6 +26,7 @@ private:
     render_frame* _frame;
     std::shared_ptr<Ymir::Program> _texture_program;
     gbuffer _gbuffer;
+    glm::ivec2 _SCREEN_SIZE;
 };
 
 //INLINE & TEMPLATE METHODS

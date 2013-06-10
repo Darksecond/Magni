@@ -196,6 +196,7 @@
 		F68279B116D41D7400BD1BAF /* Geometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
 		F68279B216D41E2A00BD1BAF /* CubeGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeGeometry.h; sourceTree = "<group>"; };
 		F6846D8716C56C4700071311 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceManager.h; sourceTree = "<group>"; };
+		F684AA051765D82200B0F8FC /* gbuffer_commands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gbuffer_commands.h; sourceTree = "<group>"; };
 		F6864B6316F0A1CF00713B67 /* CubemapResourceLoader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubemapResourceLoader.cc; sourceTree = "<group>"; };
 		F687A40B16B4B63300878140 /* Magni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Magni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F687A40F16B4B63300878140 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -383,6 +384,7 @@
 			children = (
 				F610E0261763988800822CEF /* render_command.h */,
 				F6FA04AB1763DBBB003B9ACA /* commands.h */,
+				F684AA051765D82200B0F8FC /* gbuffer_commands.h */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
