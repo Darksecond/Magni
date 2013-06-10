@@ -6,8 +6,8 @@
 #include "model.h"
 #include "light.h"
 
-deferred_render_visitor::deferred_render_visitor(std::shared_ptr<Ymir::Program> texture_program, glm::ivec2 SCREEN_SIZE) :
-    _texture_program(texture_program), _gbuffer(SCREEN_SIZE), _SCREEN_SIZE(SCREEN_SIZE)
+deferred_render_visitor::deferred_render_visitor(std::shared_ptr<Ymir::Program> geometry_program, glm::ivec2 SCREEN_SIZE) :
+    _geometry_program(geometry_program), _gbuffer(SCREEN_SIZE), _SCREEN_SIZE(SCREEN_SIZE)
 {
 }
 
@@ -32,10 +32,14 @@ void deferred_render_visitor::start_visit(model& m)
 
 void deferred_render_visitor::start_frame()
 {
-    _frame->add<0, render_commands::bind_program>(_texture_program);
+    _frame->add<0, render_commands::bind_program>(_geometry_program);
     _frame->add<0, render_commands::bind_gbuffer>(&_gbuffer, GL_DRAW_FRAMEBUFFER);
     
-    gbuffer::GBUFFER_TEXTURE_TYPE bufs[] = {gbuffer::GBUFFER_TEXTURE_TYPE_POSITION, gbuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE, gbuffer::GBUFFER_TEXTURE_TYPE_NORMAL};
+    gbuffer::GBUFFER_TEXTURE_TYPE bufs[] = {
+        gbuffer::GBUFFER_TEXTURE_TYPE_POSITION,
+        gbuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE,
+        gbuffer::GBUFFER_TEXTURE_TYPE_NORMAL
+    };
     _frame->add<0, render_commands::set_draw_buffers>(3, bufs);
     
     _frame->add<0, render_commands::clear_color>(0, 0, 0, 1);
