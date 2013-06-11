@@ -108,63 +108,63 @@ namespace render_commands
         blit_fbo(glm::ivec2 window_size, corner_t corner, GLbitfield mask = GL_COLOR_BUFFER_BIT, GLenum filter = GL_LINEAR) : _window_size(window_size), _corner(corner), _mask(mask), _filter(filter) {}
         inline virtual void execute()
         {
+            GLint dstX0, dstY0, dstX1, dstY1;
+            dstX0 = dstY0 = dstX1 = dstY1 = 0;
             if(_corner == bottom_left) //CHECK
             {
-                glBlitFramebuffer(0,
-                                  0,
-                                  _window_size.x,
-                                  _window_size.y,
-                                  0,
-                                  0,
-                                  (_window_size.x / 2),
-                                  (_window_size.y / 2),
-                                  _mask,
-                                  _filter);
+                dstX0 = 0;
+                dstY0 = 0;
+                dstX1 = _window_size.x / 2;
+                dstY1 = _window_size.y / 2;
             }
             else if(_corner == top_right) //CHECK
             {
-                glBlitFramebuffer(0,
-                                  0,
-                                  _window_size.x,
-                                  _window_size.y,
-                                  (_window_size.x / 2),
-                                  (_window_size.y / 2),
-                                  _window_size.x,
-                                  _window_size.y,
-                                  _mask,
-                                  _filter);
+                dstX0 = _window_size.x / 2;
+                dstY0 = _window_size.y / 2;
+                dstX1 = _window_size.x;
+                dstY1 = _window_size.y;
             }
             else if(_corner == top_left) //check
             {
-                glBlitFramebuffer(0,
-                                  0,
-                                  _window_size.x,
-                                  _window_size.y,
-                                  0,
-                                  (_window_size.y / 2),
-                                  (_window_size.x / 2),
-                                  _window_size.y,
-                                  _mask,
-                                  _filter);
+                dstX0 = 0;
+                dstY0 = _window_size.y / 2;
+                dstX1 = _window_size.x / 2;
+                dstY1 = _window_size.y;
             }
             else if(_corner == bottom_right) //CHECK
             {
-                glBlitFramebuffer(0,
-                                  0,
-                                  _window_size.x,
-                                  _window_size.y,
-                                  (_window_size.x / 2),
-                                  0,
-                                  _window_size.x,
-                                  (_window_size.y / 2),
-                                  _mask,
-                                  _filter);
+                dstX0 = _window_size.x / 2;
+                dstY0 = 0;
+                dstX1 = _window_size.x;
+                dstY1 = _window_size.y / 2;
             }
+            glBlitFramebuffer(0, 0, _window_size.x, _window_size.y,
+                              dstX0, dstY0, dstX1, dstY1,
+                              _mask, _filter);
         }
     private:
         const glm::ivec2 _window_size;
         const corner_t _corner;
         const GLbitfield _mask;
         const GLenum _filter;
+    };
+    
+    //TODO fetch gbuffer from state?
+    class bind_gbuffer_texture : public render_command
+    {
+    public:
+        bind_gbuffer_texture(gbuffer* gb, const char* uniform, const gbuffer::GBUFFER_TEXTURE_TYPE attachment, const GLenum tex_unit) : _gbuffer(gb), _uniform(uniform), _attachment(attachment), _texture_unit(tex_unit)
+        {
+        }
+        inline virtual void execute()
+        {
+            _gbuffer->bind_texture(_texture_unit, _attachment);
+            _frame->current_program()->setUniform(_uniform, (int)_texture_unit - GL_TEXTURE0);
+        }
+    private:
+        gbuffer* _gbuffer;
+        const char* _uniform;
+        const gbuffer::GBUFFER_TEXTURE_TYPE _attachment;
+        const GLenum _texture_unit;
     };
 };

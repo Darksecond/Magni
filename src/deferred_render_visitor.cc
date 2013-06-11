@@ -56,4 +56,6 @@ void deferred_render_visitor::end_frame()
     _frame->add<2, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::top_right);
     _frame->add<2, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_POSITION);
     _frame->add<2, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::bottom_left);
+    
+    //_frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "uniform", gbuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE, GL_TEXTURE0);
 }

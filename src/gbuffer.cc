@@ -44,3 +44,9 @@ void gbuffer::bind(GLenum target)
 {
     glBindFramebuffer(target, _fbo);
 }
+
+void gbuffer::bind_texture(GLenum texture, GBUFFER_TEXTURE_TYPE attachment)
+{
+    glActiveTexture(texture);
+    glBindTexture(GL_TEXTURE_2D, _textures[attachment]);
+}

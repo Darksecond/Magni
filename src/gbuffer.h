@@ -40,6 +40,8 @@ public:
     gbuffer& operator=(gbuffer&&) = delete;
     
     void bind(GLenum target);
+    
+    void bind_texture(GLenum texture, GBUFFER_TEXTURE_TYPE attachment);
 private:
     GLuint _fbo;
     GLuint _textures[GBUFFER_NUM_TEXTURES];
