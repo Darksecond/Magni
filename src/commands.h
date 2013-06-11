@@ -54,7 +54,8 @@ namespace render_commands
         {}
         inline virtual void execute()
         {
-            _material->bind(*_frame->current_program());
+            if(_material)
+                _material->bind(*_frame->current_program());
             _frame->current_program()->setUniform("model", _matrix);
             _mesh->draw(*_frame->current_program());
         }
