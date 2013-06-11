@@ -14,8 +14,10 @@ out vec3 fragPos;
 
 void main() {
     fragTexCoord = vertTexCoord;
-    fragNormal = (model * vec4(vertNormal, 0.0)).xyz;
-    fragPos = (model * vec4(vert, 1.0)).xyz;
+    //normal should be an uniform!
+    mat3 normal = transpose(inverse(mat3(view * model)));
+    fragNormal = normal * vertNormal;
+    fragPos = (view * model * vec4(vert, 1.0)).xyz;
 
     gl_Position = projection * view * model * vec4(vert, 1.0);
 }
