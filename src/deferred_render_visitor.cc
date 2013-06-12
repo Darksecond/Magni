@@ -8,9 +8,9 @@
 #include "resource_factory.h"
 
 deferred_render_visitor::deferred_render_visitor(glm::ivec2 SCREEN_SIZE) :
-_geometry_program(resource_factory::instance().resource<Ymir::Program>("geometry", "program")),
 _gbuffer(SCREEN_SIZE),
 _SCREEN_SIZE(SCREEN_SIZE),
+_geometry_program(resource_factory::instance().resource<Ymir::Program>("geometry", "program")),
 _point_light_program(resource_factory::instance().resource<Ymir::Program>("point_lighting", "program"))
 {
 }

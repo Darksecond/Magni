@@ -24,9 +24,9 @@ public:
     void end_frame();
 private:
     render_frame* _frame;
-    std::shared_ptr<Ymir::Program> _geometry_program;
     gbuffer _gbuffer;
     glm::ivec2 _SCREEN_SIZE;
+    std::shared_ptr<Ymir::Program> _geometry_program;
     std::shared_ptr<Ymir::Program> _point_light_program;
 };
 
