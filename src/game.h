@@ -4,10 +4,8 @@
 
 //TEMP RESOURCE MANAGEMENT
 #include "DirectoryManifest.h"
-#include "ResourceManager.h"
 #include "Texture.h"
 #include "Program.h"
-#include "ProgramResourceLoader.h"
 #include "Mesh.h"
 #include "renderer.h"
 
@@ -30,9 +28,6 @@ private:
     
     //TEMP RESOURCE MANAGEMENT
     std::shared_ptr<Ymir::DirectoryManifest> _manifest;
-    Ymir::ResourceManager<Ymir::Texture> textureManager;
-    Ymir::ResourceManager<Ymir::Program, Ymir::ProgramResourceLoader> programManager;
-    Ymir::ResourceManager<Ymir::Mesh> meshManager;
     
     renderer _renderer;
 };

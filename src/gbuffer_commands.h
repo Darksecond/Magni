@@ -103,6 +103,7 @@ namespace render_commands
             top_right,
             bottom_left,
             bottom_right,
+            full_screen,
         };
         
         blit_fbo(glm::ivec2 window_size, corner_t corner, GLbitfield mask = GL_COLOR_BUFFER_BIT, GLenum filter = GL_LINEAR) : _window_size(window_size), _corner(corner), _mask(mask), _filter(filter) {}
@@ -137,6 +138,13 @@ namespace render_commands
                 dstY0 = 0;
                 dstX1 = _window_size.x;
                 dstY1 = _window_size.y / 2;
+            }
+            else if(_corner == full_screen)
+            {
+                dstX0 = 0;
+                dstY0 = 0;
+                dstX1 = _window_size.x;
+                dstY1 = _window_size.y;
             }
             glBlitFramebuffer(0, 0, _window_size.x, _window_size.y,
                               dstX0, dstY0, dstX1, dstY1,

@@ -11,7 +11,7 @@
 class deferred_render_visitor : public game_object_visitor
 {
 public:
-    deferred_render_visitor(std::shared_ptr<Ymir::Program> geometry_program, glm::ivec2 SCREEN_SIZE);
+    deferred_render_visitor(glm::ivec2 SCREEN_SIZE);
     virtual ~deferred_render_visitor();
     
     virtual void start_visit(light&);
@@ -27,6 +27,7 @@ private:
     std::shared_ptr<Ymir::Program> _geometry_program;
     gbuffer _gbuffer;
     glm::ivec2 _SCREEN_SIZE;
+    std::shared_ptr<Ymir::Program> _point_light_program;
 };
 
 //INLINE & TEMPLATE METHODS

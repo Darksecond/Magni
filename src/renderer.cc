@@ -1,5 +1,9 @@
 #include "renderer.h"
 
+#include "resource_factory.h"
+#include "program_resource_loader.h"
+#include "Texture.h"
+
 #ifdef __APPLE__
     #include <GLEW/glew.h>
     #include <GLFW/GLFW.h>
@@ -10,10 +14,8 @@
 #endif // _WIN32
 #include <iostream>
 
-renderer::renderer(const glm::ivec2& screen_size,
-                   Ymir::ResourceManager<Ymir::Program, Ymir::ProgramResourceLoader>& programManager,
-                   Ymir::ResourceManager<Ymir::Mesh>& meshManager)
-: _programManager(programManager), _meshManager(meshManager), SCREEN_SIZE(screen_size)
+renderer::renderer(const glm::ivec2& screen_size)
+: SCREEN_SIZE(screen_size)
 {
 }
 
@@ -60,7 +62,12 @@ void renderer::boot()
     glDepthFunc(GL_LESS);
     glEnable(GL_CULL_FACE);
     
-    _deferred_renderer = std::unique_ptr<deferred_render_visitor>(new deferred_render_visitor(_programManager.resource("geometry"), SCREEN_SIZE));
+    //resource loaders
+    resource_factory::instance().add_loader("program", std::make_shared<program_resource_loader>());
+    resource_factory::instance().add_loader("mesh", std::make_shared<default_resource_loader<Ymir::Mesh>>());
+    resource_factory::instance().add_loader("texture", std::make_shared<default_resource_loader<Ymir::Texture>>());
+    
+    _deferred_renderer = std::unique_ptr<deferred_render_visitor>(new deferred_render_visitor(SCREEN_SIZE));
 }
 
 void renderer::shutdown()
@@ -73,8 +80,6 @@ void renderer::shutdown()
 
 bool renderer::step(std::shared_ptr<game_object> world)
 {
-    //TODO gbuffers
-    
     render_frame frame;
     
     _deferred_renderer->set_frame(&frame);

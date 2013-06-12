@@ -5,9 +5,13 @@
 #include "camera.h"
 #include "model.h"
 #include "light.h"
+#include "resource_factory.h"
 
-deferred_render_visitor::deferred_render_visitor(std::shared_ptr<Ymir::Program> geometry_program, glm::ivec2 SCREEN_SIZE) :
-    _geometry_program(geometry_program), _gbuffer(SCREEN_SIZE), _SCREEN_SIZE(SCREEN_SIZE)
+deferred_render_visitor::deferred_render_visitor(glm::ivec2 SCREEN_SIZE) :
+_geometry_program(resource_factory::instance().resource<Ymir::Program>("geometry", "program")),
+_gbuffer(SCREEN_SIZE),
+_SCREEN_SIZE(SCREEN_SIZE),
+_point_light_program(resource_factory::instance().resource<Ymir::Program>("point_lighting", "program"))
 {
 }
 
@@ -21,8 +25,12 @@ void deferred_render_visitor::start_visit(light& l)
 
 void deferred_render_visitor::start_visit(camera& c)
 {
+    //geometry pass
     _frame->add<0, render_commands::set_uniform<glm::mat4>>("projection", c.projection());
-    _frame->add<0, render_commands::set_uniform<glm::mat4>>("view", glm::inverse(c.global().matrix()));
+    _frame->add<0, render_commands::set_uniform<glm::mat4>>("projection", c.projection());
+    //lighting pass
+    _frame->add<2, render_commands::set_uniform<glm::mat4>>("view", glm::inverse(c.global().matrix()));
+    _frame->add<2, render_commands::set_uniform<glm::mat4>>("view", glm::inverse(c.global().matrix()));
 }
 
 void deferred_render_visitor::start_visit(model& m)
@@ -32,6 +40,7 @@ void deferred_render_visitor::start_visit(model& m)
 
 void deferred_render_visitor::start_frame()
 {
+    //prepare for geometry pass
     _frame->add<0, render_commands::bind_program>(_geometry_program);
     _frame->add<0, render_commands::bind_gbuffer>(&_gbuffer, GL_DRAW_FRAMEBUFFER);
     
@@ -41,21 +50,27 @@ void deferred_render_visitor::start_frame()
         gbuffer::GBUFFER_TEXTURE_TYPE_NORMAL
     };
     _frame->add<0, render_commands::set_draw_buffers>(3, bufs);
-    
     _frame->add<0, render_commands::clear_color>(0, 0, 0, 1);
     _frame->add<0, render_commands::clear>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    //prepare for lighting pass
+    //TODO prepare for lighting pass
+    /*
+    _frame->add<2, render_commands::bind_program>(_lighting_program);
+    _frame->add<2, render_commands::set_uniform<glm::mat4>>("screen_size", _SCREEN_SIZE);
+     _frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "g_diffuse", gbuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE, GL_TEXTURE0);
+    _frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "g_position", gbuffer::GBUFFER_TEXTURE_TYPE_POSITION, GL_TEXTURE1);
+     _frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "g_normal", gbuffer::GBUFFER_TEXTURE_TYPE_NORMAL, GL_TEXTURE2);
+     */
+    
+    //FINAL render
+    _frame->add<4, render_commands::unbind_gbuffer>(GL_DRAW_FRAMEBUFFER);
+    _frame->add<4, render_commands::bind_gbuffer>(&_gbuffer, GL_READ_FRAMEBUFFER);
+    //TODO replace with FINAL
+    _frame->add<4, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE);
+    _frame->add<4, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::full_screen);
 }
 
 void deferred_render_visitor::end_frame()
 {
-    _frame->add<2, render_commands::unbind_gbuffer>(GL_DRAW_FRAMEBUFFER);
-    _frame->add<2, render_commands::bind_gbuffer>(&_gbuffer, GL_READ_FRAMEBUFFER);
-    _frame->add<2, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE);
-    _frame->add<2, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::top_left);
-    _frame->add<2, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_NORMAL);
-    _frame->add<2, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::top_right);
-    _frame->add<2, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_POSITION);
-    _frame->add<2, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::bottom_left);
-    
-    //_frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "uniform", gbuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE, GL_TEXTURE0);
 }

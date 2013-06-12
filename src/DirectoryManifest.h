@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ResourceManager.h"
 #include "FileStreamReader.h"
+#include "Manifest.h"
 
 #include <memory>
 #include <string>

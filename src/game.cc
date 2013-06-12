@@ -8,12 +8,13 @@
 #include "time.h"
 #include "fps.h"
 #include "fpscam_behaviour.h"
+#include "resource_factory.h"
 
 #include <iostream>
 
 const glm::ivec2 SCREEN_SIZE(800, 600);
 
-game::game() : _running(true), _world(), _renderer(SCREEN_SIZE, programManager, meshManager)
+game::game() : _running(true), _world(), _renderer(SCREEN_SIZE)
 {
 }
 
@@ -21,9 +22,7 @@ void game::boot(const std::string& resource_dir)
 {
     _manifest = std::make_shared<Ymir::DirectoryManifest>(resource_dir);
     
-    textureManager.addManifest(_manifest);
-    programManager.addManifest(_manifest);
-    meshManager.addManifest(_manifest);
+    resource_factory::instance().add_manifest(_manifest);
     
     _renderer.boot();
 }
@@ -41,7 +40,7 @@ void game::build()
     cam->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour(*cam))));
     _world->add(cam);
     
-    std::shared_ptr<Ymir::Texture> tex = textureManager.resource("wooden-crate.jpg"); //replace with better texture
+    std::shared_ptr<Ymir::Texture> tex = resource_factory::instance().resource<Ymir::Texture>("wooden-crate.jpg", "texture");
     std::shared_ptr<material> mat = std::make_shared<material>(tex);
     
     Ymir::Mesh mesh = std::move(Ymir::Mesh::cube());
