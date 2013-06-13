@@ -48,7 +48,8 @@ void game::build()
     auto cube_model = std::make_shared<model>("cube", cube_mesh, mat, glm::vec3(5.0f, 0.0f, 0.0f));
     _world->add(cube_model);
     
-    _world->add(std::make_shared<light>("light", glm::vec3(0.0f, 1.0f, 0.0f)));
+    _world->add(std::make_shared<light>("light", glm::vec3(3.0f, 0.0f, 1.0f)));
+    _world->add(std::make_shared<light>("light", glm::vec3(3.0f, 0.0f, -1.0f)));
 }
 
 void game::run()

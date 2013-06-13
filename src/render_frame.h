@@ -6,6 +6,7 @@
 #include <list>
 #include <stdexcept>
 #include <memory>
+#include <iostream>
 
 static const int QUEUE_COUNT = 32;
 

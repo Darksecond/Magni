@@ -90,11 +90,11 @@ bool renderer::step(std::shared_ptr<game_object> world)
     
     frame.execute();
     
-    glfwSwapBuffers();
-    
     GLenum error = glGetError();
     if(error != GL_NO_ERROR)
         std::cerr << "OpenGL Error " << error << ": " << (const char*)gluErrorString(error) << std::endl;
+    
+    glfwSwapBuffers();
     
     if(glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS)
         return false;

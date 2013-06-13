@@ -33,6 +33,16 @@ namespace render_commands
         std::shared_ptr<Ymir::Program> _program;
     };
     
+    class unbind_program : public render_command
+    {
+    public:
+        inline virtual void execute()
+        {
+            glUseProgram(0);
+            _frame->set_current_program(nullptr);
+        }
+    };
+    
     template <typename T>
     class set_uniform : public render_command
     {
@@ -87,5 +97,73 @@ namespace render_commands
         }
     private:
         GLfloat _r, _g, _b, _a;
+    };
+    
+    class set_depth : public render_command
+    {
+    public:
+        set_depth(bool test_enabled, bool mask, GLenum func = GL_LESS) : _test_enabled(test_enabled), _mask(mask), _func(func) {}
+        inline virtual void execute()
+        {
+            if(_test_enabled)
+            {
+                glEnable(GL_DEPTH_TEST);
+                glDepthFunc(_func);
+                glDepthMask(_mask);
+            }
+            else
+            {
+                glDisable(GL_DEPTH_TEST);
+            }
+        }
+    private:
+        bool _test_enabled;
+        bool _mask;
+        GLenum _func;
+    };
+    
+    class set_blend : public render_command
+    {
+    public:
+        set_blend(bool enable, GLenum equation = GL_FUNC_ADD, GLenum sfactor = GL_ONE, GLenum dfactor = GL_ZERO) : _enabled(enable), _equation(equation), _func_sfactor(sfactor), _func_dfactor(dfactor) {}
+        inline virtual void execute()
+        {
+            if(_enabled)
+            {
+                glEnable(GL_BLEND);
+                glBlendFunc(_func_sfactor, _func_dfactor);
+                glBlendEquation(_equation);
+            }
+            else
+            {
+                glDisable(GL_BLEND);
+            }
+        }
+    private:
+        bool _enabled;
+        GLenum _equation;
+        GLenum _func_sfactor;
+        GLenum _func_dfactor;
+    };
+    
+    class set_culling : public render_command
+    {
+    public:
+        set_culling(bool cull, GLenum face = GL_BACK) : _cull(cull), _face(face) {}
+        inline virtual void execute()
+        {
+            if(_cull)
+            {
+                glEnable(GL_CULL_FACE);
+                glCullFace(_face);
+            }
+            else
+            {
+                glDisable(GL_CULL_FACE);
+            }
+        }
+    private:
+        bool _cull;
+        GLenum _face;
     };
 };

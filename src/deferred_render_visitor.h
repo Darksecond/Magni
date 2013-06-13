@@ -5,6 +5,7 @@
 #include "gbuffer.h"
 
 #include "Program.h"
+#include "Mesh.h"
 
 #include <memory>
 
@@ -28,6 +29,7 @@ private:
     glm::ivec2 _SCREEN_SIZE;
     std::shared_ptr<Ymir::Program> _geometry_program;
     std::shared_ptr<Ymir::Program> _point_light_program;
+    std::shared_ptr<Ymir::Mesh> _sphere_mesh;
 };
 
 //INLINE & TEMPLATE METHODS

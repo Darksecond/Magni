@@ -42,6 +42,8 @@ namespace Ymir
             { glUniformMatrix4fv(uniform(name), 1, transpose, glm::value_ptr(m)); }
         inline void setUniform(const GLchar* name, const glm::mat3& m, GLboolean transpose=GL_FALSE)
             { glUniformMatrix3fv(uniform(name), 1, transpose, glm::value_ptr(m)); }
+        inline void setUniform(const GLchar* name, const glm::vec2& m)
+            { glUniform2fv(uniform(name), 1, glm::value_ptr(m)); }
         inline void setUniform(const GLchar* name, const glm::vec3& m)
             { glUniform3fv(uniform(name), 1, glm::value_ptr(m)); }
         inline void setUniform(const GLchar* name, const glm::vec4& m)
