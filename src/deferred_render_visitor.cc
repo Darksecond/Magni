@@ -2,6 +2,7 @@
 
 #include "commands.h"
 #include "gbuffer_commands.h"
+#include "deferred_commands.h"
 #include "camera.h"
 #include "model.h"
 #include "light.h"
@@ -27,7 +28,9 @@ deferred_render_visitor::~deferred_render_visitor()
 
 void deferred_render_visitor::start_visit(light& l)
 {
-    _frame->add<3, render_commands::draw_model>(_sphere_mesh, nullptr, l.global().matrix());
+    //TODO replace with draw_light
+    //_frame->add<3, render_commands::draw_model>(_sphere_mesh, nullptr, l.global().matrix());
+    _frame->add<3, render_commands::draw_light>(_sphere_mesh, l.global());
 }
 
 void deferred_render_visitor::start_visit(camera& c)
@@ -71,8 +74,8 @@ void deferred_render_visitor::start_frame()
     _frame->add<2, render_commands::set_blend>(true, GL_FUNC_ADD, GL_ONE, GL_ONE);
     _frame->add<2, render_commands::set_uniform<glm::vec2>>("screen_size", (glm::vec2)_SCREEN_SIZE);
     _frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "g_diffuse", gbuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE, GL_TEXTURE0);
-    //_frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "g_position", gbuffer::GBUFFER_TEXTURE_TYPE_POSITION, GL_TEXTURE1);
-    //_frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "g_normal", gbuffer::GBUFFER_TEXTURE_TYPE_NORMAL, GL_TEXTURE2);
+    _frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "g_position", gbuffer::GBUFFER_TEXTURE_TYPE_POSITION, GL_TEXTURE1);
+    _frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "g_normal", gbuffer::GBUFFER_TEXTURE_TYPE_NORMAL, GL_TEXTURE2);
     
     //FINAL render
     _frame->add<4, render_commands::unbind_gbuffer>(GL_DRAW_FRAMEBUFFER);

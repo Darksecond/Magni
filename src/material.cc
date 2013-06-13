@@ -9,6 +9,6 @@ void material::bind(Ymir::Program& program)
     try
     {
         program.setUniform("diffuse", 0);
-        _diffuse->bind(0);
+        _diffuse->bind(GL_TEXTURE0);
     } catch(std::runtime_error e) {}
 }

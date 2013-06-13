@@ -276,6 +276,7 @@
 		F6C5230D1760D893006C2327 /* light.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = light.cc; sourceTree = "<group>"; };
 		F6C523101760E06E006C2327 /* spatial_updater_visitor.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spatial_updater_visitor.cc; sourceTree = "<group>"; };
 		F6C523111760E06E006C2327 /* spatial_updater_visitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spatial_updater_visitor.h; sourceTree = "<group>"; };
+		F6C7FF8A1769FDEC002F74C4 /* deferred_commands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deferred_commands.h; sourceTree = "<group>"; };
 		F6CC523916D6915500C58612 /* ObjGeometry.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjGeometry.cc; sourceTree = "<group>"; };
 		F6CC523A16D6915600C58612 /* ObjGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjGeometry.h; sourceTree = "<group>"; };
 		F6D9138216BC0222000C0632 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
@@ -391,6 +392,7 @@
 				F610E0261763988800822CEF /* render_command.h */,
 				F6FA04AB1763DBBB003B9ACA /* commands.h */,
 				F684AA051765D82200B0F8FC /* gbuffer_commands.h */,
+				F6C7FF8A1769FDEC002F74C4 /* deferred_commands.h */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
