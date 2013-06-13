@@ -30,7 +30,7 @@ void deferred_render_visitor::start_visit(light& l)
 {
     //TODO replace with draw_light
     //_frame->add<3, render_commands::draw_model>(_sphere_mesh, nullptr, l.global().matrix());
-    _frame->add<3, render_commands::draw_light>(_sphere_mesh, l.global());
+    _frame->add<3, render_commands::draw_light>(_sphere_mesh, l.global(), l.attenuation());
 }
 
 void deferred_render_visitor::start_visit(camera& c)
@@ -80,6 +80,7 @@ void deferred_render_visitor::start_frame()
     //FINAL render
     _frame->add<4, render_commands::unbind_gbuffer>(GL_DRAW_FRAMEBUFFER);
     _frame->add<4, render_commands::bind_gbuffer>(&_gbuffer, GL_READ_FRAMEBUFFER);
+    
     _frame->add<4, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_FINAL);
     _frame->add<4, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::top_left);
     _frame->add<4, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE);
@@ -88,6 +89,10 @@ void deferred_render_visitor::start_frame()
     _frame->add<4, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::bottom_left);
     _frame->add<4, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_POSITION);
     _frame->add<4, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::bottom_right);
+    /*
+    _frame->add<4, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_FINAL);
+    _frame->add<4, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::full_screen);
+     */
 }
 
 void deferred_render_visitor::end_frame()

@@ -1,8 +1,16 @@
 #version 150
 
+struct Attenuation
+{
+    float constant;
+    float linear;
+    float exp;
+};
+
 struct PointLight
 {
     vec3 position; //world space
+    Attenuation att;
 };
 
 uniform PointLight light;
@@ -45,8 +53,13 @@ vec4 calc_point_light(vec3 eye_position, vec3 light_eye_pos, vec3 eye_normal)
         }
     }
     
+    float att = light.att.constant +
+                light.att.linear * distance +
+                light.att.exp * distance * distance;
+    att = min(1.0, att);
     
-    return (Ia + Id + Is);
+    
+    return (Ia + Id + Is) / att;
     
 }
 
