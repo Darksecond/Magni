@@ -107,21 +107,6 @@ void deferred_render_visitor::start_frame()
     
     _frame->add<2, render_commands::set_stencil_state>(true);
     
-    //prepare for (point) lighting pass
-    //TODO move most of this into the light group, as we need a stencil + light pass per light
-    /*
-    _frame->add<2, render_commands::bind_program>(_point_light_program);
-    _frame->add<2, render_commands::set_draw_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_FINAL);
-    _frame->add<2, render_commands::clear>(GL_COLOR_BUFFER_BIT);
-    _frame->add<2, render_commands::set_depth>(false, false);
-    _frame->add<2, render_commands::set_blend>(true, GL_FUNC_ADD, GL_ONE, GL_ONE);
-    _frame->add<2, render_commands::set_culling>(false);
-    _frame->add<2, render_commands::set_uniform<glm::vec2>>("screen_size", (glm::vec2)_SCREEN_SIZE);
-    _frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "g_diffuse", gbuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE, GL_TEXTURE0);
-    _frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "g_position", gbuffer::GBUFFER_TEXTURE_TYPE_POSITION, GL_TEXTURE1);
-    _frame->add<2, render_commands::bind_gbuffer_texture>(&_gbuffer, "g_normal", gbuffer::GBUFFER_TEXTURE_TYPE_NORMAL, GL_TEXTURE2);
-     */
-    
     //FINAL render
     _frame->add<4, render_commands::set_stencil_state>(false);
     _frame->add<4, render_commands::unbind_gbuffer>(GL_DRAW_FRAMEBUFFER);
