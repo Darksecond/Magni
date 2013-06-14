@@ -17,6 +17,7 @@
 #include <memory>
 #include <GLM/glm.hpp>
 #include <iostream>
+#include <list>
 
 namespace render_commands
 {
@@ -165,5 +166,28 @@ namespace render_commands
     private:
         bool _cull;
         GLenum _face;
+    };
+    
+    class group : public render_command
+    {
+    public:
+        group() : _commands() {}
+        
+        template <typename T, typename... Args>
+        inline void add(Args... args)
+        {
+            _commands.push_back(std::make_shared<T>(args...));
+        }
+        
+        inline virtual void execute()
+        {
+            for(auto command : _commands)
+            {
+                command->set_frame(_frame);
+                command->execute();
+            }
+        }
+    private:
+        std::list<std::shared_ptr<render_command>> _commands;
     };
 };

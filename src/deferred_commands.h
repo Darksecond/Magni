@@ -25,7 +25,10 @@ namespace render_commands
     class draw_light : public render_command
     {
     public:
-        draw_light(std::shared_ptr<Ymir::Mesh> mesh, spatial spatial, float radius) : _mesh(mesh), _spatial(spatial), _radius(radius) {}
+        draw_light(std::shared_ptr<Ymir::Mesh> mesh, spatial spatial, float radius) : _mesh(mesh), _spatial(spatial), _radius(radius)
+        {
+            _spatial.scale(glm::vec3(_radius, _radius, _radius));
+        }
         virtual inline void execute()
         {
             _frame->current_program()->setUniform("model", _spatial.matrix());

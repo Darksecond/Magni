@@ -30,6 +30,7 @@ private:
     std::shared_ptr<Ymir::Program> _geometry_program;
     std::shared_ptr<Ymir::Program> _point_light_program;
     std::shared_ptr<Ymir::Mesh> _sphere_mesh;
+    std::shared_ptr<Ymir::Program> _null_program;
 };
 
 //INLINE & TEMPLATE METHODS
