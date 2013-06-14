@@ -58,9 +58,9 @@ void renderer::boot()
     glfwSwapInterval(0); //uncomment for no v-sync
     
     //OpenGL settings
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-    glEnable(GL_CULL_FACE);
+    //glEnable(GL_DEPTH_TEST);
+    //glDepthFunc(GL_LESS);
+    //glEnable(GL_CULL_FACE);
     
     //resource loaders
     resource_factory::instance().add_loader("program", std::make_shared<program_resource_loader>());

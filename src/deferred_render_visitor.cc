@@ -103,7 +103,7 @@ void deferred_render_visitor::start_frame()
     _frame->add<0, render_commands::set_depth>(true, true);
     _frame->add<0, render_commands::set_blend>(false);
     _frame->add<0, render_commands::set_culling>(true);
-    _frame->add<0, render_commands::clear>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    _frame->add<0, render_commands::clear>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     
     _frame->add<2, render_commands::set_stencil_state>(true);
     
@@ -127,6 +127,7 @@ void deferred_render_visitor::start_frame()
     _frame->add<4, render_commands::unbind_gbuffer>(GL_DRAW_FRAMEBUFFER);
     _frame->add<4, render_commands::bind_gbuffer>(&_gbuffer, GL_READ_FRAMEBUFFER);
     
+    /*
     _frame->add<4, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_FINAL);
     _frame->add<4, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::top_left);
     _frame->add<4, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE);
@@ -135,10 +136,9 @@ void deferred_render_visitor::start_frame()
     _frame->add<4, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::bottom_left);
     _frame->add<4, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_POSITION);
     _frame->add<4, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::bottom_right);
-    /*
+    */
     _frame->add<4, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_FINAL);
     _frame->add<4, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::full_screen);
-     */
 }
 
 void deferred_render_visitor::end_frame()

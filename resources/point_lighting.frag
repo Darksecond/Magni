@@ -22,34 +22,33 @@ vec2 calc_tex_coord()
     return gl_FragCoord.xy / screen_size;
 }
 
-vec4 calc_point_light(vec3 eye_position, vec3 light_eye_pos, vec3 eye_normal)
+vec4 calc_point_light(vec3 v, vec3 light_pos, vec3 N)
 {
+    N = normalize(N);
     vec4 Ia = vec4(0.2, 0.2, 0.2, 1.0);
     vec4 Id = vec4(0.0, 0.0, 0.0, 1.0);
     vec4 Is = vec4(0.0, 0.0, 0.0, 1.0);
     
-    vec3 light_direction = eye_position - light_eye_pos;
-    float distance = length(light_direction);
-    light_direction = normalize(light_direction);
+    vec3 L = light_pos - v;
+    float distance = length(L);
+    L = normalize(L);
+    vec3 R = normalize(reflect(-L, N));
+    vec3 E = normalize(-v);
     
-    float diffuse_factor = dot(eye_normal, -light_direction);
-    if(diffuse_factor > 0)
-    {
-        Id = vec4(1.0, 1.0, 1.0, 1.0) * diffuse_factor;
-        
-        vec3 vertex_to_eye = normalize(-eye_position);
-        vec3 light_reflect = normalize(reflect(light_direction, eye_normal));
-        float specular_factor = dot(vertex_to_eye, light_reflect);
-        if(specular_factor > 0)
-        {
-            Is = vec4(1.0, 1.0, 1.0, 1.0) * specular_factor;
-        }
-    }
+    float diffuse_factor = dot(N, L);
+    Id = vec4(1.0, 1.0, 1.0, 1.0) * max(dot(N, L), 0.0); //vec4 is color
+    Is = vec4(1.0, 1.0, 1.0, 1.0) * pow(max(dot(R,E), 0.0), 0.3 * 60.0); //60.0 == shininess, vec4 is color
     
-    float att = 1.0 / pow((max(distance - light.radius, 0.0) / light.radius + 1.0), 2.0);
-    att = clamp(att, 0.0, 1.0);
+    Id = clamp(Id, 0.0, 1.0);
+    Is = clamp(Is, 0.0, 1.0);
     
-    return (Ia + Id + Is) * att;
+    //float att = 1.0 / pow((max(distance - light.radius, 0.0) / light.radius + 1.0), 2.0);
+    //float att = (1.0 - pow(pow(distance/light.radius, 2), 3));
+    float att = 1.0 - clamp(distance / light.radius, 0.0, 1.0);
+    //float att = 1.0;
+    //att = clamp(att, 0.0, 1.0);
+    
+    return(Ia + Id + Is) * att;
     
 }
 
