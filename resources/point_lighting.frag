@@ -24,7 +24,7 @@ vec2 calc_tex_coord()
 
 vec4 calc_point_light(vec3 eye_position, vec3 light_eye_pos, vec3 eye_normal)
 {
-    vec4 Ia = vec4(0.0, 0.0, 0.0, 1.0);
+    vec4 Ia = vec4(0.2, 0.2, 0.2, 1.0);
     vec4 Id = vec4(0.0, 0.0, 0.0, 1.0);
     vec4 Is = vec4(0.0, 0.0, 0.0, 1.0);
     
@@ -47,6 +47,7 @@ vec4 calc_point_light(vec3 eye_position, vec3 light_eye_pos, vec3 eye_normal)
     }
     
     float att = 1.0 / pow((max(distance - light.radius, 0.0) / light.radius + 1.0), 2.0);
+    att = clamp(att, 0.0, 1.0);
     
     return (Ia + Id + Is) * att;
     

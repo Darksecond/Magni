@@ -168,6 +168,51 @@ namespace render_commands
         GLenum _face;
     };
     
+    class set_stencil_state : public render_command
+    {
+    public:
+        set_stencil_state(bool enable) : _enable(enable) {}
+        inline virtual void execute()
+        {
+            if(_enable)
+            {
+                glEnable(GL_STENCIL_TEST);
+            }
+            else
+            {
+                glDisable(GL_STENCIL_TEST);
+            }
+        }
+    private:
+        bool _enable;
+    };
+    
+    class set_stencil_func : public render_command
+    {
+    public:
+        set_stencil_func(GLenum func, GLint ref, GLuint mask) : _func(func), _ref(ref), _mask(mask) {}
+        inline virtual void execute()
+        {
+            glStencilFunc(_func, _ref, _mask);
+        }
+    private:
+        GLenum _func;
+        GLint _ref;
+        GLuint _mask;
+    };
+    
+    class set_stencil_op : public render_command
+    {
+    public:
+        set_stencil_op(GLenum sfail, GLenum dpfail, GLenum dppass, GLenum face = GL_FRONT_AND_BACK) : _face(face), _sfail(sfail), _dpfail(dpfail), _dppass(dppass) {}
+        inline virtual void execute()
+        {
+            glStencilOpSeparate(_face, _sfail, _dpfail, _dppass);
+        }
+    private:
+        GLenum _face, _sfail, _dpfail, _dppass;
+    };
+    
     class group : public render_command
     {
     public:
@@ -189,5 +234,17 @@ namespace render_commands
         }
     private:
         std::list<std::shared_ptr<render_command>> _commands;
+    };
+    
+    class execute_queue : public render_command
+    {
+    public:
+        execute_queue(int queue) : _queue(queue) {}
+        inline virtual void execute()
+        {
+            _frame->execute_queue(_queue);
+        }
+    private:
+        int _queue;
     };
 };

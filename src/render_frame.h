@@ -13,8 +13,12 @@ static const int QUEUE_COUNT = 32;
 class render_queue
 {
 public:
+    render_queue() : run(true) {}
+    
     inline void add(std::shared_ptr<render_command> command);
     inline void execute();
+    
+    bool run;
 private:
     std::list<std::shared_ptr<render_command>> _commands;
 };
@@ -26,6 +30,7 @@ public:
     inline void add(Args... args);
     inline void add(int queue, std::shared_ptr<render_command> command);
     inline void execute();
+    inline void execute_queue(int queue);
     
     inline void set_current_program(std::shared_ptr<Ymir::Program> p) //TODO move to render_state
     {
@@ -35,6 +40,11 @@ public:
     inline std::shared_ptr<Ymir::Program> current_program() //TODO move to render_state
     {
         return _current_program;
+    }
+    
+    inline void ignore(int queue)
+    {
+        _queues[queue].run = false;
     }
     
 private:
@@ -75,5 +85,13 @@ inline void render_queue::execute()
 inline void render_frame::execute()
 {
     for(int i = 0; i < QUEUE_COUNT; ++i)
-        _queues[i].execute();
+    {
+        if(_queues[i].run)
+            execute_queue(i);
+    }
+}
+
+inline void render_frame::execute_queue(int queue)
+{
+    _queues[queue].execute();
 }
