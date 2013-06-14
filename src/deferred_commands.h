@@ -25,21 +25,19 @@ namespace render_commands
     class draw_light : public render_command
     {
     public:
-        draw_light(std::shared_ptr<Ymir::Mesh> mesh, spatial spatial, light::attenuation_t att) : _mesh(mesh), _spatial(spatial), _att(att) {}
+        draw_light(std::shared_ptr<Ymir::Mesh> mesh, spatial spatial, float radius) : _mesh(mesh), _spatial(spatial), _radius(radius) {}
         virtual inline void execute()
         {
             _frame->current_program()->setUniform("model", _spatial.matrix());
             _frame->current_program()->setUniform("light.position", _spatial.translation());
             
-            _frame->current_program()->setUniform("light.att.constant", _att.constant);
-            _frame->current_program()->setUniform("light.att.linear", _att.linear);
-            _frame->current_program()->setUniform("light.att.exp", _att.exp);
+            _frame->current_program()->setUniform("light.radius", _radius);
             
             _mesh->draw(*_frame->current_program());
         }
     private:
         std::shared_ptr<Ymir::Mesh> _mesh;
         spatial _spatial;
-        light::attenuation_t _att;
+        float _radius;
     };
 };

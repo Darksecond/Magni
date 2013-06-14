@@ -1,6 +1,6 @@
 #include "light.h"
 
-light::light(const std::string& name, const glm::vec3& position) : game_object(name, position), _attenuation{0.0f, 0.0f, 1.0f}
+light::light(const std::string& name, const glm::vec3& position, float radius) : game_object(name, position), _radius(radius)
 {
 }
 
@@ -12,14 +12,7 @@ void light::accept(game_object_visitor& v)
     v.end_visit(*this);
 }
 
-const light::attenuation_t& light::attenuation() const
+float light::radius()
 {
-    return _attenuation;
-}
-
-void light::set_attenuation(float constant, float linear, float exp)
-{
-    _attenuation.constant = constant;
-    _attenuation.linear = linear;
-    _attenuation.exp = exp;
+    return _radius;
 }

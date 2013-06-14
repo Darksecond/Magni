@@ -26,11 +26,14 @@ deferred_render_visitor::~deferred_render_visitor()
 {
 }
 
+
 void deferred_render_visitor::start_visit(light& l)
 {
-    //TODO replace with draw_light
-    //_frame->add<3, render_commands::draw_model>(_sphere_mesh, nullptr, l.global().matrix());
-    _frame->add<3, render_commands::draw_light>(_sphere_mesh, l.global(), l.attenuation());
+    spatial s = l.global();
+    float scale = l.radius();
+    s.scale(glm::vec3(scale, scale, scale));
+    _frame->add<3, render_commands::draw_light>(_sphere_mesh, s, l.radius());
+    //_frame->add<1, render_commands::draw_model>(_sphere_mesh, nullptr, s.matrix());
 }
 
 void deferred_render_visitor::start_visit(camera& c)
