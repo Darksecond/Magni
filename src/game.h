@@ -1,12 +1,15 @@
 #pragma once
 
-#include "DirectoryManifest.h"
 #include "renderer.h"
 
 #include <string>
 #include <memory>
 #include <list>
 
+namespace Ymir
+{
+    class DirectoryManifest;
+};
 class game_object;
 class game
 {

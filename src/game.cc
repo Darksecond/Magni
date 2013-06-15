@@ -12,6 +12,7 @@
 #include "Texture.h"
 #include "Program.h"
 #include "Mesh.h"
+#include "DirectoryManifest.h"
 
 #include <iostream>
 
