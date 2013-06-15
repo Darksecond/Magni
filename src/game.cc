@@ -9,12 +9,21 @@
 #include "fps.h"
 #include "fpscam_behaviour.h"
 #include "resource_factory.h"
+#include "Texture.h"
+#include "Program.h"
+#include "Mesh.h"
 
 #include <iostream>
 
 const glm::ivec2 SCREEN_SIZE(800, 600);
 
-game::game() : _running(true), _world(), _renderer(SCREEN_SIZE)
+game& game::instance()
+{
+    static game _instance;
+    return _instance;
+}
+
+game::game() : _running(true), _world(), _renderer(SCREEN_SIZE), _linear_view()
 {
 }
 
@@ -34,22 +43,20 @@ void game::shutdown()
 
 void game::build()
 {
-    _world = std::make_shared<game_object>("world");
+    _world = add_game_object(std::make_shared<game_object>("world"));
     
-    auto cam = std::make_shared<camera>("camera", (float)SCREEN_SIZE.x/SCREEN_SIZE.y);
+    auto cam = add_game_object(std::make_shared<camera>("camera", (float)SCREEN_SIZE.x/SCREEN_SIZE.y));
     cam->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour(*cam))));
-    _world->add(cam);
     
     std::shared_ptr<Ymir::Texture> tex = resource_factory::instance().resource<Ymir::Texture>("wooden-crate.jpg", "texture");
     std::shared_ptr<material> mat = std::make_shared<material>(tex);
     
     Ymir::Mesh mesh = std::move(Ymir::Mesh::cube());
     std::shared_ptr<Ymir::Mesh> cube_mesh = std::make_shared<Ymir::Mesh>(std::move(mesh));
-    auto cube_model = std::make_shared<model>("cube", cube_mesh, mat, glm::vec3(5.0f, 0.0f, 0.0f));
-    _world->add(cube_model);
+    auto cube_model = add_game_object(std::make_shared<model>("cube", cube_mesh, mat, glm::vec3(5.0f, 0.0f, 0.0f)));
     
-    _world->add(std::make_shared<light>("light1", glm::vec3(-5.0f, 1.0f, 10.0f), 20.0f));
-    _world->add(std::make_shared<light>("light2", glm::vec3(-5.0f, -1.0f, -10.0f), 20.0f));
+    add_game_object(std::make_shared<light>("light1", glm::vec3(-5.0f, 1.0f, 10.0f), 20.0f));
+    add_game_object(std::make_shared<light>("light2", glm::vec3(-5.0f, -1.0f, -10.0f), 20.0f));
 }
 
 void game::run()
@@ -58,7 +65,6 @@ void game::run()
     {
         time::instance().step();
         fps::instance().update();
-        //TODO moar!
         
         _world->update();
         
@@ -73,4 +79,32 @@ void game::run()
 void game::stop()
 {
     _running = false;
+}
+
+std::shared_ptr<game_object> game::add_game_object(std::shared_ptr<game_object> object)
+{
+    if(_world)
+        _world->add(object);
+    _linear_view.push_back(object);
+    
+    return object;
+}
+
+std::shared_ptr<game_object> game::add_game_object(std::shared_ptr<game_object> object, std::shared_ptr<game_object> parent)
+{
+    if(parent)
+        parent->add(object);
+    _linear_view.push_back(object);
+    
+    return object;
+}
+
+std::shared_ptr<game_object> game::get_by_name(const std::string& name)
+{
+    for(auto go : _linear_view)
+    {
+        if(go->name() == name)
+            return go;
+    }
+    return nullptr;
 }

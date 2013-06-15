@@ -1,33 +1,45 @@
 #pragma once
 
-#include "game_object.h"
-
-//TEMP RESOURCE MANAGEMENT
 #include "DirectoryManifest.h"
-#include "Texture.h"
-#include "Program.h"
-#include "Mesh.h"
 #include "renderer.h"
 
 #include <string>
 #include <memory>
+#include <list>
 
+class game_object;
 class game
 {
 public:
-    game();
+    static game& instance();
     
     void boot(const std::string& resource_dir);
     void build();
     void run();
     void shutdown();
     void stop();
+    
+    std::shared_ptr<game_object> add_game_object(std::shared_ptr<game_object> object);
+    std::shared_ptr<game_object> add_game_object(std::shared_ptr<game_object> object, std::shared_ptr<game_object> parent);
+    
+    std::shared_ptr<game_object> get_by_name(const std::string& name);
+    //TODO: std::list<std::shared_ptr<game_object>> get_by_position(const glm::vec3& position, float range);
+    
+    inline std::list<std::shared_ptr<game_object>>& linear_view();
 private:
+    game();
     bool _running;
     std::shared_ptr<game_object> _world;
+    std::list<std::shared_ptr<game_object>> _linear_view;
     
-    //TEMP RESOURCE MANAGEMENT
     std::shared_ptr<Ymir::DirectoryManifest> _manifest;
     
     renderer _renderer;
 };
+
+//INLINE & TEMPLATE METHODS
+
+std::list<std::shared_ptr<game_object>>& game::linear_view()
+{
+    return _linear_view;
+}

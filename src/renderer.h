@@ -3,12 +3,13 @@
 #include "Program.h"
 #include "Mesh.h"
 #include "render_frame.h"
-#include "game_object.h"
 #include "deferred_render_visitor.h"
 
 #include <GLM/glm.hpp>
 #include <memory>
 
+class game_object;
+class deferred_render_visitor;
 class renderer
 {
 public:

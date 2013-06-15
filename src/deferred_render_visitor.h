@@ -1,14 +1,16 @@
 #pragma once
 
 #include "game_object_visitor.h"
-#include "render_frame.h"
 #include "gbuffer.h"
-
-#include "Program.h"
-#include "Mesh.h"
 
 #include <memory>
 
+namespace Ymir
+{
+    class Program;
+    class Mesh;
+};
+class render_frame;
 class deferred_render_visitor : public game_object_visitor
 {
 public:

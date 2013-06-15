@@ -1,12 +1,15 @@
 #include "deferred_render_visitor.h"
 
 #include "commands.h"
+#include "render_frame.h"
 #include "gbuffer_commands.h"
 #include "deferred_commands.h"
 #include "camera.h"
 #include "model.h"
 #include "light.h"
 #include "resource_factory.h"
+#include "Program.h"
+#include "Mesh.h"
 
 deferred_render_visitor::deferred_render_visitor(glm::ivec2 SCREEN_SIZE) :
 _gbuffer(SCREEN_SIZE),

@@ -1,5 +1,6 @@
 #include "renderer.h"
 
+#include "game_object.h"
 #include "resource_factory.h"
 #include "program_resource_loader.h"
 #include "Texture.h"

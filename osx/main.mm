@@ -12,7 +12,7 @@ static std::string ResourceDirectory()
 
 int main(int argc, char* argv[])
 {
-    game g;
+    game& g = game::instance();
     g.boot(ResourceDirectory() + "/resources");
     g.build();
     g.run();
