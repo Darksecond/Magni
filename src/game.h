@@ -13,6 +13,11 @@ class game
 public:
     static game& instance();
     
+    game(const game&) = delete;
+    game(game&&) = delete;
+    game& operator=(const game&) = delete;
+    game& operator=(game&&) = delete;
+    
     void boot(const std::string& resource_dir);
     void build();
     void run();
@@ -24,8 +29,6 @@ public:
     
     std::shared_ptr<game_object> get_by_name(const std::string& name);
     //TODO: std::list<std::shared_ptr<game_object>> get_by_position(const glm::vec3& position, float range);
-    
-    inline std::list<std::shared_ptr<game_object>>& linear_view();
 private:
     game();
     bool _running;
@@ -36,10 +39,3 @@ private:
     
     renderer _renderer;
 };
-
-//INLINE & TEMPLATE METHODS
-
-std::list<std::shared_ptr<game_object>>& game::linear_view()
-{
-    return _linear_view;
-}
