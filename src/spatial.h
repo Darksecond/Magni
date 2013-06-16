@@ -17,6 +17,8 @@ public:
     
     glm::vec3 translation() const;
     
+    void identity();
+    
     spatial& operator*=(const spatial& b);
 private:
     glm::mat4 _matrix;

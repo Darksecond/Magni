@@ -8,7 +8,6 @@
     #include <GL/glfw.h>
     #include <GL/glew.h>
 #endif // _WIN32
-#include <iostream>
 
 time::time() : _delta(0), _current_time(0)
 {

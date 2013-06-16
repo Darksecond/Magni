@@ -40,9 +40,14 @@ glm::vec3 spatial::translation() const
     return glm::vec3(_matrix[3]);
 }
 
+void spatial::identity()
+{
+    _matrix = glm::mat4();
+}
+
 spatial& spatial::operator*=(const spatial& b)
 {
-    _matrix * b.matrix();
+    _matrix = _matrix * b.matrix();
     return *this;
 }
 

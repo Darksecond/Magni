@@ -15,13 +15,12 @@
 
 #include <iostream>
 
-fpscam_behaviour::fpscam_behaviour(game_object& go) : behaviour(go), _angles(M_PI/2, 0)
+fpscam_behaviour::fpscam_behaviour(game_object& go) : behaviour(go), _angles(M_PI+M_PI/2, 0)
 {
 }
 
 void fpscam_behaviour::update()
 {
-    //TODO redo all this, it just doesn't work (not only the mouse part, moreso the keys part)
     int xpos, ypos;
     glfwGetMousePos(&xpos, &ypos);
     glfwSetMousePos(0, 0);
@@ -40,15 +39,6 @@ void fpscam_behaviour::update()
     if(_angles.y <= -M_PI / 2)
         _angles.y = -M_PI / 2;
     
-    glm::vec3 lookat;
-    lookat.x = sinf(_angles.x) * cosf(_angles.y);
-    lookat.y = sinf(_angles.y);
-    lookat.z = cosf(_angles.x) * cosf(_angles.y);
-    glm::normalize(lookat);
-    
-    glm::vec3 pos = _parent.local().translation();
-    _parent.local().look_at(pos + lookat, glm::vec3(0, 1, 0));
-    
     if(glfwGetKey('W') == GLFW_PRESS)
         _parent.local().translate(glm::vec3(0.0f, 0.0f, -time::instance().delta() * 5));
     else if(glfwGetKey('S') == GLFW_PRESS)
@@ -62,6 +52,9 @@ void fpscam_behaviour::update()
     else if(glfwGetKey('Z') == GLFW_PRESS)
         _parent.local().translate(glm::vec3(0.0f, -time::instance().delta() * 5, 0.0f));
     
-    
-    pos = _parent.local().translation();
+    glm::vec3 pos = _parent.local().translation();
+    _parent.local().identity();
+    _parent.local().translate(pos);
+    _parent.local().rotate(glm::degrees(_angles.x), glm::vec3(0, 1, 0));
+    _parent.local().rotate(glm::degrees(_angles.y), glm::vec3(1, 0, 0));
 }
