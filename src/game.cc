@@ -13,6 +13,7 @@
 #include "Program.h"
 #include "Mesh.h"
 #include "DirectoryManifest.h"
+#include "bounding_sphere.h"
 
 #include <iostream>
 
@@ -24,7 +25,7 @@ game& game::instance()
     return _instance;
 }
 
-game::game() : _running(true), _world(), _renderer(SCREEN_SIZE), _linear_view()
+game::game() : _running(true), _world(), _renderer(SCREEN_SIZE), _linear_view(), _collider()
 {
 }
 
@@ -48,6 +49,7 @@ void game::build()
     
     auto cam = add_game_object(std::make_shared<camera>("camera", (float)SCREEN_SIZE.x/SCREEN_SIZE.y));
     cam->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour(*cam))));
+    cam->set_collider(std::make_shared<bounding_sphere>(1));
     
     std::shared_ptr<Ymir::Texture> tex = resource_factory::instance().resource<Ymir::Texture>("wooden-crate.jpg", "texture");
     std::shared_ptr<material> mat = std::make_shared<material>(tex);
@@ -55,6 +57,7 @@ void game::build()
     Ymir::Mesh mesh = std::move(Ymir::Mesh::cube());
     std::shared_ptr<Ymir::Mesh> cube_mesh = std::make_shared<Ymir::Mesh>(std::move(mesh));
     auto cube_model = add_game_object(std::make_shared<model>("cube", cube_mesh, mat, glm::vec3(5.0f, 0.0f, 0.0f)));
+    cube_model->set_collider(std::make_shared<bounding_sphere>(1));
     
     add_game_object(std::make_shared<light>("light1", glm::vec3(-5.0f, 1.0f, 10.0f), 20.0f));
     add_game_object(std::make_shared<light>("light2", glm::vec3(-5.0f, -1.0f, -10.0f), 20.0f));
@@ -73,6 +76,9 @@ void game::run()
         _world->accept(spatial_updater);
         
         if(!_renderer.step(_world))
+            stop();
+        
+        if(!_collider.step())
             stop();
     }
 }

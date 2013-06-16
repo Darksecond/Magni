@@ -21,7 +21,8 @@ void spatial_updater_visitor::end_visit(model& l) { end(l); }
 void spatial_updater_visitor::start(game_object& go)
 {
     _stack.push(_stack.top() * go.local());
-    go.global() = _stack.top();
+    go.update_global(_stack.top());
+    //go.global() = _stack.top();
 }
 
 void spatial_updater_visitor::end(game_object& go)

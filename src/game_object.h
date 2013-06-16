@@ -3,6 +3,7 @@
 #include "spatial.h"
 #include "game_object_visitor.h"
 #include "behaviour.h"
+#include "bounding_volume.h"
 
 #include <string>
 #include <vector>
@@ -22,8 +23,12 @@ public:
     
     spatial& local();
     spatial& global();
+    std::shared_ptr<bounding_volume> collider();
+    behaviour* get_behaviour();
     
     void set_behaviour(std::unique_ptr<behaviour> b);
+    void set_collider(std::shared_ptr<bounding_volume> bv);
+    void update_global(const spatial& new_global);
     void update();
 protected:
     std::vector<std::shared_ptr<game_object>> _children;
@@ -32,4 +37,5 @@ private:
     spatial _local_spatial;
     spatial _global_spatial;
     std::unique_ptr<behaviour> _behaviour;
+    std::shared_ptr<bounding_volume> _bounding_volume;
 };

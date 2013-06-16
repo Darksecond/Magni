@@ -20,6 +20,8 @@
 		F668AE5D1768F8E0005B881E /* resource_factory.cc in Sources */ = {isa = PBXBuildFile; fileRef = F668AE5B1768F8E0005B881E /* resource_factory.cc */; };
 		F668AE601768FC60005B881E /* resource_cache.cc in Sources */ = {isa = PBXBuildFile; fileRef = F668AE5E1768FC60005B881E /* resource_cache.cc */; };
 		F668AE631768FD13005B881E /* manifest_container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F668AE611768FD13005B881E /* manifest_container.cpp */; };
+		F66B53A0176DD50500880F21 /* bounding_sphere.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66B539E176DD50500880F21 /* bounding_sphere.cc */; };
+		F66B53A3176DDBB100880F21 /* collision_system.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66B53A1176DDBB100880F21 /* collision_system.cc */; };
 		F66E76D716C99722006BF544 /* FileStreamReader.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66E76D616C99721006BF544 /* FileStreamReader.cc */; };
 		F66ED7A81764B1A400CBDB3F /* fpscam_behaviour.cc in Sources */ = {isa = PBXBuildFile; fileRef = F66ED7A61764B1A400CBDB3F /* fpscam_behaviour.cc */; };
 		F67268DF1761EE27001561D8 /* game.cc in Sources */ = {isa = PBXBuildFile; fileRef = F67268DD1761EE27001561D8 /* game.cc */; };
@@ -186,6 +188,11 @@
 		F668AE611768FD13005B881E /* manifest_container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = manifest_container.cpp; sourceTree = "<group>"; };
 		F668AE621768FD13005B881E /* manifest_container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = manifest_container.h; sourceTree = "<group>"; };
 		F668AE651768FF9A005B881E /* resource_loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource_loader.h; sourceTree = "<group>"; };
+		F66B539D176DD4A100880F21 /* bounding_volume.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bounding_volume.h; sourceTree = "<group>"; };
+		F66B539E176DD50500880F21 /* bounding_sphere.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bounding_sphere.cc; sourceTree = "<group>"; };
+		F66B539F176DD50500880F21 /* bounding_sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bounding_sphere.h; sourceTree = "<group>"; };
+		F66B53A1176DDBB100880F21 /* collision_system.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collision_system.cc; sourceTree = "<group>"; };
+		F66B53A2176DDBB100880F21 /* collision_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collision_system.h; sourceTree = "<group>"; };
 		F66E76D416C995EE006BF544 /* program_resource_loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = program_resource_loader.h; sourceTree = "<group>"; };
 		F66E76D516C9971D006BF544 /* FileStreamReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStreamReader.h; sourceTree = "<group>"; };
 		F66E76D616C99721006BF544 /* FileStreamReader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileStreamReader.cc; sourceTree = "<group>"; };
@@ -420,6 +427,18 @@
 			name = "Render Support";
 			sourceTree = "<group>";
 		};
+		F66B539C176DD45800880F21 /* Collision Detection */ = {
+			isa = PBXGroup;
+			children = (
+				F66B539D176DD4A100880F21 /* bounding_volume.h */,
+				F66B539E176DD50500880F21 /* bounding_sphere.cc */,
+				F66B539F176DD50500880F21 /* bounding_sphere.h */,
+				F66B53A1176DDBB100880F21 /* collision_system.cc */,
+				F66B53A2176DDBB100880F21 /* collision_system.h */,
+			);
+			name = "Collision Detection";
+			sourceTree = "<group>";
+		};
 		F66ED7A51764B07B00CBDB3F /* Behaviors */ = {
 			isa = PBXGroup;
 			children = (
@@ -637,6 +656,7 @@
 		F687A52E16B4BC7700878140 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F66B539C176DD45800880F21 /* Collision Detection */,
 				F66ED7A51764B07B00CBDB3F /* Behaviors */,
 				F610E0211763946B00822CEF /* Renderer */,
 				F6C5230F1760DA1F006C2327 /* Game Objects */,
@@ -952,6 +972,8 @@
 				F668AE5D1768F8E0005B881E /* resource_factory.cc in Sources */,
 				F668AE601768FC60005B881E /* resource_cache.cc in Sources */,
 				F668AE631768FD13005B881E /* manifest_container.cpp in Sources */,
+				F66B53A0176DD50500880F21 /* bounding_sphere.cc in Sources */,
+				F66B53A3176DDBB100880F21 /* collision_system.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

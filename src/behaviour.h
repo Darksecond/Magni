@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 class game_object;
 class behaviour
@@ -8,6 +9,7 @@ public:
     virtual ~behaviour() = default;
     
     virtual void update() = 0;
+    virtual void on_collision(game_object& other) {};
     
 protected:
     game_object& _parent;

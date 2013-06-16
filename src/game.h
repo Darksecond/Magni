@@ -1,6 +1,7 @@
 #pragma once
 
 #include "renderer.h"
+#include "collision_system.h"
 
 #include <string>
 #include <memory>
@@ -32,6 +33,8 @@ public:
     
     std::shared_ptr<game_object> get_by_name(const std::string& name);
     //TODO: std::list<std::shared_ptr<game_object>> get_by_position(const glm::vec3& position, float range);
+    
+    inline std::list<std::shared_ptr<game_object>>& linear_view();
 private:
     game();
     bool _running;
@@ -40,5 +43,13 @@ private:
     
     std::shared_ptr<Ymir::DirectoryManifest> _manifest;
     
+    collision_system _collider;
     renderer _renderer;
 };
+
+//TEMPLATE & INLINE METHODS
+
+std::list<std::shared_ptr<game_object>>& game::linear_view()
+{
+    return _linear_view;
+}
