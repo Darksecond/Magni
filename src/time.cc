@@ -8,13 +8,14 @@
     #include <GL/glfw.h>
     #include <GL/glew.h>
 #endif // _WIN32
+#include <iostream>
 
 time::time() : _delta(0), _current_time(0)
 {
     step();
 }
 
-time& time::instance()
+class time& time::instance()
 {
     static time _instance;
     return _instance;
@@ -29,6 +30,8 @@ void time::step()
 {
     float now = glfwGetTime();
     _delta = now - _current_time;
+    if(_delta > 0.05) //limit maximum delta
+        _delta = 0.05;
     _current_time = now;
 }
 

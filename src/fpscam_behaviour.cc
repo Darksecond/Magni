@@ -64,5 +64,4 @@ void fpscam_behaviour::update()
     
     
     pos = _parent.local().translation();
-    std::cout << pos.x << ", " << pos.y << ", " << pos.z << std::endl;
 }
