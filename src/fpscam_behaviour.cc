@@ -11,27 +11,27 @@
     #include <GL/glfw.h>
     #include <GL/glew.h>
 #endif // _WIN32
+#include <GLM/ext.hpp>
 
 #include <iostream>
 
-fpscam_behaviour::fpscam_behaviour(game_object& go) : behaviour(go), _angles(M_PI, 0)
+fpscam_behaviour::fpscam_behaviour(game_object& go) : behaviour(go), _angles(M_PI/2, 0)
 {
 }
 
 void fpscam_behaviour::update()
 {
     //TODO redo all this, it just doesn't work (not only the mouse part, moreso the keys part)
-    /*
     int xpos, ypos;
     glfwGetMousePos(&xpos, &ypos);
     glfwSetMousePos(0, 0);
     
-    const float mouse_speed = 0.001;
+    const float mouse_speed = 0.005;
     _angles.x -= xpos * mouse_speed;
     _angles.y -= ypos * mouse_speed;
     
     if(_angles.x < 0)
-        _angles.x = M_PI * 2;
+        _angles.x = M_PI * 2 - 0.00001; //floating point error otherwise
     if(_angles.x > M_PI * 2)
         _angles.x = 0;
     
@@ -44,21 +44,25 @@ void fpscam_behaviour::update()
     lookat.x = sinf(_angles.x) * cosf(_angles.y);
     lookat.y = sinf(_angles.y);
     lookat.z = cosf(_angles.x) * cosf(_angles.y);
+    glm::normalize(lookat);
     
-    _parent.local().look_at(lookat, glm::vec3(0, 1, 0));
-    */
+    glm::vec3 pos = _parent.local().translation();
+    _parent.local().look_at(pos + lookat, glm::vec3(0, 1, 0));
     
     if(glfwGetKey('W') == GLFW_PRESS)
         _parent.local().translate(glm::vec3(0.0f, 0.0f, -time::instance().delta() * 5));
     else if(glfwGetKey('S') == GLFW_PRESS)
         _parent.local().translate(glm::vec3(0.0f, 0.0f, time::instance().delta() * 5));
-    else if(glfwGetKey('A') == GLFW_PRESS)
+    if(glfwGetKey('A') == GLFW_PRESS)
         _parent.local().translate(glm::vec3(-time::instance().delta() * 5, 0.0f, 0.0f));
     else if(glfwGetKey('D') == GLFW_PRESS)
         _parent.local().translate(glm::vec3(time::instance().delta() * 5, 0.0f, 0.0f));
-    else if(glfwGetKey('X') == GLFW_PRESS)
+    if(glfwGetKey('X') == GLFW_PRESS)
         _parent.local().translate(glm::vec3(0.0f, time::instance().delta() * 5, 0.0f));
     else if(glfwGetKey('Z') == GLFW_PRESS)
         _parent.local().translate(glm::vec3(0.0f, -time::instance().delta() * 5, 0.0f));
     
+    
+    pos = _parent.local().translation();
+    std::cout << pos.x << ", " << pos.y << ", " << pos.z << std::endl;
 }
