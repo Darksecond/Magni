@@ -17,7 +17,10 @@ bool collision_system::step()
             std::shared_ptr<bounding_volume> other_collider = (*inner_it)->collider();
             if(collider && other_collider && collider->intersects(*other_collider))
             {
-                (*it)->get_behaviour()->on_collision(*(*inner_it));
+                if((*it)->get_behaviour())
+                    (*it)->get_behaviour()->on_collision(*(*inner_it));
+                if((*inner_it)->get_behaviour())
+                    (*inner_it)->get_behaviour()->on_collision(*(*it));
             }
         }
     }
