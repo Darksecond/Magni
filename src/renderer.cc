@@ -82,7 +82,11 @@ void renderer::shutdown()
 
 bool renderer::step(std::shared_ptr<scene>& active_scene)
 {
-    if(!active_scene) return true;
+    if(!active_scene)
+    {
+        glfwSwapBuffers();
+        return true;
+    }
     
     auto world = active_scene->scene_graph_view();
     render_frame frame;

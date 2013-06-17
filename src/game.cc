@@ -37,11 +37,13 @@ void game::boot(const std::string& resource_dir)
     resource_factory::instance().add_manifest(_manifest);
     
     _renderer.boot();
+    _collider.boot();
 }
 
 void game::shutdown()
 {
     _renderer.shutdown();
+    _collider.shutdown();
 }
 
 void game::build()

@@ -28,3 +28,11 @@ bool collision_system::step(std::shared_ptr<scene>& active_scene)
     }
     return true;
 }
+
+void collision_system::boot()
+{
+}
+
+void collision_system::shutdown()
+{
+}
