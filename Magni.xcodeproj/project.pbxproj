@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F610E0201763931800822CEF /* deferred_render_visitor.cc in Sources */ = {isa = PBXBuildFile; fileRef = F610E01E1763931800822CEF /* deferred_render_visitor.cc */; };
 		F61BDCBB16E8988E00768DEE /* Cubemap.cc in Sources */ = {isa = PBXBuildFile; fileRef = F61BDCB916E8988E00768DEE /* Cubemap.cc */; };
+		F632EB1D176FA9CD009FDB45 /* scene.cc in Sources */ = {isa = PBXBuildFile; fileRef = F632EB1B176FA9CD009FDB45 /* scene.cc */; };
 		F639AAC117647A7300E1D79A /* time.cc in Sources */ = {isa = PBXBuildFile; fileRef = F639AABF17647A7300E1D79A /* time.cc */; };
 		F639AAC417647C6A00E1D79A /* fps.cc in Sources */ = {isa = PBXBuildFile; fileRef = F639AAC217647C6A00E1D79A /* fps.cc */; };
 		F642BDA616DF9063009EB1DB /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F642BDA516DF9063009EB1DB /* OpenAL.framework */; };
@@ -165,6 +166,8 @@
 		F61BDCB916E8988E00768DEE /* Cubemap.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cubemap.cc; sourceTree = "<group>"; };
 		F61BDCBA16E8988E00768DEE /* Cubemap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cubemap.h; sourceTree = "<group>"; };
 		F61BDCBC16E8B7E500768DEE /* cubemap_resource_loader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cubemap_resource_loader.h; sourceTree = "<group>"; };
+		F632EB1B176FA9CD009FDB45 /* scene.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scene.cc; sourceTree = "<group>"; };
+		F632EB1C176FA9CD009FDB45 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
 		F639AABF17647A7300E1D79A /* time.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cc; sourceTree = "<group>"; };
 		F639AAC017647A7300E1D79A /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		F639AAC217647C6A00E1D79A /* fps.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fps.cc; sourceTree = "<group>"; };
@@ -677,6 +680,8 @@
 				F639AAC017647A7300E1D79A /* time.h */,
 				F639AAC217647C6A00E1D79A /* fps.cc */,
 				F639AAC317647C6A00E1D79A /* fps.h */,
+				F632EB1B176FA9CD009FDB45 /* scene.cc */,
+				F632EB1C176FA9CD009FDB45 /* scene.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -974,6 +979,7 @@
 				F668AE631768FD13005B881E /* manifest_container.cpp in Sources */,
 				F66B53A0176DD50500880F21 /* bounding_sphere.cc in Sources */,
 				F66B53A3176DDBB100880F21 /* collision_system.cc in Sources */,
+				F632EB1D176FA9CD009FDB45 /* scene.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

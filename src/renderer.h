@@ -10,6 +10,7 @@
 
 class game_object;
 class deferred_render_visitor;
+class scene;
 class renderer
 {
 public:
@@ -17,7 +18,7 @@ public:
     void boot();
     void shutdown();
     
-    bool step(std::shared_ptr<game_object> world);
+    bool step(std::shared_ptr<scene>& active_scene);
 private:
     const glm::ivec2 SCREEN_SIZE;
     std::unique_ptr<deferred_render_visitor> _deferred_renderer;

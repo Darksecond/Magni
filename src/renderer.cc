@@ -4,6 +4,7 @@
 #include "resource_factory.h"
 #include "program_resource_loader.h"
 #include "Texture.h"
+#include "scene.h"
 
 #ifdef __APPLE__
     #include <GLEW/glew.h>
@@ -79,8 +80,11 @@ void renderer::shutdown()
     glfwTerminate();
 }
 
-bool renderer::step(std::shared_ptr<game_object> world)
+bool renderer::step(std::shared_ptr<scene>& active_scene)
 {
+    if(!active_scene) return true;
+    
+    auto world = active_scene->scene_graph_view();
     render_frame frame;
     
     _deferred_renderer->set_frame(&frame);

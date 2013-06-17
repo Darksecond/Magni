@@ -14,6 +14,7 @@
 #include "Mesh.h"
 #include "DirectoryManifest.h"
 #include "bounding_sphere.h"
+#include "scene.h"
 
 #include <iostream>
 
@@ -25,7 +26,7 @@ game& game::instance()
     return _instance;
 }
 
-game::game() : _running(true), _world(), _renderer(SCREEN_SIZE), _linear_view(), _collider()
+game::game() : _running(true), _renderer(SCREEN_SIZE), _collider()
 {
 }
 
@@ -45,9 +46,9 @@ void game::shutdown()
 
 void game::build()
 {
-    _world = add_game_object(std::make_shared<game_object>("world"));
+    _active_scene = std::make_shared<scene>();
     
-    auto cam = add_game_object(std::make_shared<camera>("camera", (float)SCREEN_SIZE.x/SCREEN_SIZE.y));
+    auto cam = _active_scene->add_game_object(std::make_shared<camera>("camera", (float)SCREEN_SIZE.x/SCREEN_SIZE.y));
     cam->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour(*cam))));
     cam->set_collider(std::make_shared<bounding_sphere>(1));
     
@@ -56,11 +57,12 @@ void game::build()
     
     Ymir::Mesh mesh = std::move(Ymir::Mesh::cube());
     std::shared_ptr<Ymir::Mesh> cube_mesh = std::make_shared<Ymir::Mesh>(std::move(mesh));
-    auto cube_model = add_game_object(std::make_shared<model>("cube", cube_mesh, mat, glm::vec3(5.0f, 0.0f, 0.0f)));
+    
+    auto cube_model = _active_scene->add_game_object(std::make_shared<model>("cube", cube_mesh, mat, glm::vec3(5.0f, 0.0f, 0.0f)));
     cube_model->set_collider(std::make_shared<bounding_sphere>(1));
     
-    add_game_object(std::make_shared<light>("light1", glm::vec3(-5.0f, 1.0f, 10.0f), 20.0f));
-    add_game_object(std::make_shared<light>("light2", glm::vec3(-5.0f, -1.0f, -10.0f), 20.0f));
+    _active_scene->add_game_object(std::make_shared<light>("light1", glm::vec3(-5.0f, 1.0f, 10.0f), 20.0f));
+    _active_scene->add_game_object(std::make_shared<light>("light2", glm::vec3(-5.0f, -1.0f, -10.0f), 20.0f));
 }
 
 void game::run()
@@ -70,15 +72,18 @@ void game::run()
         time::instance().step();
         fps::instance().update();
         
-        _world->update();
+        if(_active_scene)
+        {
+            _active_scene->scene_graph_view()->update();
+            
+            spatial_updater_visitor spatial_updater;
+            _active_scene->scene_graph_view()->accept(spatial_updater);
+        }
         
-        spatial_updater_visitor spatial_updater;
-        _world->accept(spatial_updater);
-        
-        if(!_renderer.step(_world))
+        if(!_renderer.step(_active_scene))
             stop();
         
-        if(!_collider.step())
+        if(!_collider.step(_active_scene))
             stop();
     }
 }
@@ -86,32 +91,4 @@ void game::run()
 void game::stop()
 {
     _running = false;
-}
-
-std::shared_ptr<game_object> game::add_game_object(std::shared_ptr<game_object> object)
-{
-    if(_world)
-        _world->add(object);
-    _linear_view.push_back(object);
-    
-    return object;
-}
-
-std::shared_ptr<game_object> game::add_game_object(std::shared_ptr<game_object> object, std::shared_ptr<game_object> parent)
-{
-    if(parent)
-        parent->add(object);
-    _linear_view.push_back(object);
-    
-    return object;
-}
-
-std::shared_ptr<game_object> game::get_by_name(const std::string& name)
-{
-    for(auto go : _linear_view)
-    {
-        if(go->name() == name)
-            return go;
-    }
-    return nullptr;
 }

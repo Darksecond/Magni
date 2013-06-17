@@ -12,6 +12,7 @@ namespace Ymir
     class DirectoryManifest;
 };
 class game_object;
+class scene;
 class game
 {
 public:
@@ -28,28 +29,22 @@ public:
     void shutdown();
     void stop();
     
-    std::shared_ptr<game_object> add_game_object(std::shared_ptr<game_object> object);
-    std::shared_ptr<game_object> add_game_object(std::shared_ptr<game_object> object, std::shared_ptr<game_object> parent);
-    
-    std::shared_ptr<game_object> get_by_name(const std::string& name);
-    //TODO: std::list<std::shared_ptr<game_object>> get_by_position(const glm::vec3& position, float range);
-    
-    inline std::list<std::shared_ptr<game_object>>& linear_view();
+    inline std::shared_ptr<scene> active_scene();
 private:
     game();
     bool _running;
-    std::shared_ptr<game_object> _world;
-    std::list<std::shared_ptr<game_object>> _linear_view;
     
     std::shared_ptr<Ymir::DirectoryManifest> _manifest;
     
     collision_system _collider;
     renderer _renderer;
+    
+    std::shared_ptr<scene> _active_scene;
 };
 
 //TEMPLATE & INLINE METHODS
 
-std::list<std::shared_ptr<game_object>>& game::linear_view()
+inline std::shared_ptr<scene> game::active_scene()
 {
-    return _linear_view;
+    return _active_scene;
 }

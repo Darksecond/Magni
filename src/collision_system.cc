@@ -3,10 +3,12 @@
 #include "bounding_sphere.h"
 #include "game.h"
 #include "game_object.h"
+#include "scene.h"
 
-bool collision_system::step()
+bool collision_system::step(std::shared_ptr<scene>& active_scene)
 {
-    auto& linear_view = game::instance().linear_view();
+    if(!active_scene) return true;
+    auto& linear_view = active_scene->linear_view();
     for(auto it = linear_view.begin(); it != linear_view.end(); ++it)
     {
         auto inner_it = it;
