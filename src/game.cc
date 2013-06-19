@@ -15,6 +15,7 @@
 #include "DirectoryManifest.h"
 #include "bounding_sphere.h"
 #include "scene.h"
+#include"scene_builder.h"
 
 #include <iostream>
 
@@ -48,6 +49,41 @@ void game::shutdown()
 
 void game::build()
 {
+    scene_builder builder((float)SCREEN_SIZE.x/SCREEN_SIZE.y);
+    
+    builder.camera("camera", glm::vec3(0.0f));
+    builder.end(); //camera
+    
+    builder.light("light1", glm::vec3(-5.0f, 1.0f, 10.0f));
+    builder.radius(20.0f);
+    builder.end(); //light1
+    
+    builder.light("light2", glm::vec3(-5.0f, -1.0f, -10.0f));
+    builder.radius(20.0f);
+    builder.end(); //light2
+    
+    builder.model("sphere", glm::vec3(0.0f, 0.0f, 5.0f));
+    builder.material("wooden-crate.jpg");
+    builder.mesh("cube.obj");
+    builder.end();
+    
+    _active_scene = builder.get_scene();
+    
+    std::shared_ptr<Ymir::Texture> tex = resource_factory::instance().resource<Ymir::Texture>("wooden-crate.jpg", "texture");
+    std::shared_ptr<material> mat = std::make_shared<material>(tex);
+    
+    Ymir::Mesh mesh = std::move(Ymir::Mesh::cube());
+    std::shared_ptr<Ymir::Mesh> cube_mesh = std::make_shared<Ymir::Mesh>(std::move(mesh));
+    
+    auto cube_model = _active_scene->add_game_object(std::make_shared<model>("cube", cube_mesh, mat, glm::vec3(5.0f, 0.0f, 0.0f)));
+    
+    _active_scene->add_game_object(std::make_shared<model>("cube2", resource_factory::instance().resource<Ymir::Mesh>("cube.obj", "mesh"), mat, glm::vec3(-5.0f, 0.0f, 0.0f)));
+    
+    _active_scene->add_game_object(std::make_shared<model>("cube3", resource_factory::instance().resource<Ymir::Mesh>("sphere.obj", "mesh"), mat, glm::vec3(-3.0f, 0.0f, 0.0f)));
+    
+    _active_scene->get_by_name("camera")->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour(*_active_scene->get_by_name("camera")))));
+    
+    /*
     _active_scene = std::make_shared<scene>();
     
     auto cam = _active_scene->add_game_object(std::make_shared<camera>("camera", (float)SCREEN_SIZE.x/SCREEN_SIZE.y));
@@ -65,6 +101,7 @@ void game::build()
     
     _active_scene->add_game_object(std::make_shared<light>("light1", glm::vec3(-5.0f, 1.0f, 10.0f), 20.0f));
     _active_scene->add_game_object(std::make_shared<light>("light2", glm::vec3(-5.0f, -1.0f, -10.0f), 20.0f));
+     */
 }
 
 void game::run()
