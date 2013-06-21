@@ -19,7 +19,9 @@ Mesh::Mesh(Geometry& geometry) : _vbo{0}, _vao{0}
         throw std::runtime_error("no vertices in geometry");
     if(geometry.indices().size() == 0)
         throw std::runtime_error("no indices in geometry");
-
+    
+    calculate_aabb(geometry);
+    
     _numVertices = geometry.vertices().size();
     _numIndices = geometry.indices().size();
 
@@ -38,7 +40,7 @@ Mesh::Mesh(Geometry& geometry) : _vbo{0}, _vao{0}
     unbind();
 }
 
-Mesh::Mesh(Mesh&& other) : _vbo(other._vbo), _vao(other._vao), _numVertices(other._numVertices), _numIndices(other._numIndices), _ibo(other._ibo)
+Mesh::Mesh(Mesh&& other) : _vbo(other._vbo), _vao(other._vao), _numVertices(other._numVertices), _numIndices(other._numIndices), _ibo(other._ibo), _aabb(other._aabb)
 {
     other._vao = 0;
     other._vbo = 0;
@@ -137,4 +139,22 @@ void Mesh::unbind() const
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ARRAY_BUFFER,0);
     glBindVertexArray(0);
+}
+
+void Mesh::calculate_aabb(const Geometry& geo)
+{
+    if(geo.vertices().empty())
+    {
+        _aabb.reset(glm::vec3(0));
+    }
+    else
+    {
+        glm::vec3 first_point(geo.vertices()[0].x, geo.vertices()[0].y, geo.vertices()[0].z);
+        _aabb.reset(first_point);
+        for(int i = 1; i < geo.vertices().size(); ++i)
+        {
+            glm::vec3 point(geo.vertices()[i].x, geo.vertices()[i].y, geo.vertices()[i].z);
+            _aabb.add_point(point);
+        }
+    }
 }

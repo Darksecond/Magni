@@ -3,9 +3,9 @@
 #include "Program.h"
 #include "Geometry.h"
 
-//TODO
 #include "StreamReader.h"
 #include "ObjGeometry.h"
+#include "aabb.h"
 
 #ifdef __APPLE__
     #include <GLEW/glew.h>
@@ -25,6 +25,8 @@ namespace Ymir
         GLuint _ibo; //indices buffer object
         size_t _numVertices;
         size_t _numIndices;
+        aabb _aabb;
+        void calculate_aabb(const Geometry& geo);
     public:
         static Mesh fromStream(StreamReader& stream)
         {
@@ -46,5 +48,8 @@ namespace Ymir
 
         void bind() const;
         void unbind() const;
+        
+        inline const aabb& get_aabb() const { return _aabb; }
+        
     };
 };

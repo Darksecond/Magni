@@ -7,10 +7,9 @@
 class scene;
 
 //TODO behaviors (factory and method)
-//TODO colliders (factory and method)
-//TODO implement materials in ResourceFactory
+//TODO colliders (factory and method), allow to use the mesh aabb
 //TODO redo behaviours so game_object can set their 'parent'
-//TODO add name to group
+
 /**
  * This builder is stack based, this is how you can construct trees.
  * Use the 'end' function to end a element.
