@@ -25,6 +25,7 @@ public:
     
     void add_manifest(std::shared_ptr<Ymir::Manifest> manifest);
     void add_loader(const std::string& type, std::shared_ptr<resource_loader> loader);
+    inline manifest_container& manifests() { return _manifests; }
 private:
     resource_factory();
     

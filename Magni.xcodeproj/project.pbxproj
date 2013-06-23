@@ -99,6 +99,7 @@
 		F6C028F616C6A4CE00C7F91D /* DirectoryManifest.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C028F516C6A4CE00C7F91D /* DirectoryManifest.cc */; };
 		F6C5230E1760D893006C2327 /* light.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C5230D1760D893006C2327 /* light.cc */; };
 		F6C523121760E06E006C2327 /* spatial_updater_visitor.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C523101760E06E006C2327 /* spatial_updater_visitor.cc */; };
+		F6CBD38E17774027007FBBB2 /* scene_director.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CBD38C17774027007FBBB2 /* scene_director.cc */; };
 		F6CC523B16D6915600C58612 /* ObjGeometry.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CC523916D6915500C58612 /* ObjGeometry.cc */; };
 		F6D9138416BC0226000C0632 /* Mesh.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6D9138316BC0226000C0632 /* Mesh.cc */; };
 		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
@@ -294,6 +295,8 @@
 		F6C523101760E06E006C2327 /* spatial_updater_visitor.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spatial_updater_visitor.cc; sourceTree = "<group>"; };
 		F6C523111760E06E006C2327 /* spatial_updater_visitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spatial_updater_visitor.h; sourceTree = "<group>"; };
 		F6C7FF8A1769FDEC002F74C4 /* deferred_commands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deferred_commands.h; sourceTree = "<group>"; };
+		F6CBD38C17774027007FBBB2 /* scene_director.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scene_director.cc; sourceTree = "<group>"; };
+		F6CBD38D17774027007FBBB2 /* scene_director.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene_director.h; sourceTree = "<group>"; };
 		F6CC523916D6915500C58612 /* ObjGeometry.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjGeometry.cc; sourceTree = "<group>"; };
 		F6CC523A16D6915600C58612 /* ObjGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjGeometry.h; sourceTree = "<group>"; };
 		F6D9138216BC0222000C0632 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
@@ -694,6 +697,8 @@
 				F6285C0A177218D7002EDB35 /* abstract_scene_builder.h */,
 				F6285C0C17721956002EDB35 /* scene_builder.cc */,
 				F6285C0D17721956002EDB35 /* scene_builder.h */,
+				F6CBD38C17774027007FBBB2 /* scene_director.cc */,
+				F6CBD38D17774027007FBBB2 /* scene_director.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -994,6 +999,7 @@
 				F632EB1D176FA9CD009FDB45 /* scene.cc in Sources */,
 				F6285C0E17721956002EDB35 /* scene_builder.cc in Sources */,
 				F635F4731773971600137FAA /* aabb.cc in Sources */,
+				F6CBD38E17774027007FBBB2 /* scene_director.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

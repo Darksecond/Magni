@@ -15,7 +15,8 @@
 #include "DirectoryManifest.h"
 #include "bounding_sphere.h"
 #include "scene.h"
-#include"scene_builder.h"
+#include "scene_builder.h"
+#include "scene_director.h"
 #include "aabb.h"
 
 #include <iostream>
@@ -50,25 +51,10 @@ void game::shutdown()
 
 void game::build()
 {
-    scene_builder builder((float)SCREEN_SIZE.x/SCREEN_SIZE.y);
+    scene_director director(std::make_shared<scene_builder>((float)SCREEN_SIZE.x/SCREEN_SIZE.y));
     
-    builder.camera("camera", glm::vec3(0.0f));
-    builder.end(); //camera
-    
-    builder.light("light1", glm::vec3(-5.0f, 1.0f, 10.0f));
-    builder.radius(20.0f);
-    builder.end(); //light1
-    
-    builder.light("light2", glm::vec3(-5.0f, -1.0f, -10.0f));
-    builder.radius(20.0f);
-    builder.end(); //light2
-    
-    builder.model("sphere", glm::vec3(0.0f, 0.0f, 5.0f));
-    builder.material("wooden-crate.jpg");
-    builder.mesh("cube.obj");
-    builder.end();
-    
-    _active_scene = builder.get_scene();
+    director.construct("default");
+    _active_scene = director.get_scene();
     
     _active_scene->get_by_name("camera")->set_collider(std::make_shared<aabb>());
     _active_scene->get_by_name("sphere")->set_collider(std::make_shared<aabb>(resource_factory::instance().resource<Ymir::Mesh>("cube.obj", "mesh")->get_aabb()));
