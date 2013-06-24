@@ -5,6 +5,7 @@
 #include "program_resource_loader.h"
 #include "Texture.h"
 #include "scene.h"
+#include "commands.h"
 
 #ifdef __APPLE__
     #include <GLEW/glew.h>
@@ -17,7 +18,7 @@
 #include <iostream>
 
 renderer::renderer(const glm::ivec2& screen_size)
-: SCREEN_SIZE(screen_size)
+: SCREEN_SIZE(screen_size), _texts()
 {
 }
 
@@ -70,6 +71,9 @@ void renderer::boot()
     resource_factory::instance().add_loader("texture", std::make_shared<default_resource_loader<Ymir::Texture>>());
     
     _deferred_renderer = std::unique_ptr<deferred_render_visitor>(new deferred_render_visitor(SCREEN_SIZE));
+    
+    _overlay_program = resource_factory::instance().resource<Ymir::Program>("overlay", "program");
+    _holstein = resource_factory::instance().resource<Ymir::Texture>("Holstein.tga", "texture");
 }
 
 void renderer::shutdown()
@@ -97,6 +101,18 @@ bool renderer::step(std::shared_ptr<scene>& active_scene)
     world->accept(*_deferred_renderer);
     _deferred_renderer->end_frame();
     
+    //TODO move to visitor?
+    frame.add<5, render_commands::bind_program>(_overlay_program);
+    frame.add<5, render_commands::bind_texture>(_holstein, GL_TEXTURE0, "myTextureSampler");
+    frame.add<5, render_commands::set_blend>(true, GL_FUNC_ADD, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    frame.add<5, render_commands::set_depth>(false, false);
+    for(auto text : _texts)
+    {
+        frame.add<5, render_commands::draw_text>(text);
+    }
+    frame.add<5, render_commands::set_blend>(false);
+    frame.add<5, render_commands::set_depth>(true, true);
+    
     frame.execute();
     
     GLenum error = glGetError();
@@ -109,4 +125,9 @@ bool renderer::step(std::shared_ptr<scene>& active_scene)
         return false;
     
     return true;
+}
+
+void renderer::add_text(const std::shared_ptr<text>& text)
+{
+    _texts.push_back(text);
 }

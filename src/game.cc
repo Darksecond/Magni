@@ -92,6 +92,8 @@ void game::build()
     _active_scene->add_game_object(std::make_shared<light>("light1", glm::vec3(-5.0f, 1.0f, 10.0f), 20.0f));
     _active_scene->add_game_object(std::make_shared<light>("light2", glm::vec3(-5.0f, -1.0f, -10.0f), 20.0f));
      */
+    
+    _renderer.add_text(std::make_shared<text>(glm::vec2(50, 50), "Some text", 20));
 }
 
 void game::run()

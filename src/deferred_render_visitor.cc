@@ -111,6 +111,7 @@ void deferred_render_visitor::start_frame()
     _frame->add<2, render_commands::set_stencil_state>(true);
     
     //FINAL render
+    _frame->add<4, render_commands::set_culling>(true, GL_BACK);
     _frame->add<4, render_commands::set_stencil_state>(false);
     _frame->add<4, render_commands::unbind_gbuffer>(GL_DRAW_FRAMEBUFFER);
     _frame->add<4, render_commands::bind_gbuffer>(&_gbuffer, GL_READ_FRAMEBUFFER);
@@ -127,6 +128,8 @@ void deferred_render_visitor::start_frame()
     */
     _frame->add<4, render_commands::set_read_buffer>(gbuffer::GBUFFER_TEXTURE_TYPE_FINAL);
     _frame->add<4, render_commands::blit_fbo>(_SCREEN_SIZE, render_commands::blit_fbo::full_screen);
+    
+    
 }
 
 void deferred_render_visitor::end_frame()

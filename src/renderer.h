@@ -4,6 +4,7 @@
 #include "Mesh.h"
 #include "render_frame.h"
 #include "deferred_render_visitor.h"
+#include "text.h"
 
 #include <GLM/glm.hpp>
 #include <memory>
@@ -19,7 +20,13 @@ public:
     void shutdown();
     
     bool step(std::shared_ptr<scene>& active_scene);
+    
+    void add_text(const std::shared_ptr<text>& text);
 private:
     const glm::ivec2 SCREEN_SIZE;
     std::unique_ptr<deferred_render_visitor> _deferred_renderer;
+    std::list<std::shared_ptr<text>> _texts;
+    
+    std::shared_ptr<Ymir::Program> _overlay_program;
+    std::shared_ptr<Ymir::Texture> _holstein;
 };

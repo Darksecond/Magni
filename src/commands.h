@@ -5,6 +5,8 @@
 #include "render_frame.h"
 #include "Mesh.h"
 #include "material.h"
+#include "Texture.h"
+#include "text.h"
 
 #ifdef __APPLE__
     #include <GLFW/GLFW.h>
@@ -246,5 +248,32 @@ namespace render_commands
         }
     private:
         int _queue;
+    };
+    
+    class bind_texture : public render_command
+    {
+    public:
+        bind_texture(std::shared_ptr<Ymir::Texture> tex, const GLenum unit, const char* name) : _texture(tex), _unit(unit), _name(name) {}
+        inline virtual void execute()
+        {
+            _texture->bind(_unit);
+            _frame->current_program()->setUniform(_name, (int)_unit-GL_TEXTURE0);
+        }
+    private:
+        std::shared_ptr<Ymir::Texture> _texture;
+        GLenum _unit;
+        const char* _name;
+    };
+    
+    class draw_text : public render_command
+    {
+    public:
+        draw_text(std::shared_ptr<text> text) : _text(text) {}
+        inline virtual void execute()
+        {
+            _text->draw(*_frame->current_program());
+        }
+    private:
+        std::shared_ptr<text> _text;
     };
 };
