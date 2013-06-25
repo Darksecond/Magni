@@ -115,3 +115,12 @@ void text::generate()
     
     glBindVertexArray(0);
 }
+
+void text::set_text(const std::string& t)
+{
+    if(t != _text)
+    {
+        _text = t;
+        generate();
+    }
+}

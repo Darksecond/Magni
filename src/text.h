@@ -36,4 +36,6 @@ public:
     ~text();
     
     void draw(Ymir::Program& program) const;
+    
+    void set_text(const std::string& t);
 };

@@ -5,6 +5,7 @@
 #include "render_frame.h"
 #include "deferred_render_visitor.h"
 #include "text.h"
+#include "module.h"
 
 #include <GLM/glm.hpp>
 #include <memory>
@@ -12,16 +13,15 @@
 class game_object;
 class deferred_render_visitor;
 class scene;
-class renderer
+class renderer : public module
 {
 public:
     renderer(const glm::ivec2& screen_size);
-    void boot();
-    void shutdown();
-    
-    bool step(std::shared_ptr<scene>& active_scene);
-    
-    void add_text(const std::shared_ptr<text>& text);
+    virtual void boot();
+    virtual void shutdown();
+    virtual void build();
+    virtual bool step(std::shared_ptr<scene>& active_scene);
+    virtual void on_event(const event_t type, void* data);
 private:
     const glm::ivec2 SCREEN_SIZE;
     std::unique_ptr<deferred_render_visitor> _deferred_renderer;

@@ -51,6 +51,9 @@ void game::shutdown()
 
 void game::build()
 {
+    _renderer.build();
+    _collider.build();
+    
     scene_director director(std::make_shared<scene_builder>((float)SCREEN_SIZE.x/SCREEN_SIZE.y));
     
     director.construct("default");
@@ -59,41 +62,9 @@ void game::build()
     _active_scene->get_by_name("camera")->set_collider(std::make_shared<aabb>());
     _active_scene->get_by_name("sphere")->set_collider(std::make_shared<aabb>(resource_factory::instance().resource<Ymir::Mesh>("cube.obj", "mesh")->get_aabb()));
     
-    std::shared_ptr<Ymir::Texture> tex = resource_factory::instance().resource<Ymir::Texture>("wooden-crate.jpg", "texture");
-    std::shared_ptr<material> mat = std::make_shared<material>(tex);
-    
-    Ymir::Mesh mesh = std::move(Ymir::Mesh::cube());
-    std::shared_ptr<Ymir::Mesh> cube_mesh = std::make_shared<Ymir::Mesh>(std::move(mesh));
-    
-    //auto cube_model = _active_scene->add_game_object(std::make_shared<model>("cube", cube_mesh, mat, glm::vec3(5.0f, 0.0f, 0.0f)));
-    
-    //_active_scene->add_game_object(std::make_shared<model>("cube2", resource_factory::instance().resource<Ymir::Mesh>("cube.obj", "mesh"), mat, glm::vec3(-5.0f, 0.0f, 0.0f)));
-    
-    //_active_scene->add_game_object(std::make_shared<model>("cube3", resource_factory::instance().resource<Ymir::Mesh>("sphere.obj", "mesh"), mat, glm::vec3(-3.0f, 0.0f, 0.0f)));
-    
-    _active_scene->get_by_name("camera")->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour(*_active_scene->get_by_name("camera")))));
-    
-    /*
-    _active_scene = std::make_shared<scene>();
-    
-    auto cam = _active_scene->add_game_object(std::make_shared<camera>("camera", (float)SCREEN_SIZE.x/SCREEN_SIZE.y));
-    cam->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour(*cam))));
-    cam->set_collider(std::make_shared<bounding_sphere>(1));
-    
-    std::shared_ptr<Ymir::Texture> tex = resource_factory::instance().resource<Ymir::Texture>("wooden-crate.jpg", "texture");
-    std::shared_ptr<material> mat = std::make_shared<material>(tex);
-    
-    Ymir::Mesh mesh = std::move(Ymir::Mesh::cube());
-    std::shared_ptr<Ymir::Mesh> cube_mesh = std::make_shared<Ymir::Mesh>(std::move(mesh));
-    
-    auto cube_model = _active_scene->add_game_object(std::make_shared<model>("cube", cube_mesh, mat, glm::vec3(5.0f, 0.0f, 0.0f)));
-    cube_model->set_collider(std::make_shared<bounding_sphere>(1));
-    
-    _active_scene->add_game_object(std::make_shared<light>("light1", glm::vec3(-5.0f, 1.0f, 10.0f), 20.0f));
-    _active_scene->add_game_object(std::make_shared<light>("light2", glm::vec3(-5.0f, -1.0f, -10.0f), 20.0f));
-     */
-    
-    _renderer.add_text(std::make_shared<text>(glm::vec2(50, 50), "Some text", 20));
+    //TODO move into builder
+    _active_scene->get_by_name("camera")->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour())));
+    _active_scene->get_by_name("camera")->add_listener(&_renderer);
 }
 
 void game::run()

@@ -7,7 +7,7 @@
 class fpscam_behaviour : public behaviour
 {
 public:
-    fpscam_behaviour(game_object& go);
+    fpscam_behaviour();
     virtual void update();
 private:
     glm::vec2 _angles;

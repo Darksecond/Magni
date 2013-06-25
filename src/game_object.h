@@ -4,9 +4,12 @@
 #include "game_object_visitor.h"
 #include "behaviour.h"
 #include "bounding_volume.h"
+#include "events.h"
+#include "module.h"
 
 #include <string>
 #include <vector>
+#include <list>
 #include <memory>
 
 class game_object
@@ -18,6 +21,9 @@ public:
     void add(std::shared_ptr<game_object> child);
     
     virtual void accept(game_object_visitor& visitor);
+    
+    void notify(event_t type, void* data);
+    void add_listener(module* m);
     
     const std::string& name() const;
     
@@ -38,4 +44,5 @@ private:
     spatial _global_spatial;
     std::unique_ptr<behaviour> _behaviour;
     std::shared_ptr<bounding_volume> _bounding_volume;
+    std::list<module*> _listeners;
 };

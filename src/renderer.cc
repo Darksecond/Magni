@@ -72,6 +72,10 @@ void renderer::boot()
     
     _deferred_renderer = std::unique_ptr<deferred_render_visitor>(new deferred_render_visitor(SCREEN_SIZE));
     
+}
+
+void renderer::build()
+{
     _overlay_program = resource_factory::instance().resource<Ymir::Program>("overlay", "program");
     _holstein = resource_factory::instance().resource<Ymir::Texture>("Holstein.tga", "texture");
 }
@@ -102,6 +106,7 @@ bool renderer::step(std::shared_ptr<scene>& active_scene)
     _deferred_renderer->end_frame();
     
     //TODO move to visitor?
+    //TODO respond to messages to show text, edit text, remove text, etc
     frame.add<5, render_commands::bind_program>(_overlay_program);
     frame.add<5, render_commands::bind_texture>(_holstein, GL_TEXTURE0, "myTextureSampler");
     frame.add<5, render_commands::set_blend>(true, GL_FUNC_ADD, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -127,7 +132,16 @@ bool renderer::step(std::shared_ptr<scene>& active_scene)
     return true;
 }
 
-void renderer::add_text(const std::shared_ptr<text>& text)
+void renderer::on_event(const event_t type, void* data)
 {
-    _texts.push_back(text);
+    if (type == event_t::renderer_add_text)
+    {
+        text_event *te = (text_event*)data;
+        _texts.push_back(te->_text);
+    }
+    else if(type == event_t::renderer_remove_text)
+    {
+        text_event *te = (text_event*)data;
+        _texts.remove(te->_text);
+    }
 }
