@@ -4,11 +4,11 @@
 #include <string>
 #include <GLM/glm.hpp>
 
+class aabb;
 class scene;
 
 //TODO behaviors (factory and method)
 //TODO colliders (factory and method), allow to use the mesh aabb
-//TODO redo behaviours so game_object can set their 'parent'
 
 /**
  * This builder is stack based, this is how you can construct trees.
@@ -47,6 +47,12 @@ public:
      * Set a models' material.
      */
     virtual abstract_scene_builder& material(const std::string& material_name) = 0;
+    
+    /**
+     * Set a game objects aabb.
+     */
+    virtual abstract_scene_builder& aabb(const std::shared_ptr<class aabb>& aabb) = 0;
+    virtual abstract_scene_builder& auto_aabb() = 0;
     
     /**
      * Create a group element.

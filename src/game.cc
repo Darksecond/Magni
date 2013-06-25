@@ -59,9 +59,6 @@ void game::build()
     director.construct("default");
     _active_scene = director.get_scene();
     
-    _active_scene->get_by_name("camera")->set_collider(std::make_shared<aabb>());
-    _active_scene->get_by_name("sphere")->set_collider(std::make_shared<aabb>(resource_factory::instance().resource<Ymir::Mesh>("cube.obj", "mesh")->get_aabb()));
-    
     //TODO move into builder
     _active_scene->get_by_name("camera")->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour())));
     _active_scene->get_by_name("camera")->add_listener(&_renderer);

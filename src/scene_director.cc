@@ -69,6 +69,18 @@ void scene_director::construct(const std::string& identifier)
             iss >> radius;
             _builder->radius(radius);
         }
+        else if(type == "aabb")
+        {
+            _builder->auto_aabb();
+        }
+        else if(type == "manual_aabb")
+        {
+            float x1, x2, y1, y2, z1, z2;
+            iss >> x1 >> std::ws >> y1 >> std::ws >> z1 >> std::ws >> x2 >> std::ws >> y2 >> std::ws >> z2;
+            glm::vec3 min(x1, y1, z1);
+            glm::vec3 max(x2, y2, z2);
+            _builder->aabb(std::make_shared<class aabb>(min, max));
+        }
     }
     
     _scene = _builder->get_scene();

@@ -20,6 +20,9 @@ public:
     virtual abstract_scene_builder& mesh(const std::string& mesh_name);
     virtual abstract_scene_builder& material(const std::string& material_name);
     
+    virtual abstract_scene_builder& aabb(const std::shared_ptr<class aabb>& aabb);
+    virtual abstract_scene_builder& auto_aabb();
+    
     virtual abstract_scene_builder& group(const std::string& name);
     
     virtual abstract_scene_builder& end();
@@ -42,6 +45,8 @@ private:
         float radius;
         std::shared_ptr<Ymir::Mesh> mesh;
         std::shared_ptr<::material> material;
+        std::shared_ptr<::aabb> aabb;
+        bool auto_aabb;
     };
     
     std::queue<node> _queue;

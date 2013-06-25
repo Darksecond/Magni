@@ -12,6 +12,7 @@
 #include <stdexcept>
 #include <stack>
 #include <iostream>
+#include <memory>
 
 scene_builder::scene_builder(float aspect_ratio) : _queue(), _depth(0), _aspect_ratio(aspect_ratio)
 {
@@ -24,6 +25,8 @@ abstract_scene_builder& scene_builder::camera(const std::string& name, const glm
     n.type = node_type::camera;
     n.name = name;
     n.position = position;
+    n.aabb = nullptr;
+    n.auto_aabb = false;
     _queue.push(n);
     return *this;
 }
@@ -36,6 +39,8 @@ abstract_scene_builder& scene_builder::light(const std::string& name, const glm:
     n.name = name;
     n.position = position;
     n.radius = 1; //default
+    n.aabb = nullptr;
+    n.auto_aabb = false;
     _queue.push(std::move(n));
     return *this;
 }
@@ -55,6 +60,8 @@ abstract_scene_builder& scene_builder::model(const std::string& name, const glm:
     n.position = position;
     n.mesh = nullptr;
     n.material = nullptr;
+    n.aabb = nullptr;
+    n.auto_aabb = false;
     _queue.push(std::move(n));
     return *this;
 }
@@ -71,6 +78,18 @@ abstract_scene_builder& scene_builder::material(const std::string& material_name
     return *this;
 }
 
+abstract_scene_builder& scene_builder::aabb(const std::shared_ptr<class aabb>& aabb)
+{
+    _queue.back().aabb = aabb;
+    return *this;
+}
+
+abstract_scene_builder& scene_builder::auto_aabb()
+{
+    _queue.back().auto_aabb = true;
+    return *this;
+}
+
 abstract_scene_builder& scene_builder::group(const std::string& name)
 {
     node n;
@@ -78,6 +97,8 @@ abstract_scene_builder& scene_builder::group(const std::string& name)
     n.type = node_type::world;
     n.name = name;
     n.position = glm::vec3();
+    n.aabb = nullptr;
+    n.auto_aabb = false;
     _queue.push(std::move(n));
     return *this;
 }
@@ -122,12 +143,20 @@ std::shared_ptr<scene> scene_builder::get_scene()
                 object = std::make_shared<class light>(n.name, n.position, n.radius);
                 break;
             case node_type::model:
+            {
                 object = std::make_shared<class model>(n.name, n.mesh, n.material, n.position);
+                if(n.auto_aabb)
+                {
+                    n.aabb = std::make_shared<class aabb>(n.mesh->get_aabb());
+                }
+            }
                 break;
         }
         
         if(object)
         {
+            object->set_collider(n.aabb);
+            
             if(parent)
                 s->add_game_object(object, parent);
             else

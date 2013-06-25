@@ -18,6 +18,7 @@ public:
     explicit aabb(const glm::vec3& point) : _min(point), _max(point), _global() {}
     aabb(const aabb& other) : _min(other._min), _max(other._max), _global(other._global) {}
     aabb(aabb&& other) : _min(other._min), _max(other._max), _global(other._global) {}
+    aabb(const glm::vec3& min, const glm::vec3& max) : _min(min), _max(max) {}
     
     inline bool operator==(const aabb& other) const
     {
