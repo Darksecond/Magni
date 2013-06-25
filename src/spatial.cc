@@ -40,6 +40,11 @@ glm::vec3 spatial::translation() const
     return glm::vec3(_matrix[3]);
 }
 
+glm::vec4& spatial::translation_vec4()
+{
+    return _matrix[3];
+}
+
 void spatial::identity()
 {
     _matrix = glm::mat4();

@@ -102,6 +102,8 @@
 		F6C523121760E06E006C2327 /* spatial_updater_visitor.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C523101760E06E006C2327 /* spatial_updater_visitor.cc */; };
 		F6C80C3C1779A8D40083BF79 /* behaviour.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C80C3B1779A8D40083BF79 /* behaviour.cc */; };
 		F6C80C3F1779C4A70083BF79 /* behaviour_factory.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C80C3D1779C4A70083BF79 /* behaviour_factory.cc */; };
+		F6C80C42177A0AC60083BF79 /* door_behaviour.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C80C40177A0AC60083BF79 /* door_behaviour.cc */; };
+		F6C80C45177A158C0083BF79 /* wall_behaviour.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6C80C43177A158C0083BF79 /* wall_behaviour.cc */; };
 		F6CBD38E17774027007FBBB2 /* scene_director.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CBD38C17774027007FBBB2 /* scene_director.cc */; };
 		F6CC523B16D6915600C58612 /* ObjGeometry.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CC523916D6915500C58612 /* ObjGeometry.cc */; };
 		F6D9138416BC0226000C0632 /* Mesh.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6D9138316BC0226000C0632 /* Mesh.cc */; };
@@ -305,6 +307,10 @@
 		F6C80C3B1779A8D40083BF79 /* behaviour.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = behaviour.cc; sourceTree = "<group>"; };
 		F6C80C3D1779C4A70083BF79 /* behaviour_factory.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = behaviour_factory.cc; sourceTree = "<group>"; };
 		F6C80C3E1779C4A70083BF79 /* behaviour_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = behaviour_factory.h; sourceTree = "<group>"; };
+		F6C80C40177A0AC60083BF79 /* door_behaviour.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = door_behaviour.cc; sourceTree = "<group>"; };
+		F6C80C41177A0AC60083BF79 /* door_behaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = door_behaviour.h; sourceTree = "<group>"; };
+		F6C80C43177A158C0083BF79 /* wall_behaviour.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wall_behaviour.cc; sourceTree = "<group>"; };
+		F6C80C44177A158C0083BF79 /* wall_behaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wall_behaviour.h; sourceTree = "<group>"; };
 		F6CBD38C17774027007FBBB2 /* scene_director.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scene_director.cc; sourceTree = "<group>"; };
 		F6CBD38D17774027007FBBB2 /* scene_director.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene_director.h; sourceTree = "<group>"; };
 		F6CC523916D6915500C58612 /* ObjGeometry.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjGeometry.cc; sourceTree = "<group>"; };
@@ -475,6 +481,10 @@
 				F66ED7A71764B1A400CBDB3F /* fpscam_behaviour.h */,
 				F6C80C3D1779C4A70083BF79 /* behaviour_factory.cc */,
 				F6C80C3E1779C4A70083BF79 /* behaviour_factory.h */,
+				F6C80C40177A0AC60083BF79 /* door_behaviour.cc */,
+				F6C80C41177A0AC60083BF79 /* door_behaviour.h */,
+				F6C80C43177A158C0083BF79 /* wall_behaviour.cc */,
+				F6C80C44177A158C0083BF79 /* wall_behaviour.h */,
 			);
 			name = Behaviors;
 			sourceTree = "<group>";
@@ -1020,6 +1030,8 @@
 				F65EFC6A1777A6910036BBBB /* text.cc in Sources */,
 				F6C80C3C1779A8D40083BF79 /* behaviour.cc in Sources */,
 				F6C80C3F1779C4A70083BF79 /* behaviour_factory.cc in Sources */,
+				F6C80C42177A0AC60083BF79 /* door_behaviour.cc in Sources */,
+				F6C80C45177A158C0083BF79 /* wall_behaviour.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

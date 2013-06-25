@@ -1,19 +1,102 @@
-camera camera 0.0 0.0 0.0
-manual_aabb -1 -1 -1 1 1 1
+camera camera 15.0 1.0 15.0
+manual_aabb -0.5 -1 -0.5 0.5 1 0.5
 behaviour fpscam
 active
 end
 
-model sphere 0.0 0.0 5.0
+light light1 0.0 1.0 10.0
+radius 40.0
+end
+
+light light2 0.0 1.0 -10.0
+radius 40.0
+end
+
+model floor 0.0 0.0 0.0
 material wooden-crate.jpg
-mesh cube.obj
+mesh floor.obj
+end
+
+model wall1 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh wall1.obj
+behaviour wall
 aabb
 end
 
-light light1 -5.0 1.0 10.0
-radius 20.0
+model wall2 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh wall2.obj
+behaviour wall
+aabb
 end
 
-light light2 -5.0 -1.0 -10.0
-radius 20.0
+model wall3 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh wall3.obj
+behaviour wall
+aabb
+end
+
+model wall4 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh wall4.obj
+behaviour wall
+aabb
+end
+
+model iwall1 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh iwall1.obj
+behaviour wall
+aabb
+end
+
+model iwall2 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh iwall2.obj
+behaviour wall
+aabb
+end
+
+model iwall3 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh iwall3.obj
+behaviour wall
+aabb
+end
+
+model iwall4 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh iwall4.obj
+behaviour wall
+aabb
+end
+
+model iwall5 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh iwall5.obj
+behaviour wall
+aabb
+end
+
+model iwall6 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh iwall6.obj
+behaviour wall
+aabb
+end
+
+model door1 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh door1.obj
+behaviour door
+aabb
+end
+
+model door2 0.0 0.0 0.0
+material wooden-crate.jpg
+mesh door2.obj
+behaviour door
+aabb
 end

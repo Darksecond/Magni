@@ -1,4 +1,5 @@
 #include "game_object.h"
+#include "time.h"
 
 game_object::game_object(const std::string& name, const glm::vec3& position) : _name(name), _children(), _local_spatial(position), _global_spatial(), _behaviour(nullptr), _bounding_volume(nullptr), _listeners()
 {

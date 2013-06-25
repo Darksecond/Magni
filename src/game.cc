@@ -84,8 +84,6 @@ void game::run()
         
         if(!_collider.step(_active_scene))
             stop();
-        
-        std::cout << std::endl;
     }
 }
 

@@ -16,6 +16,7 @@ public:
     glm::mat4 matrix() const;
     
     glm::vec3 translation() const;
+    glm::vec4& translation_vec4();
     
     void identity();
     

@@ -72,6 +72,7 @@ void fpscam_behaviour::update()
         _parent->local().translate(glm::vec3(0.0f, -time::instance().delta() * 5, 0.0f));
     
     glm::vec3 pos = _parent->local().translation();
+    pos.y = 1.0f;
     _parent->local().identity();
     _parent->local().translate(pos); //translation *should* go last, i think.
     _parent->local().rotate(glm::degrees(_angles.x), glm::vec3(0, 1, 0));
