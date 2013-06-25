@@ -32,7 +32,7 @@ public:
     std::shared_ptr<bounding_volume> collider();
     behaviour* get_behaviour();
     
-    void set_behaviour(std::unique_ptr<behaviour> b);
+    void set_behaviour(std::shared_ptr<behaviour> b);
     void set_collider(std::shared_ptr<bounding_volume> bv);
     void update_global(const spatial& new_global);
     void update();
@@ -42,7 +42,7 @@ private:
     const std::string _name;
     spatial _local_spatial;
     spatial _global_spatial;
-    std::unique_ptr<behaviour> _behaviour;
+    std::shared_ptr<behaviour> _behaviour;
     std::shared_ptr<bounding_volume> _bounding_volume;
     std::list<module*> _listeners;
 };

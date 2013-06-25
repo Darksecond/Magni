@@ -81,6 +81,16 @@ void scene_director::construct(const std::string& identifier)
             glm::vec3 max(x2, y2, z2);
             _builder->aabb(std::make_shared<class aabb>(min, max));
         }
+        else if(type == "behaviour")
+        {
+            std::string identifier;
+            iss >> identifier;
+            _builder->behaviour(identifier);
+        }
+        else if(type == "active")
+        {
+            _builder->active();
+        }
     }
     
     _scene = _builder->get_scene();

@@ -54,14 +54,14 @@ void game::build()
     _renderer.build();
     _collider.build();
     
-    scene_director director(std::make_shared<scene_builder>((float)SCREEN_SIZE.x/SCREEN_SIZE.y));
+    std::vector<module*> modules;
+    modules.push_back(&_renderer);
+    modules.push_back(&_collider);
+    
+    scene_director director(std::make_shared<scene_builder>((float)SCREEN_SIZE.x/SCREEN_SIZE.y, modules));
     
     director.construct("default");
     _active_scene = director.get_scene();
-    
-    //TODO move into builder
-    _active_scene->get_by_name("camera")->set_behaviour(std::move(std::unique_ptr<fpscam_behaviour>(new fpscam_behaviour())));
-    _active_scene->get_by_name("camera")->add_listener(&_renderer);
 }
 
 void game::run()

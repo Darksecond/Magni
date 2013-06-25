@@ -34,8 +34,8 @@ void fpscam_behaviour::update()
     else if(once == false && second == true)
     {
         
-//        te._text->set_text("SOME OTHER JUNK STUFF");
-        notify(event_t::renderer_remove_text, (void*)&te);
+        te._text->set_text("SOME OTHER JUNK STUFF");
+//        notify(event_t::renderer_remove_text, (void*)&te);
         second = false;
     }
     //END TEMP JUNK

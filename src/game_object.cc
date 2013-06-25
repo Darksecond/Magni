@@ -42,9 +42,9 @@ behaviour* game_object::get_behaviour()
     return _behaviour.get();
 }
 
-void game_object::set_behaviour(std::unique_ptr<behaviour> b)
+void game_object::set_behaviour(std::shared_ptr<behaviour> b)
 {
-    _behaviour = std::move(b);
+    _behaviour = b;
     _behaviour->set_parent(this);
 }
 

@@ -1,15 +1,19 @@
 #pragma once
 
 #include "abstract_scene_builder.h"
-#include <queue>
 #include "Mesh.h"
 #include "material.h"
+#include "behaviour.h"
 
+#include <queue>
+#include <vector>
+
+class module;
 class scene;
 class scene_builder : public abstract_scene_builder
 {
 public:
-    scene_builder(float aspect_ratio);
+    scene_builder(float aspect_ratio, const std::vector<module*>& modules);
     
     virtual abstract_scene_builder& camera(const std::string& name, const glm::vec3& position);
     
@@ -22,6 +26,8 @@ public:
     
     virtual abstract_scene_builder& aabb(const std::shared_ptr<class aabb>& aabb);
     virtual abstract_scene_builder& auto_aabb();
+    virtual abstract_scene_builder& behaviour(const std::string& identifier);
+    virtual abstract_scene_builder& active();
     
     virtual abstract_scene_builder& group(const std::string& name);
     
@@ -47,9 +53,12 @@ private:
         std::shared_ptr<::material> material;
         std::shared_ptr<::aabb> aabb;
         bool auto_aabb;
+        std::shared_ptr<::behaviour> behaviour;
+        bool active;
     };
     
     std::queue<node> _queue;
     int _depth;
     const float _aspect_ratio;
+    const std::vector<module*>& _modules;
 };

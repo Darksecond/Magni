@@ -49,10 +49,20 @@ public:
     virtual abstract_scene_builder& material(const std::string& material_name) = 0;
     
     /**
-     * Set a game objects aabb.
+     * Set a game objects' aabb.
      */
     virtual abstract_scene_builder& aabb(const std::shared_ptr<class aabb>& aabb) = 0;
     virtual abstract_scene_builder& auto_aabb() = 0;
+    
+    /**
+     * Set a game objects' behaviour.
+     */
+    virtual abstract_scene_builder& behaviour(const std::string& identifier) = 0;
+    
+    /**
+     * Make game object active, this means it gets listened to.
+     */
+    virtual abstract_scene_builder& active() = 0;
     
     /**
      * Create a group element.
