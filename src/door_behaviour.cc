@@ -27,6 +27,10 @@ void door_behaviour::on_collision(game_object& other)
 {
     if(other.name() == "camera")
     {
-        _moving = true;
+        key_event event;
+        event.key = _key;
+        other.on_event(event_t::behaviour_has_key, &event);
+        if(event.has_key)
+            _moving = true;
     }
 }

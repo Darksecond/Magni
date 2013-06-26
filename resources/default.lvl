@@ -17,6 +17,11 @@ material wooden-crate.jpg
 mesh floor.obj
 end
 
+model ceiling 0.0 10.0 0.0
+material wooden-crate.jpg
+mesh floor.obj
+end
+
 model wall1 0.0 0.0 0.0
 material wooden-crate.jpg
 mesh wall1.obj
@@ -90,13 +95,27 @@ end
 model door1 0.0 0.0 0.0
 material wooden-crate.jpg
 mesh door1.obj
-behaviour door
+behaviour blue_door
 aabb
 end
 
 model door2 0.0 0.0 0.0
 material wooden-crate.jpg
 mesh door2.obj
-behaviour door
+behaviour red_door
+aabb
+end
+
+model key1 10.0 0.5 10.0
+material wooden-crate.jpg
+mesh cube.obj
+behaviour red_key
+aabb
+end
+
+model key2 -10.0 0.5 -10.0
+material wooden-crate.jpg
+mesh cube.obj
+behaviour blue_key
 aabb
 end

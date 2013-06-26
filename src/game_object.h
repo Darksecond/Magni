@@ -23,6 +23,7 @@ public:
     virtual void accept(game_object_visitor& visitor);
     
     void notify(event_t type, void* data);
+    void on_event(event_t type, void* data);
     void add_listener(module* m);
     
     const std::string& name() const;

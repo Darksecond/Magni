@@ -107,6 +107,7 @@
 		F6CBD38E17774027007FBBB2 /* scene_director.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CBD38C17774027007FBBB2 /* scene_director.cc */; };
 		F6CC523B16D6915600C58612 /* ObjGeometry.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CC523916D6915500C58612 /* ObjGeometry.cc */; };
 		F6D9138416BC0226000C0632 /* Mesh.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6D9138316BC0226000C0632 /* Mesh.cc */; };
+		F6E2DD41177AECFA00E1F603 /* key_behaviour.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6E2DD3F177AECFA00E1F603 /* key_behaviour.cc */; };
 		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
 		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
 		F6E3E49B16B550DE00BFAC05 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49A16B550DE00BFAC05 /* COPYING.txt */; };
@@ -317,6 +318,12 @@
 		F6CC523A16D6915600C58612 /* ObjGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjGeometry.h; sourceTree = "<group>"; };
 		F6D9138216BC0222000C0632 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
 		F6D9138316BC0226000C0632 /* Mesh.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cc; sourceTree = "<group>"; };
+		F6E2DD3F177AECFA00E1F603 /* key_behaviour.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = key_behaviour.cc; sourceTree = "<group>"; };
+		F6E2DD40177AECFA00E1F603 /* key_behaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = key_behaviour.h; sourceTree = "<group>"; };
+		F6E2DD42177AEF7800E1F603 /* blue_key_behaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = blue_key_behaviour.h; sourceTree = "<group>"; };
+		F6E2DD43177AF03F00E1F603 /* red_key_behaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = red_key_behaviour.h; sourceTree = "<group>"; };
+		F6E2DD44177AF09500E1F603 /* blue_door_behaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = blue_door_behaviour.h; sourceTree = "<group>"; };
+		F6E2DD45177AF0F500E1F603 /* red_door_behaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = red_door_behaviour.h; sourceTree = "<group>"; };
 		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
 		F6E3E49816B550B300BFAC05 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F6E3E49A16B550DE00BFAC05 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
@@ -483,8 +490,14 @@
 				F6C80C3E1779C4A70083BF79 /* behaviour_factory.h */,
 				F6C80C40177A0AC60083BF79 /* door_behaviour.cc */,
 				F6C80C41177A0AC60083BF79 /* door_behaviour.h */,
+				F6E2DD44177AF09500E1F603 /* blue_door_behaviour.h */,
+				F6E2DD45177AF0F500E1F603 /* red_door_behaviour.h */,
 				F6C80C43177A158C0083BF79 /* wall_behaviour.cc */,
 				F6C80C44177A158C0083BF79 /* wall_behaviour.h */,
+				F6E2DD3F177AECFA00E1F603 /* key_behaviour.cc */,
+				F6E2DD40177AECFA00E1F603 /* key_behaviour.h */,
+				F6E2DD42177AEF7800E1F603 /* blue_key_behaviour.h */,
+				F6E2DD43177AF03F00E1F603 /* red_key_behaviour.h */,
 			);
 			name = Behaviors;
 			sourceTree = "<group>";
@@ -1032,6 +1045,7 @@
 				F6C80C3F1779C4A70083BF79 /* behaviour_factory.cc in Sources */,
 				F6C80C42177A0AC60083BF79 /* door_behaviour.cc in Sources */,
 				F6C80C45177A158C0083BF79 /* wall_behaviour.cc in Sources */,
+				F6E2DD41177AECFA00E1F603 /* key_behaviour.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

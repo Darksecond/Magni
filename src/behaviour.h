@@ -11,8 +11,9 @@ public:
     virtual ~behaviour() = default;
     
     virtual void update() = 0;
-    virtual void on_collision(game_object& other) {};
+    virtual void on_collision(game_object& other) {}
     void notify(event_t type, void* data);
+    virtual void on_event(event_t type, void* data) {}
     void set_parent(game_object* go);
     
 protected:

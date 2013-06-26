@@ -18,28 +18,12 @@
 
 fpscam_behaviour::fpscam_behaviour() : _angles(M_PI+M_PI/2, 0)
 {
+    keys[key_event::key_t::blue] = false;
+    keys[key_event::key_t::red] = false;
 }
 
 void fpscam_behaviour::update()
 {
-    //TEMP JUNK
-    static bool once = true;
-    static bool second = true;
-    static text_event te{std::make_shared<text>(glm::vec2(50, 50), "Hello, World!", 20)};
-    if(once)
-    {
-        notify(event_t::renderer_add_text, (void*)&te);
-        once = false;
-    }
-    else if(once == false && second == true)
-    {
-        
-        te._text->set_text("SOME OTHER JUNK STUFF");
-//        notify(event_t::renderer_remove_text, (void*)&te);
-        second = false;
-    }
-    //END TEMP JUNK
-    
     int xpos, ypos;
     glfwGetMousePos(&xpos, &ypos);
     glfwSetMousePos(0, 0);
@@ -77,4 +61,30 @@ void fpscam_behaviour::update()
     _parent->local().translate(pos); //translation *should* go last, i think.
     _parent->local().rotate(glm::degrees(_angles.x), glm::vec3(0, 1, 0));
     _parent->local().rotate(glm::degrees(_angles.y), glm::vec3(1, 0, 0));
+}
+
+void fpscam_behaviour::on_event(event_t type, void* data)
+{
+    if(type == event_t::behaviour_add_key)
+    {
+        key_event* event = (key_event*)data;
+        
+        bool first_time = keys[event->key] == false;
+        keys[event->key] = true;
+        
+        text_event t;
+        if(event->key == key_event::key_t::blue && first_time)
+            t._text = std::make_shared<::text>(glm::vec2(50, 50), "BLUE", 20);
+        else if(event->key == key_event::key_t::red && first_time)
+            t._text = std::make_shared<::text>(glm::vec2(150, 50), "RED", 20);
+        else
+            return;
+        
+        notify(event_t::renderer_add_text, &t);
+    }
+    else if(type == event_t::behaviour_has_key)
+    {
+        key_event* event = (key_event*)data;
+        event->has_key = keys[event->key];
+    }
 }

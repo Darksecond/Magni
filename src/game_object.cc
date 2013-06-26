@@ -82,3 +82,9 @@ void game_object::add_listener(module* m)
 {
     _listeners.push_back(m);
 }
+
+void game_object::on_event(event_t type, void* data)
+{
+    if(_behaviour)
+        _behaviour->on_event(type, data);
+}
