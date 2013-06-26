@@ -2,6 +2,7 @@
 
 #include "renderer.h"
 #include "collision_system.h"
+#include "audio_module.h"
 
 #include <string>
 #include <memory>
@@ -38,6 +39,7 @@ private:
     
     collision_system _collider;
     renderer _renderer;
+    audio_module _audio;
     
     std::shared_ptr<scene> _active_scene;
 };

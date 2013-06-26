@@ -41,18 +41,21 @@ void game::boot(const std::string& resource_dir)
     
     _renderer.boot();
     _collider.boot();
+    _audio.boot();
 }
 
 void game::shutdown()
 {
     _renderer.shutdown();
     _collider.shutdown();
+    _audio.shutdown();
 }
 
 void game::build()
 {
     _renderer.build();
     _collider.build();
+    _audio.build();
     
     std::vector<module*> modules;
     modules.push_back(&_renderer);
@@ -83,6 +86,9 @@ void game::run()
             stop();
         
         if(!_collider.step(_active_scene))
+            stop();
+        
+        if(!_audio.step(_active_scene))
             stop();
     }
 }
