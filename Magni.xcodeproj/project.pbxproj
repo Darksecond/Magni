@@ -108,6 +108,10 @@
 		F6CC523B16D6915600C58612 /* ObjGeometry.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6CC523916D6915500C58612 /* ObjGeometry.cc */; };
 		F6D9138416BC0226000C0632 /* Mesh.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6D9138316BC0226000C0632 /* Mesh.cc */; };
 		F6E2DD41177AECFA00E1F603 /* key_behaviour.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6E2DD3F177AECFA00E1F603 /* key_behaviour.cc */; };
+		F6E2DD49177B21EC00E1F603 /* buffer.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6E2DD47177B21EC00E1F603 /* buffer.cc */; };
+		F6E2DD4C177B262800E1F603 /* listener.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6E2DD4A177B262800E1F603 /* listener.cc */; };
+		F6E2DD4F177B279F00E1F603 /* source.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6E2DD4D177B279F00E1F603 /* source.cc */; };
+		F6E2DD52177B2AD700E1F603 /* audio_module.cc in Sources */ = {isa = PBXBuildFile; fileRef = F6E2DD50177B2AD600E1F603 /* audio_module.cc */; };
 		F6E3E49616B5508B00BFAC05 /* copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49516B5508B00BFAC05 /* copying.txt */; };
 		F6E3E49916B550B300BFAC05 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49816B550B300BFAC05 /* LICENSE.txt */; };
 		F6E3E49B16B550DE00BFAC05 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = F6E3E49A16B550DE00BFAC05 /* COPYING.txt */; };
@@ -324,6 +328,14 @@
 		F6E2DD43177AF03F00E1F603 /* red_key_behaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = red_key_behaviour.h; sourceTree = "<group>"; };
 		F6E2DD44177AF09500E1F603 /* blue_door_behaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = blue_door_behaviour.h; sourceTree = "<group>"; };
 		F6E2DD45177AF0F500E1F603 /* red_door_behaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = red_door_behaviour.h; sourceTree = "<group>"; };
+		F6E2DD47177B21EC00E1F603 /* buffer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buffer.cc; sourceTree = "<group>"; };
+		F6E2DD48177B21EC00E1F603 /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		F6E2DD4A177B262800E1F603 /* listener.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = listener.cc; sourceTree = "<group>"; };
+		F6E2DD4B177B262800E1F603 /* listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = listener.h; sourceTree = "<group>"; };
+		F6E2DD4D177B279F00E1F603 /* source.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = source.cc; sourceTree = "<group>"; };
+		F6E2DD4E177B279F00E1F603 /* source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = source.h; sourceTree = "<group>"; };
+		F6E2DD50177B2AD600E1F603 /* audio_module.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_module.cc; sourceTree = "<group>"; };
+		F6E2DD51177B2AD600E1F603 /* audio_module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_module.h; sourceTree = "<group>"; };
 		F6E3E49516B5508B00BFAC05 /* copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
 		F6E3E49816B550B300BFAC05 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F6E3E49A16B550DE00BFAC05 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
@@ -709,6 +721,7 @@
 		F687A52E16B4BC7700878140 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F6E2DD46177B21C300E1F603 /* Audio */,
 				F66B539C176DD45800880F21 /* Collision Detection */,
 				F66ED7A51764B07B00CBDB3F /* Behaviors */,
 				F610E0211763946B00822CEF /* Renderer */,
@@ -785,6 +798,21 @@
 				F69F2C911762213600F76B40 /* model.h */,
 			);
 			name = "Game Objects";
+			sourceTree = "<group>";
+		};
+		F6E2DD46177B21C300E1F603 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				F6E2DD47177B21EC00E1F603 /* buffer.cc */,
+				F6E2DD48177B21EC00E1F603 /* buffer.h */,
+				F6E2DD4A177B262800E1F603 /* listener.cc */,
+				F6E2DD4B177B262800E1F603 /* listener.h */,
+				F6E2DD4D177B279F00E1F603 /* source.cc */,
+				F6E2DD4E177B279F00E1F603 /* source.h */,
+				F6E2DD50177B2AD600E1F603 /* audio_module.cc */,
+				F6E2DD51177B2AD600E1F603 /* audio_module.h */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1046,6 +1074,10 @@
 				F6C80C42177A0AC60083BF79 /* door_behaviour.cc in Sources */,
 				F6C80C45177A158C0083BF79 /* wall_behaviour.cc in Sources */,
 				F6E2DD41177AECFA00E1F603 /* key_behaviour.cc in Sources */,
+				F6E2DD49177B21EC00E1F603 /* buffer.cc in Sources */,
+				F6E2DD4C177B262800E1F603 /* listener.cc in Sources */,
+				F6E2DD4F177B279F00E1F603 /* source.cc in Sources */,
+				F6E2DD52177B2AD700E1F603 /* audio_module.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
