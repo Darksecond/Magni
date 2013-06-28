@@ -1,7 +1,5 @@
-#include "../../src/Application.h"
+#include "../../src/game.h"
 #include <iostream>
-
-using namespace Ymir;
 
 static std::string ResourceDirectory()
 {
@@ -11,12 +9,11 @@ static std::string ResourceDirectory()
 int main(int argc, char* argv[])
 {
     try{
-        Application application = Application();
-        application.createManagers(ResourceDirectory());
-        application.createEngines();
-        application.buildGame();
-        application.waitNetwork();
-        application.runGame();
+        game& g = game::instance();
+        g.boot(ResourceDirectory());
+        g.build();
+        g.run();
+        g.shutdown();
     } catch(std::runtime_error e) {
         std::cout << e.what();
     }
