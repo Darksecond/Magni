@@ -15,12 +15,15 @@ public:
     
     std::shared_ptr<game_object> get_by_name(const std::string& name);
     //TODO std::list<std::shared_ptr<game_object>> get_by_position(const glm::vec3& position, float range);
+    void remove_game_object(std::shared_ptr<game_object> object);
     
     inline std::list<std::shared_ptr<game_object>>& linear_view();
     inline std::shared_ptr<game_object> scene_graph_view();
+    void remove_to_remove();
 private:
     std::shared_ptr<game_object> _world;
     std::list<std::shared_ptr<game_object>> _linear_view;
+    std::list<std::shared_ptr<game_object>> _to_remove;
 };
 
 //TEMPLATE & INLINE METHODS

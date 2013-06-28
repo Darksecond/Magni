@@ -10,6 +10,15 @@ void game_object::add(std::shared_ptr<game_object> child)
     _children.push_back(child);
 }
 
+void game_object::remove(std::shared_ptr<game_object> object)
+{
+    _children.remove(object);
+    for(auto child : _children)
+    {
+        child->remove(object);
+    }
+}
+
 void game_object::accept(game_object_visitor &visitor)
 {
     visitor.start_visit(*this);

@@ -19,6 +19,7 @@ public:
     virtual ~game_object() = default;
     
     void add(std::shared_ptr<game_object> child);
+    void remove(std::shared_ptr<game_object> object);
     
     virtual void accept(game_object_visitor& visitor);
     
@@ -38,7 +39,7 @@ public:
     void update_global(const spatial& new_global);
     void update();
 protected:
-    std::vector<std::shared_ptr<game_object>> _children;
+    std::list<std::shared_ptr<game_object>> _children;
 private:
     const std::string _name;
     spatial _local_spatial;

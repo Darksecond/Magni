@@ -90,6 +90,8 @@ void game::run()
         
         if(!_audio.step(_active_scene))
             stop();
+        
+        _active_scene->remove_to_remove();
     }
 }
 

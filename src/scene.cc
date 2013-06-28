@@ -38,3 +38,18 @@ std::shared_ptr<game_object> scene::get_by_name(const std::string& name)
     }
     return nullptr;
 }
+
+void scene::remove_game_object(std::shared_ptr<game_object> object)
+{
+    _to_remove.push_back(object);
+}
+
+void scene::remove_to_remove()
+{
+    for(auto object : _to_remove)
+    {
+        _world->remove(object);
+        _linear_view.remove(object);
+    }
+    _to_remove.clear();
+}
